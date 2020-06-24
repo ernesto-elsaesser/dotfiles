@@ -1,0 +1,23 @@
+[user]
+  email = ernesto.elsaesser@REPLACE.com
+  name = Ernesto Elsäßer
+  
+[core]
+  editor = vim
+  autocrlf = input
+  
+[diff]
+  tool = vimdiff
+
+[alias]
+  s = status
+  a = "add --all"
+  c = "commit -m"
+  r = "reset --hard"
+  l = "log --oneline"
+  d = diff
+  p = push
+  b = branch
+  pl = pull
+  pu = "push -u origin HEAD"
+  co = checkout
