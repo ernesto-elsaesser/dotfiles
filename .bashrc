@@ -4,5 +4,5 @@ alias e='vim'
 alias n='vim ~/.notes'
 alias g='git'
 alias p='python3'
-alias s='screen'
+alias s='sudo '
 
