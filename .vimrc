@@ -1,3 +1,5 @@
+set background=dark
+set t_Co=8
 syntax on
 set wildmenu
 set number
