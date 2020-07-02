@@ -20,3 +20,5 @@
   pl = pull
   pu = "push -u origin HEAD"
   co = checkout
+  rh = "rebase -i --root"
+
