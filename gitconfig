@@ -11,7 +11,7 @@
   c = "commit -m"
   r = "reset --hard"
   l = "log --oneline"
-  d = "difftool -y -t vimdiff"
+  d = "difftool -y -t vimdiff --cached"
   p = push
   b = branch
   pl = pull
