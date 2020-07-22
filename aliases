@@ -1,5 +1,5 @@
 alias c='clear'
-alias l='ls -l --group-directories-first'
+alias l='ls -lh --group-directories-first'
 alias e='vim'
 alias n='vim ~/.notes'
 alias g='git'
