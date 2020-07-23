@@ -4,7 +4,7 @@ read DOMAIN
 CONFIG_DIR=`pwd`
 
 BASH_CONF="source $CONFIG_DIR/aliases\n"
-echo -e $BASH_CONF >> ~/.bashrc
+echo -e $BASH_CONF > ~/.bashrc
 
 ln -s "$CONFIG_DIR/settings.vim" ~/.vimrc
 
