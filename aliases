@@ -6,5 +6,4 @@ alias n='vim ~/.notes'
 alias g='git'
 alias p='python3'
 alias s='sudo '
-alias x='exit'
 
