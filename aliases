@@ -1,10 +1,6 @@
-set -o vi
-
 alias c='clear'
 alias l='ls -lh --group-directories-first'
-alias e='vim'
-alias r='vim -R'
-alias n='vim ~/.notes'
+alias v='vim .'
 alias g='git'
 alias p='python3'
 alias s='sudo '
