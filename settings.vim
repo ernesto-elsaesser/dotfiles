@@ -13,7 +13,7 @@ let loaded_matchparen=1
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_winsize = 80
-let g:netrw_list_hide = '^\..*'
+let g:netrw_list_hide = '^\.[^.].*'
 let g:netrw_use_errorwindow = 0
 let g:netrw_sizestyle = 'H'
 
