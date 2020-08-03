@@ -9,6 +9,7 @@ set autoindent
 set complete=.,t
 set completeopt=
 set noswapfile
+set nowrap
 let loaded_matchparen=1
 
 let g:netrw_banner = 0
