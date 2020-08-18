@@ -1,6 +1,7 @@
 set background=dark
 syntax on
 set number
+set noruler
 set tabstop=4
 set shiftwidth=4
 set expandtab
