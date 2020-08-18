@@ -9,13 +9,11 @@
   s = status
   a = "add --all"
   c = "commit -m"
+  p = push
+  pu = "push -u origin HEAD"
+  pl = pull
   r = "reset --hard"
   l = "log --oneline"
-  d = "difftool -y -t vimdiff --cached"
-  p = push
-  b = branch
-  pl = pull
-  pu = "push -u origin HEAD"
   co = checkout
-  rh = "rebase -i --root"
+  rb = "rebase -i --root"
 

@@ -1,5 +1,4 @@
 alias c='clear'
-alias l='ls -lh --group-directories-first'
 alias v='vim "+bo ter ++rows=10" +16Lexplore'
 alias g='git'
 alias p='python3'
