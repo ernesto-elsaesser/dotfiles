@@ -15,7 +15,7 @@ let g:netrw_list_hide = '^\.[^.].*'
 highlight link netrwMarkFile Title
 nmap <space> <cr>
 
-fun Diff()
+fun! Diff()
   set diff
   set scrollbind
   bo vert terminal git show master:%
@@ -26,10 +26,11 @@ fun Diff()
   diffupdate
 endfun
 
-fun Push(message)
+fun! Push(message)
   !git add -v --all
   exec '!git commit -m "' . a:message . '"'
   !git push
 endfun
 
-com P terminal python3 %
+com! -nargs=1 S call Push(<args>)
+com! P terminal python3 %
