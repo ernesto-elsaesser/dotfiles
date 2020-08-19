@@ -33,7 +33,6 @@ fun! Test(message)
 endfun
 
 fun! Commit(message)
-  !git add --all
-  let commit_cmd='!git commit -m "' . a:message . '"'
-  exec commit_cmd
+  !git add -v --all
+  exec '!git commit -m "' . a:message . '"'
 endfun
