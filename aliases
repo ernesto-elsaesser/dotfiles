@@ -1,5 +1,0 @@
-alias c='clear'
-alias s='sudo'
-alias v='vim +16Lexplore'
-alias pl='git pull'
-
