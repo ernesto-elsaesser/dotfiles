@@ -24,10 +24,10 @@ fun! DiffMaster()
     diffupdate
 endfun
 
-fun! CommitAndPush(message, upstream)
+fun! CommitAndPush(message, newbranch)
     !git add -v --all
     exec '!git commit -m "' . a:message . '"'
-    if a:upsteam
+    if a:newbranch
         !git push -u origin HEAD
     else
         !git push
