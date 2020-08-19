@@ -27,7 +27,7 @@ endfun
 fun! DiffMaster()
     set diff
     set scrollbind
-    bo vert terminal git show master:%
+    bel vert terminal git show master:%
     set diff
     set scrollbind
     sleep
