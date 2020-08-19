@@ -2,16 +2,11 @@
   name = Ernesto Elsäßer
   
 [core]
-  editor = vim
   autocrlf = input
   
 [alias]
   s = status
-  a = "add --all"
-  c = "commit -m"
-  p = push
   pu = "push -u origin HEAD"
-  pl = pull
   r = "reset --hard"
   l = "log --oneline"
   co = checkout

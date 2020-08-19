@@ -1,7 +1,6 @@
 set background=dark
 syntax on
 set number
-set noruler
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -17,3 +16,19 @@ let g:netrw_list_hide = '^\.[^.].*'
 highlight link netrwMarkFile Title
 nmap <space> <cr>
 
+fun! Diff()
+  set diff
+  set scrollbind
+  bo vert terminal git show master:%
+  set diff
+  set scrollbind
+  sleep
+  wincmd h
+  diffupdate
+endfun
+
+fun! Commit(message)
+  terminal git add --all
+  sleep
+  terminal git commit -m a:message
+endfun
