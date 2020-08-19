@@ -1,5 +1,3 @@
-CONFIG_DIR=`pwd`
-
-echo "alias v='vim +16Lexplore'" >> ~/.bashrc
-ln -s "$CONFIG_DIR/settings.vim" ~/.vimrc
+echo -e "alias v='vim +16Lexplore'\n" >> ~/.bashrc
+echo -e "so `pwd`/settings.vim\n" >> ~/.vimrc
 
