@@ -27,8 +27,12 @@ fun! Diff()
   diffupdate
 endfun
 
+fun! Test(message)
+  let cmd="terminal echo " . a:message
+  exec cmd
+endfun
+
 fun! Commit(message)
-  terminal git add --all
-  sleep
-  terminal git commit -m a:message
+  !git add --all
+  !git commit -m a:message
 endfun
