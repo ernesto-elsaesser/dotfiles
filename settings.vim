@@ -34,5 +34,6 @@ endfun
 
 fun! Commit(message)
   !git add --all
-  !git commit -m a:message
+  let commit_cmd='!git commit -m "' . a:message . '"'
+  exec commit_cmd
 endfun
