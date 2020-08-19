@@ -1,6 +1,4 @@
 alias c='clear'
-alias v='vim "+bo ter ++rows=10" +16Lexplore'
-alias g='git'
-alias p='python3'
-alias s='sudo '
+alias s='sudo'
+alias v='vim +16Lexplore'
 
