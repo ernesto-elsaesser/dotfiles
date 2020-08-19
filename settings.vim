@@ -1,5 +1,6 @@
 set background=dark
 set number
+set colorcolumn=80
 set shiftwidth=4
 set expandtab
 set autoindent
