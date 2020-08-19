@@ -33,4 +33,4 @@ fun! Push(message)
 endfun
 
 com! -nargs=1 S call Push(<args>)
-com! P bo terminal python3 %
+com! P bel terminal python3 %
