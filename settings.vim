@@ -7,6 +7,8 @@ set complete=.,t
 set completeopt=
 set noswapfile
 set nowrap
+set splitright
+set splitbelow
 
 let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
@@ -27,7 +29,7 @@ endfun
 fun! DiffMaster()
     set diff
     set scrollbind
-    bel vert ter git show master:%
+    vert ter git show master:%
     set diff
     set scrollbind
     sleep
@@ -43,7 +45,7 @@ fun! QuitDiff()
 endfun
 
 fun! MySQL(login, db, sql)
-    let c = 'bel ter ++close mysql --login-path="'.a:login.'"'
+    let c = 'ter ++close mysql --login-path="'.a:login.'"'
     if a:db != ''
 	let c .= ' '.a:db
     endif
@@ -61,6 +63,6 @@ com! Gp !git pull
 com! Gr !git reset --hard
 com! Gl !git log --oneline
 
-com! P bel ter python3 %
-com! -nargs=+ Px bel ter python3 <args>
-com! Pt bel ter ++close python3
+com! P ter python3 %
+com! -nargs=+ Px ter python3 <args>
+com! Pt ter ++close python3
