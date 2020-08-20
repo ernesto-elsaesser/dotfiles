@@ -10,6 +10,7 @@ set nowrap
 
 let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
+let g:netrw_sizestyle='H'
 highlight link netrwMarkFile Title
 nmap <space> <cr>
 
