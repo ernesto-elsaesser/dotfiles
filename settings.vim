@@ -44,10 +44,10 @@ endfun
 
 fun! MySQL(login, db, sql)
     let c = 'bel ter ++close mysql --login-path="'.a:login.'"'
-    if a:db
+    if a:db != ''
 	let c .= ' '.a:db
     endif
-    if a:sql
+    if a:sql != ''
 	let c .= ' -e "'.a:sql.'"'
     endif
     exec c
