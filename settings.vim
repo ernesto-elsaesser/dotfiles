@@ -42,8 +42,8 @@ fun! QuitDiff()
     quit
 endfun
 
-fun! MySQL(cnf, db, sql)
-    let c = 'bel ter ++close mysql --defaults-file="'.a:cnf.'"'
+fun! MySQL(login, db, sql)
+    let c = 'bel ter ++close mysql --login-path="'.a:login.'"'
     if a:db
 	let c .= ' '.a:db
     endif
