@@ -2,6 +2,7 @@ set background=dark
 set number
 set textwidth=80
 set shiftwidth=4
+set tabstop=4
 set expandtab
 set autoindent
 set complete=.,t
