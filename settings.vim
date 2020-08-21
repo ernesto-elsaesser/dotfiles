@@ -1,6 +1,6 @@
 set background=dark
 set number
-set textwidth=80
+set textwidth=100
 set shiftwidth=4
 set tabstop=4
 set expandtab
