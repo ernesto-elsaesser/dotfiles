@@ -66,3 +66,4 @@ com! Gl !git log --oneline
 com! P ter python3 %
 com! -nargs=+ Px ter python3 <args>
 com! Pt ter ++close python3
+com! Pl ter pylint %
