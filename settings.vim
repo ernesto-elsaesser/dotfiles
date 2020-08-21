@@ -57,12 +57,14 @@ fun! MySQL(login, db, sql)
     exec c
 endfun
 
-fun! UpdateConfig()
-    cd ~/system-config
-    !git pull
-    cd -
-    so ~/.vimrc
-endfun
+if !exists("*UpdateConfig")
+    fun UpdateConfig()
+	cd ~/system-config
+	!git pull
+	cd -
+	so ~/.vimrc
+    endfun
+endif
 
 com! -nargs=1 G call CommitAndPush(<args>, 0)
 com! Gs !git diff --name-status
