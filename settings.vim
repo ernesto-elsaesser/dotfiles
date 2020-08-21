@@ -58,10 +58,10 @@ fun! MySQL(login, db, sql)
 endfun
 
 if !exists("*UpdateConfig")
-    fun UpdateConfig()
-	cd ~/system-config
+    fun Update()
+	silent cd ~/system-config
 	!git pull
-	cd -
+	silent cd -
 	so ~/.vimrc
     endfun
 endif
