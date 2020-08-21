@@ -57,7 +57,7 @@ fun! MySQL(login, db, sql)
     exec c
 endfun
 
-if !exists("*UpdateConfig")
+if !exists("*Update")
     fun Update()
 	silent cd ~/system-config
 	!git pull
