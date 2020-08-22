@@ -1,5 +1,6 @@
 set background=dark
 set number
+set colorcolumn=100
 set complete=.,t
 set completeopt=
 set noswapfile
@@ -11,11 +12,11 @@ filetype plugin indent on
 let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
 let g:netrw_sizestyle='H'
-highlight link netrwMarkFile Title
 nmap <space> <cr>
 
-set colorcolumn=100
+hi MatchParen ctermfg=Red ctermbg=NONE
 hi ColorColumn ctermbg=DarkGray
+hi link netrwMarkFile Title
 
 fun! CommitAndPush(message, newbranch)
     !git add -v --all
@@ -67,15 +68,15 @@ endif
 
 com! -nargs=1 G call CommitAndPush(<args>, 0)
 com! Gs !git diff --name-status
-com! Gd call DiffMaster()
-com! Gx call QuitDiff()
 com! Gp !git pull
 com! Gr !git reset --hard
 com! Gl !git log --oneline
+com! Gd call DiffMaster()
+com! Gx call QuitDiff()
 
 com! P ter python3 %
-com! -nargs=+ Px ter python3 <args>
-com! Pt ter ++close python3
 com! Pl ter pylint %
+com! Pi py3file %
+com! -nargs=+ Py py3 <args>
 
 com! L 15Lexplore
