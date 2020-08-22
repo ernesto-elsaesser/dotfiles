@@ -1,10 +1,7 @@
-SHELL_INIT_FILE=~/.bashrc
+CONFIG_DIR=`pwd`
 
 echo "
-alias v='vim +16Lexplore'
-" >> $SHELL_INIT_FILE
-
-echo "
-so `pwd`/settings.vim
+let g:config_dir=$CONFIG_DIR
+so $CONFIG_DIR/vimrc
 " >> ~/.vimrc
 

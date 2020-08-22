@@ -59,10 +59,10 @@ endfun
 
 if !exists("*Update")
     fun Update()
-	silent cd ~/system-config
-	!git pull
-	silent cd -
-	so ~/.vimrc
+        silent cd g:config_dir
+        !git pull
+        silent cd -
+        so ~/.vimrc
     endfun
 endif
 
@@ -78,3 +78,5 @@ com! P ter python3 %
 com! -nargs=+ Px ter python3 <args>
 com! Pt ter ++close python3
 com! Pl ter pylint %
+
+com! L 15Lexplore
