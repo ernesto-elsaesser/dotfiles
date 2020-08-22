@@ -1,3 +1,10 @@
-echo -e "alias v='vim +16Lexplore'\n" >> ~/.bashrc
-echo -e "so `pwd`/settings.vim\n" >> ~/.vimrc
+SHELL_INIT_FILE=~/.bashrc
+
+echo "
+alias v='vim +16Lexplore'
+" >> $SHELL_INIT_FILE
+
+echo "
+so `pwd`/settings.vim
+" >> ~/.vimrc
 
