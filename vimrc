@@ -19,51 +19,51 @@ hi ColorColumn ctermbg=DarkGray
 hi link netrwMarkFile Title
 
 fun! CommitAndPush(message, newbranch)
-    !git add -v --all
-    exec '!git commit -m "'.a:message.'"'
-    if a:newbranch
-        !git push -u origin HEAD
-    else
-        !git push
-    endif
+	!git add -v --all
+	exec '!git commit -m "'.a:message.'"'
+	if a:newbranch
+		!git push -u origin HEAD
+	else
+		!git push
+	endif
 endfun
 
 fun! DiffMaster()
-    set diff
-    set scrollbind
-    vert ter git show master:%
-    set diff
-    set scrollbind
-    sleep
-    wincmd h
-    diffupdate
+	!git show master:% > /tmp/diff
+	vs /tmp/diff
+	set diff
+	set scrollbind
+	wincmd h
+	set diff
+	set scrollbind
+	diffupdate
 endfun
 
 fun! QuitDiff()
-    set nodiff
-    set noscrollbind
-    wincmd l
-    quit
+	set nodiff
+	set noscrollbind
+	wincmd l
+	quit
 endfun
 
 fun! MySQL(login, db, sql)
-    let c = 'ter ++close mysql --login-path="'.a:login.'"'
-    if a:db != ''
+	let c = 'ter ++close mysql --login-path="'.a:login.'"'
+	if a:db != ''
 	let c .= ' '.a:db
-    endif
-    if a:sql != ''
+	endif
+	if a:sql != ''
 	let c .= ' -e "'.a:sql.'"'
-    endif
-    exec c
+	endif
+	exec c
 endfun
 
 if !exists("*Update")
-    fun Update()
-        silent cd g:config_dir
-        !git pull
-        silent cd -
-        so ~/.vimrc
-    endfun
+	fun Update()
+		silent cd g:config_dir
+		!git pull
+		silent cd -
+		so ~/.vimrc
+	endfun
 endif
 
 com! -nargs=1 G call CommitAndPush(<args>, 0)
