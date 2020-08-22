@@ -1,22 +1,21 @@
 set background=dark
 set number
-set textwidth=100
-set shiftwidth=4
-set tabstop=4
-set expandtab
-set autoindent
 set complete=.,t
 set completeopt=
 set noswapfile
 set nowrap
 set splitright
 set splitbelow
+filetype plugin indent on
 
 let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
 let g:netrw_sizestyle='H'
 highlight link netrwMarkFile Title
 nmap <space> <cr>
+
+set colorcolumn=100
+hi ColorColumn ctermbg=DarkGray
 
 fun! CommitAndPush(message, newbranch)
     !git add -v --all
