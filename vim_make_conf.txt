@@ -1,0 +1,2 @@
+./configure --enable-python3interp=dynamic --with-features=huge --enable-gui=no --disable-netbeans
+# TODO: normal features, enable terminal (and others) manually via --disable-FEATURE
