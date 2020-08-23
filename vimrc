@@ -7,6 +7,7 @@ set noswapfile
 set nowrap
 set splitright
 set splitbelow
+syntax on
 filetype plugin indent on
 
 let g:netrw_banner=0
@@ -29,6 +30,7 @@ fun! CommitAndPush(message, newbranch)
 endfun
 
 fun! DiffMaster()
+	cd .
 	!git show master:% > /tmp/diff
 	vs /tmp/diff
 	set diff
