@@ -1,5 +1,5 @@
 set background=dark
-set number
+set ruler
 set colorcolumn=100
 set complete=.,t
 set completeopt=
@@ -30,20 +30,19 @@ fun! CommitAndPush(message, newbranch)
 endfun
 
 fun! DiffMaster()
+	" ensure % is relative to working dir
 	cd .
-	!git show master:% > /tmp/diff
-	vs /tmp/diff
-	set diff
-	set scrollbind
+	silent !git show master:% > /tmp/%
+	redraw!
+	vs /tmp/%
+	set diff scrollbind
 	wincmd h
-	set diff
-	set scrollbind
+	set diff scrollbind
 	diffupdate
 endfun
 
 fun! QuitDiff()
-	set nodiff
-	set noscrollbind
+	set nodiff noscrollbind
 	wincmd l
 	quit
 endfun
@@ -51,10 +50,10 @@ endfun
 fun! MySQL(login, db, sql)
 	let c = 'ter ++close mysql --login-path="'.a:login.'"'
 	if a:db != ''
-	let c .= ' '.a:db
+		let c .= ' '.a:db
 	endif
 	if a:sql != ''
-	let c .= ' -e "'.a:sql.'"'
+		let c .= ' -e "'.a:sql.'"'
 	endif
 	exec c
 endfun
