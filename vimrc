@@ -63,7 +63,7 @@ endfun
 
 if !exists("*Update")
 	fun Update()
-		silent cd g:config_dir
+		exec "silent cd ".g:config_dir
 		!git pull
 		silent cd -
 		so ~/.vimrc
