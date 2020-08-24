@@ -5,6 +5,7 @@ set complete=.,t
 set completeopt=
 set noswapfile
 set nowrap
+set hlsearch
 set splitright
 set splitbelow
 syntax on
