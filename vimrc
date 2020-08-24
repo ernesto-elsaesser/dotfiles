@@ -4,7 +4,6 @@ set colorcolumn=100
 set backspace=indent,eol,start
 set complete=.,t
 set completeopt=
-set expandtab
 set noswapfile
 set nowrap
 set hlsearch
