@@ -3,6 +3,7 @@ set ruler
 set colorcolumn=100
 set complete=.,t
 set completeopt=
+set expandtab
 set noswapfile
 set nowrap
 set hlsearch
@@ -35,7 +36,7 @@ fun! DiffMaster()
 	cd .
 	silent !git show master:% > /tmp/%
 	redraw!
-	vs /tmp/%
+	keepalt vs /tmp/%
 	set diff scrollbind
 	wincmd h
 	set diff scrollbind
