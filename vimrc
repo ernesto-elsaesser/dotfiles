@@ -70,16 +70,16 @@ if !exists("*Update")
 endif
 
 com! -nargs=1 G call CommitAndPush(<args>, 0)
-com! Gs !git diff --name-status
-com! Gp !git pull
-com! Gr !git reset --hard
-com! Gl !git log --oneline
-com! Gd call DiffMaster()
-com! Gx call QuitDiff()
+com! GS !git diff --name-status
+com! GP !git pull
+com! GR !git reset --hard
+com! GL !git log --oneline
+com! GD call DiffMaster()
+com! GX call QuitDiff()
 
 com! P ter python3 %
-com! Pl ter pylint %
-com! Pi py3file %
-com! -nargs=+ Py py3 <args>
+com! PL ter pylint %
+com! PI py3file %
+com! -nargs=+ PP py3 <args>
 
 com! L 15Lexplore
