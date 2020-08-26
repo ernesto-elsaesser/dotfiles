@@ -1,6 +1,6 @@
 set background=dark
 set ruler
-set colorcolumn=100
+set number
 set backspace=indent,eol,start
 set complete=.,t
 set completeopt=
