@@ -78,7 +78,7 @@ com! GD call DiffMaster()
 com! GX call QuitDiff()
 
 com! P ter python3 %
-com! PL ter pylint %
+com! PL compiler pylint | make %
 com! PI py3file %
 com! -nargs=+ PP py3 <args>
 
