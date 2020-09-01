@@ -6,7 +6,6 @@ set complete=.,t
 set completeopt=
 set noswapfile
 set nowrap
-set hlsearch
 set splitright
 set splitbelow
 syntax on
@@ -18,7 +17,7 @@ let g:netrw_sizestyle='H'
 nmap <space> <cr>
 
 hi MatchParen ctermfg=Red ctermbg=NONE
-hi ColorColumn ctermbg=DarkGray
+hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
 fun! CommitAndPush(message, newbranch)
@@ -82,4 +81,4 @@ com! PL compiler pylint | make %
 com! PI py3file %
 com! -nargs=+ PP py3 <args>
 
-com! L 15Lexplore
+com! L 14Lexplore
