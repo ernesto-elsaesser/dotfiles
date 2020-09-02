@@ -48,13 +48,15 @@ fun! QuitDiff()
 	quit
 endfun
 
-fun! MySQL(login, db, sql)
+fun! MySQL(login, ...)
 	let c = 'ter ++close mysql --login-path="'.a:login.'"'
-	if a:db != ''
-		let c .= ' '.a:db
+	" optional database name
+	if a:0 > 0
+		let c .= ' '.a:1
 	endif
-	if a:sql != ''
-		let c .= ' -e "'.a:sql.'"'
+	" optional SQL statement
+	if a:0 > 1
+		let c .= ' -e "'.a:2.'"'
 	endif
 	exec c
 endfun
