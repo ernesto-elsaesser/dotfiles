@@ -83,4 +83,6 @@ com! PL compiler pylint | make %
 com! PI py3file %
 com! -nargs=+ PP py3 <args>
 
+com! -nargs=1 M call MySQL('<args>')
+
 com! L 14Lexplore
