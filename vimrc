@@ -20,10 +20,11 @@ hi MatchParen ctermfg=Red ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
-fun! CommitAndPush(message, newbranch)
+fun! CommitAndPush(message, ...)
 	!git add -v --all
 	exec '!git commit -m "'.a:message.'"'
-	if a:newbranch
+	" optional flag for newly created branches
+	if a:0 > 0
 		!git push -u origin HEAD
 	else
 		!git push
@@ -70,7 +71,7 @@ if !exists("*Update")
 	endfun
 endif
 
-com! -nargs=1 G call CommitAndPush(<args>, 0)
+com! -nargs=1 G call CommitAndPush(<args>)
 com! GS !git diff --name-status
 com! GP !git pull
 com! GR !git reset --hard
