@@ -85,4 +85,6 @@ com! -nargs=+ PP py3 <args>
 
 com! -nargs=1 M call MySQL('<args>')
 
+com! U call Update()
+
 com! L 14Lexplore
