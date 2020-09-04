@@ -35,7 +35,7 @@ fun! DiffMaster()
 	" ensure % is relative to working dir
 	cd .
 	let l:tf = '/tmp/'.expand('%:t')
-	exec 'silent !git show master:% > '.l:tf
+	exec 'silent !git show master:./% > '.l:tf
 	redraw!
 	exec 'keepalt vs '.l:tf
 	set diff scrollbind
