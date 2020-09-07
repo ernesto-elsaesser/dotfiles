@@ -50,6 +50,11 @@ fun! QuitDiff()
 	quit
 endfun
 
+fun! RunScript()
+	let c = 'ter '.&ft.' '.expand('%')
+	exec c
+endfun
+
 fun! MySQL(login, ...)
 	let c = 'ter ++close mysql --login-path="'.a:login.'"'
 	" optional database name
@@ -72,6 +77,10 @@ if !exists("*Update")
 	endfun
 endif
 
+com! L 14Lexplore
+com! U call Update()
+com! R call RunScript()
+
 com! -nargs=1 G call CommitAndPush(<args>)
 com! GS !git diff --name-status
 com! GP !git pull
@@ -80,13 +89,8 @@ com! GL !git log --oneline
 com! GD call DiffMaster()
 com! GX call QuitDiff()
 
-com! P ter python3 %
+com! -nargs=+ P py3 <args>
+com! PF py3file %
 com! PL compiler pylint | make %
-com! PI py3file %
-com! -nargs=+ PP py3 <args>
 
 com! -nargs=1 M call MySQL('<args>')
-
-com! U call Update()
-
-com! L 14Lexplore
