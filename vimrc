@@ -17,7 +17,7 @@ let g:netrw_list_hide='^\.[^.].*'
 let g:netrw_sizestyle='H'
 nmap <space> <cr>
 
-noremap gs :s/\(\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR>
+vmap <space> :s/\(\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr>
 
 hi MatchParen ctermfg=Red ctermbg=NONE
 hi LineNr ctermfg=DarkGray
