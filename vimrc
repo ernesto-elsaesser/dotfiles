@@ -2,6 +2,7 @@ set background=dark
 set ruler
 set number
 set backspace=indent,eol,start
+set scrolloff=3
 set complete=.,t
 set completeopt=
 set noswapfile
@@ -15,6 +16,8 @@ let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
 let g:netrw_sizestyle='H'
 nmap <space> <cr>
+
+noremap gs :s/\(\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR>
 
 hi MatchParen ctermfg=Red ctermbg=NONE
 hi LineNr ctermfg=DarkGray
@@ -51,8 +54,7 @@ fun! QuitDiff()
 endfun
 
 fun! RunScript()
-	let c = 'ter '.&ft.' '.expand('%')
-	exec c
+	exec 'ter '.&ft.' '.expand('%')
 endfun
 
 fun! MySQL(login, ...)
@@ -92,5 +94,5 @@ com! GX call QuitDiff()
 com! -nargs=+ P py3 <args>
 com! PF py3file %
 com! PL compiler pylint | make %
-
+exec
 com! -nargs=1 M call MySQL('<args>')
