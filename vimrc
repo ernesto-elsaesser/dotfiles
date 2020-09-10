@@ -24,14 +24,15 @@ hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
 fun! DiffMaster()
+	cd .
 	let @d = system("git show master:./".bufname('%'))
 	let l:ft = &ft
-	set diff scrollbind
+	setlocal diff scrollbind
 	vnew
-	autocmd BufDelete <buffer> bufdo set nodiff noscrollbind
+	autocmd BufDelete <buffer> diffoff!
 	exec "set buftype=nofile filetype=".l:ft
 	put! d
-	set diff scrollbind 
+	setlocal diff scrollbind 
 	diffupdate
 endfun
 
