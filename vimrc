@@ -20,7 +20,7 @@ nmap <space> <cr>
 
 vmap gz de/\w<cr>vep``P
 
-hi MatchParen ctermfg=Red ctermbg=NONE
+hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
@@ -41,7 +41,7 @@ fun! DiffMaster()
 	let l:tf = '/tmp/'.expand('%:t')
 	exec 'silent !git show master:./% > '.l:tf
 	redraw!
-	exec 'keepalt vs '.l:tf
+	exec 'keepalt vs +'.line('.').' '.l:tf
 	set diff scrollbind
 	wincmd h
 	set diff scrollbind
@@ -54,8 +54,8 @@ fun! QuitDiff()
 	quit
 endfun
 
-fun! MySQL(login)
-	exec 'ter ++close mysql --login-path="'.a:login.'"'
+fun! MySQL(login, database)
+	exec 'ter ++close mysql --login-path="'.a:login.'" '.a:database
 endfun
 
 fun! MySQLExec(login, database, ...)
@@ -63,17 +63,8 @@ fun! MySQLExec(login, database, ...)
 	exec 'ter mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
-if !exists("*Update")
-	fun Update()
-		exec "silent cd ".g:config_dir
-		!git pull
-		silent cd -
-		so ~/.vimrc
-	endfun
-endif
-
 com! L 15Lexplore
-com! U call Update()
+com! U so ~/.vimrc
 com! -nargs=? R ter % <args>
 
 com! -nargs=1 G call CommitAndPush(<args>)
@@ -88,5 +79,5 @@ com! -nargs=+ P py3 <args>
 com! PF py3file %
 com! PL compiler pylint | make %
 
-com! -nargs=1 M call MySQL(<q-args>)
+com! -nargs=+ M call MySQL(<f-args>)
 com! -nargs=+ ME call MySQLExec(<f-args>)
