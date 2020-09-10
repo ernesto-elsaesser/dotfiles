@@ -18,7 +18,7 @@ let g:netrw_sizestyle='H'
 "let g:netrw_sort_sequence='\/$,\*$,*'
 nmap <space> <cr>
 
-nmap gx de/\w<cr>vep``P
+vmap gz de/\w<cr>vep``P
 
 hi MatchParen ctermfg=Red ctermbg=NONE
 hi LineNr ctermfg=DarkGray
