@@ -24,22 +24,15 @@ hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
 fun! DiffMaster()
-	" ensure % is relative to working dir
-	cd .
-	let l:tf = '/tmp/'.expand('%:t')
-	exec 'silent !git show master:./% > '.l:tf
-	redraw!
-	exec 'keepalt vs +'.line('.').' '.l:tf
+	let @d = system("git show master:./".bufname('%'))
+	let l:ft = &ft
 	set diff scrollbind
-	wincmd h
-	set diff scrollbind
+	vnew
+	autocmd BufDelete <buffer> bufdo set nodiff noscrollbind
+	exec "set buftype=nofile filetype=".l:ft
+	put! d
+	set diff scrollbind 
 	diffupdate
-endfun
-
-fun! QuitDiff()
-	set nodiff noscrollbind
-	wincmd l
-	quit
 endfun
 
 fun! MySQL(login, database)
@@ -59,7 +52,6 @@ com! -nargs=? R exec "ter ".expand('%:p')." <args>"
 com! -nargs=1 G ter ++rows=10 git <args>
 com! -nargs=1 GG ter ++close commit-and-push.sh <args>
 com! GD call DiffMaster()
-com! GX call QuitDiff()
 
 com! -nargs=+ P py3 <args>
 com! PF py3file %
