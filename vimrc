@@ -54,17 +54,13 @@ fun! QuitDiff()
 	quit
 endfun
 
-fun! MySQL(login, ...)
-	let c = 'ter ++close mysql --login-path="'.a:login.'"'
-	" optional database name
-	if a:0 > 0
-		let c .= ' '.a:1
-	endif
-	" optional SQL statement
-	if a:0 > 1
-		let c .= ' -e "'.a:2.'"'
-	endif
-	exec c
+fun! MySQL(login)
+	exec 'ter ++close mysql --login-path="'.a:login.'"'
+endfun
+
+fun! MySQLExec(login, database, ...)
+	let l:sql = join(a:000, ' ')
+	exec 'ter mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
 if !exists("*Update")
@@ -76,7 +72,7 @@ if !exists("*Update")
 	endfun
 endif
 
-com! L 14Lexplore
+com! L 15Lexplore
 com! U call Update()
 com! -nargs=? R ter % <args>
 
@@ -92,4 +88,5 @@ com! -nargs=+ P py3 <args>
 com! PF py3file %
 com! PL compiler pylint | make %
 
-com! -nargs=1 M call MySQL('<args>')
+com! -nargs=1 M call MySQL(<q-args>)
+com! -nargs=+ ME call MySQLExec(<f-args>)
