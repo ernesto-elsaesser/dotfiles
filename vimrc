@@ -15,10 +15,9 @@ filetype plugin indent on
 let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
 let g:netrw_sizestyle='H'
-"let g:netrw_sort_sequence='\/$,\*$,*'
 nmap <space> <cr>
 
-vmap gz de/\w<cr>vep``P
+nmap gz de/\w<cr>vep``P
 
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
@@ -65,13 +64,11 @@ endfun
 
 com! L 15Lexplore
 com! U so ~/.vimrc
-com! -nargs=? R ter % <args>
+com! UR ter update-repo.sh
+com! -nargs=? R exec "ter ".expand('%:p')." <args>"
 
-com! -nargs=1 G call CommitAndPush(<args>)
-com! GS !git diff --name-status
-com! GP !git pull
-com! GR !git reset --hard
-com! GL !git log --oneline
+com! -nargs=1 G ter ++rows=10 git <args>
+com! -nargs=1 GG ter commit-and-push.sh
 com! GD call DiffMaster()
 com! GX call QuitDiff()
 
