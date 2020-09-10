@@ -78,7 +78,7 @@ endif
 
 com! L 14Lexplore
 com! U call Update()
-com! R ter %
+com! -nargs=? R ter % <args>
 
 com! -nargs=1 G call CommitAndPush(<args>)
 com! GS !git diff --name-status
@@ -91,4 +91,5 @@ com! GX call QuitDiff()
 com! -nargs=+ P py3 <args>
 com! PF py3file %
 com! PL compiler pylint | make %
+
 com! -nargs=1 M call MySQL('<args>')
