@@ -23,17 +23,6 @@ hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
-fun! CommitAndPush(message, ...)
-	!git add -v --all
-	exec '!git commit -m "'.a:message.'"'
-	" optional flag for newly created branches
-	if a:0 > 0
-		!git push -u origin HEAD
-	else
-		!git push
-	endif
-endfun
-
 fun! DiffMaster()
 	" ensure % is relative to working dir
 	cd .
@@ -68,7 +57,7 @@ com! UR ter update-repo.sh
 com! -nargs=? R exec "ter ".expand('%:p')." <args>"
 
 com! -nargs=1 G ter ++rows=10 git <args>
-com! -nargs=1 GG ter commit-and-push.sh
+com! -nargs=1 GG ter ++close commit-and-push.sh <args>
 com! GD call DiffMaster()
 com! GX call QuitDiff()
 
