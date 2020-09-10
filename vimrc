@@ -15,6 +15,7 @@ filetype plugin indent on
 let g:netrw_banner=0
 let g:netrw_list_hide='^\.[^.].*'
 let g:netrw_sizestyle='H'
+"let g:netrw_sort_sequence='\/$,\*$,*'
 nmap <space> <cr>
 
 nmap gx de/\w<cr>vep``P
@@ -53,10 +54,6 @@ fun! QuitDiff()
 	quit
 endfun
 
-fun! RunScript()
-	exec 'ter '.&ft.' '.expand('%')
-endfun
-
 fun! MySQL(login, ...)
 	let c = 'ter ++close mysql --login-path="'.a:login.'"'
 	" optional database name
@@ -81,7 +78,7 @@ endif
 
 com! L 14Lexplore
 com! U call Update()
-com! R call RunScript()
+com! R ter %
 
 com! -nargs=1 G call CommitAndPush(<args>)
 com! GS !git diff --name-status
@@ -94,5 +91,4 @@ com! GX call QuitDiff()
 com! -nargs=+ P py3 <args>
 com! PF py3file %
 com! PL compiler pylint | make %
-exec
 com! -nargs=1 M call MySQL('<args>')
