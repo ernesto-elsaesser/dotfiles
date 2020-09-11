@@ -23,15 +23,20 @@ hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi link netrwMarkFile Title
 
-fun! DiffMaster()
+let g:diff_branch='master'
+
+fun! GitDiff()
 	cd .
-	let @d = system("git show master:./".bufname('%'))
+	let @d = system("git show ".g:diff_branch.":./".bufname('%'))
 	let l:ft = &ft
+	let l:ln = line('.')
 	setlocal diff scrollbind
-	vnew
+	vert new
 	autocmd BufDelete <buffer> diffoff!
-	exec "set buftype=nofile filetype=".l:ft
-	put! d
+	exec "set bt=nofile ft=".l:ft
+	put d
+	0delete
+	exec l:ln
 	setlocal diff scrollbind 
 	diffupdate
 endfun
@@ -52,7 +57,7 @@ com! -nargs=? R exec "ter ++rows=20 ".expand('%:p')." <args>"
 
 com! -nargs=1 G ter ++rows=10 git <args>
 com! -nargs=1 GG ter ++close commit-and-push.sh <args>
-com! GD call DiffMaster()
+com! D call GitDiff()
 
 com! -nargs=+ P py3 <args>
 com! PF py3file %
