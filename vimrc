@@ -54,9 +54,7 @@ com! L 15Lexplore
 com! U so ~/.vimrc
 com! UR ter ++rows=10 update-repo.sh
 com! -nargs=? R exec "ter ++rows=20 ".expand('%:p')." <args>"
-
-com! -nargs=1 G ter ++rows=10 git <args>
-com! -nargs=1 GG ter ++close commit-and-push.sh <args>
+com! G ter ++close commit-and-push.sh
 com! D call GitDiff()
 
 com! -nargs=+ P py3 <args>
