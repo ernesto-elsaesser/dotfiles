@@ -1,5 +1,6 @@
 git status
-read -p "Commit and push? " c
+printf "\n"
+read -p "COMMIT AND PUSH ALL CHANGES AS '$1'? " c
 [ ! -z "$c" ] && exit
 git add --all
 git commit -m "$1"
