@@ -53,7 +53,7 @@ endfun
 com! L 15Lexplore
 com! U so ~/.vimrc
 com! UR ter ++rows=10 update-repo.sh
-com! -nargs=? complete=file R exec "ter ++rows=20 ".expand('%:p')." <args>"
+com! -nargs=? -complete=file R exec "ter ++rows=20 ".expand('%:p')." <args>"
 com! G ter ++close commit-and-push.sh
 com! -nargs=+ GE ter git <args>
 com! C ter ++rows=10 git diff --name-status
