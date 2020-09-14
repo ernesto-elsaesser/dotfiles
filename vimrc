@@ -62,7 +62,7 @@ com! D call GitDiff()
 com! -nargs=+ P py3 <args>
 com! -nargs=1 PP py3 print(<args>)
 com! PF py3file %
-com! PL compiler pylint | ter ++rows=10 make %
+com! PL compiler pylint | make %
 
 com! -nargs=+ M call MySQL(<f-args>)
 com! -nargs=+ ME call MySQLExec(<f-args>)
