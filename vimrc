@@ -60,6 +60,7 @@ com! C ter ++rows=10 git diff --name-status
 com! D call GitDiff()
 
 com! -nargs=+ P py3 <args>
+com! -nargs=1 PP py3 print(<args>)
 com! PF py3file %
 com! PL compiler pylint | make %
 
