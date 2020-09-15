@@ -31,8 +31,8 @@ fun! DiffGit()
 	let l:ln = line('.')
 	setlocal diff scrollbind
 	vert new
-	autocmd BufDelete <buffer> diffoff!
-	exec "set bt=nofile ft=".l:ft
+	exec "set bt=nofile bh=wipe ft=".l:ft
+	autocmd BufWipeout <buffer> diffoff!
 	put d
 	0delete
 	exec l:ln
