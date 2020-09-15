@@ -11,6 +11,11 @@ set nowrap
 set splitright
 set splitbelow
 
+let g:netrw_liststyle=1
+let g:netrw_list_hide='^\.'
+let g:netrw_sort_sequence='\/,*'
+let g:netrw_sizestyle='H'
+
 nmap gz de/\w<cr>vep``P
 
 hi MatchParen ctermfg=Green ctermbg=NONE
