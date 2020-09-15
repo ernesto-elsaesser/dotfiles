@@ -44,7 +44,7 @@ fun! MySQLExec(login, database, ...)
 endfun
 
 com! U so ~/.vimrc
-com! UR ter ++rows=10 update-repo.sh
+com! UR ter ++close update-repo.sh
 com! -nargs=? -complete=file R exec "ter ++rows=24 ".expand('%:p')." <args>"
 
 com! G ter ++close commit-and-push.sh
