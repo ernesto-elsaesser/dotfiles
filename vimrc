@@ -1,31 +1,24 @@
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
 set background=dark
-set ruler
+set hidden
 set number
-set backspace=indent,eol,start
-set scrolloff=3
 set complete=.,t
 set completeopt=
 set noswapfile
 set nowrap
 set splitright
 set splitbelow
-syntax on
-filetype plugin indent on
-
-let g:netrw_banner=0
-let g:netrw_list_hide='^\.[^.].*'
-let g:netrw_sizestyle='H'
-nmap <space> <cr>
 
 nmap gz de/\w<cr>vep``P
 
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
-hi link netrwMarkFile Title
 
 let g:diff_branch='master'
 
-fun! GitDiff()
+fun! DiffGit()
 	cd .
 	let @d = system("git show ".g:diff_branch.":./".bufname('%'))
 	let l:ft = &ft
@@ -50,14 +43,14 @@ fun! MySQLExec(login, database, ...)
 	exec 'ter ++rows=40 mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
-com! L 15Lexplore
 com! U so ~/.vimrc
 com! UR ter ++rows=10 update-repo.sh
 com! -nargs=? -complete=file R exec "ter ++rows=24 ".expand('%:p')." <args>"
+
 com! G ter ++close commit-and-push.sh
 com! -nargs=+ GE ter git <args>
 com! C ter ++rows=10 git diff --name-status
-com! D call GitDiff()
+com! D call DiffGit()
 
 com! -nargs=+ P py3 <args>
 com! -nargs=1 PP py3 print(<args>)
