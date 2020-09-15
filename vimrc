@@ -20,6 +20,7 @@ nmap gz de/\w<cr>vep``P
 
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
+hi link netrwMarkFile Title
 
 let g:diff_branch='master'
 
