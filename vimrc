@@ -55,10 +55,11 @@ endfun
 com! U so ~/.vimrc
 com! UR ter ++close update-repo.sh
 com! -nargs=? -complete=file R exec "ter ++rows=24 ".expand('%:p')." <args>"
+com! -nargs=+ T ter <args>
 
 com! G ter ++close commit-and-push.sh
-com! -nargs=+ GE ter git <args>
-com! C ter ++rows=10 git diff --name-status
+com! GD ter git --no-pager diff
+com! GP ter ++close git pull
 com! D call DiffGit()
 
 com! -nargs=+ P py3 <args>
@@ -68,3 +69,5 @@ com! PL compiler pylint | make %
 
 com! -nargs=+ M call MySQL(<f-args>)
 com! -nargs=+ ME call MySQLExec(<f-args>)
+
+" TODO: 1 permanent terminal, used for all
