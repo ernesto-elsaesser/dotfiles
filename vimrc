@@ -53,14 +53,14 @@ fun! MySQLExec(login, database, ...)
 	exec 'ter ++rows=40 mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
+com! H exec "Explore ".getcwd()
 com! U so ~/.vimrc
 com! UR ter ++close update-repo.sh
 com! -nargs=? -complete=file R exec "ter ++rows=24 ".expand('%:p')." <args>"
-com! -nargs=+ T ter <args>
 
 com! G ter ++close commit-and-push.sh
 com! GD ter git --no-pager diff
-com! GP ter ++close git pull
+com! GP call system("git pull")
 com! D call DiffGit()
 
 com! -nargs=+ P py3 <args>
