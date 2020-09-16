@@ -2,6 +2,7 @@ unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
 set background=dark
+set mouse=
 set hidden
 set number
 set cursorline
@@ -69,5 +70,3 @@ com! PL compiler pylint | make %
 
 com! -nargs=+ M call MySQL(<f-args>)
 com! -nargs=+ ME call MySQLExec(<f-args>)
-
-" TODO: 1 permanent terminal, used for all
