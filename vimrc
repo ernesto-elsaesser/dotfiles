@@ -4,6 +4,7 @@ source $VIMRUNTIME/defaults.vim
 set background=dark
 set hidden
 set number
+set cursorline
 set complete=.,t
 set completeopt=
 set noswapfile
