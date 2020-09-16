@@ -21,7 +21,7 @@ nmap gz de/\w<cr>vep``P
 
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
-hi CursorLineNr ctermbg=DarkGray ctermfg=Black
+hi CursorLineNr cterm=NONE ctermbg=DarkGray ctermfg=Black
 hi CursorLine cterm=NONE
 hi link netrwMarkFile Title
 
