@@ -1,3 +1,31 @@
 ./configure --enable-python3interp=dynamic --with-features=huge --enable-gui=no --disable-netbeans
-# TODO: normal features, enable terminal (and others) manually via --disable-FEATURE / --without-PACKAGE
-# TEST: --without-x --with-term --with-channel
+# TODO: recompile with
+--with-autocmd
+--with-builtin_terms # TODO: check! ++
+--with-channel
+--with-cmdline_completion
+--with-cmdline_history
+--with-cmdline_info
+--with-comments
+--with-cursorbind
+--with-diff
+--with-eval
+--with-extra_search
+--with-fork()
+--with-job
+--with-jumplist
+--with-listcmds
+--with-localmap
+--with-modify_fname
+--with-python3 # redundant?
+--with-quickfix
+--with-reltime
+--with-scrollbind
+--with-smartindent
+--with-syntax
+--with-terminal
+--with-terminfo
+--with-textobjects
+--with-user_commands
+--with-visualextra
+--with-wildmenu

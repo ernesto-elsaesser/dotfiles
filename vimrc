@@ -6,6 +6,7 @@ set mouse=
 set hidden
 set number
 set cursorline
+set laststatus=2
 set complete=.,t
 set completeopt=
 set noswapfile
