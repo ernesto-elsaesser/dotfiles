@@ -14,6 +14,7 @@ set nowrap
 set splitright
 set splitbelow
 
+let g:netrw_banner=0
 let g:netrw_liststyle=1
 let g:netrw_list_hide='^\.[^.]'
 let g:netrw_sort_sequence='\/,*'
