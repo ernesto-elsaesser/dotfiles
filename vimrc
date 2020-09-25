@@ -20,8 +20,6 @@ let g:netrw_list_hide='^\.[^.]'
 let g:netrw_sort_sequence='\/,*'
 let g:netrw_sizestyle='H'
 
-nmap gz dt,wvt,p``P
-
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi CursorLineNr cterm=NONE ctermbg=White ctermfg=Black
@@ -59,6 +57,8 @@ com! H exec "Explore ".getcwd()
 com! U so ~/.vimrc
 com! UR call system('update-repo.sh') | so ~/.vimrc
 com! -nargs=? -complete=file R exec "ter ++rows=24 ".expand('%:p')." <args>"
+com! SW sub/\%#\([^,]*\), \([^, )}]*\)/\2, \1
+nmap gz :SW<cr><c-o>
 
 com! G ter ++close commit-and-push.sh
 com! GD ter git --no-pager diff
