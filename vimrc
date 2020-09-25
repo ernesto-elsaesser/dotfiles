@@ -20,7 +20,7 @@ let g:netrw_list_hide='^\.[^.]'
 let g:netrw_sort_sequence='\/,*'
 let g:netrw_sizestyle='H'
 
-nmap gz de/\w<cr>vep``P
+nmap gz dt,wvt,p``P
 
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
