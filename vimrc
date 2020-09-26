@@ -44,6 +44,18 @@ fun! DiffGit()
 	diffupdate
 endfun
 
+fun! ExecFile(pre, post)
+	let g:exec_file_cmd = 'ter ++curwin '.a:pre.' '.expand('%').' '.a:post
+	new
+	let g:exec_file_win_id = win_getid()
+	exec g:exec_file_cmd
+endfun
+
+fun! ReExecFile()
+	call win_gotoid(g:exec_file_win_id)
+	exec g:exec_file_cmd
+endfun
+
 fun! MySQL(login, database)
 	exec 'ter ++rows=40 ++close mysql --login-path="'.a:login.'" '.a:database
 endfun
@@ -56,18 +68,19 @@ endfun
 com! H exec "Explore ".getcwd()
 com! U so ~/.vimrc
 com! UR call system('update-repo.sh') | so ~/.vimrc
-com! -nargs=? -complete=file R exec "ter ++rows=24 ".expand('%:p')." <args>"
-com! SW sub/\%#\([^,]*\), \([^, )}]*\)/\2, \1
-nmap gz :SW<cr><c-o>
+com! S sub/\%#\([^,]*\), \([^,)]*\)/\2, \1/
+nmap gl :S<cr><c-o>
 
 com! G ter ++close commit-and-push.sh
 com! GD ter git --no-pager diff
 com! GP call system("git pull")
 com! D call DiffGit()
 
-com! -nargs=+ P py3 <args>
-com! -nargs=1 PP py3 print(<args>)
-com! PF py3file %
+com! -nargs=? -complete=file R call ExecFile('', <q-args>)
+com! -nargs=? -complete=file RP call ExecFile('python3 -i', <q-args>)
+com! RR call ReExecFile()
+
+com! P ter ++close python3
 com! PL compiler pylint | make %
 
 com! -nargs=+ M call MySQL(<f-args>)
