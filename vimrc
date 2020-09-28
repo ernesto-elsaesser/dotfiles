@@ -68,7 +68,7 @@ endfun
 com! H exec "Explore ".getcwd()
 com! U so ~/.vimrc
 com! UR call system('update-repo.sh') | so ~/.vimrc
-com! S sub/\%#\([^,]*\), \([^,)]*\)/\2, \1/
+com! S sub/\%#\([^,]*\), \([^,)\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
 
 com! G ter ++close commit-and-push.sh
