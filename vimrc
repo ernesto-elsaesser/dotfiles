@@ -45,7 +45,7 @@ fun! DiffGit()
 endfun
 
 fun! ExecFile(pre, post)
-	let g:exec_file_cmd = 'ter ++curwin '.a:pre.' '.expand('%').' '.a:post
+	let g:exec_file_cmd = 'ter ++curwin '.a:pre.' '.expand('%:p').' '.a:post
 	new
 	let g:exec_file_win_id = win_getid()
 	exec g:exec_file_cmd
