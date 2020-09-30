@@ -57,12 +57,12 @@ fun! ReExecFile()
 endfun
 
 fun! MySQL(login, database)
-	exec 'ter ++rows=40 ++close mysql --login-path="'.a:login.'" '.a:database
+	exec 'ter ++close mysql --login-path="'.a:login.'" '.a:database
 endfun
 
 fun! MySQLExec(login, database, ...)
 	let l:sql = join(a:000, ' ')
-	exec 'ter ++rows=40 mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
+	exec 'ter mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
 let g:sysconf_dir = expand('<sfile>:p:h')
