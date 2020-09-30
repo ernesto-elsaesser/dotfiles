@@ -1,6 +1,2 @@
-CONFIG_DIR=`pwd`
-
-echo "PATH=$CONFIG_DIR:\$PATH" >> ~/.bashrc
-source ~/.bashrc
-echo "so $CONFIG_DIR/vimrc" >> ~/.vimrc
-
+SYSCONF_DIR=`dirname $0`
+echo "so $SYSCONF_DIR/vimrc" >> ~/.vimrc

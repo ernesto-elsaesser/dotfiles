@@ -65,13 +65,17 @@ fun! MySQLExec(login, database, ...)
 	exec 'ter ++rows=40 mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
+let g:sysconf_dir = expand('<sfile>:p:h')
+let g:sysconf_pull = '!cd '.g:sysconf_dir.' && git pull'
+let g:sysconf_cnp = g:sysconf_dir.'/commit-and-push.sh'
+
 com! H exec "Explore ".getcwd()
 com! U so ~/.vimrc
-com! UR call system('update-repo.sh') | so ~/.vimrc
+com! UR exec g:sysconf_pull | so ~/.vimrc
 com! S sub/\%#\([^,]*\), \([^,)\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
 
-com! G ter ++close commit-and-push.sh
+com! G exec 'ter ++close '.g:sysconf_cnp
 com! GD ter git --no-pager diff
 com! GP call system("git pull")
 com! D call DiffGit()
