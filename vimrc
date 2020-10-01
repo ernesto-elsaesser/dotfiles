@@ -19,7 +19,6 @@ let g:netrw_liststyle=1
 let g:netrw_list_hide='^\.[^.]'
 let g:netrw_sort_sequence='\/,*'
 let g:netrw_sizestyle='H'
-let g:netrw_localrmdir='rm -r'
 
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
