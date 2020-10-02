@@ -77,7 +77,7 @@ nmap gl :S<cr><c-o>
 
 com! G exec 'ter ++close '.g:sysconf_cnp
 com! GD ter git --no-pager diff
-com! GP call system("git pull")
+com! GP echom system("git pull")
 com! D call DiffGit()
 
 com! -nargs=? -complete=file R call ExecFile('', <q-args>)
