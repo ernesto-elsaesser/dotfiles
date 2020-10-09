@@ -45,15 +45,23 @@ fun! DiffGit()
 endfun
 
 fun! ExecFile(pre, post)
-	let g:exec_file_cmd = 'ter ++curwin '.a:pre.' '.expand('%:p').' '.a:post
-	new
-	let g:exec_file_win_id = win_getid()
-	exec g:exec_file_cmd
+	let g:exec_file_cmd = a:pre.' '.expand('%:p').' '.a:post
+	let g:exec_file_buf_nr = term_start(g:exec_file_cmd)
+	let g:exec_file_win_id = win_findbuf(g:exec_file_buf_nr)[0]
 endfun
 
 fun! ReExecFile()
 	call win_gotoid(g:exec_file_win_id)
-	exec g:exec_file_cmd
+	term_start(g:exec_file_cmd, {'curwin': 1})
+endfun
+
+fun! ExecMem() 
+	let l:job = term_getjob(g:exec_file_buf_nr)
+	let l:pid = job_info(l:job)['process']
+	let l:statm = system('cat /proc/'.l:pid.'/statm')
+	let l:arr = split(l:statm, ' ')
+	let l:mem = l:arr[0] * 4
+	echo "PID ".l:pid.": ".l:mem." KB RAM"
 endfun
 
 fun! MySQL(login, database)
@@ -74,6 +82,7 @@ com! U so ~/.vimrc
 com! UR exec g:sysconf_pull | so ~/.vimrc
 com! S sub/\%#\([^,]*\), \([^,)\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
+com! CX !chmod +x %
 
 com! G exec 'ter ++close '.g:sysconf_cnp
 com! GD ter git --no-pager diff
@@ -83,6 +92,7 @@ com! D call DiffGit()
 com! -nargs=? -complete=file R call ExecFile('', <q-args>)
 com! -nargs=? -complete=file RP call ExecFile('python3 -i', <q-args>)
 com! RR call ReExecFile()
+com! RM call ExecMem()
 
 com! P ter ++close python3
 com! PL compiler pylint | make %
