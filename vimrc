@@ -36,7 +36,7 @@ endfun
 
 fun! TermRerun()
     call win_gotoid(g:run_win_id)
-    term_start(g:run_cmd, {'curwin': 1})
+    call term_start(g:run_cmd, {'curwin': 1})
 endfun
 
 fun! TermMemory() 
