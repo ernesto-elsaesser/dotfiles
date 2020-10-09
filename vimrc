@@ -12,17 +12,49 @@ set tabstop=4 shiftwidth=4 expandtab
 set noswapfile nowrap
 set splitright splitbelow
 
-let g:netrw_banner=0
-let g:netrw_liststyle=1
-let g:netrw_list_hide='^\.[^.]'
-let g:netrw_sort_sequence='\/,*'
-let g:netrw_sizestyle='H'
-
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi CursorLineNr cterm=NONE ctermbg=White ctermfg=Black
 hi CursorLine cterm=NONE
-hi link netrwMarkFile Title
+
+
+"----- config -----
+
+let g:sysconf_dir = expand('<sfile>:p:h')
+
+com! U so ~/.vimrc
+com! UR exec '!cd '.g:sysconf_dir.' && git pull' | U
+
+
+"---- terminal -----
+
+fun! TermRun(pre, post)
+    let g:run_cmd = a:pre.' '.expand('%:p').' '.a:post
+    let g:run_buf_nr = term_start(g:run_cmd)
+    let g:run_win_id = win_findbuf(g:run_buf_nr)[0]
+endfun
+
+fun! TermRerun()
+    call win_gotoid(g:run_win_id)
+    term_start(g:run_cmd, {'curwin': 1})
+endfun
+
+fun! TermMemory() 
+    let l:job = term_getjob(g:exec_file_buf_nr)
+    let l:pid = job_info(l:job)['process']
+    let l:statm = system('cat /proc/'.l:pid.'/statm')
+    let l:arr = split(l:statm, ' ')
+    let l:mem = l:arr[0] * 4
+    echo "PID ".l:pid.": ".l:mem." KB RAM"
+endfun
+
+com! -nargs=? -complete=file R call TermRun('', <q-args>)
+com! -nargs=? -complete=file RP call TermRun('python3 -i', <q-args>)
+com! RR call TermRerun()
+com! RM call TermMemory()
+
+
+"----- git ------
 
 let g:diff_branch='master'
 
@@ -42,25 +74,13 @@ fun! DiffGit()
     diffupdate
 endfun
 
-fun! ExecFile(pre, post)
-    let g:exec_file_cmd = a:pre.' '.expand('%:p').' '.a:post
-    let g:exec_file_buf_nr = term_start(g:exec_file_cmd)
-    let g:exec_file_win_id = win_findbuf(g:exec_file_buf_nr)[0]
-endfun
+com! G exec 'ter ++close '.g:sysconf_dir.'/commit-and-push.sh'
+com! GD ter git --no-pager diff
+com! GP !git pull
+com! D call DiffGit()
 
-fun! ReExecFile()
-    call win_gotoid(g:exec_file_win_id)
-    term_start(g:exec_file_cmd, {'curwin': 1})
-endfun
 
-fun! ExecMem() 
-    let l:job = term_getjob(g:exec_file_buf_nr)
-    let l:pid = job_info(l:job)['process']
-    let l:statm = system('cat /proc/'.l:pid.'/statm')
-    let l:arr = split(l:statm, ' ')
-    let l:mem = l:arr[0] * 4
-    echo "PID ".l:pid.": ".l:mem." KB RAM"
-endfun
+"----- mysql -----
 
 fun! MySQL(login, database)
     exec 'ter ++close mysql --login-path="'.a:login.'" '.a:database
@@ -71,29 +91,18 @@ fun! MySQLExec(login, database, ...)
     exec 'ter mysql --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
 endfun
 
-let g:sysconf_dir = expand('<sfile>:p:h')
-let g:sysconf_pull = '!cd '.g:sysconf_dir.' && git pull'
-let g:sysconf_cnp = g:sysconf_dir.'/commit-and-push.sh'
+com! -nargs=+ M call MySQL(<f-args>)
+com! -nargs=+ ME call MySQLExec(<f-args>)
 
-com! H exec "Explore ".getcwd()
-com! U so ~/.vimrc
-com! UR exec g:sysconf_pull | so ~/.vimrc
-com! S sub/\%#\([^,]*\), \([^,)\]]*\)/\2, \1/
-nmap gl :S<cr><c-o>
-com! CX !chmod +x %
 
-com! G exec 'ter ++close '.g:sysconf_cnp
-com! GD ter git --no-pager diff
-com! GP !git pull
-com! D call DiffGit()
-
-com! -nargs=? -complete=file R call ExecFile('', <q-args>)
-com! -nargs=? -complete=file RP call ExecFile('python3 -i', <q-args>)
-com! RR call ReExecFile()
-com! RM call ExecMem()
+"----- ptyhon -----
 
 com! P ter ++close python3
 com! PL compiler pylint | make %
 
-com! -nargs=+ M call MySQL(<f-args>)
-com! -nargs=+ ME call MySQLExec(<f-args>)
+
+"----- misc -----
+
+com! S sub/\%#\([^,]*\), \([^,)\]]*\)/\2, \1/
+nmap gl :S<cr><c-o>
+com! CX !chmod +x %
