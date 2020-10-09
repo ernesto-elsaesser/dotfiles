@@ -49,7 +49,6 @@ fun! TermMemory()
 endfun
 
 com! -nargs=? -complete=file R call TermRun('', <q-args>)
-com! -nargs=? -complete=file RP call TermRun('python3 -i', <q-args>)
 com! RR call TermRerun()
 com! RM call TermMemory()
 
@@ -98,6 +97,7 @@ com! -nargs=+ ME call MySQLExec(<f-args>)
 "----- ptyhon -----
 
 com! P ter ++close python3
+com! -nargs=? -complete=file RP call TermRun('python3 -i', <q-args>)
 com! PL compiler pylint | make %
 
 
