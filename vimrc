@@ -103,6 +103,6 @@ com! PL compiler pylint | make %
 
 "----- misc -----
 
-com! S sub/\%#\([^,]*\), \([^,)\]]*\)/\2, \1/
+com! S sub/\%#\([^,]*\), \([^,)}\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
 com! CX !chmod +x %
