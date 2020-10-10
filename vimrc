@@ -82,12 +82,12 @@ com! D call DiffGit()
 "----- mysql -----
 
 fun! MySQL(login, database)
-    exec 'ter ++close mysql -A --login-path="'.a:login.'" '.a:database
+    exec 'ter ++close mysql --login-path="'.a:login.'" -A '.a:database
 endfun
 
 fun! MySQLExec(login, database, ...)
     let l:sql = join(a:000, ' ')
-    exec 'ter mysql -A --login-path="'.a:login.'" '.a:database.' -e "'.l:sql.'"'
+    exec 'ter mysql --login-path="'.a:login.'" -A '.a:database.' -e "'.l:sql.'"'
 endfun
 
 com! -nargs=+ M call MySQL(<f-args>)
