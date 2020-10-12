@@ -31,7 +31,6 @@ com! UR exec '!cd '.g:sysconf_dir.' && git pull' | U
 fun! TermRun(pre, post)
     let g:run_cmd = a:pre.' '.expand('%:p').' '.a:post
     let g:run_buf_nr = term_start(g:run_cmd)
-    setlocal wrap
     let g:run_win_id = win_findbuf(g:run_buf_nr)[0]
 endfun
 
@@ -107,3 +106,5 @@ com! PL compiler pylint | make %
 com! S sub/\%#\([^,]*\), \([^,)}\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
 com! CX !chmod +x %
+com! W set wrap!
+com! P set paste!
