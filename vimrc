@@ -39,18 +39,15 @@ fun! TermRerun()
     call term_start(g:run_cmd, {'curwin': 1})
 endfun
 
-fun! TermMemory() 
-    let l:job = term_getjob(g:exec_file_buf_nr)
+fun! TermStatus() 
+    let l:job = term_getjob(g:run_buf_nr)
     let l:pid = job_info(l:job)['process']
-    let l:statm = system('cat /proc/'.l:pid.'/statm')
-    let l:arr = split(l:statm, ' ')
-    let l:mem = l:arr[0] * 4
-    echo "PID ".l:pid.": ".l:mem." KB RAM"
+    exec '!cat /proc/'.l:pid.'/status'
 endfun
 
 com! -nargs=? -complete=file R call TermRun('', <q-args>)
 com! RR call TermRerun()
-com! RM call TermMemory()
+com! RS call TermStatus()
 
 
 "----- git ------
@@ -62,15 +59,11 @@ fun! DiffGit()
     let @d = system("git show ".g:diff_branch.":./".bufname('%'))
     let l:ft = &ft
     let l:ln = line('.')
-    setlocal diff scrollbind
     vert new
     exec "set bt=nofile bh=wipe ft=".l:ft
-    autocmd BufWipeout <buffer> diffoff!
     put d
     0delete
     exec l:ln
-    setlocal diff scrollbind 
-    diffupdate
 endfun
 
 com! G exec 'ter ++close '.g:sysconf_dir.'/commit-and-push.sh'
@@ -106,5 +99,5 @@ com! PL compiler pylint | make %
 com! S sub/\%#\([^,]*\), \([^,)}\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
 com! CX !chmod +x %
-com! W set wrap!
-com! P set paste!
+com! W setlocal wrap!
+com! P setlocal paste!
