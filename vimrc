@@ -34,10 +34,14 @@ fun! TermRun(pre, post)
     let g:run_win_id = win_findbuf(g:run_buf_nr)[0]
 endfun
 
+com! -nargs=? -complete=file R call TermRun('', <q-args>)
+
 fun! TermRerun()
     call win_gotoid(g:run_win_id)
     call term_start(g:run_cmd, {'curwin': 1})
 endfun
+
+com! RR call TermRerun()
 
 fun! TermStatus() 
     let l:job = term_getjob(g:run_buf_nr)
@@ -45,12 +49,14 @@ fun! TermStatus()
     exec '!cat /proc/'.l:pid.'/status'
 endfun
 
-com! -nargs=? -complete=file R call TermRun('', <q-args>)
-com! RR call TermRerun()
 com! RS call TermStatus()
 
 
 "----- git ------
+
+com! G exec 'ter ++close '.g:sysconf_dir.'/commit-and-push.sh'
+com! GD ter git --no-pager diff
+com! GP !git pull
 
 fun! DiffGit()
     " make % relative to current working dir
@@ -65,25 +71,26 @@ fun! DiffGit()
     exec l:ln
 endfun
 
-com! G exec 'ter ++close '.g:sysconf_dir.'/commit-and-push.sh'
-com! GD ter git --no-pager diff
-com! GP !git pull
 com! D call DiffGit()
 
 
 "----- mysql -----
 
-fun! MySQL(login, database)
-    exec 'ter ++close mysql --login-path="'.a:login.'" -A '.a:database
-endfun
-
-fun! MySQLExec(login, database, ...)
-    let l:sql = join(a:000, ' ')
-    exec 'ter mysql --login-path="'.a:login.'" -A '.a:database.' -e "'.l:sql.'"'
+fun! MySQL(login, ...)
+    let l:options = ' ++close'
+    let l:args = ''
+    if a:0 > 0
+        let l:args = ' '.a:1
+        if a:0 > 1
+            let l:sql = join(a:000[1:], ' ')
+            let l:args .= ' -e "'.l:sql.'"'
+            let l:options = ''
+        endif
+    endif
+    exec 'ter'.l:options.' mysql --login-path='.a:login.' -A'.l:args
 endfun
 
 com! -nargs=+ M call MySQL(<f-args>)
-com! -nargs=+ ME call MySQLExec(<f-args>)
 
 
 "----- ptyhon -----
