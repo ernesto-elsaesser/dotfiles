@@ -52,11 +52,10 @@ com! RS call TermStatus()
 
 "----- git ------
 
-let g:diff_branch='master'
-
 fun! DiffGit()
+    " make % relative to current working dir
     cd .
-    let @d = system("git show ".g:diff_branch.":./".bufname('%'))
+    let @d = system("git show HEAD:".expand('%'))
     let l:ft = &ft
     let l:ln = line('.')
     vert new
