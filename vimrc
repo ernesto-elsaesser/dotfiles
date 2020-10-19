@@ -54,11 +54,19 @@ com! RS call TermStatus()
 
 "----- git ------
 
-com! G exec 'ter ++close '.g:sysconf_dir.'/commit-and-push.sh'
-com! GD ter git --no-pager diff
+fun! GitPush(msg)
+    call system('git add --all')
+    echo system('git status')
+    if input('ENTER to commit and push') == ''
+        echo system('git commit -m "'.a:msg.'" && git push')
+    endif
+endfun
+
+com! -nargs=+ G !git add --all; git status; read -n 1 c; if [ "$c" == "c" ] git commit -m "<args>" && git push
+"com! -nargs=+ G call GitPush(<q-args>)
 com! GP !git pull
 
-fun! DiffGit()
+fun! GitDiff()
     " make % relative to current working dir
     cd .
     let @d = system("git show HEAD:".expand('%'))
@@ -71,8 +79,8 @@ fun! DiffGit()
     exec l:ln
 endfun
 
-com! D call DiffGit()
-
+com! D call GitDiff()
+com! GD ter git --no-pager diff
 
 "----- mysql -----
 
