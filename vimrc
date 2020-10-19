@@ -54,16 +54,7 @@ com! RS call TermStatus()
 
 "----- git ------
 
-fun! GitPush(msg)
-    call system('git add --all')
-    echo system('git status')
-    if input('ENTER to commit and push') == ''
-        echo system('git commit -m "'.a:msg.'" && git push')
-    endif
-endfun
-
-com! -nargs=+ G !git add --all; git status; read -n 1 c; if [ "$c" == "c" ] git commit -m "<args>" && git push
-"com! -nargs=+ G call GitPush(<q-args>)
+com! -nargs=+ G !git add --all; git status; read -n 1 c; if [ -z "$c" ]; then git commit -m "<args>" && git push; fi;
 com! GP !git pull
 
 fun! GitDiff()
