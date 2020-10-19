@@ -56,7 +56,7 @@ com! RS call TermStatus()
 
 com! -nargs=+ G !git add --all; git status; read -n 1 c; if [ -z "$c" ]; then git commit -m "<args>" && git push; fi;
 com! GP !git pull
-com! GD ter git --no-pager diff
+com! GD !clear; git diff
 
 fun! GitDiff()
     " make % relative to current working dir
