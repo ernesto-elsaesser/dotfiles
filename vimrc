@@ -61,7 +61,7 @@ com! GD !clear; git diff
 fun! GitDiff()
     " make % relative to current working dir
     cd .
-    let @d = system("git show HEAD:".expand('%'))
+    let @d = system("git show HEAD:./".expand('%'))
     let l:ft = &ft
     let l:ln = line('.')
     vert new
