@@ -12,6 +12,8 @@ set tabstop=4 shiftwidth=4 expandtab
 set noswapfile nowrap
 set splitright splitbelow
 
+let g:netrw_sort_sequence='\/,*'
+
 hi MatchParen ctermfg=Green ctermbg=NONE
 hi LineNr ctermfg=DarkGray
 hi CursorLineNr cterm=NONE ctermbg=White ctermfg=Black
