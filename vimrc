@@ -1,9 +1,9 @@
-unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
-"general settings
-set background=dark mouse= nowrap
+"general preferences
+set background=dark mouse=
 set noswapfile
+set nowrap
 set tabstop=4 shiftwidth=4 expandtab
 set laststatus=2
 
