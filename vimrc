@@ -56,7 +56,7 @@ com! RS call TermStatus()
 
 "----- git ------
 
-com! -nargs=+ G !git add --all; git status; read -n 1 c; if [ -z "$c" ]; then git commit -m "<args>" && git push; fi;
+com! -nargs=+ G !git add --all; git status; read -n 1 _ && git commit -m "<args>" && git push
 com! GP !git pull
 com! GD !clear; git diff
 
