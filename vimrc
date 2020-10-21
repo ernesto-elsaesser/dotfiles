@@ -4,7 +4,6 @@ source $VIMRUNTIME/defaults.vim
 set background=dark
 set mouse=
 set hidden
-set number
 set cursorline
 set laststatus=2
 set complete=.,t completeopt=
