@@ -1,18 +1,20 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
-set background=dark
-set mouse=
-set hidden
-set laststatus=2
-set complete=.,t completeopt=
+"general settings
+set background=dark mouse= nowrap
+set noswapfile
 set tabstop=4 shiftwidth=4 expandtab
-set noswapfile nowrap
-set splitright splitbelow
+set laststatus=2
 
+"do not abandon unloaded buffers
+set hidden
+
+"complete from current buffer and tags, do not use popup menu
+set complete=.,t completeopt=
+
+"declutter netrw header
 let g:netrw_sort_sequence='\/,*'
-
-hi MatchParen ctermfg=Green ctermbg=NONE
 
 
 "----- config -----
