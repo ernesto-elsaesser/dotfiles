@@ -16,6 +16,9 @@ set complete=.,t completeopt=
 "declutter netrw header
 let g:netrw_sort_sequence='\/,*'
 
+"why the f**k do they map <C-C>?
+let g:omni_sql_no_default_maps=0
+
 
 "----- config -----
 
