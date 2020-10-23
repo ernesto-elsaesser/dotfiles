@@ -13,12 +13,13 @@ set hidden
 "complete from current buffer and tags, do not use popup menu
 set complete=.,t completeopt=
 
-"declutter netrw header
+"configure netrw (declutter header, human-readable file sizes)
 let g:netrw_sort_sequence='\/,*'
+let g:netrw_sizestyle='H'
 
-"configure SQL filetype plugin (prevent stupid <C-C> mapping)
+"configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
-let g:omni_sql_no_default_maps=0
+let g:omni_sql_no_default_maps=1
 
 
 "----- config -----
