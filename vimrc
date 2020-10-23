@@ -108,5 +108,6 @@ com! PL compiler pylint | make %
 com! S sub/\%#\([^,]*\), \([^,)}\]]*\)/\2, \1/
 nmap gl :S<cr><c-o>
 com! CX !chmod +x %
-com! W setlocal wrap! | setlocal wrap?
+com! W write
+com! B setlocal wrap! | setlocal wrap?
 com! C setlocal paste! | setlocal paste?
