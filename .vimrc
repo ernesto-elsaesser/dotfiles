@@ -111,3 +111,4 @@ com! CX !chmod +x %
 com! W write
 com! B setlocal wrap! | setlocal wrap?
 com! C setlocal paste! | setlocal paste?
+com! -nargs=1 T setlocal tabstop=<args>
