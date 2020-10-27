@@ -1,2 +1,2 @@
-SYSCONF_DIR=`dirname "$(realpath $0)"`
-echo "so $SYSCONF_DIR/vimrc" >> ~/.vimrc
+DOTFILES_DIR=`dirname "$(realpath $0)"`
+ln -s "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
