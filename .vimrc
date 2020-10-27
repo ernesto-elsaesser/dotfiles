@@ -24,10 +24,8 @@ let g:omni_sql_no_default_maps=1
 
 "----- config -----
 
-let g:sysconf_dir = expand('<sfile>:p:h')
-
 com! U so ~/.vimrc
-com! UR exec '!cd '.g:sysconf_dir.' && git pull' | U
+com! UR exec '!cd ~/dotfiles && git pull' | U
 
 
 "---- terminal -----
