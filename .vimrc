@@ -30,13 +30,13 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 
 "---- terminal -----
 
-fun! TermRun(pre, post)
-    let g:run_cmd = a:pre.' '.expand('%:p').' '.a:post
+fun! TermRun(cmd)
+    let g:run_cmd = a:cmd
     let g:run_buf_nr = term_start(g:run_cmd)
     let g:run_win_id = win_findbuf(g:run_buf_nr)[0]
 endfun
 
-com! -nargs=? -complete=file R call TermRun('', <q-args>)
+com! -nargs=1 -complete=file R call TermRun(<q-args>)
 
 fun! TermRerun()
     call win_gotoid(g:run_win_id)
@@ -56,9 +56,10 @@ com! RS call TermStatus()
 
 "----- git ------
 
-com! -nargs=+ G !git add --all && git status && read -n 1 _ && git commit -m "<args>" && git push
-com! GP !git pull
-com! GD !clear; git diff
+com! -nargs=1 G !git add --all && git status && read -n 1 _ && git commit -m "<args>" && git push
+com! -nargs=1 GC !git add --all && git commit -m "<args>"
+com! GP !git push
+com! GD ter git --no-pager diff
 
 fun! GitDiff()
     " make % relative to current working dir
@@ -66,7 +67,7 @@ fun! GitDiff()
     let @d = system("git show HEAD:./".expand('%'))
     let l:ft = &ft
     let l:ln = line('.')
-    vert new
+    rightb vert new
     exec "set bt=nofile bh=wipe ft=".l:ft
     put d
     0delete
@@ -97,7 +98,7 @@ com! -nargs=+ M call MySQL(<f-args>)
 "----- ptyhon -----
 
 com! P ter ++close python3
-com! -nargs=? -complete=file RP call TermRun('python3 -i', <q-args>)
+com! PI ter python3 -i %
 com! PL compiler pylint | make %
 
 
