@@ -6,6 +6,7 @@ set noswapfile
 set nowrap
 set tabstop=4 shiftwidth=4 expandtab
 set laststatus=2
+set splitright
 
 "do not abandon unloaded buffers
 set hidden
@@ -67,7 +68,7 @@ fun! GitDiff()
     let @d = system("git show HEAD:./".expand('%'))
     let l:ft = &ft
     let l:ln = line('.')
-    rightb vert new
+    vert new
     exec "set bt=nofile bh=wipe ft=".l:ft
     put d
     0delete
@@ -89,7 +90,7 @@ fun! MySQL(login, ...)
             let l:options = ''
         endif
     endif
-    exec 'ter'.l:options.' mysql --login-path='.a:login.' -A'.l:args
+    exec 'vert bo ter'.l:options.' mysql --login-path='.a:login.' -A'.l:args
 endfun
 
 com! -nargs=+ M call MySQL(<f-args>)
