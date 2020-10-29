@@ -56,11 +56,13 @@ com! RS call TermStatus()
 
 "----- git ------
 
-com! -nargs=1 G !git add --all && git status && read -n 1 _ && git commit -m "<args>" && git push
-com! -nargs=1 GC !git add --all && git commit -m "<args>"
+com! GA !git add --all && git status
+com! -nargs=1 GC !git commit -m <q-args>
 com! GK !git push
 com! GJ !git pull
 com! GD ter git --no-pager diff
+
+com! -nargs=1 G exe 'GA' | exe 'GC <args>' | exe GK
 
 fun! GitDiff()
     " make % relative to current working dir
