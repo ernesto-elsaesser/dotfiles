@@ -6,7 +6,6 @@ set noswapfile
 set nowrap
 set tabstop=4 shiftwidth=4 expandtab
 set laststatus=2
-set splitright
 
 "do not abandon unloaded buffers
 set hidden
@@ -59,7 +58,8 @@ com! RS call TermStatus()
 
 com! -nargs=1 G !git add --all && git status && read -n 1 _ && git commit -m "<args>" && git push
 com! -nargs=1 GC !git add --all && git commit -m "<args>"
-com! GP !git push
+com! GK !git push
+com! GJ !git pull
 com! GD ter git --no-pager diff
 
 fun! GitDiff()
@@ -90,7 +90,7 @@ fun! MySQL(login, ...)
             let l:options = ''
         endif
     endif
-    exec 'vert bo ter'.l:options.' mysql --login-path='.a:login.' -A'.l:args
+    exec 'vert to ter'.l:options.' mysql --login-path='.a:login.' -A'.l:args
 endfun
 
 com! -nargs=+ M call MySQL(<f-args>)
