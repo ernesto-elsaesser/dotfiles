@@ -63,7 +63,7 @@ com! GK !git push
 com! GJ !git pull
 com! GD ter git --no-pager diff
 
-com! -nargs=1 G exe 'GA' | exe 'GC <args>' | exe 'GK'
+"com! -nargs=1 G exe 'GA' | exe 'GC <args>' | exe 'GK'
 
 fun! GitDiff()
     " make % relative to current working dir
