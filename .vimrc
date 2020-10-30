@@ -14,6 +14,7 @@ set hidden
 set complete=.,t completeopt=
 
 "configure netrw (declutter header, human-readable file sizes)
+let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/,*'
 let g:netrw_sizestyle='H'
 
@@ -62,7 +63,7 @@ com! GK !git push
 com! GJ !git pull
 com! GD ter git --no-pager diff
 
-com! -nargs=1 G exe 'GA' | exe 'GC <args>' | exe GK
+com! -nargs=1 G exe 'GA' | exe 'GC <args>' | exe 'GK'
 
 fun! GitDiff()
     " make % relative to current working dir
