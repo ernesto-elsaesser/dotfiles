@@ -14,8 +14,7 @@ set hidden
 set complete=.,t completeopt=
 
 "configure netrw (declutter header, human-readable file sizes)
-let g:netrw_altfile=1
-let g:netrw_sort_sequence='\/,*'
+let g:netrw_banner=0
 let g:netrw_sizestyle='H'
 
 "configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
