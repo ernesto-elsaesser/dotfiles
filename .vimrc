@@ -50,7 +50,7 @@ fun! ConfigBuffer()
     endif
 endfun
 
-autocmd BufCreate * call ConfigBuffer()
+autocmd BufEnter * call ConfigBuffer()
 
 
 "---- terminal -----
