@@ -1,7 +1,7 @@
 source $VIMRUNTIME/defaults.vim
 
+" no swap files
 set noswapfile
-set tabstop=4 shiftwidth=4 expandtab
 
 " always show status line
 set laststatus=2
@@ -12,10 +12,8 @@ set hidden
 " complete from current buffer and tags, do not use popup menu
 set complete=.,t completeopt=
 
-" configure netrw (declutter banner, keep alternate file, size style toggle)
-let g:netrw_sort_sequence='\/,*'
+" prevent netrw from resetting alternate file
 let g:netrw_altfile=1
-com! TSS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
@@ -27,17 +25,19 @@ let g:omni_sql_no_default_maps=1
 com! U so ~/.vimrc
 com! UR exec '!cd ~/dotfiles && git pull' | U
 
+com! TSS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
+
 fun! ConfigBuffer()
     if &ft == 'netrw'
         nmap <buffer> h :TSS<CR><C-L>
     else
-        "disable continuation of comments (changed by ftplugins)
-        setlocal formatoptions=
+        setlocal tabstop=4 shiftwidth=4 expandtab formatoptions=
         nmap <buffer> - :edit %:h<CR>
     endif
 endfun
 
 autocmd FileType * call ConfigBuffer()
+
 
 "---- terminal -----
 
