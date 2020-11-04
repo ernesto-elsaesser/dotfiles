@@ -1,7 +1,7 @@
 source $VIMRUNTIME/defaults.vim
 
 "general preferences
-set background=dark mouse=
+set mouse=
 set noswapfile
 set nowrap
 set tabstop=4 shiftwidth=4 expandtab
