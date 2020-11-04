@@ -14,10 +14,11 @@ set hidden
 set complete=.,t completeopt=
 
 "disable continuation of comments
-set formatoptions=
+autocmd FileType * set formatoptions=
 
-"declutter netrw banner
+"configure netrw (declutter banner, keep alternate file)
 let g:netrw_sort_sequence='\/,*'
+let g:netrw_altfile=1
 
 "configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
