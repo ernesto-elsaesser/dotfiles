@@ -1,10 +1,9 @@
 source $VIMRUNTIME/defaults.vim
 
-"general preferences
-set mouse=
 set noswapfile
-set nowrap
 set tabstop=4 shiftwidth=4 expandtab
+
+"always show status line
 set laststatus=2
 
 "do not abandon unloaded buffers
@@ -48,13 +47,10 @@ endfun
 
 com! RR call TermRerun()
 
-fun! TermStatus() 
+fun! TermInfo() 
     let l:job = term_getjob(g:run_buf_nr)
-    let l:pid = job_info(l:job)['process']
-    exec '!cat /proc/'.l:pid.'/status'
+    echo job_info(l:job)
 endfun
-
-com! RS call TermStatus()
 
 
 "----- git ------
@@ -110,8 +106,9 @@ com! PL compiler pylint | make %
 
 "----- misc -----
 
-com! S sub/\%#\([^,]*\), \([^,)}\]]*\)/\2, \1/
-nmap gl :S<cr><c-o>
+" move list item (comma separated) one to the right
+nmap gl mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
+
 com! CX !chmod +x %
 com! W write
 com! B setlocal wrap! | setlocal wrap?
