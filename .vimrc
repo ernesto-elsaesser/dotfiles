@@ -58,6 +58,7 @@ endfun
 com! GA !git add --all && git status
 com! -nargs=1 GC !git commit -m <q-args>
 com! GK !git push
+com! GU !git push -u origin HEAD
 com! GJ !git pull
 com! GD ter git --no-pager diff
 
