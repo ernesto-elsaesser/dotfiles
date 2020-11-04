@@ -14,7 +14,7 @@ set complete=.,t completeopt=
 
 " configure netrw (keep alternate file, declutter banner)
 let g:netrw_altfile=1
-let g:netrw_sort_sequence='\/,*'
+let g:netrw_sort_sequence='\/$,\*$,*'
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
