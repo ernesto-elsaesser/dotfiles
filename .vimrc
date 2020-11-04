@@ -106,11 +106,11 @@ com! PL compiler pylint | make %
 
 "----- misc -----
 
-" move list item (comma separated) one to the right
+" move list item (separated by ', ') one to the right
 nmap gl mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
 
 com! CX !chmod +x %
-com! W write
-com! B setlocal wrap! | setlocal wrap?
-com! C setlocal paste! | setlocal paste?
 com! -nargs=1 T setlocal tabstop=<args>
+com! TW setlocal wrap! | setlocal wrap?
+com! TP setlocal paste! | setlocal paste?
+com! W write
