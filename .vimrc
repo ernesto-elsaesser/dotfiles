@@ -12,8 +12,9 @@ set hidden
 " complete from current buffer and tags, do not use popup menu
 set complete=.,t completeopt=
 
-" prevent netrw from resetting alternate file
+" configure netrw (keep alternate file, declutter banner)
 let g:netrw_altfile=1
+let g:netrw_sort_sequence='\/,*'
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
