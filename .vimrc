@@ -21,7 +21,7 @@ let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
 " make current file executable
-nmap <leader>x :!chmod +x %<CR>
+nmap <leader>x :silent !chmod +x %<CR>
 
 " toggle local settings
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
