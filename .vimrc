@@ -20,6 +20,19 @@ let g:netrw_sort_sequence='\/$,\*$,*'
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
+" make current file executable
+nmap <leader>x :!chmod +x %<CR>
+
+" toggle local settings
+nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
+
+" increate tabstop stepwise
+nmap <leader>t :setlocal tabstop+=4<CR>
+
+" move list item (separated by ', ') one to the right
+nmap <leader>l mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
+
 
 "----- config -----
 
@@ -49,6 +62,7 @@ fun! TermRun(cmd)
 endfun
 
 com! -nargs=1 -complete=file R call TermRun(<q-args>)
+com! RI echo job_info(term_getjob(g:run_buf_nr))
 
 fun! TermRerun()
     call win_gotoid(g:run_win_id)
@@ -56,11 +70,6 @@ fun! TermRerun()
 endfun
 
 com! RR call TermRerun()
-
-fun! TermInfo() 
-    let l:job = term_getjob(g:run_buf_nr)
-    echo job_info(l:job)
-endfun
 
 
 "----- git ------
@@ -113,15 +122,3 @@ com! -nargs=+ M call MySQL(<f-args>)
 com! P ter ++close python3
 com! PI ter python3 -i %
 com! PL compiler pylint | make %
-
-
-"----- misc -----
-
-" move list item (separated by ', ') one to the right
-nmap gl mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
-
-com! CX !chmod +x %
-com! -nargs=1 T setlocal tabstop=<args>
-com! TW setlocal wrap! | setlocal wrap?
-com! TP setlocal paste! | setlocal paste?
-com! W write
