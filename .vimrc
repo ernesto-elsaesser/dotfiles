@@ -23,8 +23,9 @@ let g:netrw_sort_sequence='\/$,\*$,*'
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
-" go to next buffer
-nmap <leader>' :bn<CR>
+" quick buffer switching and closing
+nmap <leader>s :b <Tab>
+nmap <leader>q :bd <Tab>
 
 " make current file executable
 nmap <leader>x :silent !chmod +x %<CR>
