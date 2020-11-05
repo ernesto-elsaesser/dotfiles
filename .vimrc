@@ -12,6 +12,9 @@ set hidden
 " complete from current buffer and tags, do not use popup menu
 set complete=.,t completeopt=
 
+" use login shells
+set shell=/bin/bash\ -l
+
 " configure netrw (keep alternate file, declutter banner)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
