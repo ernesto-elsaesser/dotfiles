@@ -15,18 +15,20 @@ set complete=.,t completeopt=
 " use login shells
 set shell=/bin/bash\ -l
 
-" configure netrw (keep alternate file, declutter banner)
+" fix options modified by ftplugins via autocmd
+autocmd BufEnter * setlocal tabstop=4 shiftwidth=4 expandtab formatoptions=
+
+" configure netrw (keep alternate file, declutter banner, toggle size style)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
+com! TS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
-" quick buffer switching and closing
-set wildcharm=<Tab>
-nmap <leader>s :b <Tab>
-nmap <leader>q :bd <Tab>
+" open current file's directory
+nmap - :edit %:h<CR>
 
 " make current file executable
 nmap <leader>x :silent !chmod +x %<CR>
@@ -47,18 +49,26 @@ nmap <leader>l mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
 com! U so ~/.vimrc
 com! UR exec '!cd ~/dotfiles && git pull' | U
 
-com! TSS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
 
-fun! ConfigBuffer()
-    if &ft == 'netrw'
-        nmap <buffer> h :TSS<CR><C-L>
-    else
-        setlocal tabstop=4 shiftwidth=4 expandtab formatoptions=
-        nmap <buffer> - :edit %:h<CR>
-    endif
+"----- buffers -----
+
+fun! BufferList()
+    enew
+    setlocal nobl bt=nofile bh=wipe
+    for b in getbufinfo()
+        if b['listed']
+            if b['name'] == ''
+                call append(1, b['bufnr'].' (unnamed)')
+            else
+                call append(1, b['name'])
+            endif
+        endif
+    endfor
+    delete
+    map <buffer> D :bd <C-R><C-A><CR>dd
 endfun
 
-autocmd BufEnter * call ConfigBuffer()
+com! L call BufferList()
 
 
 "---- terminal -----
@@ -98,7 +108,7 @@ fun! GitDiff()
     let l:ft = &ft
     let l:ln = line('.')
     vert new
-    exec "set bt=nofile bh=wipe ft=".l:ft
+    exec "setlocal nobl bt=nofile bh=wipe ft=".l:ft
     put d
     0delete
     exec l:ln
