@@ -12,11 +12,14 @@ set hidden
 " complete from current buffer and tags, do not use popup menu
 set complete=.,t completeopt=
 
+" spaces > tabs
+set tabstop=4 shiftwidth=4 expandtab
+
 " use login shells
 set shell=/bin/bash\ -l
 
-" use autocmd to fix options that are changed by ftplugins
-autocmd BufEnter * setlocal tabstop=4 shiftwidth=4 expandtab formatoptions=
+" use autocmd to set formatoptions after ftplugins
+autocmd BufEnter * setlocal formatoptions=
 
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
