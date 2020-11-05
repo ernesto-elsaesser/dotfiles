@@ -15,20 +15,23 @@ set complete=.,t completeopt=
 " use login shells
 set shell=/bin/bash\ -l
 
-" fix options modified by ftplugins via autocmd
+" use autocmd to fix options that are changed by ftplugins
 autocmd BufEnter * setlocal tabstop=4 shiftwidth=4 expandtab formatoptions=
 
-" configure netrw (keep alternate file, declutter banner, toggle size style)
+" configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
-com! TS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
+com! TS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' ) | Ex
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
-" open current file's directory
+" open current file's directory (after making it the alternate file)
 nmap - :edit %:h<CR>
+
+" move list item (separated by ', ') one to the right
+nmap <leader>l mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
 
 " make current file executable
 nmap <leader>x :silent !chmod +x %<CR>
@@ -39,9 +42,6 @@ nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 
 " increate tabstop stepwise
 nmap <leader>t :setlocal tabstop+=4<CR>
-
-" move list item (separated by ', ') one to the right
-nmap <leader>l mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
 
 
 "----- config -----
@@ -55,15 +55,9 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 fun! BufferList()
     enew
     setlocal nobl bt=nofile bh=wipe
-    for b in getbufinfo()
-        if b['listed']
-            if b['name'] == ''
-                call append(1, b['bufnr'].' (unnamed)')
-            else
-                call append(1, b['name'])
-            endif
-        endif
-    endfor
+    let buffers = filter(getbufinfo(), "v:val['listed']")
+    let names = map(buffers, "v:val['name'] == '' ? v:val['bufnr'] : v:val['name']")
+    call append(1, names)
     delete
     map <buffer> D :bd <C-R><C-A><CR>dd
 endfun
