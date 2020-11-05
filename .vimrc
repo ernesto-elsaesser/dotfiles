@@ -24,6 +24,7 @@ let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
 " quick buffer switching and closing
+set wildcharm=<Tab>
 nmap <leader>s :b <Tab>
 nmap <leader>q :bd <Tab>
 
