@@ -15,9 +15,6 @@ set complete=.,t completeopt=
 " spaces > tabs
 set tabstop=4 shiftwidth=4 expandtab
 
-" use login shells
-set shell=/bin/bash\ -l
-
 " use autocmd to set formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
