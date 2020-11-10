@@ -31,8 +31,10 @@ let g:omni_sql_no_default_maps=1
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h<CR>
 
-" move list item (separated by ', ') one to the right
-nmap <leader>l mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
+" swap list items (separated by ', ')
+nmap gx `sv`ty`uv`vp`tv`sp
+nmap <leader>l mst,mtlllmu/\v ?[,)}\]$]<CR>hmvgxlll
+nmap <leader>h mvT,lmuhhhmt?\v[,({\[]<CR>wmsgx
 
 " navigate quickfixes
 nmap <leader>j :cn<CR>
@@ -65,9 +67,10 @@ fun! BufferList()
     call append(1, names)
     delete
     map <buffer> D :bd <C-R><C-A><CR>dd
+    map <buffer> <CR> gf
 endfun
 
-com! L call BufferList()
+nmap <leader><leader> :call BufferList()<CR>
 
 
 "---- terminal -----
