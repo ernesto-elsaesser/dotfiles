@@ -16,6 +16,9 @@ set complete=.,t completeopt=
 " spaces > tabs
 set tabstop=4 shiftwidth=4 expandtab
 
+" no wrapping
+set nowrap
+
 " use autocmd to set formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
