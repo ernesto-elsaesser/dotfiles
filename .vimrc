@@ -32,13 +32,9 @@ let g:omni_sql_no_default_maps=1
 nmap - :edit %:h<CR>
 
 " swap list items (separated by ', ')
-dasdasda, weeerwe, dasdasd
-( dfdfsdf, fsdfsdfs, fsdfs )
-{ fsdfdsfds, fsdfsd, fsdfsdf }
-[ fsdfsdffdsf, fdgfdg, gsfdsfsd }
 nmap gx `sv`ty`uv`vp`tv`sp
-nmap <leader>l mst,mtlllmu/\v ?(,|\)|\}|\])<CR>hmvgxlll
-nmap <leader>h mvT,lmuhhhmt?\v(,|\(|\{|\[)<CR>wmsgx
+nmap <leader>l mst,mtlllmu/\v ?(,<Bar>\)<Bar>\}<Bar>\])<CR>hmvgxlll
+nmap <leader>h mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>wmsgx
 
 " navigate quickfixes
 nmap <leader>j :cn<CR>
