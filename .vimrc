@@ -34,6 +34,10 @@ nmap - :edit %:h<CR>
 " move list item (separated by ', ') one to the right
 nmap <leader>l mxdt,llv/\v ?[,)}\]$]<CR>hp`xPlll
 
+" navigate quickfixes
+nmap <leader>j :cn<CR>
+nmap <leader>k :cp<CR>
+
 " make current file executable
 nmap <leader>x :silent !chmod +x %<CR>
 
