@@ -35,8 +35,9 @@ let g:omni_sql_no_default_maps=1
 nmap - :edit %:h<CR>
 
 " buffer switching
-nmap <leader>a :$arga<CR>:last<CR>:args<CR>
-nmap <leader>d :.argd<CR>:args<CR>
+nmap <leader>s :ar<CR>
+nmap <leader>a :$arga<CR>:last<CR>:ar<CR>
+nmap <leader>d :.argd<CR>:ar<CR>
 nmap <leader><leader> :exec 'try <Bar> n <Bar> catch <Bar> fir <Bar> endtry'<CR>:args<CR>
 
 " swap list items (separated by ', ')
