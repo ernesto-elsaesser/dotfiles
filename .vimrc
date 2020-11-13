@@ -25,7 +25,7 @@ autocmd BufEnter * setlocal formatoptions=
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
-com! TS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' ) | Ex
+com! NS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' ) | Ex
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
