@@ -34,16 +34,19 @@ let g:omni_sql_no_default_maps=1
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h<CR>
 
-" buffer switching
-nmap <leader>s :ar<CR>
-nmap <leader>a :$arga<CR>:last<CR>:ar<CR>
-nmap <leader>d :.argd<CR>:ar<CR>
-nmap <leader><leader> :exec 'try <Bar> n <Bar> catch <Bar> fir <Bar> endtry'<CR>:ar<CR>
-nmap <leader>1 :1argu<CR>:ar<CR>
-nmap <leader>2 :2argu<CR>:ar<CR>
-nmap <leader>3 :3argu<CR>:ar<CR>
-nmap <leader>4 :4argu<CR>:ar<CR>
-nmap <leader>5 :5argu<CR>:ar<CR>
+" buffer bookmarks
+com! LB echo '1='.@v.' 2='.@w.' 3='.@x.' 4='.@y.' 5='.@z
+nmap <leader>ss :LB<CR>
+nmap <leader>s1 :let @v = @%<CR>:LB<CR>
+nmap <leader>s2 :let @w = @%<CR>:LB<CR>
+nmap <leader>s3 :let @x = @%<CR>:LB<CR>
+nmap <leader>s4 :let @y = @%<CR>:LB<CR>
+nmap <leader>s5 :let @z = @%<CR>:LB<CR>
+nmap <leader>1 :exec 'e '.@v<CR>:LB<CR>
+nmap <leader>2 :exec 'e '.@w<CR>:LB<CR>
+nmap <leader>3 :exec 'e '.@x<CR>:LB<CR>
+nmap <leader>4 :exec 'e '.@y<CR>:LB<CR>
+nmap <leader>5 :exec 'e '.@z<CR>:LB<CR>
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
