@@ -70,7 +70,7 @@ if !exists('g:bms')
     BC
 endif
 
-nmap <leader>ss :BL<CR>
+nmap <leader><leader> :BL<CR>
 nmap <leader>s1 :BS 1<CR>
 nmap <leader>s2 :BS 2<CR>
 nmap <leader>s3 :BS 3<CR>
