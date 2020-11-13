@@ -34,20 +34,6 @@ let g:omni_sql_no_default_maps=1
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h<CR>
 
-" buffer bookmarks
-com! LB echo '1='.@v.' 2='.@w.' 3='.@x.' 4='.@y.' 5='.@z
-nmap <leader>ss :LB<CR>
-nmap <leader>s1 :let @v = @%<CR>:LB<CR>
-nmap <leader>s2 :let @w = @%<CR>:LB<CR>
-nmap <leader>s3 :let @x = @%<CR>:LB<CR>
-nmap <leader>s4 :let @y = @%<CR>:LB<CR>
-nmap <leader>s5 :let @z = @%<CR>:LB<CR>
-nmap <leader>1 :exec 'e '.@v<CR>:LB<CR>
-nmap <leader>2 :exec 'e '.@w<CR>:LB<CR>
-nmap <leader>3 :exec 'e '.@x<CR>:LB<CR>
-nmap <leader>4 :exec 'e '.@y<CR>:LB<CR>
-nmap <leader>5 :exec 'e '.@z<CR>:LB<CR>
-
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
 nmap <leader>l mst,mtlllmu/\v ?(,<Bar>\)<Bar>\}<Bar>\])<CR>hmvgxlll
@@ -71,6 +57,30 @@ nmap <leader>t :setlocal tabstop+=4<CR>
 
 com! U so ~/.vimrc
 com! UR exec '!cd ~/dotfiles && git pull' | U
+
+
+"----- bookmarks -----
+
+com! BC let g:bms = ['~/.vimrc', '', '', '', '', '']
+com! BL echo join(map(copy(g:bms), 'v:key."=".v:val')[1:], ' ')
+com! -nargs=1 BS let g:bms[<args>] = @% | BL
+com! -nargs=1 BG exec 'edit '.g:bms[<args>] | BL
+
+if !exists('g:bms')
+    BC
+endif
+
+nmap <leader>ss :BL<CR>
+nmap <leader>s1 :BS 1<CR>
+nmap <leader>s2 :BS 2<CR>
+nmap <leader>s3 :BS 3<CR>
+nmap <leader>s4 :BS 4<CR>
+nmap <leader>s5 :BS 5<CR>
+nmap <leader>1 :BG 1<CR>
+nmap <leader>2 :BG 1<CR>
+nmap <leader>3 :BG 1<CR>
+nmap <leader>4 :BG 1<CR>
+nmap <leader>5 :BG 1<CR>
 
 
 "---- terminal -----
