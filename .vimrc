@@ -38,7 +38,12 @@ nmap - :edit %:h<CR>
 nmap <leader>s :ar<CR>
 nmap <leader>a :$arga<CR>:last<CR>:ar<CR>
 nmap <leader>d :.argd<CR>:ar<CR>
-nmap <leader><leader> :exec 'try <Bar> n <Bar> catch <Bar> fir <Bar> endtry'<CR>:args<CR>
+nmap <leader><leader> :exec 'try <Bar> n <Bar> catch <Bar> fir <Bar> endtry'<CR>:ar<CR>
+nmap <leader>1 :1argu<CR>:ar<CR>
+nmap <leader>2 :2argu<CR>:ar<CR>
+nmap <leader>3 :3argu<CR>:ar<CR>
+nmap <leader>4 :4argu<CR>:ar<CR>
+nmap <leader>5 :5argu<CR>:ar<CR>
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
