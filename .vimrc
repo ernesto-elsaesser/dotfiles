@@ -36,8 +36,8 @@ nmap - :edit %:h<CR>
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
-nmap <leader>l mst,mtlllmu/\v ?(,<Bar>\)<Bar>\}<Bar>\])<CR>hmvgxlll
-nmap <leader>h mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>wmsgx
+nmap <leader>l mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
+nmap <leader>h mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
 " next quickfix
 nmap <leader>q :cn<CR>
