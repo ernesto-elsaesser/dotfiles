@@ -62,8 +62,8 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 "----- bookmarks -----
 
 com! BC let g:bms = {}
-com! BL echo g:bms
-com! -nargs=1 BS let g:bms[<args>] = @% | BL
+com! BL echo map(copy(g:bms), 'fnamemodify(v:val, ":t")')
+com! -nargs=1 B let g:bms[<args>] = @% | BL
 com! -nargs=1 BG exec 'edit '.g:bms[<args>]
 
 if !exists('g:bms')
@@ -71,18 +71,15 @@ if !exists('g:bms')
 endif
 
 nmap <leader><leader> :BL<CR>
-nmap <leader>s1 :BS 1<CR>
-nmap <leader>s2 :BS 2<CR>
-nmap <leader>s3 :BS 3<CR>
-nmap <leader>s4 :BS 4<CR>
-nmap <leader>s5 :BS 5<CR>
-nmap <leader>s6 :BS 6<CR>
 nmap <leader>1 :BG 1<CR>
 nmap <leader>2 :BG 2<CR>
 nmap <leader>3 :BG 3<CR>
 nmap <leader>4 :BG 4<CR>
 nmap <leader>5 :BG 5<CR>
 nmap <leader>6 :BG 6<CR>
+nmap <leader>7 :BG 7<CR>
+nmap <leader>8 :BG 8<CR>
+nmap <leader>9 :BG 9<CR>
 
 
 "---- terminal -----
