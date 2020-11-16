@@ -34,6 +34,9 @@ let g:omni_sql_no_default_maps=1
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h<CR>
 
+" list file marks
+nmap <leader>m :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
+
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
 nmap <leader>l mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
