@@ -31,8 +31,11 @@ com! NS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' ) | Ex
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
+" yank from cursor
+nmap Y y$
+
 " open current file's directory (after making it the alternate file)
-nmap - :edit %:h<CR>
+nmap - :edit %:h/<CR>
 
 " list file marks
 nmap <leader>m :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
