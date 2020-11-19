@@ -47,7 +47,7 @@ nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
 nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
 " next quickfix
-nmap <leader>q :cn<CR>
+nmap Q :cn<CR>
 
 " make current file executable
 nmap <leader>x :silent !chmod +x %<CR>
