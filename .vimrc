@@ -25,6 +25,7 @@ autocmd BufEnter * setlocal formatoptions=
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
+let g:netrw_localrmdir='rm -r'
 com! NS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' ) | Ex
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
@@ -42,8 +43,8 @@ nmap <leader>m :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
-nmap <leader>l mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
-nmap <leader>h mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
+nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
+nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
 " next quickfix
 nmap <leader>q :cn<CR>
