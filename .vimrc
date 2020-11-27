@@ -38,9 +38,6 @@ nmap Y y$
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h/<CR>
 
-" list file marks
-nmap M :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
-
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
 nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
@@ -64,6 +61,34 @@ nmap <leader>t :setlocal tabstop+=4<CR>
 
 com! U so ~/.vimrc
 com! UR exec '!cd ~/dotfiles && git pull' | U
+
+
+"---- marks -----
+
+fun! FileMarkMap()
+    let output = ''
+    for row in ['QWER', 'ASDF', 'ZXCV']
+        let output .= '|'
+        for mrk in split(row, '\zs')
+            let output .= ' '
+            let info = getpos("'".mrk)
+            if info[1] == 0
+                let output .= 'NONE'
+            else
+                let bufid = info[0]
+                if bufid == 0
+                    let bufid = '%'
+                endif
+                let output .=  fnamemodify(bufname(bufid), ':t')
+            endif
+            let output .= ' |'
+        endfor
+        let output .= "\n"
+   endfor
+   echo output
+endfun
+
+nmap M :call FileMarkMap()<CR>
 
 
 "---- terminal -----
