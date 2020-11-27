@@ -39,7 +39,7 @@ nmap Y y$
 nmap - :edit %:h/<CR>
 
 " list file marks
-nmap <leader>m :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
+nmap M :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
