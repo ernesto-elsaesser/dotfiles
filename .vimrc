@@ -1,6 +1,8 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
+" ----- options -----
+
 " no swap files
 set noswapfile
 
@@ -10,8 +12,8 @@ set laststatus=2
 " do not abandon unloaded buffers
 set hidden
 
-" complete from current buffer and tags, do not use popup menu
-set complete=.,t completeopt=
+" complete only from current buffer
+set complete=. completeopt=
 
 " spaces > tabs
 set tabstop=4 shiftwidth=4 expandtab
@@ -19,18 +21,20 @@ set tabstop=4 shiftwidth=4 expandtab
 " no wrapping
 set nowrap
 
-" use autocmd to set formatoptions after ftplugins
+" use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
-let g:netrw_localrmdir='rm -r'
 com! NS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' ) | Ex
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
+
+
+" ----- mappings -----
 
 " yank from cursor
 nmap Y y$
