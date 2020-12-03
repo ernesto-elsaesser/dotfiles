@@ -13,7 +13,7 @@ set laststatus=2
 set hidden
 
 " complete only from current buffer
-set complete=. completeopt=
+set complete=.
 
 " spaces > tabs
 set tabstop=4 shiftwidth=4 expandtab
