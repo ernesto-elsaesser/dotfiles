@@ -71,7 +71,7 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 
 fun! FileMarkMap()
     let output = '| '
-    for row in ['QWER', 'ASDF', 'ZXCV']
+    for row in ['QWE', 'ASD', 'ZXC']
         for mrk in split(row, '\zs')
             let info = getpos("'".mrk)
             if info[1] == 0
