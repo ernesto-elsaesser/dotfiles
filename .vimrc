@@ -70,24 +70,21 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 "---- marks -----
 
 fun! FileMarkMap()
-    let output = ''
+    let output = '| '
     for row in ['QWER', 'ASDF', 'ZXCV']
-        let output .= '|'
         for mrk in split(row, '\zs')
-            let output .= ' '
             let info = getpos("'".mrk)
             if info[1] == 0
-                let output .= 'NONE'
+                let output .= '- '
             else
                 let bufid = info[0]
                 if bufid == 0
                     let bufid = '%'
                 endif
-                let output .=  fnamemodify(bufname(bufid), ':t')
+                let output .=  fnamemodify(bufname(bufid), ':t').' '
             endif
-            let output .= ' |'
         endfor
-        let output .= "\n"
+        let output .= '| '
    endfor
    echo output
 endfun
