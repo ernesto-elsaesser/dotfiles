@@ -3,6 +3,9 @@ source $VIMRUNTIME/defaults.vim
 
 " ----- options -----
 
+" no mouse
+set mouse=
+
 " no swap files
 set noswapfile
 
@@ -23,6 +26,9 @@ set nowrap
 
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
+
+" disable parenthese highlighting
+let loaded_matchparen = 1
 
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
