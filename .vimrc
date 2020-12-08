@@ -90,8 +90,8 @@ fun! Target(mrk)
 endfun
 
 fun! FileMarkMap()
-    let marks = [Target('Q'), Target('W'), Target('E'), '/']
-    let marks += [Target('A'), Target('S'), Target('D'), '/']
+    let marks = [Target('Q'), Target('W'), Target('E'), '|']
+    let marks += [Target('A'), Target('S'), Target('D'), '|']
     let marks += [Target('Z'), Target('X'), Target('C')]
     echo join(marks, ' ')
 endfun
