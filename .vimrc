@@ -84,7 +84,8 @@ fun! Target(mrk)
     if bufid == 0
         let bufid = '%'
     endif
-    return substitute(bufname(bufid), '/.*/', '/*/', '')
+    let name = bufname(bufid)
+    return join(split(name, '/')[-2:-1], '/')
 endfun
 
 fun! FileMarkMap()
