@@ -84,7 +84,9 @@ fun! Target(mrk)
     if bufid == 0
         let bufid = '%'
     endif
-    return fnamemodify(bufname(bufid), ':t')
+    let name = bufname(bufid)
+    return substitute(name, '/.*/', '/*/', '')
+    "return fnamemodify(bufname(bufid), ':t')
 endfun
 
 fun! FileMarkMap()
