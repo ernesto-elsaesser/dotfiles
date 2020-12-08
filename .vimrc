@@ -85,7 +85,11 @@ fun! Target(mrk)
         let bufid = '%'
     endif
     let name = bufname(bufid)
-    return join(split(name, '/')[-2:-1], '/')
+    let parts = split(name, '/')
+    if len(parts) > 2
+        let parts = ['*', parts[-2], parts[-1]]
+    endif
+    return join(parts, '/')
 endfun
 
 fun! FileMarkMap()
