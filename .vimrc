@@ -74,7 +74,7 @@ let g:dotfile_dir = '~/dotfiles'
 com! U so ~/.vimrc
 com! UR exec '!cd ' . g:dotfile_dir . ' && git pull' | U
 
-com! T exec 'ter bash --rcfile ' . g:dotfile_dir . '/aliases.sh'
+com! T exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/aliases.sh'
 
 
 "---- marks -----
@@ -126,11 +126,8 @@ endfun
 com! RR call TermRerun()
 
 
-
 "----- git ------
 
-com! -nargs=1 G exe '!git add --all' | exe '!git commit -m <q-args>' | exe '!git push'
-com! GP !git pull
 com! GD ter git --no-pager diff
 
 fun! GitDiff()
@@ -147,6 +144,7 @@ fun! GitDiff()
 endfun
 
 com! D call GitDiff()
+
 
 "----- mysql -----
 
