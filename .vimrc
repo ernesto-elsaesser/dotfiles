@@ -82,7 +82,7 @@ fun! Target(mrk)
     endif
     let bufid = info[0]
     if bufid == 0
-        let bufid = '%'
+        let bufid = '%:~'
     endif
     let name = bufname(bufid)
     let parts = split(name, '/')
