@@ -69,8 +69,12 @@ nmap <leader>t :setlocal tabstop+=4<CR>
 
 "----- config -----
 
+let g:dotfile_dir = '~/dotfiles'
+
 com! U so ~/.vimrc
-com! UR exec '!cd ~/dotfiles && git pull' | U
+com! UR exec '!cd ' . g:dotfile_dir . ' && git pull' | U
+
+com! T exec 'ter bash --rcfile ' . g:dotfile_dir . '/aliases.sh'
 
 
 "---- marks -----
@@ -125,14 +129,9 @@ com! RR call TermRerun()
 
 "----- git ------
 
-com! GA !git add --all && git status
-com! -nargs=1 GC !git commit -m <q-args>
-com! GK !git push
-com! GU !git push -u origin HEAD
-com! GJ !git pull
+com! -nargs=1 G exe '!git add --all' | exe '!git commit -m <q-args>' | exe '!git push'
+com! GP !git pull
 com! GD ter git --no-pager diff
-
-com! -nargs=1 G exe 'GA' | exe 'GC <args>' | exe 'GK'
 
 fun! GitDiff()
     " make % relative to current working dir
