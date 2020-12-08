@@ -107,6 +107,7 @@ fun! TermRun(cmd)
 endfun
 
 com! -nargs=1 -complete=file R call TermRun(<q-args>)
+com! -nargs=1 RS call TermRun('ssh -t '.<q-args>)
 com! RI echo job_info(term_getjob(g:run_buf_nr))
 
 fun! TermRerun()
@@ -115,6 +116,7 @@ fun! TermRerun()
 endfun
 
 com! RR call TermRerun()
+
 
 
 "----- git ------
