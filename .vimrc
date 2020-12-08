@@ -75,7 +75,7 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 
 "---- marks -----
 
-fun! GetMarkTarget(mrk)
+fun! Target(mrk)
     let info = getpos("'".a:mrk)
     if info[1] == 0
         return '-'
@@ -88,9 +88,10 @@ fun! GetMarkTarget(mrk)
 endfun
 
 fun! FileMarkMap()
-    let slots = ['Q', 'W', 'E', '/', 'A', 'S', 'D', '/', 'Z', 'X', 'C']
-    call map(slots, "v:val == '/' ? '/' : GetMarkTarget(v:val)")
-    echo join(slots, ' ')
+    let marks = [Target('Q'), Target('W'), Target('E'), '/']
+    let marks += [Target('A'), Target('S'), Target('D'), '/']
+    let marks += [Target('Z'), Target('X'), Target('C')]
+    echo join(marks, ' ')
 endfun
 
 nmap M :call FileMarkMap()<CR>
