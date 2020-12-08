@@ -63,7 +63,7 @@ nmap <leader>x :silent !chmod +x %<CR>
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 
-" increate tabstop stepwise
+" increment tabstop stepwise
 nmap <leader>t :setlocal tabstop+=4<CR>
 
 
@@ -75,24 +75,22 @@ com! UR exec '!cd ~/dotfiles && git pull' | U
 
 "---- marks -----
 
+fun! GetMarkTarget(mrk)
+    let info = getpos("'".a:mrk)
+    if info[1] == 0
+        return '-'
+    endif
+    let bufid = info[0]
+    if bufid == 0
+        let bufid = '%'
+    endif
+    return fnamemodify(bufname(bufid), ':t')
+endfun
+
 fun! FileMarkMap()
-    let output = '| '
-    for row in ['QWE', 'ASD', 'ZXC']
-        for mrk in split(row, '\zs')
-            let info = getpos("'".mrk)
-            if info[1] == 0
-                let output .= '- '
-            else
-                let bufid = info[0]
-                if bufid == 0
-                    let bufid = '%'
-                endif
-                let output .=  fnamemodify(bufname(bufid), ':t').' '
-            endif
-        endfor
-        let output .= '| '
-   endfor
-   echo output
+    let slots = ['Q', 'W', 'E', '/', 'A', 'S', 'D', '/', 'Z', 'X', 'C']
+    call map(slots, "v:val == '/' ? '/' : GetMarkTarget(v:val)")
+    echo join(slots, ' ')
 endfun
 
 nmap M :call FileMarkMap()<CR>
