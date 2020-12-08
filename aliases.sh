@@ -1,15 +1,19 @@
 source /etc/profile
 
+MSG_FILE="$HOME/.commit_msg"
+
 alias l='ls -lah'
 alias s='git status'
 alias u='git pull'
 alias a='git add --all; git status'
-alias m='echo > ~/.commit_msg'
-alias c='git commit -F ~/.commit_msg'
-alias p='git push'
+alias m='echo > $MSG_FILE'
+alias c='git commit -F $MSG_FILE'
+alias p='git push; rm $MSF_FILE'
 
-alias ca='git add --all; git commit -F ~/.commit_msg'
-alias pa='git add --all; git commit -F ~/.commit_msg; git push'
+alias pc='c; p'
+alias ca='a; c'
+alias pa='a; c; p'
+
 alias pu='git push -u origin HEAD'
 alias co='git checkout'
 alias lo='git log --pretty=oneline'
