@@ -74,7 +74,7 @@ let g:dotfile_dir = '~/dotfiles'
 com! U so ~/.vimrc
 com! UR exec '!cd ' . g:dotfile_dir . ' && git pull' | U
 
-com! T exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/aliases.sh'
+com! G exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/.bashrc-git'
 
 
 "---- marks -----
