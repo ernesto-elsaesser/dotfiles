@@ -8,7 +8,7 @@ source /etc/profile
 # prompt
 function update_prompt {
     # filter output for name and tracking status of current branch
-    PS1="\w [$(git branch -vv | awk '$1="*" { ($4 ~ /:/) ? s=$2" +"$6 : s=$2" ="; print s }')] > "
+    PS1="\w $(git branch -vv | grep ^* | sed -E 's/\* (\w+) \w+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
 }
 PROMPT_COMMAND=update_prompt
 
