@@ -16,8 +16,9 @@ function c {
 
 alias p='git push'
 
-alias pl='git pull'
+alias pl='git pull --ff-only'
 alias pu='git push -u origin HEAD'
+alias pf='git push --force'
 alias mr='git merge --no-edit'
 alias co='git checkout'
 alias lo='git log --pretty=format:"%h %s (%an %ar)"'
