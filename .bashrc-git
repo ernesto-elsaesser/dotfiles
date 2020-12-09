@@ -6,6 +6,7 @@ source /usr/share/bash-completion/completions/git
 
 
 # prompt
+
 function update_prompt {
     BRANCH=$(git branch -vv | grep ^*)
     if [[ $BRANCH =~ "(HEAD detached at" ]]; then
@@ -16,6 +17,7 @@ function update_prompt {
     fi
     PS1="\w [$BRANCH] > "
 }
+
 PROMPT_COMMAND=update_prompt
 
 
@@ -23,9 +25,9 @@ PROMPT_COMMAND=update_prompt
 
 alias pl='git pull --ff-only'
 
-alias s='git status'
+alias s='git status -s'
 
-alias a='git add --all; git status -s'
+alias a='git add --all; s'
 
 function c {
     # use function to allow unquoted message
