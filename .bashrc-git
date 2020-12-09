@@ -6,19 +6,19 @@ source /etc/profile
 
 
 # prompt
-PS1="($(git branch --show-current)) \w\$ "
+function update_prompt {
+    PS1="\w $(git branch -vv | sed -E 's/\* (\w+) \w+ \[(.*)\] .*/[\1 ~ \2]/') > "
+}
+PROMPT_COMMAND=update_prompt
 
 
 # aliases
 
 alias pl='git pull --ff-only'
 
-alias s='git status -s -b'
+alias s='git status -s'
 
-alias d='git diff --stat'
-alias dc='git diff --stat --cached'
-
-alias a='git add --all; git status -s'
+alias a='git add --all; s'
 
 function c {
     git commit -m "$*"
