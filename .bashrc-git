@@ -16,7 +16,6 @@ function c {
 
 alias p='git push'
 
-alias ca='git add --all; git commit -m'
 alias pl='git pull'
 alias pu='git push -u origin HEAD'
 alias mr='git merge --no-edit'
