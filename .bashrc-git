@@ -8,7 +8,8 @@ source /usr/share/bash-completion/completions/git
 # prompt
 function update_prompt {
     # filter output for name and tracking status of current branch
-    PS1="\w $(git branch -vv | grep ^* | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
+    # TODO: support for detached head
+    PS1="\w $(git branch -vv | grep '\* [^(]' | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
 }
 PROMPT_COMMAND=update_prompt
 
