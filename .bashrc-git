@@ -7,9 +7,14 @@ source /usr/share/bash-completion/completions/git
 
 # prompt
 function update_prompt {
-    # filter output for name and tracking status of current branch
-    # TODO: support for detached head
-    PS1="\w $(git branch -vv | grep '\* [^(]' | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
+    BRANCH=$(git branch -vv | grep ^*)
+    if [[ $BRANCH =~ "(HEAD detached at" ]]; then
+        BRANCH='DETACHED'
+    else
+        # filter name and tracking status
+        BRANCH=$(echo "$BRANCH" | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\].*/\1\2/')
+    fi
+    PS1="\w [$BRANCH] > "
 }
 PROMPT_COMMAND=update_prompt
 
@@ -18,9 +23,9 @@ PROMPT_COMMAND=update_prompt
 
 alias pl='git pull --ff-only'
 
-alias s='git status -s'
+alias s='git status'
 
-alias a='git add --all; s'
+alias a='git add --all; git status -s'
 
 function c {
     # use function to allow unquoted message
