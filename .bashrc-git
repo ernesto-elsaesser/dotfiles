@@ -13,8 +13,10 @@ PS1="($(git branch --show-current)) \w\$ "
 
 alias pl='git pull --ff-only'
 
-alias s='git diff --stat'
-alias sc='git diff --stat --cached'
+alias s='git status -s -b'
+
+alias d='git diff --stat'
+alias dc='git diff --stat --cached'
 
 alias a='git add --all; git status -s'
 
