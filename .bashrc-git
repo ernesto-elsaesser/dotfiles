@@ -2,41 +2,39 @@
 # > bash --rcfile=.bashrc-git
 
 # bash completion
-
 source /etc/profile
 
 
 # prompt
-
-AWK_PARSE_DIFF='BEGIN{c=0;i=0;d=0} {c+=1}{i+=$1}{d+=$2} END{print c"C +"i"/-"d}'
-
-function update_prompt {
-    BRANCH=$(git branch --show-current)
-    STATUS=$(git diff --numstat | awk "$AWK_PARSE_DIFF")
-    PS1="\w ($BRANCH $STATUS) > "
-}
-
-PROMPT_COMMAND=update_prompt
+PS1="($(git branch --show-current)) \w\$ "
 
 
 # aliases
 
-alias s='git status -s'
-alias a='git add --all; s'
+alias pl='git pull --ff-only'
+
+alias s='git diff --stat'
+alias sc='git diff --stat --cached'
+
+alias a='git add --all; git status -s'
 
 function c {
     git commit -m "$*"
 }
 
 alias p='git push'
-
-alias pl='git pull --ff-only'
 alias pu='git push -u origin HEAD'
 alias pf='git push --force'
+
 alias mr='git merge --no-edit'
+
 alias co='git checkout'
+
 alias lo='git log --pretty=format:"%h %s (%an %ar)"'
+
 alias cb='git checkout -b'
 alias bd='git branch -d'
+
 alias rb='git rebase'
+
 alias rh='git reset --hard'
