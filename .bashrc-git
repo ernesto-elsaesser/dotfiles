@@ -23,6 +23,8 @@ PROMPT_COMMAND=update_prompt
 
 # aliases
 
+alias f='git fetch --all'
+
 alias pl='git pull --ff-only'
 
 alias s='git status -s'
@@ -53,3 +55,5 @@ __git_complete bd _git_checkout
 alias rb='git rebase'
 
 alias rh='git reset --hard'
+
+alias q='exit'
