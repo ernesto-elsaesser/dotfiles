@@ -7,7 +7,7 @@ source /etc/profile
 
 # prompt
 function update_prompt {
-    PS1="\w $(git branch -vv | sed -E 's/\* (\w+) \w+ \[(.*)\] .*/[\1 ~ \2]/') > "
+    PS1="\w $(git branch -vv | sed -E 's/\* (\w+) \w+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
 }
 PROMPT_COMMAND=update_prompt
 
