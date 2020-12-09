@@ -1,14 +1,14 @@
 # start git shell via
 # > bash --rcfile=.bashrc-git
 
-# bash completion
-source /etc/profile
+# load completions
+source /usr/share/bash-completion/completions/git
 
 
 # prompt
 function update_prompt {
     # filter output for name and tracking status of current branch
-    PS1="\w $(git branch -vv | grep ^* | sed -E 's/\* (\w+) \w+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
+    PS1="\w $(git branch -vv | grep ^* | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
 }
 PROMPT_COMMAND=update_prompt
 
@@ -33,11 +33,14 @@ alias pf='git push --force'
 alias mr='git merge --no-edit'
 
 alias co='git checkout'
+__git_complete co _git_checkout
 
 alias lo='git log --pretty=format:"%h %s (%an %ar)"'
 
+alias b='git branch'
 alias cb='git checkout -b'
 alias bd='git branch -d'
+__git_complete bd _git_checkout
 
 alias rb='git rebase'
 
