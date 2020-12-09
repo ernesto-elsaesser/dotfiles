@@ -1,7 +1,7 @@
 source /etc/profile
 
 MSG_FILE="$HOME/.commit_msg"
-PS1='\w > git '
+PS1='\w@$(git branch --show-current) > '
 
 alias s='git status'
 alias u='git pull'
