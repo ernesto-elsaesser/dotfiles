@@ -15,6 +15,7 @@ alias ca='a; c'
 alias pa='a; c; p'
 
 alias pu='git push -u origin HEAD'
+alias mr='git merge --no-edit'
 alias co='git checkout'
 alias lo='git log --pretty=oneline'
 alias cb='git checkout -b'
