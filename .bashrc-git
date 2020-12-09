@@ -7,7 +7,8 @@ source /etc/profile
 
 # prompt
 function update_prompt {
-    PS1="\w $(git branch -vv | sed -E 's/\* (\w+) \w+ \[[^:]+:?(.*)\].*/[\1\2]/') > "
+    # filter output for name and tracking status of current branch
+    PS1="\w [$(git branch -vv | awk '$1="*" { ($4 ~ /:/) ? s=$2" +"$6 : s=$2" ="; print s }')] > "
 }
 PROMPT_COMMAND=update_prompt
 
@@ -21,6 +22,7 @@ alias s='git status -s'
 alias a='git add --all; s'
 
 function c {
+    # use function to allow unquoted message
     git commit -m "$*"
 }
 
