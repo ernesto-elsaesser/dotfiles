@@ -11,9 +11,11 @@ function update_prompt {
     BRANCH=$(git branch -vv | grep ^*)
     if [[ $BRANCH =~ "(HEAD detached at" ]]; then
         BRANCH='DETACHED'
+    elif [[ ! $BRANCH =~ "\[.*\]" ]]; then
+        BRANCH=$(echo "$BRANCH" | sed -E 's/\* (\S+)\s+\S+ .*/\1/')
     else
         # filter name and tracking status
-        BRANCH=$(echo "$BRANCH" | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\].*/\1\2/')
+        BRANCH=$(echo "$BRANCH" | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\] .*/\1\2/')
     fi
     PS1="\w [$BRANCH] > "
 }
