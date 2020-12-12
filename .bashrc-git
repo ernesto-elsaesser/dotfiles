@@ -8,16 +8,8 @@ source /usr/share/bash-completion/completions/git
 # prompt
 
 function update_prompt {
-    BRANCH=$(git branch -vv | grep ^*)
-    if [[ $BRANCH =~ "(HEAD detached at" ]]; then
-        BRANCH='DETACHED'
-    elif [[ ! $BRANCH =~ "\[.*\]" ]]; then
-        BRANCH=$(echo "$BRANCH" | sed -E 's/\* (\S+)\s+\S+ .*/\1/')
-    else
-        # filter name and tracking status
-        BRANCH=$(echo "$BRANCH" | sed -E 's/\* (\S+)\s+\S+ \[[^:]+:?(.*)\] .*/\1\2/')
-    fi
-    PS1="\w [$BRANCH] > "
+    STATUS=$(git status | head -1)
+    PS1="\w [$STATUS] > "
 }
 
 PROMPT_COMMAND=update_prompt
@@ -50,6 +42,7 @@ __git_complete co _git_checkout
 alias lo='git log --pretty=format:"%h %s (%an %ar)"'
 
 alias b='git branch'
+alias bv='git branch -vv'
 alias cb='git checkout -b'
 alias bd='git branch -d'
 __git_complete bd _git_checkout
