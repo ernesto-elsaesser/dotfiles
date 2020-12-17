@@ -1,18 +1,17 @@
 # start git shell via
 # > bash --rcfile=.bashrc-git
 
-# load completions
-source /usr/share/bash-completion/completions/git
+# silence Mac OS warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 
-# prompt
+# load completion
+source ./git-completion.bash
 
-function update_prompt {
-    STATUS=$(git status | head -1)
-    PS1="\w [$STATUS] > "
-}
 
-PROMPT_COMMAND=update_prompt
+# load prompt
+source ./git-prompt.sh
+PROMPT_COMMAND='__git_ps1 "\w" " > "'
 
 
 # aliases
