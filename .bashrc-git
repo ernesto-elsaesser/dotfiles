@@ -11,6 +11,7 @@ source ./git-completion.bash
 
 # load prompt
 source ./git-prompt.sh
+GIT_PS1_SHOWUPSTREAM='verbose'
 PROMPT_COMMAND='__git_ps1 "\w" " > "'
 
 
