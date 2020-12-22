@@ -6,11 +6,11 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 
 # load completion
-source ./git-completion.bash
+source ~/dotfiles/git-completion.bash
 
 
 # load prompt
-source ./git-prompt.sh
+source ~/dotfiles/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM='verbose'
 PROMPT_COMMAND='__git_ps1 "\w" " > "'
 
