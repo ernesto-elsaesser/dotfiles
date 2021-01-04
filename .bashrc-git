@@ -36,6 +36,12 @@ alias p='git push'
 alias pu='git push -u origin HEAD'
 alias pf='git push --force'
 
+function pa {
+    git add --all
+    git commit -m "$*"
+    git push
+}
+
 alias mr='git merge --no-edit'
 
 alias co='git checkout'
