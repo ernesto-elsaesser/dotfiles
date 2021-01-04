@@ -39,7 +39,7 @@ alias mr='git merge --no-edit'
 alias co='git checkout'
 __git_complete co _git_checkout
 
-alias lo='git log --pretty=format:"%h %s (%an %ar)"'
+alias l='git log -10 --pretty=format:"%h %s (%an %ar)"'
 
 alias b='git branch'
 alias bv='git branch -vv'
