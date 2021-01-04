@@ -43,10 +43,8 @@ let g:omni_sql_no_default_maps=1
 
 let g:dotfile_dir = '~/dotfiles'
 
-fun! UpdateConfig()
-    exec '!cd ' . g:dotfile_dir . ' && git pull'
-    so ~/.vimrc
-endfun
+com! U so ~/.vimrc
+com! RU exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
 fun! ConfTerm(name)
     exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/.bashrc-'.a:name
