@@ -115,10 +115,10 @@ nmap Q :cnext<CR>
 " function mappings
 nmap <leader>u :call UpdateConfig()<CR>
 nmap <leader>f :call FileMarkMap()<CR>
-nmap <leader>g :call ConfTerm('git')<CR>
-nmap <leader>d :call ConfTerm('debug')<CR>
-nmap <leader>m :call ConfTerm('mysql')<CR>
-nmap <leader>d :call GitDiff()<CR>
+nmap <leader>c :call ConfTerm('git')<CR>
+nmap <leader>e :call ConfTerm('debug')<CR>
+nmap <leader>d :call ConfTerm('mysql')<CR>
+nmap <leader>v :call GitDiff()<CR>
 
 " toggle settings
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
