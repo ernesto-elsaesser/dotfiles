@@ -33,7 +33,6 @@ let loaded_matchparen = 1
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
-com! ToggleSizeStyle let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
@@ -127,7 +126,7 @@ nmap <leader>d :call GitDiff()<CR>
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <leader>t :setlocal tabstop+=4<CR>
-nmap <leader>s :ToggleSizeStyle<CR>
+nmap <leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
 
 " make current file executable
 nmap <leader>x :silent !chmod +x %<CR>
