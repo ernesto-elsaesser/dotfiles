@@ -1,0 +1,30 @@
+# start git shell via
+# > bash --rcfile=.bashrc-mysql
+
+# silence Mac OS warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# minimal prompt
+PS1='\t > '
+
+# aliases
+
+alias m='mysql'
+
+# autocompletion
+alias da='ACFLAG=""'
+alias ea='ACFLAG="-A"'
+
+function o {
+    m --login=path="$1" "$ACFLAG" "$2"
+}
+
+function e {
+    m --login=path="$1" "$ACFLAG" "$2" -e "$3"
+}
+
+function s {
+    m --login=path="$1" "$ACFLAG" "$2" -e "SHOW $3;"
+}
+
+alias q='exit'

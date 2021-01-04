@@ -30,6 +30,8 @@ function c {
     git commit -m "$*"
 }
 
+alias d='git diff'
+
 alias p='git push'
 alias pu='git push -u origin HEAD'
 alias pf='git push --force'

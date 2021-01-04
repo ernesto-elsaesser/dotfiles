@@ -1,0 +1,27 @@
+# start git shell via
+# > bash --rcfile=.bashrc-debug
+
+# silence Mac OS warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# prompt
+PS1='\n ~~~ \t ~~~ \n\n \w > '
+
+# aliases
+
+alias p='python3'
+alias pi='python3 -i'
+alias pm='python3 -m'
+
+function pc {
+    python3 -c "$*"
+}
+
+alias ca='conda activate'
+alias cx='conda deactivate'
+
+alias pl='perl'
+
+alias s='ssh -t'
+
+alias q='exit'

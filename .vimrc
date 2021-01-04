@@ -33,48 +33,25 @@ let loaded_matchparen = 1
 " configure netrw (preserve alternate file, declutter banner, size style toggle)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
-com! NS let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
+com! ToggleSizeStyle let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
 
-" ----- mappings -----
-
-" yank from cursor
-nmap Y y$
-
-" open current file's directory (after making it the alternate file)
-nmap - :edit %:h/<CR>
-
-" swap list items (separated by ', ')
-nmap gx `sv`ty`uv`vp`tv`sp
-nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
-nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
-
-" next quickfix
-nmap Q :cn<CR>
-
-" make current file executable
-nmap <leader>x :silent !chmod +x %<CR>
-
-" toggle local settings
-nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
-
-" increment tabstop stepwise
-nmap <leader>t :setlocal tabstop+=4<CR>
-
-
 "----- config -----
 
 let g:dotfile_dir = '~/dotfiles'
 
-com! U so ~/.vimrc
-com! UR exec '!cd ' . g:dotfile_dir . ' && git pull' | U
+fun! UpdateConfig()
+    exec '!cd ' . g:dotfile_dir . ' && git pull'
+    so ~/.vimrc
+endfun
 
-com! G exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/.bashrc-git'
+fun! ConfTerm(name)
+    exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/.bashrc-'.a:name
+endfun
 
 
 "---- marks -----
@@ -103,32 +80,8 @@ fun! FileMarkMap()
     echo join(marks, ' ')
 endfun
 
-nmap M :call FileMarkMap()<CR>
-
-
-"---- terminal -----
-
-fun! TermRun(cmd)
-    let g:run_cmd = a:cmd
-    let g:run_buf_nr = term_start(g:run_cmd)
-    let g:run_win_id = win_findbuf(g:run_buf_nr)[0]
-endfun
-
-com! -nargs=1 -complete=file R call TermRun(<q-args>)
-com! -nargs=1 RS call TermRun('ssh -t '.<q-args>)
-com! RI echo job_info(term_getjob(g:run_buf_nr))
-
-fun! TermRerun()
-    call win_gotoid(g:run_win_id)
-    call term_start(g:run_cmd, {'curwin': 1})
-endfun
-
-com! RR call TermRerun()
-
 
 "----- git ------
-
-com! GD ter git --no-pager diff
 
 fun! GitDiff()
     " make % relative to current working dir
@@ -143,30 +96,38 @@ fun! GitDiff()
     exec l:ln
 endfun
 
-com! D call GitDiff()
 
+"----- python -----
 
-"----- mysql -----
-
-fun! MySQL(login, ...)
-    let l:options = ' ++close'
-    let l:args = ''
-    if a:0 > 0
-        let l:args = ' '.a:1
-        if a:0 > 1
-            let l:sql = join(a:000[1:], ' ')
-            let l:args .= ' -e "'.l:sql.'"'
-            let l:options = ''
-        endif
-    endif
-    exec 'vert to ter'.l:options.' mysql --login-path='.a:login.' -A'.l:args
-endfun
-
-com! -nargs=+ M call MySQL(<f-args>)
-
-
-"----- ptyhon -----
-
-com! P ter ++close python3
-com! PI ter python3 -i %
 com! PL compiler pylint | make %
+
+
+" ----- mappings -----
+
+" open current file's directory (after making it the alternate file)
+nmap - :edit %:h/<CR>
+
+" swap list items (separated by ', ')
+nmap gx `sv`ty`uv`vp`tv`sp
+nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
+nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
+
+" next quickfix
+nmap Q :cnext<CR>
+
+" function mappings
+nmap <leader>u :call UpdateConfig()<CR>
+nmap <leader>f :call FileMarkMap()<CR>
+nmap <leader>g :call ConfTerm('git')<CR>
+nmap <leader>d :call ConfTerm('debug')<CR>
+nmap <leader>m :call ConfTerm('mysql')<CR>
+nmap <leader>d :call GitDiff()<CR>
+
+" toggle settings
+nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
+nmap <leader>t :setlocal tabstop+=4<CR>
+nmap <leader>s :ToggleSizeStyle<CR>
+
+" make current file executable
+nmap <leader>x :silent !chmod +x %<CR>
