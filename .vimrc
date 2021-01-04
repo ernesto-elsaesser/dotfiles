@@ -46,8 +46,8 @@ let g:dotfile_dir = '~/dotfiles'
 com! U so ~/.vimrc
 com! RU exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
-fun! ConfTerm(name)
-    exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/.bashrc-'.a:name
+fun! TermEnv(name)
+    exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/env_'.a:name
 endfun
 
 
@@ -115,9 +115,9 @@ nmap Q :cnext<CR>
 " function mappings
 nmap <leader>u :call UpdateConfig()<CR>
 nmap <leader>f :call FileMarkMap()<CR>
-nmap <leader>c :call ConfTerm('git')<CR>
-nmap <leader>e :call ConfTerm('debug')<CR>
-nmap <leader>d :call ConfTerm('mysql')<CR>
+nmap <leader>c :call TermEnv('git')<CR>
+nmap <leader>e :call TermEnv('debug')<CR>
+nmap <leader>d :call TermEnv('mysql')<CR>
 nmap <leader>v :call GitDiff()<CR>
 
 " toggle settings

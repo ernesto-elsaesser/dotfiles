@@ -1,19 +1,12 @@
-# start git shell via
-# > bash --rcfile=.bashrc-git
-
-# silence Mac OS warning
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
+source ~/dotfiles/env_base
 
 # load completion
 source ~/dotfiles/git-completion.bash
-
 
 # load prompt
 source ~/dotfiles/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM='verbose'
 PROMPT_COMMAND='__git_ps1 "\w" " > "'
-
 
 # aliases
 
@@ -25,10 +18,11 @@ alias s='git status -s'
 
 alias a='git add --all; s'
 
-function c {
+function commit {
     # use function to allow unquoted message
     git commit -m "$*"
 }
+alias c='commit'
 
 alias d='git diff'
 
@@ -36,11 +30,12 @@ alias p='git push'
 alias pu='git push -u origin HEAD'
 alias pf='git push --force'
 
-function pa {
+function push_all {
     git add --all
     git commit -m "$*"
     git push
 }
+alias pa='push_all'
 
 alias mr='git merge --no-edit'
 
@@ -58,5 +53,3 @@ __git_complete bd _git_checkout
 alias rb='git rebase'
 
 alias rh='git reset --hard'
-
-alias q='exit'

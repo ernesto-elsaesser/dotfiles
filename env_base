@@ -1,0 +1,5 @@
+# silence Mac OS warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+alias h='alias'
+alias q='exit'

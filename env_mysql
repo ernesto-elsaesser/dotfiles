@@ -1,0 +1,45 @@
+source ~/dotfiles/env_base
+
+CONN="$USER@localhost"
+DB=''
+PROMPT_COMMAND='PS1="\t $CONN/$DB > "'
+
+CREDS='-p' # localhost, current user
+function set_login {
+    CREDS="--login-path=$1"
+    CONN="$1"
+}
+alias c='set_login'
+
+function set_host_user {
+    CREDS="-h$1 -u$2 -p"
+    CONN="$2@$1"
+}
+alias cc='set_host_user'
+
+function set_db {
+    DB="$1"
+}
+alias d='set_db'
+
+FLAGS='-A' # disable autocompletion
+function set_flags {
+    if [ -z $1 ]
+    then
+        FLAGS=""
+    else
+        FLAGS="-$1"
+    fi
+    echo $FLAGS
+}
+alias f='set_flags'
+
+function exec_sql {
+    mysql $CREDS $FLAGS $DB -e "$*"
+}
+alias e='exec_sql'
+
+alias s='exec_sql SHOW '
+alias p='exec_sql SHOW PROCESSLIST'
+alias l='exec_sql SHOW TABLES'
+alias ld='exec_sql SHOW DATABASES'
