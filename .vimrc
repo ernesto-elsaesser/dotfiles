@@ -44,7 +44,7 @@ let g:omni_sql_no_default_maps=1
 let g:dotfile_dir = '~/dotfiles'
 
 com! U so ~/.vimrc
-com! RU exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
+com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
 fun! TermEnv(name)
     exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/env_'.a:name
