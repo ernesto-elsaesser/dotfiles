@@ -99,7 +99,7 @@ com! -nargs=1 DB let g:mysql_conf = <q-args>
 
 fun! ExecMySQLQuery(query)
     new
-    exec 'setlocal bt=nofile bh=wipe'
+    exec 'setlocal bt=nofile bh=wipe ts=20'
     exec '0read !mysql --login-path='.g:mysql_conf.' -e "'.a:query.'"'
 endfun
 
