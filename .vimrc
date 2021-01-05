@@ -87,7 +87,7 @@ fun! GitDiff()
     let type = &ft
     let lnum = line('.')
     vert new
-    exec 'setlocal nobl bt=nofile bh=wipe ft='.type
+    exec 'setlocal bt=nofile bh=wipe ft='.type
     exec '0read !git show HEAD:./'.file_name
     exec lnum
 endfun
@@ -101,7 +101,7 @@ let g:mysql_db=''
 
 fun! ExecMySQLQuery(query)
     new
-    exec 'setlocal nobl bt=nofile bh=wipe'
+    exec 'setlocal bt=nofile bh=wipe'
     exec '0read !mysql --login-path='.g:mysql_login.' '.g:mysql_db.' -e "'.a:query.'"'
 endfun
 
