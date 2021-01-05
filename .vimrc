@@ -83,15 +83,32 @@ endfun
 fun! GitDiff()
     " make % relative to current working dir
     cd .
-    let @d = system("git show HEAD:./".expand('%'))
-    let l:ft = &ft
-    let l:ln = line('.')
+    let name = expand('%')
+    let type = &ft
+    let lnum = line('.')
     vert new
-    exec "setlocal nobl bt=nofile bh=wipe ft=".l:ft
-    put d
-    0delete
-    exec l:ln
+    exec 'setlocal nobl bt=nofile bh=wipe ft='.type
+    exec '0read !git show HEAD:./'.file_name
+    exec lnum
 endfun
+
+
+"----- mysql -----
+
+com! -nargs=1 LP let g:mysql_login = <q-args>
+com! -nargs=1 DB let g:mysql_db = <q-args>
+let g:mysql_db=''
+
+fun! ExecMySQLQuery(query)
+    new
+    exec 'setlocal nobl bt=nofile bh=wipe'
+    exec '0read !mysql --login-path='.g:mysql_login.' '.g:mysql_db.' -e "'.a:query.'"'
+endfun
+
+com! -nargs=1 Q call ExecMySQLQuery(<q-args>)
+com! -nargs=1 S call ExecMySQLQuery('SHOW FULL COLUMNS FROM <args>')
+com! ST call ExecMySQLQuery('SHOW TABLES')
+com! SD call ExecMySQLQuery('SHOW DATABASES')
 
 
 "----- python -----
@@ -117,7 +134,6 @@ nmap <leader>u :call UpdateConfig()<CR>
 nmap <leader>f :call FileMarkMap()<CR>
 nmap <leader>c :call TermEnv('git')<CR>
 nmap <leader>e :call TermEnv('debug')<CR>
-nmap <leader>d :call TermEnv('mysql')<CR>
 nmap <leader>v :call GitDiff()<CR>
 
 " toggle settings

@@ -1,5 +1,3 @@
-source ~/dotfiles/env_base
-
 PS1='\n ~~~ \t ~~~ \n\n \w > '
 
 alias p='python3'
