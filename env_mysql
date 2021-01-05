@@ -1,6 +1,6 @@
 source ~/dotfiles/env_base
 
-tabs 16 # for batch output
+tabs 20 # for batch output
 
 CREDS='-p' # localhost, current user
 DB=''
@@ -38,3 +38,8 @@ alias d='exec_sql DESCRIBE '
 alias sp='exec_sql SHOW PROCESSLIST'
 alias st='exec_sql SHOW TABLES'
 alias sd='exec_sql SHOW DATABASES'
+
+function head {
+    exec_sql "SELECT * FROM $1 LIMIT $2"
+}
+alias h='head'
