@@ -20,7 +20,7 @@ alias cc='set_host_user'
 function set_db {
     DB="$1"
 }
-alias d='set_db'
+alias u='set_db'
 
 FLAGS='-A' # disable autocompletion
 function set_flags {
@@ -39,7 +39,7 @@ function exec_sql {
 }
 alias e='exec_sql'
 
-alias s='exec_sql SHOW '
-alias p='exec_sql SHOW PROCESSLIST'
-alias l='exec_sql SHOW TABLES'
-alias ld='exec_sql SHOW DATABASES'
+alias d='exec_sql DESCRIBE '
+alias sp='exec_sql SHOW PROCESSLIST'
+alias st='exec_sql SHOW TABLES'
+alias sd='exec_sql SHOW DATABASES'
