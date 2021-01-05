@@ -1,41 +1,36 @@
 source ~/dotfiles/env_base
 
-CONN="$USER@localhost"
-DB=''
-PROMPT_COMMAND='PS1="\t $CONN/$DB > "'
+tabs 16 # for batch output
 
 CREDS='-p' # localhost, current user
-function set_login {
-    CREDS="--login-path=$1"
-    CONN="$1"
-}
-alias c='set_login'
+DB=''
+DESC="$USER@localhost/"
+PROMPT_COMMAND='PS1="\t $DESC > "'
 
-function set_host_user {
-    CREDS="-h$1 -u$2 -p"
-    CONN="$2@$1"
-}
-alias cc='set_host_user'
-
-function set_db {
-    DB="$1"
-}
-alias u='set_db'
-
-FLAGS='-A' # disable autocompletion
-function set_flags {
-    if [ -z $1 ]
+function configure {
+    if [[ $2 == '@' ]]
     then
-        FLAGS=""
+        CREDS="-h$3 -u$1 -p"
+        DB="$4"
+        DESC="$1@$3/$4"
     else
-        FLAGS="-$1"
+        CREDS="--login-path=$1"
+        DB="$2"
+        DESC="$1/$2"
     fi
-    echo $FLAGS
 }
-alias f='set_flags'
+alias c='configure'
+
+OPTIONS=''
+function set_options {
+    OPTIONS="$1"
+}
+alias o='set_options'
+alias t='set_options --batch'
+alias v='set_options --vertical'
 
 function exec_sql {
-    mysql $CREDS $FLAGS $DB -e "$*"
+    mysql $CREDS $OPTIONS $DB -e "$*"
 }
 alias e='exec_sql'
 
