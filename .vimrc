@@ -95,14 +95,12 @@ endfun
 
 "----- mysql -----
 
-com! -nargs=1 LP let g:mysql_login = <q-args>
-com! -nargs=1 DB let g:mysql_db = <q-args>
-let g:mysql_db=''
+com! -nargs=1 DB let g:mysql_conf = <q-args>
 
 fun! ExecMySQLQuery(query)
     new
     exec 'setlocal bt=nofile bh=wipe'
-    exec '0read !mysql --login-path='.g:mysql_login.' '.g:mysql_db.' -e "'.a:query.'"'
+    exec '0read !mysql --login-path='.g:mysql_conf.' -e "'.a:query.'"'
 endfun
 
 com! -nargs=1 Q call ExecMySQLQuery(<q-args>)
