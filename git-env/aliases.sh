@@ -1,13 +1,3 @@
-# load completion
-source ~/dotfiles/git-completion.bash
-
-# load prompt
-source ~/dotfiles/git-prompt.sh
-GIT_PS1_SHOWUPSTREAM='verbose'
-PROMPT_COMMAND='__git_ps1 "\w" " > "'
-
-# aliases
-
 alias f='git fetch --all'
 
 alias pl='git pull --ff-only'
@@ -38,7 +28,6 @@ alias pa='push_all'
 alias m='git merge --no-edit'
 
 alias co='git checkout'
-__git_complete co _git_checkout
 
 alias l='git log -10 --pretty=format:"%h %s (%an %ar)"'
 
@@ -46,7 +35,6 @@ alias b='git branch'
 alias bv='git branch -vv'
 alias cb='git checkout -b'
 alias bd='git branch -d'
-__git_complete bd _git_checkout
 
 alias rb='git rebase'
 

@@ -1,5 +1,3 @@
-PS1='\n ~~~ \t ~~~ \n\n \w > '
-
 alias p='python3'
 alias pi='python3 -i'
 alias pm='python3 -m'

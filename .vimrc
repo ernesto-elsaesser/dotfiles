@@ -41,13 +41,14 @@ let g:omni_sql_no_default_maps=1
 
 "----- config -----
 
-let g:dotfile_dir = '~/dotfiles'
+let g:dotfile_dir = '$HOME/dotfiles'
 
 com! U so ~/.vimrc
 com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
 fun! TermEnv(name)
-    exec 'ter ++close bash --rcfile ' . g:dotfile_dir . '/env_'.a:name
+    "exec 'ter ++close '.&sh.' '.g:dotfile_dir.'/'.a:name.'.sh'
+    exec 'ter '.&sh.' '.g:dotfile_dir.'/'.a:name.'.sh'
 endfun
 
 
@@ -139,6 +140,3 @@ nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <leader>t :setlocal tabstop+=4<CR>
 nmap <leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
-
-" make current file executable
-nmap <leader>x :silent !chmod +x %<CR>
