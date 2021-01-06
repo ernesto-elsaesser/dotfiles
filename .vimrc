@@ -41,14 +41,13 @@ let g:omni_sql_no_default_maps=1
 
 "----- config -----
 
-let g:dotfile_dir = '$HOME/dotfiles'
+let g:dotfile_dir = $HOME.'/dotfiles'
 
 com! U so ~/.vimrc
 com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
 fun! TermEnv(name)
-    "exec 'ter ++close '.&sh.' '.g:dotfile_dir.'/'.a:name.'.sh'
-    exec 'ter '.&sh.' '.g:dotfile_dir.'/'.a:name.'.sh'
+    exec 'ter ++close '.g:dotfile_dir.'/launch-env.sh '.a:name
 endfun
 
 
@@ -132,7 +131,7 @@ nmap Q :cnext<CR>
 nmap <leader>u :call UpdateConfig()<CR>
 nmap <leader>f :call FileMarkMap()<CR>
 nmap <leader>c :call TermEnv('git')<CR>
-nmap <leader>e :call TermEnv('debug')<CR>
+nmap <leader>e :call TermEnv('dbg')<CR>
 nmap <leader>v :call GitDiff()<CR>
 
 " toggle settings
