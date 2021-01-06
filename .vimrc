@@ -3,11 +3,11 @@ source $VIMRUNTIME/defaults.vim
 
 " ----- options -----
 
-" no mouse
-set mouse=
+" spaces > tabs
+set tabstop=4 shiftwidth=4 expandtab
 
-" no swap files
-set noswapfile
+" disable unwanted features
+set mouse= nowrap noswapfile
 
 " always show status line
 set laststatus=2
@@ -18,19 +18,13 @@ set hidden
 " complete only from current buffer
 set complete=.
 
-" spaces > tabs
-set tabstop=4 shiftwidth=4 expandtab
-
-" no wrapping
-set nowrap
-
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" configure netrw (preserve alternate file, declutter banner, size style toggle)
+" configure netrw (preserve alternate file, declutter banner)
 let g:netrw_altfile=1
 let g:netrw_sort_sequence='\/$,\*$,*'
 
@@ -88,9 +82,11 @@ fun! GitDiff()
     let lnum = line('.')
     vert new
     exec 'setlocal bt=nofile bh=wipe ft='.type
-    exec '0read !git show HEAD:./'.file_name
+    exec '0read !git show HEAD:./'.name
     exec lnum
 endfun
+
+com! D call GitDiff()
 
 
 "----- mysql -----
@@ -127,15 +123,11 @@ nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 " next quickfix
 nmap Q :cnext<CR>
 
-" function mappings
-nmap <leader>u :call UpdateConfig()<CR>
+" leader mappings
 nmap <leader>f :call FileMarkMap()<CR>
 nmap <leader>c :call TermEnv('git')<CR>
-nmap <leader>e :call TermEnv('dbg')<CR>
-nmap <leader>v :call GitDiff()<CR>
-
-" toggle settings
+nmap <leader>d :call TermEnv('dbg')<CR>
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
+nmap <leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <leader>t :setlocal tabstop+=4<CR>
 nmap <leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
