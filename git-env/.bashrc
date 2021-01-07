@@ -4,6 +4,9 @@ PROMPT_COMMAND='__git_ps1 "\w" " > "'
 
 source ~/dotfiles/git-env/aliases.sh
 
-BRANCHES=$(git branch | sed 's/[* ] //')
-complete -W "$BRANCHES" co
-complete -W "$BRANCHES" bd
+BRANCH_DIR='.git/refs/remotes/origin'
+if [ -e "$BRANCH_DIR" ]
+then
+    complete -W "$(ls $BRANCH_DIR)" co
+    complete -W "$(ls $BRANCH_DIR)" bd
+fi

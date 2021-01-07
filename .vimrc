@@ -128,6 +128,6 @@ nmap <leader>f :call FileMarkMap()<CR>
 nmap <leader>c :call TermEnv('git')<CR>
 nmap <leader>d :call TermEnv('dbg')<CR>
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <leader>v :setlocal paste!<CR>:setlocal paste?<CR>
+nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <leader>t :setlocal tabstop+=4<CR>
 nmap <leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
