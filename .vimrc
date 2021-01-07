@@ -74,7 +74,7 @@ endfun
 
 "----- git ------
 
-fun! GitDiff()
+fun! ShowGitRev(offset)
     " make % relative to current working dir
     cd .
     let name = expand('%')
@@ -82,11 +82,11 @@ fun! GitDiff()
     let lnum = line('.')
     vert new
     exec 'setlocal bt=nofile bh=wipe ft='.type
-    exec '0read !git show HEAD:./'.name
+    exec '0read !git show HEAD'.a:offset.':./'.name
     exec lnum
 endfun
 
-com! D call GitDiff()
+com! -nargs=? RV call ShowGitRev(<q-args>)
 
 
 "----- mysql -----
