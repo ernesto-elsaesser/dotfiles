@@ -40,8 +40,8 @@ let g:dotfile_dir = $HOME.'/dotfiles'
 com! U so ~/.vimrc
 com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
-fun! TermEnv(name)
-    exec 'ter ++close '.g:dotfile_dir.'/launch-env.sh '.a:name
+fun! LaunchEnv(name, prefix)
+    exec a:prefix.'ter ++close '.g:dotfile_dir.'/launch-env.sh '.a:name.' '.expand('%')
 endfun
 
 
@@ -125,8 +125,8 @@ nmap Q :cnext<CR>
 
 " leader mappings
 nmap <leader>f :call FileMarkMap()<CR>
-nmap <leader>c :call TermEnv('git')<CR>
-nmap <leader>d :call TermEnv('dbg')<CR>
+nmap <leader>c :call LaunchEnv('git', '')<CR>
+nmap <leader>d :call LaunchEnv('dbg', 'vert rightb ')<CR>
 nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <leader>t :setlocal tabstop+=4<CR>

@@ -5,6 +5,7 @@ alias pl='git pull --ff-only'
 alias s='git status -s'
 
 alias a='git add --all; s'
+alias af='git add $F'
 
 function commit {
     # use function to allow unquoted message

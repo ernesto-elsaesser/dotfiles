@@ -1,14 +1,22 @@
+alias r='perl'
+alias rf='perl $F'
+
+function perl_ex {
+    perl -e "$*"
+}
+alias re='perl_ex'
+
 alias p='python3'
+alias pf='python3 $F'
 alias pi='python3 -i'
 alias pm='python3 -m'
 
-function pc {
-    python3 -c "$1"
+function python_cmd {
+    python3 -c "$*"
 }
+alias pc='python_cmd'
 
 alias ca='conda activate'
 alias cx='conda deactivate'
-
-alias pl='perl'
 
 alias s='ssh -t'
