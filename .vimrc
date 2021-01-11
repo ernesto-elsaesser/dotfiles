@@ -47,28 +47,18 @@ endfun
 
 "---- marks -----
 
-fun! Target(mrk)
-    let info = getpos("'".a:mrk)
-    if info[1] == 0
-        return '-'
-    endif
-    let bufid = info[0]
-    if bufid == 0
-        let bufid = '%:~'
-    endif
-    let name = bufname(bufid)
-    let parts = split(name, '/')
-    if len(parts) > 2
-        let parts = ['*', parts[-2], parts[-1]]
-    endif
-    return join(parts, '/')
-endfun
-
-fun! FileMarkMap()
-    let marks = [Target('Q'), Target('W'), Target('E'), '|']
-    let marks += [Target('A'), Target('S'), Target('D'), '|']
-    let marks += [Target('Z'), Target('X'), Target('C')]
-    echo join(marks, ' ')
+fun! ListFileMarks(...)
+    for mrk in a:000
+        let info = getpos("'" . mrk)
+        if info[1] == 0
+            continue
+        endif
+        let bufid = info[0]
+        if bufid == 0
+            let bufid = '%:~'
+        endif
+        echo mrk . '  ' . bufname(bufid)
+    endfor
 endfun
 
 
@@ -124,10 +114,18 @@ nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 nmap Q :cnext<CR>
 
 " leader mappings
-nmap <leader>f :call FileMarkMap()<CR>
-nmap <leader>c :call LaunchEnv('git', '')<CR>
-nmap <leader>d :call LaunchEnv('dbg', 'vert rightb ')<CR>
-nmap <leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <leader>p :setlocal paste!<CR>:setlocal paste?<CR>
-nmap <leader>t :setlocal tabstop+=4<CR>
-nmap <leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
+nmap <Leader>q 'Q
+nmap <Leader>w 'W
+nmap <Leader>e 'E
+nmap <Leader>r :call LaunchEnv('dbg', 'vert ')<CR>
+
+nmap <Leader>a 'A
+nmap <Leader>s 'S
+nmap <Leader>d 'D
+nmap <Leader>f :call ListFileMarks('Q','W','E','A','S','D')<CR>
+
+nmap <Leader>x :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <Leader>c :call LaunchEnv('git', '')<CR>
+nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
+nmap <Leader>t :setlocal tabstop+=4<CR>
+nmap <Leader>b :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
