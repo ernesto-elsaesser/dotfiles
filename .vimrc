@@ -113,9 +113,6 @@ com! PL compiler pylint | make %
 
 " ----- mappings -----
 
-" allow repeated pasting of yanked text
-vnoremap p "0p
-
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h/<CR>
 
