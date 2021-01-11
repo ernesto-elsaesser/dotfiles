@@ -83,16 +83,27 @@ com! -nargs=? RV call ShowGitRev('HEAD<args>')
 
 com! -nargs=1 DB let g:mysql_conf = <q-args>
 
-fun! ExecMySQLQuery(query)
+fun! ExecSQLQuery(query)
     new
     exec 'setlocal bt=nofile bh=wipe ts=20'
     exec '0read !mysql --login-path='.g:mysql_conf.' -e "'.a:query.'"'
 endfun
 
-com! -nargs=1 Q call ExecMySQLQuery(<q-args>)
-com! -nargs=1 S call ExecMySQLQuery('SHOW FULL COLUMNS FROM <args>')
-com! ST call ExecMySQLQuery('SHOW TABLES')
-com! SD call ExecMySQLQuery('SHOW DATABASES')
+com! -nargs=1 Q call ExecSQLQuery(<q-args>)
+com! -nargs=1 S call ExecSQLQuery('SHOW FULL COLUMNS FROM <args>')
+com! ST call ExecSQLQuery('SHOW TABLES')
+com! SD call ExecSQLQuery('SHOW DATABASES')
+
+fun! ExecSQLScript(line1, line2)
+    let lines = getbufline('%', a:line1, a:line2)
+    let query = ''
+    for line in lines
+        let query .= line . ' '
+    endfor
+    call ExecSQLQuery(query)
+endfun
+
+com! -range=% QS call ExecSQLScript(<line1>,<line2>)
 
 
 "----- python -----
