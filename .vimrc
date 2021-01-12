@@ -90,20 +90,11 @@ fun! ExecSQLQuery(query)
 endfun
 
 com! -nargs=1 Q call ExecSQLQuery(<q-args>)
+com! QQ call ExecSQLQuery(getreg('0'))
 com! -nargs=1 S call ExecSQLQuery('SHOW FULL COLUMNS FROM <args>')
 com! ST call ExecSQLQuery('SHOW TABLES')
 com! SD call ExecSQLQuery('SHOW DATABASES')
 
-fun! ExecSQLScript(line1, line2)
-    let lines = getbufline('%', a:line1, a:line2)
-    let query = ''
-    for line in lines
-        let query .= line . ' '
-    endfor
-    call ExecSQLQuery(query)
-endfun
-
-com! -range=% QS call ExecSQLScript(<line1>,<line2>)
 
 
 "----- python -----
