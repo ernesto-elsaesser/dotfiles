@@ -12,7 +12,7 @@ alias pi='python3 -i'
 alias pm='python3 -m'
 
 function python_cmd {
-    python3 -c "$*"
+    python3 -c "print($1)"
 }
 alias pc='python_cmd'
 

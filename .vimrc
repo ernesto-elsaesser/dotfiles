@@ -84,9 +84,10 @@ com! -nargs=? RV call ShowGitRev('HEAD<args>')
 com! -nargs=1 DB let g:mysql_conf = <q-args>
 
 fun! ExecSQLQuery(query)
+    let q = substitute(a:query, '\n', ' ', 'g')
     new
     exec 'setlocal bt=nofile bh=wipe ts=20'
-    exec '0read !mysql --login-path='.g:mysql_conf.' -e "'.a:query.'"'
+    exec '0read !mysql --login-path='.g:mysql_conf.' -e "'.q.'"'
 endfun
 
 com! -nargs=1 Q call ExecSQLQuery(<q-args>)
@@ -94,6 +95,7 @@ com! QQ call ExecSQLQuery(getreg('0'))
 com! -nargs=1 S call ExecSQLQuery('SHOW FULL COLUMNS FROM <args>')
 com! ST call ExecSQLQuery('SHOW TABLES')
 com! SD call ExecSQLQuery('SHOW DATABASES')
+com! SP call ExecSQLQuery('SHOW PROCESSLIST')
 
 
 
