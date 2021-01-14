@@ -14,6 +14,7 @@ function commit {
 alias c='commit'
 
 alias d='git diff'
+alias ds='git diff --staged'
 
 alias p='git push'
 alias pu='git push -u origin HEAD'
