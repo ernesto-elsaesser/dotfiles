@@ -30,13 +30,19 @@ alias pa='push_all'
 alias m='git merge --no-edit'
 
 alias co='git checkout'
+alias cb='git checkout -b'
 
 alias l='git log -10 --pretty=format:"%h %s (%an %ar)"'
 
 alias b='git branch'
+alias ba='git branch -a'
 alias bv='git branch -vv'
-alias cb='git checkout -b'
 alias bd='git branch -d'
+
+function list_branches {
+    # used for auto-completion
+    git branch -a | sed 's/[* ] \(remotes\/origin\/\)\?//'
+}
 
 alias rb='git rebase'
 
