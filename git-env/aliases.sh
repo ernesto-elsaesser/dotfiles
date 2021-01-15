@@ -45,5 +45,6 @@ function list_branches {
 }
 
 alias rb='git rebase'
+alias ri='git rebase -i HEAD~'
 
 alias rh='git reset --hard'

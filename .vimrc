@@ -84,16 +84,23 @@ com! -nargs=? RV call ShowGitRev('HEAD<args>')
 com! -nargs=1 DB let g:mysql_conf = <q-args>
 
 fun! ExecSQLQuery(query)
-    let q = substitute(a:query, '\n', ' ', 'g')
     new
     exec 'setlocal bt=nofile bh=wipe ts=20'
-    exec 'silent 0read !mysql --login-path='.g:mysql_conf.' -vv -e "'.q.'"'
+    exec 'silent 0read !mysql --login-path='.g:mysql_conf.' -vv -e "'.a:query.'"'
     0
+endfun
+
+fun! GetSQLQuery(reg)
+    let query = getreg(a:reg)
+    let query = substitute(query, '\n', ' ', 'g')
+    let query = substitute(query, '\s\+', ' ', 'g')
+    let query = substitute(query, '"', '\\"', 'g')
+    return query
 endfun
 
 com! -nargs=1 Q call ExecSQLQuery(<q-args>)
 com! -nargs=1 QA call ExecSQLQuery('SELECT * FROM <args>')
-com! QQ call ExecSQLQuery(getreg('0'))
+com! QQ call ExecSQLQuery(GetSQLQuery(0))
 com! -nargs=1 S call ExecSQLQuery('SHOW FULL COLUMNS FROM <args>')
 com! ST call ExecSQLQuery('SHOW TABLES')
 com! SD call ExecSQLQuery('SHOW DATABASES')
