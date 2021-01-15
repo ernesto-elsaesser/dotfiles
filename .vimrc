@@ -87,10 +87,12 @@ fun! ExecSQLQuery(query)
     let q = substitute(a:query, '\n', ' ', 'g')
     new
     exec 'setlocal bt=nofile bh=wipe ts=20'
-    exec '0read !mysql --login-path='.g:mysql_conf.' -e "'.q.'"'
+    exec 'silent 0read !mysql --login-path='.g:mysql_conf.' -vv -e "'.q.'"'
+    0
 endfun
 
 com! -nargs=1 Q call ExecSQLQuery(<q-args>)
+com! -nargs=1 QA call ExecSQLQuery('SELECT * FROM <args>')
 com! QQ call ExecSQLQuery(getreg('0'))
 com! -nargs=1 S call ExecSQLQuery('SHOW FULL COLUMNS FROM <args>')
 com! ST call ExecSQLQuery('SHOW TABLES')
