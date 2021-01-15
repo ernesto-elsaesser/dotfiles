@@ -13,6 +13,8 @@ function commit {
 }
 alias c='commit'
 
+alias ca='commit --amend --no-edit'
+
 alias d='git diff'
 alias ds='git diff --staged'
 
