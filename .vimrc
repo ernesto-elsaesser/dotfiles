@@ -53,7 +53,7 @@ endfunction
 
 set tabline=%!GetTabLine()
 
-com! -nargs=1 -complete=file T tabedit <args>
+com! -nargs=1 -complete=file T $tabedit <args>
 
 
 "----- terminal -----
