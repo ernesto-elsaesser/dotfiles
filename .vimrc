@@ -55,6 +55,7 @@ set tabline=%!GetTabLine()
 
 com! -nargs=1 -complete=file T tabedit <args>
 
+
 "----- terminal -----
 
 fun! LaunchEnv(name, prefix)
@@ -129,6 +130,8 @@ nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 nmap Q :cnext<CR>
 
 " leader mappings
+nmap <Leader>; :tabm -<CR>
+nmap <Leader>' :tabm +<CR>
 nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
 nmap <Leader>c :call LaunchEnv('git', '')<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
