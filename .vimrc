@@ -12,9 +12,6 @@ set tabstop=4 shiftwidth=4 expandtab
 " disable unwanted features
 set mouse= nowrap noswapfile viminfo=
 
-" always show status line
-set laststatus=2
-
 " do not abandon unloaded buffers
 set hidden
 
@@ -24,8 +21,8 @@ set complete=.
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
-" missing absolute buffer navigation
-com! -count=1 B brewind | bnext <count>
+" open in new tab shortcut
+com! -nargs=1 -complete=file T tabedit <args>
 
 " disable parenthese highlighting
 let loaded_matchparen = 1
@@ -120,22 +117,9 @@ nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 " next quickfix
 nmap Q :cnext<CR>
 
-" quick navigation
-nmap g1 :1B<CR>
-nmap g2 :2B<CR>
-nmap g3 :3B<CR>
-nmap g4 :4B<CR>
-nmap g5 :5B<CR>
-nmap g6 :6B<CR>
-nmap g7 :7B<CR>
-nmap g8 :8B<CR>
-nmap g9 :9B<CR>
-nmap <Leader>n :bn<CR>
-nmap <Leader>p :bp<CR>
-
 " leader mappings
 nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
-nmap <Leader>c :call LaunchEnv('git', '')<CR>
+nmap <Leader>c :call LaunchEnv('git', 'below ')<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
