@@ -12,9 +12,6 @@ set tabstop=4 shiftwidth=4 expandtab
 " disable unwanted features
 set mouse= nowrap noswapfile viminfo=
 
-" do not abandon unloaded buffers
-set hidden
-
 " complete only from current buffer
 set complete=.
 
@@ -24,8 +21,7 @@ autocmd BufEnter * setlocal formatoptions=
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" configure netrw (preserve alternate file, declutter banner)
-let g:netrw_altfile=1
+" declutter netrw banner
 let g:netrw_sort_sequence='\/$,\*$,*'
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
