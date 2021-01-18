@@ -1,4 +1,4 @@
-alias e='$F'
+alias e='./$F'
 
 alias r='perl'
 alias rf='perl $F'
