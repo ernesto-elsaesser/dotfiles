@@ -3,6 +3,9 @@ source $VIMRUNTIME/defaults.vim
 
 " ----- options -----
 
+" hacker mode
+set background=dark
+
 " spaces > tabs
 set tabstop=4 shiftwidth=4 expandtab
 
