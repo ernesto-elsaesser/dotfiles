@@ -7,7 +7,7 @@ source $VIMRUNTIME/defaults.vim
 set tabstop=4 shiftwidth=4 expandtab
 
 " disable unwanted features
-set mouse= nowrap noswapfile
+set mouse= nowrap noswapfile viminfo=
 
 " always show status line
 set laststatus=2
@@ -44,6 +44,7 @@ fun! LaunchEnv(name, prefix)
     exec a:prefix.'ter ++close '.g:dotfile_dir.'/launch-env.sh '.a:name.' '.expand('%')
 endfun
 
+com! -nargs=1 SSH ter ++close ssh <args>
 
 "---- marks -----
 
