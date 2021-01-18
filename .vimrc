@@ -24,6 +24,9 @@ set complete=.
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
+" missing absolute buffer navigation
+com! -count=1 B brewind | bnext <count>
+
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
@@ -51,13 +54,6 @@ fun! LaunchEnv(name, prefix)
 endfun
 
 com! -nargs=1 SSH ter ++close ssh <args>
-
-
-"----- buffers ------
-
-fun! BufNrs()
-    return map(getbufinfo({'buflisted': 1}), 'v:val["bufnr"]')
-endfun
 
 
 "----- git ------
@@ -124,13 +120,15 @@ nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 " next quickfix
 nmap Q :cnext<CR>
 
+" quick navigation
+nmap g1 :1B<CR>
+nmap g2 :2B<CR>
+nmap g3 :3B<CR>
+nmap g4 :4B<CR>
+nmap g5 :5B<CR>
+nmap g6 :6B<CR>
+
 " leader mappings
-nmap <Leader>1 :br<CR>:bn<CR>
-nmap <Leader>2 :br<CR>:2bn<CR>
-nmap <Leader>3 :br<CR>:3bn<CR>
-nmap <Leader>4 :br<CR>:4bn<CR>
-nmap <Leader>5 :br<CR>:5bn<CR>
-nmap <Leader>6 :br<CR>:6bn<CR>
 nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
 nmap <Leader>c :call LaunchEnv('git', '')<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
