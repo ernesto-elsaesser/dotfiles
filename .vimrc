@@ -53,6 +53,13 @@ endfun
 com! -nargs=1 SSH ter ++close ssh <args>
 
 
+"----- buffers ------
+
+fun! BufNrs()
+    return map(getbufinfo({'buflisted': 1}), 'v:val["bufnr"]')
+endfun
+
+
 "----- git ------
 
 fun! ShowGitRev(ref)
@@ -118,18 +125,15 @@ nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 nmap Q :cnext<CR>
 
 " leader mappings
-nmap <Leader>q 'Q
-nmap <Leader>w 'W
-nmap <Leader>e 'E
-nmap <Leader>r :call LaunchEnv('dbg', 'vert ')<CR>
-
-nmap <Leader>a 'A
-nmap <Leader>s 'S
-nmap <Leader>d 'D
-nmap <Leader>f :marks QWEASD<CR>
-
-nmap <Leader>x :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <Leader>1 :br<CR>:bn<CR>
+nmap <Leader>2 :br<CR>:2bn<CR>
+nmap <Leader>3 :br<CR>:3bn<CR>
+nmap <Leader>4 :br<CR>:4bn<CR>
+nmap <Leader>5 :br<CR>:5bn<CR>
+nmap <Leader>6 :br<CR>:6bn<CR>
+nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
 nmap <Leader>c :call LaunchEnv('git', '')<CR>
+nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
-nmap <Leader>b :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
+nmap <Leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
