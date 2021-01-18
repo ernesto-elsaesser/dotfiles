@@ -127,6 +127,11 @@ nmap g3 :3B<CR>
 nmap g4 :4B<CR>
 nmap g5 :5B<CR>
 nmap g6 :6B<CR>
+nmap g7 :7B<CR>
+nmap g8 :8B<CR>
+nmap g9 :9B<CR>
+nmap <Leader>n :bn<CR>
+nmap <Leader>p :bp<CR>
 
 " leader mappings
 nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
