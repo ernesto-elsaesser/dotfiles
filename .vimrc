@@ -126,6 +126,11 @@ nmap gx `sv`ty`uv`vp`tv`sp
 nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
 nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
+" go to tab
+for i in range(1, 9)
+    exec 'nmap g'.i.' '.i.'gt'
+endfor
+
 " next quickfix
 nmap Q :cnext<CR>
 
