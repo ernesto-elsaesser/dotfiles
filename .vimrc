@@ -40,27 +40,14 @@ let g:dotfile_dir = $HOME.'/dotfiles'
 com! U so ~/.vimrc
 com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
+
+"----- terminal -----
+
 fun! LaunchEnv(name, prefix)
     exec a:prefix.'ter ++close '.g:dotfile_dir.'/launch-env.sh '.a:name.' '.expand('%')
 endfun
 
 com! -nargs=1 SSH ter ++close ssh <args>
-
-"---- marks -----
-
-fun! ListFileMarks(...)
-    for mrk in a:000
-        let info = getpos("'" . mrk)
-        if info[1] == 0
-            continue
-        endif
-        let bufid = info[0]
-        if bufid == 0
-            let bufid = '%:~'
-        endif
-        echo mrk . '  ' . bufname(bufid)
-    endfor
-endfun
 
 
 "----- git ------
@@ -136,7 +123,7 @@ nmap <Leader>r :call LaunchEnv('dbg', 'vert ')<CR>
 nmap <Leader>a 'A
 nmap <Leader>s 'S
 nmap <Leader>d 'D
-nmap <Leader>f :call ListFileMarks('Q','W','E','A','S','D')<CR>
+nmap <Leader>f :marks QWEASD<CR>
 
 nmap <Leader>x :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>c :call LaunchEnv('git', '')<CR>
