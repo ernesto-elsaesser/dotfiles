@@ -21,9 +21,6 @@ set complete=.
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
-" open in new tab shortcut
-com! -nargs=1 -complete=file T tabedit <args>
-
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
@@ -43,6 +40,20 @@ let g:dotfile_dir = $HOME.'/dotfiles'
 com! U so ~/.vimrc
 com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
 
+
+"----- tabs -----
+
+fun! GetTabLine()
+    let tabnrs = range(1, tabpagenr('$'))
+    let titles = map(tabnrs, 'v:val . ":" . fnamemodify(bufname(tabpagebuflist(v:val)[-1]),":t")')
+    let selnr = tabpagenr() - 1
+    let titles[selnr] = titles[selnr] . '*'
+    return ' ' . join(titles, ' | ')
+endfunction
+
+set tabline=%!GetTabLine()
+
+com! -nargs=1 -complete=file T tabedit <args>
 
 "----- terminal -----
 
@@ -119,7 +130,7 @@ nmap Q :cnext<CR>
 
 " leader mappings
 nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
-nmap <Leader>c :call LaunchEnv('git', 'below ')<CR>
+nmap <Leader>c :call LaunchEnv('git', '')<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
