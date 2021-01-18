@@ -1,3 +1,5 @@
+alias e='$F'
+
 alias r='perl'
 alias rf='perl $F'
 
@@ -18,5 +20,3 @@ alias pc='python_cmd'
 
 alias ca='conda activate'
 alias cx='conda deactivate'
-
-alias s='ssh -t'
