@@ -124,12 +124,16 @@ nmap gx `sv`ty`uv`vp`tv`sp
 nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
 nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
+" tab switching
+nmap ] :tabn<CR>
+nmap [ :tabp<CR>
+
 " next quickfix
 nmap Q :cnext<CR>
 
 " leader mappings
-nmap <Leader>; :tabm -<CR>
-nmap <Leader>' :tabm +<CR>
+nmap <Leader>[ :tabm -<CR>
+nmap <Leader>] :tabm +<CR>
 nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
 nmap <Leader>c :call LaunchEnv('git', '')<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
