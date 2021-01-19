@@ -125,8 +125,7 @@ nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
 nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
 " tab switching
-nmap ] :tabn<CR>
-nmap [ :tabp<CR>
+nmap <Space> :tabp<CR>
 
 " next quickfix
 nmap Q :cnext<CR>
