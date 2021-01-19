@@ -21,8 +21,10 @@ autocmd BufEnter * setlocal formatoptions=
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" declutter netrw banner
-let g:netrw_sort_sequence='\/$,\*$,*'
+" configure netrw
+let g:netrw_sort_sequence='\/$,*'
+hi netrwExe cterm=NONE
+hi netrwSymLink cterm=NONE
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
