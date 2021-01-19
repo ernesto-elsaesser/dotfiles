@@ -18,5 +18,7 @@ function python_cmd {
 }
 alias pc='python_cmd'
 
+alias rc='source ~/.bashrc'
+
 alias ca='conda activate'
 alias cx='conda deactivate'
