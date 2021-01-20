@@ -50,25 +50,10 @@ nmap <Space> :tabp<CR>
 
 " temporary buffers
 
-fun! TempBuffer(mode)
-    if a:mode =~ 'd'
-        let type = &ft
-    endif
-    if a:mode =~ 'v'
-        vert new
-    else
-        new
-    endif
-    setl bt=nofile bh=wipe
-    if a:mode =~ 't'
-        setl ts=20
-    endif
-    if a:mode =~ 'd'
-        let &ft = type
-    endif
-endfun
-
-com! -nargs=1 -bar Temp call TempBuffer(<q-args>)
+com! -bar Temp setl bt=nofile bh=wipe
+com! -bar SplitTemp new | Temp
+com! -bar VertTemp vert new | Temp
+com! -bar Clone let ft = &ft | VertTemp | let &ft = ft
 
 
 " dt bindings
@@ -89,11 +74,11 @@ com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
 com! -nargs=1 DtHeadRef let $DT_HEAD_REF = <q-args>
 com! -bar DtRev exec 'read !' . g:dt . ' rev'
-com! DtDiff DtSelect | let ln = line('.') | Temp dv | DtRev | exec ln
+com! DtDiff DtSelect | let ln = line('.') | Clone | DtRev | exec ln
 
 com! -nargs=1 DtDatabasePath let $DT_DB_PATH = <q-args>
 com! -bar DtSql exec 'silent read !' . g:dt . ' sql'
-com! -bar DtExecQuery Temp t | DtSql | 0
+com! -bar DtExecQuery SplitTemp | setl ts=20 | DtSql | 0
 com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
