@@ -19,7 +19,7 @@ if [ "$1" = 'run' ]; then # execute command
 
 elif [ "$1" = 'pyl' ]; then # pylint
 
-    pylint --output-format=text --msg-template="{path}:{line}: [{symbol}] {msg}" --reports=no "$DT_FILE"
+    pylint --output-format=parseable -sn "$DT_FILE"
 
 elif [ "$1" = 'cal' ]; then # calculate
 

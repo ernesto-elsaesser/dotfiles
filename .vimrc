@@ -101,8 +101,7 @@ com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
 let &makeprg=g:dt.' pyl'
-set errorformat=%A%f:%l:\ %m
-" TODO test, needed %A?
+set errorformat=%f:%l:\ %m
 
 " leader mappings
 nmap <Leader>u :DtUpdateRC<CR>
