@@ -14,13 +14,13 @@ if [ "$1" = 'run' ]; then # execute command
 
     date
     echo "==="
-    $DT_EXEC_CMD$DT_FILE
+    $DT_RUN_CMD$DT_FILE
     echo "==="
     date
 
 elif [ "$1" = 'pyl' ]; then # pylint
 
-    pylint --output-format=text --msg-template="{path}:{line}: [{symbol}] {msg}" --reports=no $2
+    pylint --output-format=text --msg-template="{path}:{line}: [{symbol}] {msg}" --reports=no "$DT_FILE"
 
 elif [ "$1" = 'cal' ]; then # calculate
 
@@ -34,15 +34,17 @@ elif [ "$1" = 'git' ]; then # git shell
 
 elif [ "$1" = 'sql' ]; then # query database
 
+    cmd="mysql --login-path=$DT_DB_PATH -vv"
     query="${DT_SQL_QUERY//\"/\\\"}";
     case $query in
-        p) query='SHOW PROCESSLIST' ;;
-        d) query='SHOW DATABASES' ;;
-        t) query='SHOW TABLES' ;;
-    #    s) query="SHOW FULL COLUMS FROM $query" ;;
-    #    a) query="SELECT * FROM $query" ;;
+        p) $cmd -e "SHOW PROCESSLIST" ;;
+        d) $cmd -e "SHOW DATABASES" ;;
+        t) $cmd -e "SHOW TABLES" ;;
+        f) $cmd < "$DT_FILE" ;;
+        *) $cmd -e "$query"
+    # SHOW FULL COLUMS FROM $query
+    # SELECT * FROM $query
     esac
-    mysql --login-path=$DT_DB_PATH -vv -e "$query"
 
 elif [ "$1" = 'rev' ]; then # git revision
 

@@ -65,9 +65,9 @@ com! UP exec '!' . g:dt . ' upd' | U
 
 com! -bar DtSelect let $DT_FILE = expand('%')
 
-com! -nargs=1 DtRunCmd let $DT_RUN_CMD = <q-args>
 com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
-com! DtRun exec 'vert ter ' . g:dt . ' run'
+com! -bar DtRun exec 'vert ter ' . g:dt . ' run'
+com! -nargs=? DtExec let $DT_RUN_CMD = <q-args> | DtRun
 com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
 com! DtGit exec 'ter ++close ' . g:dt . ' git'
@@ -90,9 +90,8 @@ set errorformat=%A%f:%l:\ %m
 nmap <Leader>[ :tabm -<CR>
 nmap <Leader>] :tabm +<CR>
 
-nmap <Leader>x :DtRunCmd '
 nmap <Leader>. :DtSelect<CR>
-nmap <Leader>e :DtRun<CR>
+nmap <Leader>e :DtExec 
 nmap <Leader>r :DtRerun<CR>
 
 nmap <Leader>m :make %<CR>
