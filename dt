@@ -6,8 +6,7 @@ if [ ! -d "$DIR" ]; then
 fi
 
 if [ -n "$DT_CONDA_ENV" ]; then
-    #source ~/.bashrc
-    conda activate $DT_CONDA_ENV
+    PATH="$HOME/anaconda3/envs/$DT_CONDA_ENV/bin:$PATH"
 fi
 
 if [ "$1" = 'run' ]; then # execute command
