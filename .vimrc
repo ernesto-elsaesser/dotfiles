@@ -60,17 +60,17 @@ com! DtSelect let $DT_FILE = expand('%')
 
 com! -nargs=1 DtRunCmd let $DT_RUN_CMD = <q-args>
 com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
-com DtRun exec 'vert ter ' . g:dt . ' run'
-com DtRerun exec 'ter ++curwin ' . g:dt . ' run'
+com! DtRun exec 'vert ter ' . g:dt . ' run'
+com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
-com Scratch setl bt=nofile bh=wipe
+com! Scratch setl bt=nofile bh=wipe
 
-com DtGit exec 'ter ++close ' . g:dt . ' git'
+com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
 com! -nargs=1 DtHeadRef let $DT_HEAD_REF = <q-args>
 com! CopyState let g:svd_ft = &ft | let g:svd_ln = line('.')
 com! PasteState exec 'setl ft='.g:svd_ft | exec g:svd_ln
-com DtRev exec 'read !' . g:dt . ' rev'
+com! DtRev exec 'read !' . g:dt . ' rev'
 com! DtDiff DtSelect | CopyState | vert new | Scratch | DtRev | PasteState
 
 com! -nargs=1 DtDatabasePath let $DT_DB_PATH = <q-args>
