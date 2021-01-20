@@ -21,14 +21,18 @@ autocmd BufEnter * setlocal formatoptions=
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" configure netrw
+" declutter netrw header
 let g:netrw_sort_sequence='\/$,*'
-hi netrwExe cterm=NONE
-hi netrwSymLink cterm=NONE
+
+" disable netrw file highlighting
+autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
 
 " configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
+
+" config update
+com! U so ~/.vimrc
 
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h/<CR>
@@ -48,6 +52,7 @@ set tabline=%!GetTabLine()
 com! -nargs=1 -complete=file T $tabedit <args>
 nmap <Space> :tabp<CR>
 
+
 " temporary buffers
 
 com! -bar Temp setl bt=nofile bh=wipe
@@ -60,8 +65,8 @@ com! -bar Clone let ft = &ft | VertTemp | let &ft = ft
 
 let g:dt = $HOME.'/dotfiles/dt'
 
-com! U so ~/.vimrc
-com! UP exec '!' . g:dt . ' upd' | U
+com! -bar DtUpdate exec '!' . g:dt . ' upd' | U
+com! DtUpdateRC DtUpdate | U
 
 com! -bar DtSelect let $DT_FILE = expand('%')
 
@@ -90,19 +95,21 @@ set errorformat=%A%f:%l:\ %m
 nmap <Leader>[ :tabm -<CR>
 nmap <Leader>] :tabm +<CR>
 
+nmap <Leader>u :DtUpdateRC<CR>
+
 nmap <Leader>. :DtSelect<CR>
 nmap <Leader>e :DtExec 
 nmap <Leader>r :DtRerun<CR>
 
-nmap <Leader>m :make %<CR>
-nmap <Leader>n :cnext<CR>
-
 nmap <Leader>c :DtGit<CR>
 nmap <Leader>d :DtDiff<CR>
 
-nmap <Leader>z :DtDatabasePath 
 nmap <Leader>q :DtLoad 
 nmap <Leader>a :DtLoadYanked<CR>
+nmap <Leader>z :DtDatabasePath 
+
+nmap <Leader>m :make %<CR>
+nmap <Leader>n :cnext<CR>
 
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
