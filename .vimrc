@@ -52,7 +52,9 @@ fun! ListBuffers()
             let line .= '*'
         endif
         let line .= ' | '
-        exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
+        if pos < 10
+            exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
+        endif
         let pos += 1
     endfor
     return line
