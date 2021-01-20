@@ -71,7 +71,7 @@ nmap { :bp<CR>
 
 " temporary buffers
 
-com! -bar Temp setl bt=nofile bh=wipe bl=
+com! -bar Temp setl bt=nofile bh=wipe nobl
 com! -bar SplitTemp new | Temp
 com! -bar VertTemp vert new | Temp
 com! -bar Clone let ft = &ft | VertTemp | let &ft = ft
