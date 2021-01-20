@@ -37,25 +37,41 @@ com! U so ~/.vimrc
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h/<CR>
 
-" custom tab line
+" quick buffer navigation
 
-fun! GetTabLine()
-    let tabnrs = range(1, tabpagenr('$'))
-    let titles = map(tabnrs, 'v:val . ":" . fnamemodify(bufname(tabpagebuflist(v:val)[-1]),":t")')
-    let selnr = tabpagenr() - 1
-    let titles[selnr] = titles[selnr] . '*'
-    return ' ' . join(titles, ' | ')
-endfunction
+fun! ListBuffers()
+    let line = ' '
+    let pos = 1
+    for buf in getbufinfo({'buflisted':1})
+        let name = fnamemodify(buf['name'], ':t')
+        let line .= pos . ':' . name
+        if buf['loaded']
+            let line .= '*'
+        endif
+        let line .= ' | '
+        let pos += 1
+    endfor
+    return line
+endfun
 
-set tabline=%!GetTabLine()
+set tabline=%!ListBuffers() showtabline=2
 
-com! -nargs=1 -complete=file T $tabedit <args>
-nmap <Space> :tabp<CR>
+fun! LoadBuffer(pos)
+    let bufnr = getbufinfo({'buflisted':1})[a:pos-1]['bufnr']
+    exec 'buffer ' . bufnr
+endfun
+
+for pos in range(1,9)
+    exec 'nmap g' . pos . ' :call LoadBuffer(' . pos . ')<CR>'
+endfor
+
+nmap } :bn<CR>
+nmap { :bp<CR>
 
 
 " temporary buffers
 
-com! -bar Temp setl bt=nofile bh=wipe
+com! -bar Temp setl bt=nofile bh=wipe bl=
 com! -bar SplitTemp new | Temp
 com! -bar VertTemp vert new | Temp
 com! -bar Clone let ft = &ft | VertTemp | let &ft = ft
@@ -92,9 +108,6 @@ set errorformat=%A%f:%l:\ %m
 " TODO test, needed %A?
 
 " leader mappings
-nmap <Leader>[ :tabm -<CR>
-nmap <Leader>] :tabm +<CR>
-
 nmap <Leader>u :DtUpdateRC<CR>
 
 nmap <Leader>. :DtSelect<CR>
