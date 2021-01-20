@@ -15,6 +15,9 @@ set mouse= nowrap noswapfile viminfo=
 " complete only from current buffer
 set complete=.
 
+" use short universal error format
+set errorformat=%f:%l:\ %m
+
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
@@ -100,8 +103,7 @@ com! -bar DtExecQuery SplitTemp | setl ts=20 | DtSql | 0
 com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
-let &makeprg=g:dt.' pyl'
-set errorformat=%f:%l:\ %m
+com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 
 " leader mappings
 nmap <Leader>u :DtUpdateRC<CR>
@@ -117,8 +119,9 @@ nmap <Leader>q :DtLoad
 nmap <Leader>a :DtLoadYanked<CR>
 nmap <Leader>z :DtDatabasePath 
 
-nmap <Leader>m :make %<CR>
+nmap <Leader>m :DtPylint<CR>
 nmap <Leader>n :cnext<CR>
+nmap <Leader>b :cprev<CR>
 
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
