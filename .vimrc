@@ -48,6 +48,28 @@ set tabline=%!GetTabLine()
 com! -nargs=1 -complete=file T $tabedit <args>
 nmap <Space> :tabp<CR>
 
+" temporary buffers
+
+fun! TempBuffer(mode)
+    if a:mode =~ 'd'
+        let type = &ft
+    endif
+    if a:mode =~ 'v'
+        vert new
+    else
+        new
+    endif
+    setl bt=nofile bh=wipe
+    if a:mode =~ 't'
+        setl ts=20
+    endif
+    if a:mode =~ 'd'
+        let &ft = type
+    endif
+endfun
+
+com! -nargs=1 -bar Temp call TempBuffer(<q-args>)
+
 
 " dt bindings
 
@@ -56,26 +78,22 @@ let g:dt = $HOME.'/dotfiles/dt'
 com! U so ~/.vimrc
 com! UP exec '!' . g:dt . ' upd' | U
 
-com! DtSelect let $DT_FILE = expand('%')
+com! -bar DtSelect let $DT_FILE = expand('%')
 
 com! -nargs=1 DtRunCmd let $DT_RUN_CMD = <q-args>
 com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
 com! DtRun exec 'vert ter ' . g:dt . ' run'
 com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
-com! Scratch setl bt=nofile bh=wipe
-
 com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
 com! -nargs=1 DtHeadRef let $DT_HEAD_REF = <q-args>
-com! CopyState let g:svd_ft = &ft | let g:svd_ln = line('.')
-com! PasteState exec 'setl ft='.g:svd_ft | exec g:svd_ln
-com! DtRev exec 'read !' . g:dt . ' rev'
-com! DtDiff DtSelect | CopyState | vert new | Scratch | DtRev | PasteState
+com! -bar DtRev exec 'read !' . g:dt . ' rev'
+com! DtDiff DtSelect | let ln = line('.') | Temp dv | DtRev | exec ln
 
 com! -nargs=1 DtDatabasePath let $DT_DB_PATH = <q-args>
-com! DtSql exec 'silent read !' . g:dt . ' sql'
-com! DtExecQuery new | Scratch | setl ts=20 | DtSql | 0
+com! -bar DtSql exec 'silent read !' . g:dt . ' sql'
+com! -bar DtExecQuery Temp t | DtSql | 0
 com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
