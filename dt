@@ -19,7 +19,7 @@ if [ "$1" = 'run' ]; then # execute command
 
 elif [ "$1" = 'pyl' ]; then # pylint
 
-    pylint --output-format=parseable -sn "$DT_FILE"
+    pylint --output-format=parseable -sn "$DT_FILE" | grep -v '\*\*'
 
 elif [ "$1" = 'cal' ]; then # calculate
 
