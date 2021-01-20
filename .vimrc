@@ -30,16 +30,10 @@ hi netrwSymLink cterm=NONE
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
+" open current file's directory (after making it the alternate file)
+nmap - :edit %:h/<CR>
 
-"----- config -----
-
-let g:dotfile_dir = $HOME.'/dotfiles'
-
-com! U so ~/.vimrc
-com! UP exec '!cd ' . g:dotfile_dir . ' && git pull --ff-only' | U
-
-
-"----- tabs -----
+" custom tab line
 
 fun! GetTabLine()
     let tabnrs = range(1, tabpagenr('$'))
@@ -52,90 +46,69 @@ endfunction
 set tabline=%!GetTabLine()
 
 com! -nargs=1 -complete=file T $tabedit <args>
+nmap <Space> :tabp<CR>
 
 
-"----- terminal -----
+" dt bindings
 
-fun! LaunchEnv(name, prefix)
-    exec a:prefix.'ter ++close '.g:dotfile_dir.'/launch-env.sh '.a:name.' '.expand('%')
-endfun
+let g:dt = $HOME.'/dotfiles/dt'
 
-com! -nargs=1 SSH ter ++close ssh <args>
+com! U so ~/.vimrc
+com! UP exec '!' . g:dt . ' upd' | U
 
+com! DtSelect let $DT_FILE = expand('%')
 
-"----- git ------
+com! -nargs=1 DtRunCmd let $DT_RUN_CMD = <q-args>
+com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
+com DtRun exec 'vert ter ' . g:dt . ' run'
+com DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
-fun! ShowGitRev(ref)
-    " make % relative to current working dir
-    cd .
-    let name = expand('%')
-    let type = &ft
-    let lnum = line('.')
-    vert new
-    exec 'setlocal bt=nofile bh=wipe ft='.type
-    exec '0read !git show '.a:ref.':./'.name
-    exec lnum
-endfun
+com Scratch setl bt=nofile bh=wipe
 
-com! -nargs=? RV call ShowGitRev('HEAD<args>')
+com DtGit exec 'ter ++close ' . g:dt . ' git'
 
+com! -nargs=1 DtHeadRef let $DT_HEAD_REF = <q-args>
+com! CopyState let g:svd_ft = &ft | let g:svd_ln = line('.')
+com! PasteState exec 'setl ft='.g:svd_ft | exec g:svd_ln
+com DtRev exec 'read !' . g:dt . ' rev'
+com! DtDiff DtSelect | CopyState | vert new | Scratch | DtRev | PasteState
 
-"----- mysql -----
+com! -nargs=1 DtDatabasePath let $DT_DB_PATH = <q-args>
+com! DtSql exec 'silent read !' . g:dt . ' sql'
+com! DtExecQuery new | Scratch | setl ts=20 | DtSql | 0
+com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
+com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
-com! -nargs=1 DB let g:mysql_conf = <q-args>
+let &makeprg=g:dt.' pyl'
+set errorformat=%A%f:%l:\ %m
+" TODO test, needed %A?
 
-fun! ExecSQLQuery(query)
-    new
-    exec 'setlocal bt=nofile bh=wipe ts=20'
-    exec 'silent 0read !mysql --login-path='.g:mysql_conf.' -vv -e "'.a:query.'"'
-    0
-endfun
+" leader mappings
+nmap <Leader>[ :tabm -<CR>
+nmap <Leader>] :tabm +<CR>
 
-fun! GetSQLQuery(reg)
-    let query = getreg(a:reg)
-    let query = substitute(query, '\n', ' ', 'g')
-    let query = substitute(query, '\s\+', ' ', 'g')
-    let query = substitute(query, '"', '\\"', 'g')
-    return query
-endfun
+nmap <Leader>x :DtRunCmd '
+nmap <Leader>. :DtSelect<CR>
+nmap <Leader>e :DtRun<CR>
+nmap <Leader>r :DtRerun<CR>
 
-com! -nargs=1 Q call ExecSQLQuery(<q-args>)
-com! -nargs=1 QA call ExecSQLQuery('SELECT * FROM <args>')
-com! QQ call ExecSQLQuery(GetSQLQuery(0))
-com! -nargs=1 S call ExecSQLQuery('SHOW FULL COLUMNS FROM <args>')
-com! ST call ExecSQLQuery('SHOW TABLES')
-com! SD call ExecSQLQuery('SHOW DATABASES')
-com! SP call ExecSQLQuery('SHOW PROCESSLIST')
+nmap <Leader>m :make %<CR>
+nmap <Leader>n :cnext<CR>
 
+nmap <Leader>c :DtGit<CR>
+nmap <Leader>d :DtDiff<CR>
 
+nmap <Leader>z :DtDatabasePath 
+nmap <Leader>q :DtLoad 
+nmap <Leader>a :DtLoadYanked<CR>
 
-"----- python -----
-
-com! PL compiler pylint | make %
-
-
-" ----- mappings -----
-
-" open current file's directory (after making it the alternate file)
-nmap - :edit %:h/<CR>
+nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
+nmap <Leader>t :setlocal tabstop+=4<CR>
+nmap <Leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
 nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
 nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
 
-" tab switching
-nmap <Space> :tabp<CR>
-
-" next quickfix
-nmap Q :cnext<CR>
-
-" leader mappings
-nmap <Leader>[ :tabm -<CR>
-nmap <Leader>] :tabm +<CR>
-nmap <Leader>d :call LaunchEnv('dbg', 'vert ')<CR>
-nmap <Leader>c :call LaunchEnv('git', '')<CR>
-nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
-nmap <Leader>t :setlocal tabstop+=4<CR>
-nmap <Leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>

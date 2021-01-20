@@ -1,0 +1,58 @@
+#!/bin/sh
+
+DIR="${BASH_SOURCE%/*}"
+if [ ! -d "$DIR" ]; then DIR="$PWD"; fi
+
+if [ -n "$DT_CONDA_ENV" ]; then
+    #source ~/.bashrc
+    conda activate $DT_CONDA_ENV
+fi
+
+if [ "$1" = 'run' ]; then # execute command
+
+    date
+    echo "==="
+    $DT_EXEC_CMD$DT_FILE
+    echo "==="
+    date
+
+elif [ "$1" = 'pyl' ]; then # pylint
+
+    pylint --output-format=text --msg-template="{path}:{line}: [{symbol}] {msg}" --reports=no $2
+
+elif [ "$1" = 'cal' ]; then # calculate
+
+    echo "$2" | bc
+
+elif [ "$1" = 'git' ]; then # git shell
+
+    bash --rcfile "$DIR/git-env/.bashrc"
+    # zsh variant:
+    # ZDOTDIR="$DIR/git-env" zsh
+
+elif [ "$1" = 'sql' ]; then # query database
+
+    query="${DT_SQL_QUERY//\"/\\\"}";
+    case $query in
+        p) query='SHOW PROCESSLIST' ;;
+        d) query='SHOW DATABASES' ;;
+        t) query='SHOW TABLES' ;;
+    #    s) query="SHOW FULL COLUMS FROM $query" ;;
+    #    a) query="SELECT * FROM $query" ;;
+    esac
+    mysql --login-path=$DT_DB_PATH -vv -e "$query"
+
+elif [ "$1" = 'rev' ]; then # git revision
+
+    git show "HEAD$DT_HEAD_REF:./$DT_FILE"
+
+elif [ "$1" = 'vim' ]; then # link .vimrc
+
+    ln -s "$DIR/.vimrc" "$HOME/.vimrc"
+
+elif [ "$1" = 'upd' ]; then # update repo
+
+    cd "$DIR"
+    git pull --ff-only
+
+fi
