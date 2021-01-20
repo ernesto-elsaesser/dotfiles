@@ -43,27 +43,22 @@ fun! ListBuffers()
     let line = ' '
     let pos = 1
     for buf in getbufinfo({'buflisted':1})
-        let name = fnamemodify(buf['name'], ':t')
-        let line .= pos . ':' . name
+        if buf['name'] =~ '^!'
+            continue
+        endif
+        let line .= pos . ':'
+        let line .= fnamemodify(buf['name'], ':t')
         if buf['loaded']
             let line .= '*'
         endif
         let line .= ' | '
+        exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
         let pos += 1
     endfor
     return line
 endfun
 
 set tabline=%!ListBuffers() showtabline=2
-
-fun! LoadBuffer(pos)
-    let bufnr = getbufinfo({'buflisted':1})[a:pos-1]['bufnr']
-    exec 'buffer ' . bufnr
-endfun
-
-for pos in range(1,9)
-    exec 'nmap g' . pos . ' :call LoadBuffer(' . pos . ')<CR>'
-endfor
 
 nmap } :bn<CR>
 nmap { :bp<CR>
