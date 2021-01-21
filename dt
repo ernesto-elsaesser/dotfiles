@@ -12,11 +12,11 @@ fi
 if [ "$1" = 'run' ]; then # execute command
 
     date
-    echo $DT_RUN_CMD
+    echo "$DT_RUN_CMD"
     echo "==="
     eval $DT_RUN_CMD
     echo "==="
-    echo $DT_RUN_CMD
+    echo "$DT_RUN_CMD"
     date
 
 elif [ "$1" = 'pyt' ]; then # python REPL
