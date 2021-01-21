@@ -89,15 +89,14 @@ let g:dt = $HOME.'/dotfiles/dt'
 com! -bar DtUpdate exec '!' . g:dt . ' upd' | U
 com! DtUpdateRC DtUpdate | U
 
-com! -bar DtSelect let $DT_FILE = expand('%')
+com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
 com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
 com! -bar DtRun exec 'vert ter ' . g:dt . ' run'
-com! -nargs=? DtExec DtSelect | let $DT_RUN_CMD = <q-args> | DtRun
+com! -nargs=1 DtExec let $DT_RUN_CMD = <q-args> | DtRun
 com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
-com! DtGit exec 'ter ++close ' . g:dt . ' git'
-
+com! -bar DtSelect let $DT_FILE = expand('%')
 com! -nargs=1 DtHeadRef let $DT_HEAD_REF = <q-args>
 com! -bar DtRev exec 'read !' . g:dt . ' rev'
 com! DtDiff DtSelect | let ln = line('.') | Clone | DtRev | exec ln

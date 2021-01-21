@@ -13,7 +13,7 @@ if [ "$1" = 'run' ]; then # execute command
 
     date
     echo "==="
-    $DT_RUN_CMD$DT_FILE
+    $DT_RUN_CMD
     echo "==="
     date
 
