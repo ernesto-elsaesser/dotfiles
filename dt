@@ -17,6 +17,10 @@ if [ "$1" = 'run' ]; then # execute command
     echo "==="
     date
 
+elif [ "$1" = 'pyt' ]; then # python REPL
+
+    python
+
 elif [ "$1" = 'pyl' ]; then # pylint
 
     pylint --output-format=parseable -sn "$DT_FILE" | grep -v '\*\*'

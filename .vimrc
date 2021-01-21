@@ -107,6 +107,7 @@ com! -bar DtExecQuery SplitTemp | setl ts=20 | DtSql | 0
 com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
+com! DtPython exec 'ter ++close ' . g:dt . ' pyt'
 com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 
 
@@ -123,6 +124,7 @@ nmap <Leader>q :DtLoad
 nmap <Leader>a :DtLoadYanked<CR>
 nmap <Leader>z :DtDatabasePath 
 
+nmap <Leader>p :DtPython<CR> 
 nmap <Leader>m :DtPylint<CR>
 nmap <Leader>n :cnext<CR>
 nmap <Leader>b :cprev<CR>
