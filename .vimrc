@@ -93,7 +93,7 @@ com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
 com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
 com! -bar DtRun exec 'vert ter ' . g:dt . ' run'
-com! -nargs=1 DtExec let $DT_RUN_CMD = <q-args> | DtRun
+com! -nargs=1 --complete=file DtExec let $DT_RUN_CMD = <q-args> | DtRun
 com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
 com! -bar DtSelect let $DT_FILE = expand('%')
