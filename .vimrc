@@ -123,6 +123,7 @@ nmap <Leader>m :DtPylint<CR>
 nmap <Leader>n :cnext<CR>
 nmap <Leader>b :cprev<CR>
 
+nmap <Leader>x :bd<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
