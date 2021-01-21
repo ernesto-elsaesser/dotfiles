@@ -93,7 +93,7 @@ com! -bar DtSelect let $DT_FILE = expand('%')
 
 com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
 com! -bar DtRun exec 'vert ter ' . g:dt . ' run'
-com! -nargs=? DtExec let $DT_RUN_CMD = <q-args> | DtRun
+com! -nargs=? DtExec DtSelect | let $DT_RUN_CMD = <q-args> | DtRun
 com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 
 com! DtGit exec 'ter ++close ' . g:dt . ' git'
@@ -114,7 +114,6 @@ com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 " leader mappings
 nmap <Leader>u :DtUpdateRC<CR>
 
-nmap <Leader>. :DtSelect<CR>
 nmap <Leader>e :DtExec 
 nmap <Leader>r :DtRerun<CR>
 
