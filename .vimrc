@@ -59,7 +59,7 @@ fun! ListBuffers()
         endif
         let line .= ' | '
         if pos < 10
-            exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
+            exec 'nmap <C-K>' . pos . ' :b' . buf['bufnr'] .'<CR>'
         endif
         let pos += 1
     endfor
@@ -70,6 +70,7 @@ set tabline=%!ListBuffers() showtabline=2
 
 nmap <C-K>l :bn<CR>
 nmap <C-K>h :bp<CR>
+nmap <C-K>k :b#<CR>
 nmap <C-K>q :bd<CR>
 
 
