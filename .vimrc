@@ -68,8 +68,8 @@ endfun
 
 set tabline=%!ListBuffers() showtabline=2
 
-nmap <C-K>j :bn<CR>
-nmap <C-K>k :bp<CR>
+nmap <C-K>l :bn<CR>
+nmap <C-K>h :bp<CR>
 nmap <C-K>q :bd<CR>
 
 
