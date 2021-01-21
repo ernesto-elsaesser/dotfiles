@@ -37,6 +37,9 @@ let g:omni_sql_no_default_maps=1
 " config update
 com! U so ~/.vimrc
 
+" quick save
+nmap <Space> :w<CR>
+
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h/<CR>
 
@@ -65,8 +68,9 @@ endfun
 
 set tabline=%!ListBuffers() showtabline=2
 
-nmap } :bn<CR>
-nmap { :bp<CR>
+nmap <C-K>j :bn<CR>
+nmap <C-K>k :bp<CR>
+nmap <C-K>q :bd<CR>
 
 
 " temporary buffers
@@ -123,7 +127,6 @@ nmap <Leader>m :DtPylint<CR>
 nmap <Leader>n :cnext<CR>
 nmap <Leader>b :cprev<CR>
 
-nmap <Leader>x :bd<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
