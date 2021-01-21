@@ -110,6 +110,7 @@ com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
 com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 
+
 " leader mappings
 nmap <Leader>u :DtUpdateRC<CR>
 
@@ -131,7 +132,8 @@ nmap <Leader>b :cprev<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
-nmap <Leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR>:let g:netrw_sizestyle<CR>
+nmap <Leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
+
 
 " swap list items (separated by ', ')
 nmap gx `sv`ty`uv`vp`tv`sp
