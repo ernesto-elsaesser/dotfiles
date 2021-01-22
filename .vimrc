@@ -55,12 +55,8 @@ fun! ListBuffers()
         if buf['name'] =~ '^!'
             continue
         endif
-        let line .= pos . ':'
-        let line .= fnamemodify(buf['name'], ':t')
-        if buf['loaded']
-            let line .= '*'
-        endif
-        let line .= ' | '
+        let short_name = fnamemodify(buf['name'], ':t')
+        let line .= pos . ':' . short_name . ' | '
         if pos < 10
             exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
         endif
