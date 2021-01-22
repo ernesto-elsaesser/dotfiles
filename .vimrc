@@ -15,6 +15,9 @@ set mouse= nowrap noswapfile viminfo=
 " complete only from current buffer
 set complete=.
 
+" keep undo history
+set hidden
+
 " use short universal error format
 set errorformat=%f:%l:\ %m
 
