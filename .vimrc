@@ -59,7 +59,7 @@ fun! ListBuffers()
         endif
         let line .= ' | '
         if pos < 10
-            exec 'nmap <C-K>' . pos . ' :b' . buf['bufnr'] .'<CR>'
+            exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
         endif
         let pos += 1
     endfor
@@ -67,11 +67,6 @@ fun! ListBuffers()
 endfun
 
 set tabline=%!ListBuffers() showtabline=2
-
-nmap <C-K>l :bn<CR>
-nmap <C-K>h :bp<CR>
-nmap <C-K>k :b#<CR>
-nmap <C-K>q :bd<CR>
 
 
 " temporary buffers
@@ -112,6 +107,8 @@ com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 
 
 " leader mappings
+nmap <Leader><Leader> :b
+
 nmap <Leader>u :DtUpdateRC<CR>
 
 nmap <Leader>e :DtExec 
