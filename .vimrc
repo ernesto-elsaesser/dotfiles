@@ -12,6 +12,9 @@ set tabstop=4 shiftwidth=4 expandtab
 " disable unwanted features
 set mouse= nowrap noswapfile viminfo=
 
+" always show file name
+set laststatus=2
+
 " complete only from current buffer
 set complete=.
 
@@ -37,7 +40,7 @@ autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
 let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
-" config update
+" config update command
 com! U so ~/.vimrc
 
 " quick save
@@ -47,25 +50,8 @@ nmap <Space> :w<CR>
 nmap - :edit %:h/<CR>
 
 " quick buffer navigation
-
-fun! ListBuffers()
-    let line = ' '
-    let pos = 1
-    for buf in getbufinfo({'buflisted':1})
-        if buf['name'] =~ '^!'
-            continue
-        endif
-        let short_name = fnamemodify(buf['name'], ':t')
-        let line .= pos . ':' . short_name . ' | '
-        if pos < 10
-            exec 'nmap g' . pos . ' :b' . buf['bufnr'] .'<CR>'
-        endif
-        let pos += 1
-    endfor
-    return line
-endfun
-
-set tabline=%!ListBuffers() showtabline=2
+set wildcharm=<Tab>
+nmap <C-K> :b <Tab>
 
 
 " temporary buffers
