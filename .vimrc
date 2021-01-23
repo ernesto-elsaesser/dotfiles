@@ -50,9 +50,7 @@ nmap <Space> :w<CR>
 nmap - :edit %:h/<CR>
 
 " quick buffer navigation
-set wildcharm=<Tab>
-nmap <C-K> :b <Tab>
-
+nmap <C-K> :b 
 
 " temporary buffers
 
