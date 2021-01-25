@@ -50,7 +50,7 @@ nmap <Space> :w<CR>
 nmap - :edit %:h/<CR>
 
 " quick buffer navigation
-nmap <C-K> :b 
+nmap gb :b 
 
 " temporary buffers
 
