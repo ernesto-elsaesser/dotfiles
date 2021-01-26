@@ -36,8 +36,10 @@ let g:netrw_sort_sequence='\/$,*'
 " disable netrw file highlighting
 autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
 
-" configure SQL filetype plugin (MySQL syntax, prevent stupid <C-C> mapping)
+" make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
+
+" prevent the SQL plugin from mapping <C-C> (why??)
 let g:omni_sql_no_default_maps=1
 
 " config update command
@@ -49,15 +51,12 @@ nmap <Space> :w<CR>
 " open current file's directory (after making it the alternate file)
 nmap - :edit %:h/<CR>
 
-" quick buffer navigation
-nmap gb :b 
-
 " temporary buffers
 
-com! -bar Temp setl bt=nofile bh=wipe nobl
-com! -bar SplitTemp new | Temp
-com! -bar VertTemp vert new | Temp
-com! -bar Clone let ft = &ft | VertTemp | let &ft = ft
+com! -bar MakeTemp setl bt=nofile bh=wipe nobl
+com! -bar Temp new | MakeTemp
+com! -bar VertTemp vert new | MakeTemp
+com! -bar DiffTemp let ft = &ft | VertTemp | let &ft = ft
 
 
 " dt bindings
@@ -77,11 +76,11 @@ com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
 com! -bar DtSelect let $DT_FILE = expand('%')
 com! -nargs=1 DtHeadRef let $DT_HEAD_REF = <q-args>
 com! -bar DtRev exec 'read !' . g:dt . ' rev'
-com! DtDiff DtSelect | let ln = line('.') | Clone | DtRev | exec ln
+com! DtDiff DtSelect | let ln = line('.') | DiffTemp | DtRev | exec ln
 
 com! -nargs=1 DtDatabasePath let $DT_DB_PATH = <q-args>
 com! -bar DtSql exec 'silent read !' . g:dt . ' sql'
-com! -bar DtExecQuery SplitTemp | setl ts=20 | DtSql | 0
+com! -bar DtExecQuery Temp | setl ts=20 | DtSql | 0
 com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
@@ -90,7 +89,7 @@ com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 
 
 " leader mappings
-nmap <Leader><Leader> :b
+nmap <Leader><Leader> :b 
 
 nmap <Leader>u :DtUpdateRC<CR>
 
