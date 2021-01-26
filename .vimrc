@@ -13,7 +13,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set mouse= nowrap noswapfile viminfo=
 
 " always show file name
-set laststatus=2
+set laststatus=2 statusline=\ %n:\ %f\ ---\ %l/%L\ %h%r%m
 
 " complete only from current buffer
 set complete=.
