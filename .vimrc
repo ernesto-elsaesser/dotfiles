@@ -43,7 +43,6 @@ let g:sql_type_default='mysql'
 let g:omni_sql_no_default_maps=1
 
 " config update command
-com! U so ~/.vimrc
 
 " quick save
 nmap <Space> :w<CR>
@@ -63,8 +62,9 @@ com! -bar DiffTemp let ft = &ft | VertTemp | let &ft = ft
 
 let g:dt = $HOME.'/dotfiles/dt'
 
-com! -bar DtUpdate exec '!' . g:dt . ' upd' | U
-com! DtUpdateRC DtUpdate | U
+com! -bar DtPullUpdates exec '!' . g:dt . ' upd'
+com! DtReload so ~/.vimrc
+com! DtUpdate DtPullUpdates | DtReload
 
 com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
@@ -79,10 +79,10 @@ com! -bar DtRev exec 'read !' . g:dt . ' rev'
 com! DtDiff DtSelect | let ln = line('.') | DiffTemp | DtRev | exec ln
 
 com! -nargs=1 DtDatabasePath let $DT_DB_PATH = <q-args>
-com! -bar DtSql exec 'silent read !' . g:dt . ' sql'
-com! -bar DtExecQuery Temp | setl ts=20 | DtSql | 0
-com! -nargs=1 DtLoad let $DT_SQL_QUERY = <q-args> | DtExecQuery
-com! DtLoadYanked let $DT_SQL_QUERY = getreg(0) | DtExecQuery
+com! -bar DtSQL exec 'silent read !' . g:dt . ' sql'
+com! -bar DtExecQuery Temp | setl ts=20 | DtSQL | 0
+com! -nargs=1 DtQuery let $DT_SQL_QUERY = <q-args> | DtExecQuery
+com! DtRegQuery let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
 com! DtPython exec 'ter ++close ' . g:dt . ' pyt'
 com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
@@ -91,7 +91,8 @@ com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 " leader mappings
 nmap <Leader><Leader> :b 
 
-nmap <Leader>u :DtUpdateRC<CR>
+nmap <Leader>i :DtReload<CR>
+nmap <Leader>u :DtUpdate<CR>
 
 nmap <Leader>e :DtExec 
 nmap <Leader>r :DtRerun<CR>
@@ -99,8 +100,8 @@ nmap <Leader>r :DtRerun<CR>
 nmap <Leader>c :DtGit<CR>
 nmap <Leader>d :DtDiff<CR>
 
-nmap <Leader>q :DtLoad 
-nmap <Leader>a :DtLoadYanked<CR>
+nmap <Leader>q :DtQuery 
+nmap <Leader>a :DtRegQuery<CR>
 nmap <Leader>z :DtDatabasePath 
 
 nmap <Leader>p :DtPython<CR> 
