@@ -68,7 +68,6 @@ com! DtUpdate DtPullUpdates | DtReload
 
 com! DtGit exec 'ter ++close ' . g:dt . ' git'
 
-com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
 com! -bar DtRun exec 'vert ter ' . g:dt . ' run'
 com! -nargs=1 -complete=file DtExec let $DT_RUN_CMD = <q-args> | DtRun
 com! DtRerun exec 'ter ++curwin ' . g:dt . ' run'
@@ -85,6 +84,7 @@ com! -nargs=1 DtQuery let $DT_SQL_QUERY = <q-args> | DtExecQuery
 com! DtRegQuery let $DT_SQL_QUERY = getreg(0) | DtExecQuery
 
 com! DtPython exec 'ter ++close ' . g:dt . ' pyt'
+com! -nargs=1 DtConda let $DT_CONDA_ENV = <q-args>
 com! DtPylint DtSelect | let &makeprg = g:dt.' pyl' | make %
 
 
@@ -106,8 +106,8 @@ nmap <Leader>z :DtDatabasePath
 
 nmap <Leader>p :DtPython<CR> 
 nmap <Leader>m :DtPylint<CR>
-nmap <Leader>n :cnext<CR>
-nmap <Leader>b :cprev<CR>
+nmap <Leader>] :cnext<CR>
+nmap <Leader>[ :cprev<CR>
 
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
