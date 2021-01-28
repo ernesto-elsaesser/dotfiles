@@ -104,7 +104,7 @@ nmap <Leader>q :DtQuery
 nmap <Leader>a :DtRegQuery<CR>
 nmap <Leader>z :DtDatabasePath 
 
-nmap <Leader>p :DtPython<CR> 
+nmap <Leader>p :DtPython<CR>
 nmap <Leader>m :DtPylint<CR>
 nmap <Leader>] :cnext<CR>
 nmap <Leader>[ :cprev<CR>
