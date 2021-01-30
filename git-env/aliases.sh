@@ -1,3 +1,9 @@
+function identify {
+  git config --global user.email "ernesto.elsaesser@me.com"
+  git config --global user.name "Ernesto Elsaesser"
+}
+alias id='identify'
+
 alias f='git fetch --all'
 
 alias pl='git pull --ff-only'
