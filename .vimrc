@@ -43,10 +43,9 @@ nmap <Space> :w<CR>
 nmap - :edit %:h/<CR>
 
 " RETRAIN
-imap <C-C> <Esc><C-L>i
+imap <C-C> <Esc>:echoe 'Use ALT!'<CR>
 
 " temporary buffers
-
 com! -bar ST new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 
@@ -82,6 +81,7 @@ com! -nargs=1 -complete=file R let $DTC = <q-args> | call DTRun(1)
 com! RR call DTRun(0)
 
 fun! LoadRevision(mod)
+    cd .
     let $DTM = a:mod
     let $DTF = expand('%')
     let ln = line('.')
@@ -109,9 +109,8 @@ com! QQ call DTExecSQL(getreg(0))
 com! -nargs=1 ENV let $DTE = <q-args>
 
 fun! DTPylint()
-    "let $DTF = expand('%')
-    setl errorformat=%f:%l:\ %m
-    let &makeprg = g:dt.' pyl'
+    set errorformat=%f:%l:\ %m
+    let &makeprg = g:dt.' pyl %'
     make %
 endfun
 

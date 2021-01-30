@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # env vars:
+#
 # DTF - file argument
 # DTC - command argument
 # DTQ - query argument
