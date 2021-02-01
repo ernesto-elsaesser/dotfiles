@@ -53,6 +53,7 @@ com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 " dt bindings
 
 let g:dt = $HOME.'/dotfiles/dt'
+com! U exec '!' . g:dt . ' upd' | so ~/.vimrc
 
 fun! DTTerminal(cmd, ...)
     let argstr = join(a:000)
@@ -60,13 +61,6 @@ fun! DTTerminal(cmd, ...)
 endfun
 
 com! -nargs=* DT call DTTerminal(<f-args>)
-
-fun! DTUpdate()
-    exec '!' . g:dt . ' upd'
-    so ~/.vimrc
-endfun
-
-com! U call DTUpdate()
 
 fun! DTRun(open)
     if a:open
