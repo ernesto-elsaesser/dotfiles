@@ -109,6 +109,8 @@ fun! DTPylint()
     make %
 endfun
 
+com! PL call DTPylint()
+
 
 " leader mappings
 nmap <Leader><Leader> :b 
