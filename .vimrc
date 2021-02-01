@@ -103,7 +103,7 @@ fun! DTExecSQL(query)
     0
 endfun
 
-com! -nargs=1 Q DTExecSQL(<q-args>)
+com! -nargs=1 Q call DTExecSQL(<q-args>)
 com! QQ call DTExecSQL(getreg(0))
 
 com! -nargs=1 ENV let $DTE = <q-args>
