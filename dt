@@ -39,7 +39,7 @@ if [ "$1" = 'run' ]; then # execute command
 
 elif [ "$1" = 'pyt' ]; then # python REPL
 
-    $PYPATH/python
+    $PYPATH/python3
 
 elif [ "$1" = 'pyl' ]; then # pylint
 
@@ -69,7 +69,7 @@ elif [ "$1" = 'sql' ]; then # query database
         t)  query="SHOW TABLES" ;;
         *)  query="${DTQ//\"/\\\"}"
             query="${query//\?/DESCRIBE}"
-            query="${query//\*/SELECT * FROM}" ;;
+            query="${query//\#/SELECT * FROM}" ;;
     esac
     $cmd -e "$query"
 
