@@ -16,7 +16,9 @@ if [ ! -d "$DIR" ]; then
 fi
 
 if [ -n "$DTE" ]; then
-    PATH="$HOME/anaconda3/envs/$DTE/bin:$PATH"
+    PYPATH="$HOME/anaconda3/envs/$DTE/bin"
+else
+    PYPATH="/usr/bin/"
 fi
 
 if [ -n "$2" ]; then
@@ -37,11 +39,11 @@ if [ "$1" = 'run' ]; then # execute command
 
 elif [ "$1" = 'pyt' ]; then # python REPL
 
-    python
+    $PYPATH/python
 
 elif [ "$1" = 'pyl' ]; then # pylint
 
-    pylint --output-format=parseable -sn "$DTF" | grep -v '\*\*'
+    $PYPATH/pylint --output-format=parseable -sn "$DTF" | grep -v '\*\*'
 
 elif [ "$1" = 'cal' ]; then # calculate
 
@@ -79,7 +81,7 @@ elif [ "$1" = 'vim' ]; then # link .vimrc
 
     ln -s "$DIR/.vimrc" "$HOME/.vimrc"
 
-elif [ "$1" = 'upd' ]; then # update repo
+elif [ "$1" = 'upd' ]; then # update dotfiles
 
     cd "$DIR"
     git pull --ff-only
