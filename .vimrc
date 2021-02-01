@@ -97,6 +97,7 @@ com! D call LoadRevision('')
 com! -nargs=1 DB let $DTL = <q-args>
 
 fun! DTExecSQL(query)
+    let $DTQ = a:query
     ST
     setl ts=20
     exec 'silent read !' . g:dt . ' sql'

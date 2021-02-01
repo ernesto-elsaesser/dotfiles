@@ -60,14 +60,14 @@ elif [ "$1" = 'git' ]; then # git shell
 
 elif [ "$1" = 'sql' ]; then # query database
 
-    cmd="mysql --login-path=$DTL-vv"
+    cmd="mysql --login-path=$DTL -vv"
     case $DTQ in
         p)  query="SHOW PROCESSLIST" ;;
         d)  query="SHOW DATABASES" ;;
         t)  query="SHOW TABLES" ;;
         *)  query="${DTQ//\"/\\\"}"
-            query="${query//?/DESCRIBE }"
-            query="${query//*/SELECT * FROM }" ;;
+            query="${query//\?/DESCRIBE}"
+            query="${query//\*/SELECT * FROM}" ;;
     esac
     $cmd -e "$query"
 
