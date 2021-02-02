@@ -62,17 +62,18 @@ endfun
 
 com! -nargs=* DT call DTTerminal(<f-args>)
 
-fun! DTRun(open)
-    if a:open
-        let tercom = 'vert ter'
+fun! DTRun()
+    if &tags == 'run'
+        let tercom = 'ter ++curwin '
     else
-        let tercom = 'ter ++curwin'
+        let tercom = 'vert ter '
     endif
-    exec tercom . ' ' . g:dt . ' run'
+    exec tercom . g:dt . ' run'
+    setl tags=run
 endfun
 
-com! -nargs=1 -complete=file R let $DTC = <q-args> | call DTRun(1)
-com! RR call DTRun(0)
+com! -nargs=1 -complete=file R let $DTC = <q-args> | call DTRun()
+com! RR call DTRun()
 
 fun! LoadRevision(mod)
     cd .
