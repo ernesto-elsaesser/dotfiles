@@ -27,8 +27,8 @@ autocmd BufEnter * setlocal formatoptions=
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" declutter netrw header
-let g:netrw_sort_sequence='\/$,*'
+" hide netrw header
+let g:netrw_banner=0
 
 " disable netrw file highlighting
 autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
