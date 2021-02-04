@@ -18,7 +18,7 @@ fi
 if [ -n "$DTE" ]; then
     PYPATH="$HOME/anaconda3/envs/$DTE/bin"
 else
-    PYPATH="/usr/bin/"
+    PYPATH="/usr/bin"
 fi
 
 if [ -n "$2" ]; then
