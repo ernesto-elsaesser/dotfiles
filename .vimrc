@@ -42,8 +42,8 @@ nmap <Space> :w<CR>
 " open parent directory
 nmap - :edit %:h/<CR>
 
-" RETRAIN
-imap <C-C> <Esc>:echoe 'Use ALT!'<CR>
+" avoid escape key
+imap jj <Esc>
 
 " temporary buffers
 com! -bar ST new | setl bt=nofile bh=wipe nobl
@@ -116,17 +116,18 @@ com! PL call DTPylint()
 " leader mappings
 nmap <Leader><Leader> :b 
 
-nmap <Leader>g :DT ggl 
-nmap <Leader>p :DT pyt<CR>
 nmap <Leader>c :DT git<CR>
-nmap <Leader>r :so ~/.vimrc<CR>
+nmap <Leader>r :DT pyt<CR>
+nmap <Leader>g :DT ggl 
+
 nmap <Leader>' :cnext<CR>
 nmap <Leader>; :cprev<CR>
 
+nmap <Leader>s :so ~/.vimrc<CR>
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
 nmap <Leader>t :setlocal tabstop+=4<CR>
-nmap <Leader>s :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
+nmap <Leader>b :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
 
 
 " swap list items (separated by ', ')
