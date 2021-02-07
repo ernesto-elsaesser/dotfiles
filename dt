@@ -15,8 +15,16 @@ if [ ! -d "$DIR" ]; then
     DIR="$PWD";
 fi
 
+if [ -d "$HOME/anaconda3" ]; then
+    CONDA_PATH="$HOME/anaconda3"
+elif [ -d "$HOME/opt/anaconda3" ]; then
+    CONDA_PATH="$HOME/opt/anaconda3"
+fi
+
 if [ -n "$DTE" ]; then
-    PYPATH="$HOME/anaconda3/envs/$DTE/bin"
+    PYPATH="$CONDA_PATH/envs/$DTE/bin"
+elif [ -n "$CONDA_PATH" ]; then
+    PYPATH="$CONDA_PATH/bin"
 else
     PYPATH="/usr/bin"
 fi
