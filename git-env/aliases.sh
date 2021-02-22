@@ -36,6 +36,7 @@ function push_all {
 alias pa='push_all'
 
 alias m='git merge --no-edit'
+alias mm='git merge --no-edit origin/master'
 
 alias co='git checkout'
 alias cb='git checkout -b'
