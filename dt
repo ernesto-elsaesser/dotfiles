@@ -6,7 +6,6 @@
 # DTC - command argument
 # DTQ - query argument
 # DTL - MySQL login path (incl. database)
-# DTE - conda environment
 # DTM - modifier for git HEAD
 
 
@@ -15,19 +14,19 @@ if [ ! -d "$DIR" ]; then
     DIR="$PWD";
 fi
 
-if [ -d "$HOME/anaconda3" ]; then
-    CONDA_PATH="$HOME/anaconda3"
-elif [ -d "$HOME/opt/anaconda3" ]; then
-    CONDA_PATH="$HOME/opt/anaconda3"
-fi
+#if [ -d "$HOME/anaconda3" ]; then
+#    CONDA_PATH="$HOME/anaconda3"
+#elif [ -d "$HOME/opt/anaconda3" ]; then
+#    CONDA_PATH="$HOME/opt/anaconda3"
+#fi
 
-if [ -n "$DTE" ]; then
-    PYPATH="$CONDA_PATH/envs/$DTE/bin"
-elif [ -n "$CONDA_PATH" ]; then
-    PYPATH="$CONDA_PATH/bin"
-else
-    PYPATH="/usr/bin"
-fi
+#if [ -n "$DTE" ]; then
+#    PYPATH="$CONDA_PATH/envs/$DTE/bin"
+#elif [ -n "$CONDA_PATH" ]; then
+#    PYPATH="$CONDA_PATH/bin"
+#else
+#    PYPATH="/usr/bin"
+#fi
 
 if [ -n "$2" ]; then
     DTF="$2"
@@ -47,11 +46,11 @@ if [ "$1" = 'run' ]; then # execute command
 
 elif [ "$1" = 'pyt' ]; then # python REPL
 
-    $PYPATH/python3
+    python3
 
 elif [ "$1" = 'pyl' ]; then # pylint
 
-    $PYPATH/pylint --output-format=parseable -sn "$DTF" | grep -v '\*\*'
+    pylint --output-format=parseable -sn "$DTF" | grep -v '\*\*'
 
 elif [ "$1" = 'cal' ]; then # calculate
 

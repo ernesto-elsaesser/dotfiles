@@ -143,8 +143,6 @@ endfun
 com! -nargs=1 Q call DTExecSQL(<q-args>)
 com! QQ call DTExecSQL(getreg(0))
 
-com! -nargs=1 ENV let $DTE = <q-args>
-
 fun! DTPylint()
     set errorformat=%f:%l:\ %m
     let &makeprg = g:dt.' pyl %'
