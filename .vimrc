@@ -50,6 +50,47 @@ com! -bar ST new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 
 
+" list reordering
+
+fun! ParseList(str)
+    let parts = matchlist(a:str, '\v^(.*[({] ?)(.*\S)( ?[)}].*)$')
+    let items = split(parts[2], ', ')
+    return [parts[1]] + items + [parts[3]]
+endfun
+
+
+fun! ShiftListItem(dir, times)
+    let line = getline('.')
+    let parts = ParseList(line)
+
+    let max_idx = len(parts) - 2
+    let sel_col = col('.')
+    let end_col = len(parts[0]) + len(parts[1])
+    let src_idx = 1
+    while end_col < src_idx && src_idx < max_idx
+        let src_idx += 1
+        let end_col += 2 + len(parts[src_idx])
+    endwhile
+
+    let dst_idx = src_idx
+    let shifts = 0
+    while shifts < a:times && dst_idx + a:dir >= 1 && dst_idx + a:dir <= max_idx
+        let dst_idx += a:dir
+        let shifts += 1
+    endwhile
+
+    let tmp = parts[src_idx]
+    let parts[src_idx] = parts[dst_idx]
+    let parts[dst_idx] = tmp
+
+    let modline = parts[0] . join(parts[1:-2], ', ') . parts[-1]
+    call setline('.', modline)
+endfun
+
+com! -count=1 SR call ShiftListItem(1, <count>)
+com! -count=1 SL call ShiftListItem(-1, <count>)
+
+
 " dt bindings
 
 let g:dt = $HOME.'/dotfiles/dt'
@@ -114,24 +155,14 @@ com! PL call DTPylint()
 
 
 " leader mappings
-nmap <Leader><Leader> :b 
 
-nmap <Leader>c :DT git<CR>
-nmap <Leader>r :DT pyt<CR>
-nmap <Leader>g :DT ggl 
-
+nmap <Leader><Leader> :e 
 nmap <Leader>' :cnext<CR>
 nmap <Leader>; :cprev<CR>
-
-nmap <Leader>s :so ~/.vimrc<CR>
-nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <Leader>v :setlocal paste!<CR>:setlocal paste?<CR>
-nmap <Leader>t :setlocal tabstop+=4<CR>
-nmap <Leader>b :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
-
-
-" swap list items (separated by ', ')
-nmap gx `sv`ty`uv`vp`tv`sp
-nmap L mst,mtlllmu/\v(,<Bar>\)<Bar>\}<Bar>\])<CR>?\S<CR>mvgxlll
-nmap H mvT,lmuhhhmt?\v(,<Bar>\(<Bar>\{<Bar>\[)<CR>/\S<CR>msgx
-
+nmap <Leader>[ :DT git<CR>
+nmap <Leader>] :DT pyt<CR>
+nmap <Leader>o :so ~/.vimrc<CR>
+nmap <Leader>l :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <Leader>p :setlocal paste!<CR>:setlocal paste?<CR>
+nmap <Leader>i :setlocal tabstop+=4<CR>
+nmap <Leader>k :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>

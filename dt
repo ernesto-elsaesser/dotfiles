@@ -77,7 +77,8 @@ elif [ "$1" = 'sql' ]; then # query database
         t)  query="SHOW TABLES" ;;
         *)  query="${DTQ//\"/\\\"}"
             query="${query//\?/DESCRIBE}"
-            query="${query//\#/SELECT * FROM}" ;;
+            query="${query//\#/SELECT COUNT(*) FROM}"
+            query="${query//\!/SELECT * FROM}" ;;
     esac
     $cmd -e "$query"
 
