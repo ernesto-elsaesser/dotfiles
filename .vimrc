@@ -30,6 +30,9 @@ let loaded_matchparen = 1
 " hide netrw header
 let g:netrw_banner=0
 
+" hide hidden stuff by default
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+
 " disable netrw file highlighting
 autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
 
