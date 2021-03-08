@@ -37,11 +37,11 @@ fi
 if [ "$1" = 'run' ]; then # execute command
 
     date
-    echo "$DTC"
+    echo "Working directory: $PWD"
+    echo "Command: $DTC"
     echo "==="
     eval $DTC
     echo "==="
-    echo "$DTC"
     date
 
 elif [ "$1" = 'pyt' ]; then # python REPL
