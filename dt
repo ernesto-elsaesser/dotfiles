@@ -37,8 +37,7 @@ fi
 if [ "$1" = 'run' ]; then # execute command
 
     date
-    echo "Working directory: $PWD"
-    echo "Command: $DTC"
+    echo "$PWD $DTC"
     echo "==="
     eval $DTC
     echo "==="
