@@ -157,7 +157,6 @@ com! PL call DTPylint()
 
 " leader mappings
 
-nmap <Leader><Leader> :e 
 nmap <Leader>' :cnext<CR>
 nmap <Leader>; :cprev<CR>
 nmap <Leader>[ :DT git<CR>
