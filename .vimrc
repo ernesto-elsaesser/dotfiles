@@ -27,23 +27,11 @@ autocmd BufEnter * setlocal formatoptions=
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" hide netrw header
-let g:netrw_banner=0
-
-" hide hidden stuff by default
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
-
-" disable netrw file highlighting
-autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
-
 " make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
 
 " quick save
 nmap <Space> :w<CR>
-
-" open parent directory
-nmap - :edit %:h/<CR>
 
 " avoid escape key
 imap jj <Esc>
@@ -51,6 +39,19 @@ imap jj <Esc>
 " temporary buffers
 com! -bar ST new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
+
+
+" netrw
+
+let g:netrw_banner=0
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+
+" disable netrw file highlighting
+autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
+
+nmap - :edit %:h/<CR>
+
+com! DEL call system('rm -rf ' . b:netrw_curdir . '/' . getline('.')) | normal <C-L>
 
 
 " list reordering
