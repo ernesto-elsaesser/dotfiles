@@ -46,8 +46,8 @@ com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 let g:netrw_banner=0
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 
-" disable netrw file highlighting
-autocmd FileType netrw hi netrwExe cterm=NONE | hi netrwSymLink cterm=NONE
+" fix marked file highlighting
+autocmd FileType netrw hi netrwMarkFile ctermbg=3
 
 nmap - :edit %:h/<CR>
 
