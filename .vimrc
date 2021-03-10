@@ -51,8 +51,6 @@ autocmd FileType netrw hi netrwMarkFile ctermbg=3
 
 nmap - :edit %:h/<CR>
 
-com! DEL call system('rm -rf ' . b:netrw_curdir . '/' . getline('.')) | normal <C-L>
-
 
 " list reordering
 
