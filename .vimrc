@@ -50,7 +50,7 @@ let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 autocmd FileType netrw hi netrwMarkFile ctermbg=1
 
 " remove non-empty directories
-autocmd FileType netrw nmap <buffer> A :!rm -r <C-R>=b:netrw_curdir<CR>/<C-R>=getline('.')<CR>
+autocmd FileType netrw nmap <buffer> A yE:!rm -r <C-R>=b:netrw_curdir<CR>/<C-R>"
 
 nmap - :edit %:h/<CR>
 
