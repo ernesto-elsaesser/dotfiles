@@ -7,6 +7,8 @@ precmd () { __git_ps1 "%~" " > " }
 source ~/dotfiles/git-env/aliases.sh
 
 # set up auto-completion for aliases
-branches=($(list_branches))
-compctl -k branches co
-compctl -k branches bd
+compctl -k ($(list_branches)) co
+compctl -k ($(list_branches)) bd
+
+# update auto-completion on fetch
+alias fu='f; compctl -k ($(list_branches)) co'

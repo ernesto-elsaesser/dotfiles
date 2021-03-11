@@ -9,3 +9,6 @@ source ~/dotfiles/git-env/aliases.sh
 # set up auto-completion for aliases
 complete -W "$(list_branches)" co
 complete -W "$(list_branches)" bd
+
+# update auto-completion on fetch
+alias fu='f; complete -W "$(list_branches)" co'
