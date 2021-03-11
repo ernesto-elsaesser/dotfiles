@@ -47,7 +47,10 @@ let g:netrw_banner=0
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 
 " fix marked file highlighting
-autocmd FileType netrw hi netrwMarkFile ctermbg=3
+autocmd FileType netrw hi netrwMarkFile ctermbg=1
+
+" remove non-empty directories
+autocmd FileType netrw nmap <buffer> A :!rm -r <C-R>=b:netrw_curdir<CR>/<C-R>=getline('.')<CR>
 
 nmap - :edit %:h/<CR>
 
