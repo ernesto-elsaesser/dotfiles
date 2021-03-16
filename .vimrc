@@ -57,43 +57,64 @@ nmap - :edit %:h/<CR>
 
 " list reordering
 
-fun! ParseList(str)
-    let parts = matchlist(a:str, '\v^(.*[({] ?)(.*\S)( ?[)}].*)$')
-    let items = split(parts[2], ', ')
-    return [parts[1]] + items + [parts[3]]
-endfun
-
-
-fun! ShiftListItem(dir, times)
+fun! ParseList()
     let line = getline('.')
-    let parts = ParseList(line)
-
-    let max_idx = len(parts) - 2
     let sel_col = col('.')
-    let end_col = len(parts[0]) + len(parts[1])
-    let src_idx = 1
-    while end_col < src_idx && src_idx < max_idx
-        let src_idx += 1
-        let end_col += 2 + len(parts[src_idx])
+
+    let sections = matchlist(line, '\v^(.*[({] ?)(.*\S)( ?[)}].*)$')
+    let prefix = sections[1]
+    let items = split(sections[2], ', ')
+    let suffix = sections[3]
+
+    let end_col = len(prefix)
+    let sel_idx = 0
+    while sel_idx < len(items) - 1
+        let end_col += len(items[sel_idx]) + 2
+        if end_col > sel_col
+            break
+        endif
+        let sel_idx += 1
     endwhile
 
-    let dst_idx = src_idx
-    let shifts = 0
-    while shifts < a:times && dst_idx + a:dir >= 1 && dst_idx + a:dir <= max_idx
-        let dst_idx += a:dir
-        let shifts += 1
-    endwhile
-
-    let tmp = parts[src_idx]
-    let parts[src_idx] = parts[dst_idx]
-    let parts[dst_idx] = tmp
-
-    let modline = parts[0] . join(parts[1:-2], ', ') . parts[-1]
-    call setline('.', modline)
+    return [prefix, items, suffix, sel_idx]
 endfun
 
-com! -count=1 SR call ShiftListItem(1, <count>)
-com! -count=1 SL call ShiftListItem(-1, <count>)
+fun! UpdateList(list_info)
+    let [prefix, items, suffix, sel_idx] = a:list_info
+
+    let line = prefix . join(items, ', ') . suffix
+    let sel_col = len(prefix) + 1
+    for i in range(sel_idx)
+        let sel_col += len(items[i]) + 2
+    endfor
+
+    call setline('.', line)
+    call cursor(line('.'), sel_col)
+endfun
+
+fun! MoveListItem(offset)
+    let list_info = ParseList()
+    let sel_idx = list_info[3]
+    echo 'moving ' sel_idx . ' by ' . a:offset
+    let sel_item = remove(list_info[1], sel_idx)
+    let sel_idx += a:offset
+    if sel_idx < 0
+        let sel_idx = 0
+    endif
+    let max_idx = len(list_info[1])
+    if sel_idx > max_idx
+        let sel_idx = max_idx
+    endif
+    call insert(list_info[1], sel_item, sel_idx)
+    let list_info[3] = sel_idx
+    call UpdateList(list_info)
+endfun
+
+com! -count=1 SR call MoveListItem(<count>)
+com! -count=1 SL call MoveListItem(-<count>)
+
+nmap L :SR<CR>
+nmap H :SL<CR>
 
 
 " dt bindings
@@ -145,7 +166,7 @@ fun! DTExecSQL(query)
     0
 endfun
 
-com! -nargs=1 Q call DTExecSQL(<q-args>)
+com! -nargs=1 -complete=file Q call DTExecSQL(<q-args>)
 com! QQ call DTExecSQL(getreg(0))
 
 fun! DTPylint()
