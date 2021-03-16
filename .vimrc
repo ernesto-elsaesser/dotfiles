@@ -110,11 +110,11 @@ fun! MoveListItem(offset)
     call UpdateList(list_info)
 endfun
 
-com! -count=1 SR call MoveListItem(<count>)
-com! -count=1 SL call MoveListItem(-<count>)
+com! -count=1 MR call MoveListItem(<count>)
+com! -count=1 ML call MoveListItem(-<count>)
 
-nmap L :SR<CR>
-nmap H :SL<CR>
+nmap L :MR<CR>
+nmap H :ML<CR>
 
 
 " dt bindings
