@@ -13,11 +13,11 @@ alias s='git status -s'
 alias a='git add --all; s'
 alias af='git add $F'
 
-function commit {
+function commit_as {
     # use function to allow unquoted message
     git commit -m "$*"
 }
-alias c='commit'
+alias c='commit_as'
 
 alias ca='commit --amend --no-edit'
 
