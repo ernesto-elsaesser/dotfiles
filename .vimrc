@@ -62,6 +62,10 @@ fun! ParseList()
     let sel_col = col('.')
 
     let sections = matchlist(line, '\v^(.*[({] ?)(.*\S)( ?[)}].*)$')
+    if len(sections) == 0
+        return []
+    endif
+
     let prefix = sections[1]
     let items = split(sections[2], ', ')
     let suffix = sections[3]
@@ -94,6 +98,11 @@ endfun
 
 fun! MoveListItem(offset)
     let list_info = ParseList()
+    if len(list_info) == 0
+        echo 'failed to move by ' . a:offset
+        return
+    endif
+
     let sel_idx = list_info[3]
     echo 'moving ' sel_idx . ' by ' . a:offset
     let sel_item = remove(list_info[1], sel_idx)
