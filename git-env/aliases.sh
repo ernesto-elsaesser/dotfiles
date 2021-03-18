@@ -19,7 +19,7 @@ function commit_as {
 }
 alias c='commit_as'
 
-alias ca='commit --amend --no-edit'
+alias ca='git commit --amend --no-edit'
 
 alias d='git diff'
 alias ds='git diff --staged'
