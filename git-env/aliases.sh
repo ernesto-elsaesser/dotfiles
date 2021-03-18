@@ -11,7 +11,6 @@ alias pl='git pull --ff-only'
 alias s='git status -s'
 
 alias a='git add --all; s'
-alias af='git add $F'
 
 function commit_as {
     # use function to allow unquoted message
@@ -33,7 +32,7 @@ function push_all {
     git commit -m "$*"
     git push
 }
-alias pa='push_all'
+alias P='push_all'
 
 alias m='git merge --no-edit'
 alias mm='git merge --no-edit origin/master'
