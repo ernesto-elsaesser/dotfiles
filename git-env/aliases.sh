@@ -1,8 +1,8 @@
-function identify {
+function conf {
   git config --global user.email "ernesto.elsaesser@me.com"
   git config --global user.name "Ernesto Elsaesser"
 }
-alias id='identify'
+alias id='conf'
 
 alias f='git fetch --all'
 
@@ -46,11 +46,6 @@ alias b='git branch'
 alias ba='git branch -a'
 alias bv='git branch -vv'
 alias bd='git branch -d'
-
-function list_branches {
-    # used for auto-completion
-    git branch -a | sed 's/[* ] \(remotes\/origin\/\)\?//'
-}
 
 alias rb='git rebase'
 alias ri='git rebase -i HEAD~'

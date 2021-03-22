@@ -6,9 +6,9 @@ PROMPT_COMMAND='__git_ps1 "\w" " > "'
 # set up aliases
 source ~/dotfiles/git-env/aliases.sh
 
-# set up auto-completion for aliases
-complete -W "$(list_branches)" co
-complete -W "$(list_branches)" bd
-
-# update auto-completion on fetch
-alias fu='f; complete -W "$(list_branches)" co'
+# update auto-completion for aliases
+function cmpl {
+    BRANCHES=`git branch -a | sed 's/[* ] \(remotes\/origin\/\)\?//'`
+    complete -W "$BRANCHES" co
+    complete -W "$BRANCHES" bd
+}
