@@ -141,7 +141,7 @@ endfun
 
 com! O so ~/.vimrc
 com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
-com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
+com! L call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
 com! P call term_start('python', {'term_finish': 'close'})
 
 com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
@@ -161,6 +161,7 @@ com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
 fun! PylintCallback(job, status)
     lfile
+    echo 'pylint finished'
     exec '!rm ' . &errorfile
 endfun
 
