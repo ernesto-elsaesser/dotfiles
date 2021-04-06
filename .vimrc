@@ -135,8 +135,6 @@ fun! Script(name, lines)
     endif
 
     let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
-    echo scrpt
-
     let g:dt_bufnr = term_start(['bash', '-c', scrpt], opts)
 endfun
 
