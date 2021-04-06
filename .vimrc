@@ -55,73 +55,57 @@ autocmd FileType netrw hi netrwMarkFile ctermbg=1
 
 " list reordering
 
-fun! ParseList()
-    let line = getline('.')
-    let sel_col = col('.')
+fun! GetItemBounds(line, csel)
+    let cmax = len(a:line) - 1
 
-    let sections = matchlist(line, '\v^(.*[({] ?)(.*\S)( ?[)}].*)$')
-    if len(sections) == 0
-        return []
-    endif
-
-    let prefix = sections[1]
-    let items = split(sections[2], ', ')
-    let suffix = sections[3]
-
-    let end_col = len(prefix)
-    let sel_idx = 0
-    while sel_idx < len(items) - 1
-        let end_col += len(items[sel_idx]) + 2
-        if end_col > sel_col
-            break
-        endif
-        let sel_idx += 1
+    let cleft = a:csel
+    while cleft > 0 && index([',', '(', '[', '{'], a:line[cleft-1]) == -1
+        let cleft -= 1
+    endwhile
+    while a:line[cleft] == ' '
+        let cleft += 1
     endwhile
 
-    return [prefix, items, suffix, sel_idx]
+    let cright = a:csel
+    while cright < cmax && index([',', ')', ']', '}'], a:line[cright+1]) == -1
+        let cright += 1
+    endwhile
+    while a:line[cright] == ' '
+        let cright -= 1
+    endwhile
+
+    return [cleft, cright]
 endfun
 
-fun! UpdateList(list_info)
-    let [prefix, items, suffix, sel_idx] = a:list_info
+fun! ShiftItem(left)
+    let line = getline('.')
+    let csrc = col('.')
 
-    let line = prefix . join(items, ', ') . suffix
-    let sel_col = len(prefix) + 1
-    for i in range(sel_idx)
-        let sel_col += len(items[i]) + 2
-    endfor
+    if a:left
+        let [c3, c4] = GetItemBounds(line, csrc)
+        let [c1, c2] = GetItemBounds(line, c3 - 3)
+    else
+        let [c1, c2] = GetItemBounds(line, csrc)
+        let [c3, c4] = GetItemBounds(line, c2 + 3)
+    endif
 
-    call setline('.', line)
-    call cursor(line('.'), sel_col)
+    let pre = line[:c1-1]
+    let left = line[c1:c2]
+    let sep = ', '
+    let right = line[c3:c4]
+    let post = line[c4+1:]
+
+    call setline('.', pre . right . sep . left . post)
+    if a:left
+        let cdst = len(pre) + 1
+    else
+        let cdst = len(pre) + len(right) + len(sep) + 1
+    endif
+    call cursor(line('.'), cdst)
 endfun
 
-fun! MoveListItem(offset)
-    let list_info = ParseList()
-    if len(list_info) == 0
-        echo 'failed to move by ' . a:offset
-        return
-    endif
-
-    let sel_idx = list_info[3]
-    echo 'moving ' sel_idx . ' by ' . a:offset
-    let sel_item = remove(list_info[1], sel_idx)
-    let sel_idx += a:offset
-    if sel_idx < 0
-        let sel_idx = 0
-    endif
-    let max_idx = len(list_info[1])
-    if sel_idx > max_idx
-        let sel_idx = max_idx
-    endif
-    call insert(list_info[1], sel_item, sel_idx)
-    let list_info[3] = sel_idx
-    call UpdateList(list_info)
-endfun
-
-com! -count=1 MR call MoveListItem(<count>)
-com! -count=1 ML call MoveListItem(-<count>)
-
-nmap L :MR<CR>
-nmap H :ML<CR>
+nmap L :call ShiftItem(0)<CR>
+nmap H :call ShiftItem(1)<CR>
 
 
 " dt bindings
