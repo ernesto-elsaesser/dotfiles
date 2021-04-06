@@ -142,8 +142,6 @@ endfun
 com! O so ~/.vimrc
 com! U call Script('update', ['cd ' . g:dt_dir, 'git pull --ff-only']) | so ~/.vimrc
 com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
-com! P call term_start('python', {'term_finish': 'close'})
-com! PL call term_start('pylint --output-format=parseable -sn "' . expand('%') . '" | grep -v "\*\*" | tee ' . &errorfile)
 
 com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
 com! RR call Script(g:dt_scrpt[2], g:dt_scrpt)
@@ -159,6 +157,9 @@ com! QT Q SHOW TABLES
 com! -nargs=1 QS Q DESCRIBE <args>
 com! -nargs=1 QA Q SELECT * FROM <args>
 com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
+
+com! P call term_start('python', {'term_finish': 'close'})
+com! PL call Script('pylint', ['pylint --output-format=parseable -sn "' . expand('%') . '" | grep -v "\*\*" | tee ' . &errorfile])
 
 
 " leader mappings
