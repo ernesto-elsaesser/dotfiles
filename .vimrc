@@ -21,6 +21,9 @@ set complete=.
 " keep undo history on unload
 set hidden
 
+" universal brief error format
+set errorformat=%f:%l:\ %m
+
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
 
@@ -39,10 +42,6 @@ imap jj <Esc>
 " open parent directory
 nmap - :edit %:h/<CR>
 
-" temporary buffers
-com! -bar ST new | setl bt=nofile bh=wipe nobl
-com! -bar VT vert new | setl bt=nofile bh=wipe nobl
-
 
 " netrw
 
@@ -51,6 +50,8 @@ let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 
 " fix marked file highlighting
 autocmd FileType netrw hi netrwMarkFile ctermbg=1
+
+com! B let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
 
 
 " list reordering
@@ -108,75 +109,64 @@ nmap L :call ShiftItem(0)<CR>
 nmap H :call ShiftItem(1)<CR>
 
 
-" dt bindings
+" shell integrations
 
-let g:dt = $HOME.'/dotfiles/dt'
-com! U exec '!' . g:dt . ' upd' | so ~/.vimrc
+com! -bar ST new | setl bt=nofile bh=wipe nobl
+com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 
-fun! DTTerminal(cmd, ...)
-    let argstr = join(a:000)
-    exec 'ter ++close ' . g:dt . ' ' . a:cmd . ' "' . argstr . '"'
-endfun
+let g:dt_dir = $HOME.'/dotfiles'
+let g:dt_gitrc = g:dt_dir.'/git-env/.bashrc'
+let g:dt_bufnr = 0
 
-com! -nargs=* DT call DTTerminal(<f-args>)
+let stat = 'echo `date` `pwd`'
+let sep = 'echo ==='
+let g:dt_scrpt = [stat, sep, '', sep, stat]
 
-fun! DTRun()
-    if &tags == 'run'
-        let tercom = 'ter ++curwin '
+fun! Script(name, lines)
+    let opts = {'term_name': a:name}
+
+    let winids = win_findbuf(g:dt_bufnr)
+    if len(winids)
+        call win_gotoid(winids[0])
+        let opts['curwin'] = 1
     else
-        let tercom = 'vert ter '
+        let opts['vertical'] = 1
     endif
-    exec tercom . g:dt . ' run'
-    setl tags=run
+
+    let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
+    echo scrpt
+
+    let g:dt_bufnr = term_start(['bash', '-c', scrpt], opts)
 endfun
 
-com! -nargs=1 -complete=file R let $DTC = <q-args> | call DTRun()
-com! RR call DTRun()
+com! O so ~/.vimrc
+com! U call Script('update', ['cd ' . g:dt_dir, 'git pull --ff-only']) | so ~/.vimrc
+com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
+com! P call term_start('python', {'term_finish': 'close'})
+com! PL call term_start('pylint --output-format=parseable -sn "' . expand('%') . '" | grep -v "\*\*" | tee ' . &errorfile)
 
-fun! LoadRevision(mod)
-    cd .
-    let $DTM = a:mod
-    let $DTF = expand('%')
-    let ln = line('.')
-    let ft = &ft
-    VT
-    let &ft = ft
-    exec 'read !' . g:dt . ' rev'
-    exec ln
-endfun
+com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
+com! RR call Script(g:dt_scrpt[2], g:dt_scrpt)
 
-com! D call LoadRevision('')
+com! D let fn = expand('%:.') | let ft = &ft | VT | exec 'silent read !git show "HEAD:./' . fn . '"' | let &ft = ft
 
-com! -nargs=1 DB let $DTL = <q-args>
-
-fun! DTExecSQL(query)
-    let $DTQ = a:query
-    ST
-    setl ts=20
-    exec 'silent read !' . g:dt . ' sql'
-    0
-endfun
-
-com! -nargs=1 -complete=file Q call DTExecSQL(<q-args>)
-com! QQ call DTExecSQL(getreg(0))
-
-fun! DTPylint()
-    set errorformat=%f:%l:\ %m
-    let &makeprg = g:dt.' pyl %'
-    make %
-endfun
-
-com! PL call DTPylint()
+com! -nargs=1 DB let g:dt_db = '--login-path=<args>'
+com! -nargs=1 -complete=file Q ST | exec 'silent read !mysql ' . g:dt_db . ' -vv -e "<args>"' | 0 | setl ts=20
+" TODO: substitute(query, '"', '\"', 'g')
+com! -range=% QQ exec 'Q ' . join(getline(<line1>,<line2>), ' ')
+com! QB Q SHOW DATABASES
+com! QT Q SHOW TABLES
+com! -nargs=1 QS Q DESCRIBE <args>
+com! -nargs=1 QA Q SELECT * FROM <args>
+com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
 
 " leader mappings
 
-nmap <Leader>' :cnext<CR>
-nmap <Leader>; :cprev<CR>
-nmap <Leader>[ :DT git<CR>
-nmap <Leader>] :DT pyt<CR>
-nmap <Leader>o :so ~/.vimrc<CR>
-nmap <Leader>l :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <Leader><Leader> :lfile<CR>
+nmap <Leader>' :lnext<CR>
+nmap <Leader>; :lprev<CR>
+
+nmap <Leader>] :setlocal tabstop+=4<CR>
+nmap <Leader>[ :setlocal wrap!<CR>:setlocal wrap?<CR>
 nmap <Leader>p :setlocal paste!<CR>:setlocal paste?<CR>
-nmap <Leader>i :setlocal tabstop+=4<CR>
-nmap <Leader>k :let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
