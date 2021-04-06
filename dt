@@ -14,20 +14,6 @@ if [ ! -d "$DIR" ]; then
     DIR="$PWD";
 fi
 
-#if [ -d "$HOME/anaconda3" ]; then
-#    CONDA_PATH="$HOME/anaconda3"
-#elif [ -d "$HOME/opt/anaconda3" ]; then
-#    CONDA_PATH="$HOME/opt/anaconda3"
-#fi
-
-#if [ -n "$DTE" ]; then
-#    PYPATH="$CONDA_PATH/envs/$DTE/bin"
-#elif [ -n "$CONDA_PATH" ]; then
-#    PYPATH="$CONDA_PATH/bin"
-#else
-#    PYPATH="/usr/bin"
-#fi
-
 if [ -n "$2" ]; then
     DTF="$2"
     DTC="$2"
@@ -51,10 +37,6 @@ elif [ "$1" = 'pyt' ]; then # python REPL
 elif [ "$1" = 'pyl' ]; then # pylint
 
     pylint --output-format=parseable -sn "$DTF" | grep -v '\*\*'
-
-elif [ "$1" = 'cal' ]; then # calculate
-
-    echo "$DTC" | bc
 
 elif [ "$1" = 'ggl' ]; then # google search
 

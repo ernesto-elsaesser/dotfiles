@@ -36,6 +36,9 @@ nmap <Space> :w<CR>
 " avoid escape key
 imap jj <Esc>
 
+" open parent directory
+nmap - :edit %:h/<CR>
+
 " temporary buffers
 com! -bar ST new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
@@ -48,11 +51,6 @@ let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 
 " fix marked file highlighting
 autocmd FileType netrw hi netrwMarkFile ctermbg=1
-
-" remove non-empty directories
-autocmd FileType netrw nmap <buffer> A yE:!rm -r <C-R>=b:netrw_curdir<CR>/<C-R>"
-
-nmap - :edit %:h/<CR>
 
 
 " list reordering
