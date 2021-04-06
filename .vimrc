@@ -160,7 +160,8 @@ com! -nargs=1 QA Q SELECT * FROM <args>
 com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
 fun! PylintCallback(job, status)
-    echo 'pylint finished (' . a:status . ')'
+    lfile
+    exec '!rm ' . &errorfile
 endfun
 
 com! PL call job_start('pylint --output-format=parseable -sn ' . expand('%'), {'out_io': 'file', 'out_name': &errorfile, 'exit_cb': 'PylintCallback'})
@@ -168,7 +169,6 @@ com! PL call job_start('pylint --output-format=parseable -sn ' . expand('%'), {'
 
 " leader mappings
 
-nmap <Leader><Leader> :lfile<CR>
 nmap <Leader>' :lnext<CR>
 nmap <Leader>; :lprev<CR>
 
