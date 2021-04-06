@@ -22,7 +22,7 @@ set complete=.
 set hidden
 
 " universal brief error format
-set errorformat=%f:%l:\ %m
+set errorformat=%A%f:%l:\ %m,%-G%.%#
 
 " use autocmd to reset formatoptions after ftplugins
 autocmd BufEnter * setlocal formatoptions=
@@ -140,8 +140,9 @@ fun! Script(name, lines)
 endfun
 
 com! O so ~/.vimrc
-com! U call Script('update', ['cd ' . g:dt_dir, 'git pull --ff-only']) | so ~/.vimrc
+com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
 com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
+com! P call term_start('python', {'term_finish': 'close'})
 
 com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
 com! RR call Script(g:dt_scrpt[2], g:dt_scrpt)
@@ -158,8 +159,11 @@ com! -nargs=1 QS Q DESCRIBE <args>
 com! -nargs=1 QA Q SELECT * FROM <args>
 com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
-com! P call term_start('python', {'term_finish': 'close'})
-com! PL call Script('pylint', ['pylint --output-format=parseable -sn "' . expand('%') . '" | grep -v "\*\*" | tee ' . &errorfile])
+fun! ExitHandler(job, status)
+    echo 'job finished: ' . a:job
+endfun
+
+com! PL call job_start('pylint --output-format=parseable -sn ' . expand('%'), {'out_io': 'file', 'out_name': &errorfile, 'exit_cb': 'ExitHandler'})
 
 
 " leader mappings
