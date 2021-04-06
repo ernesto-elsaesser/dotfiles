@@ -159,11 +159,11 @@ com! -nargs=1 QS Q DESCRIBE <args>
 com! -nargs=1 QA Q SELECT * FROM <args>
 com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
-fun! ExitHandler(job, status)
-    echo 'job finished: ' . a:job
+fun! PylintCallback(job, status)
+    echo 'pylint finished (' . a:status . ')'
 endfun
 
-com! PL call job_start('pylint --output-format=parseable -sn ' . expand('%'), {'out_io': 'file', 'out_name': &errorfile, 'exit_cb': 'ExitHandler'})
+com! PL call job_start('pylint --output-format=parseable -sn ' . expand('%'), {'out_io': 'file', 'out_name': &errorfile, 'exit_cb': 'PylintCallback'})
 
 
 " leader mappings
