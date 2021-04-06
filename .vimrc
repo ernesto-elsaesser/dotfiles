@@ -21,6 +21,9 @@ set complete=.
 " keep undo history on unload
 set hidden
 
+" quick switching to and from paste mode
+set pastetoggle=<C-J>
+
 " universal brief error format
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
@@ -33,14 +36,12 @@ let loaded_matchparen = 1
 " make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
 
-" quick save
+" mappings
 nmap <Space> :w<CR>
-
-" avoid escape key
 imap jj <Esc>
-
-" open parent directory
 nmap - :edit %:h/<CR>
+nmap <Tab> :setlocal tabstop+=4<CR>
+nmap <CR> :setlocal wrap!<CR>:setlocal wrap?<CR>
 
 
 " netrw
@@ -141,7 +142,7 @@ endfun
 
 com! O so ~/.vimrc
 com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
-com! L call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
+com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
 com! P call term_start('python', {'term_finish': 'close'})
 
 com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
@@ -159,20 +160,6 @@ com! -nargs=1 QS Q DESCRIBE <args>
 com! -nargs=1 QA Q SELECT * FROM <args>
 com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
-fun! PylintCallback(job, status)
-    lfile
-    echo 'pylint finished'
-    exec '!rm ' . &errorfile
-endfun
-
-com! PL call job_start('pylint --output-format=parseable -sn ' . expand('%'), {'out_io': 'file', 'out_name': &errorfile, 'exit_cb': 'PylintCallback'})
-
-
-" leader mappings
-
-nmap <Leader>' :lnext<CR>
-nmap <Leader>; :lprev<CR>
-
-nmap <Leader>] :setlocal tabstop+=4<CR>
-nmap <Leader>[ :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <Leader>p :setlocal paste!<CR>:setlocal paste?<CR>
+com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
+nmap ]] :lnext<CR>
+nmap [[ :lprev<CR>
