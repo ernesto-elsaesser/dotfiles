@@ -121,14 +121,16 @@ fun! Script(name, lines)
     let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
     let cmd = ['bash', '-c', scrpt]
 
-    if exists(b:scbuf) && len(win_findbuf(b:scbuf))
-        let winid = win_findbuf(b:scbuf)[0]
-        call win_gotoid(winid)
-        term_start(cmd, {'term_name': a:name, 'curwin': 1})
-    else
-        let b:scbuf = term_start(cmd, {'term_name': a:name, 'vertical': 1})
-    endif
+    for info in getwininfo()
+        if get(info['variables'], 'script')
+            call win_gotoid(info['winid'])
+            call term_start(cmd, {'term_name': a:name, 'curwin': 1})
+            return
+        endif
+    endfor
 
+    call term_start(cmd, {'term_name': a:name, 'vertical': 1})
+    let w:script = 1
 endfun
 
 com! O so ~/.vimrc
@@ -136,9 +138,9 @@ com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
 com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
 com! P call term_start('python', {'term_finish': 'close'})
 
-let s:sl = 'echo *** `date` `pwd` ***'
-com! -nargs=1 -complete=file R let g:dt_scrpt = [s:sl, <q-args>, s:sl] | call Script(<q-args>, g:dt_scrpt)
-com! RR call Script(g:dt_scrpt[1], g:dt_scrpt)
+let s:sl = 'echo "###" `date` `pwd` "###"'
+com! -nargs=1 -complete=file R let b:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, b:sc)
+com! RR call Script(b:sc[1], b:sc)
 
 com! D let ic = [expand('%:.'), line('.'), &ft] | vert new | TMP | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
