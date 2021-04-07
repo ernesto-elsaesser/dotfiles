@@ -112,8 +112,7 @@ nmap H :call ShiftItem(1)<CR>
 
 " shell integrations
 
-com! -bar ST new | setl bt=nofile bh=wipe nobl
-com! -bar VT vert new | setl bt=nofile bh=wipe nobl
+com! -bar TMP setl bt=nofile bh=wipe nobl
 
 let g:dt_dir = $HOME.'/dotfiles'
 let g:dt_gitrc = g:dt_dir.'/git-env/.bashrc'
@@ -146,17 +145,26 @@ com! P call term_start('python', {'term_finish': 'close'})
 com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
 com! RR call Script(g:dt_scrpt[2], g:dt_scrpt)
 
-com! D let fn = expand('%:.') | let ft = &ft | VT | exec 'silent read !git show "HEAD:./' . fn . '"' | let &ft = ft
+com! D let fn = expand('%:.') | let ft = &ft | vert new | TMP | exec 'silent read !git show "HEAD:./' . fn . '"' | let &ft = ft
 
 com! -nargs=1 DB let g:dt_db = '--login-path=<args>'
-com! -nargs=1 -complete=file Q ST | exec 'silent read !mysql ' . g:dt_db . ' -vv -e "<args>"' | 0 | setl ts=20
-" TODO: substitute(query, '"', '\"', 'g')
-com! -range=% QQ exec 'Q ' . join(getline(<line1>,<line2>), ' ')
-com! QB Q SHOW DATABASES
-com! QT Q SHOW TABLES
-com! -nargs=1 QS Q DESCRIBE <args>
-com! -nargs=1 QA Q SELECT * FROM <args>
-com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
+
+fun! SQLQuery(query)
+    let $QUERY = substitute(a:query, '"', '\"', 'g')
+    new
+    TMP
+    exec 'silent read !mysql ' . g:dt_db . ' -vv -e "$QUERY"'
+    setl ts=20
+    0
+endfun
+
+com! -nargs=1 -complete=file Q call SQLQuery(<q-args>)
+com! -range=% QQ call SQLQuery(join(getline(<line1>,<line2>), ' '))
+com! QB call SQLQuery('SHOW DATABASES')
+com! QT call SQLQuery('SHOW TABLES')
+com! -nargs=1 QS call SQLQuery('DESCRIBE <args>')
+com! -nargs=1 QA call SQLQuery('SELECT * FROM <args>')
+com! -nargs=1 QC call SQLQuery('SELECT COUNT(*) FROM <args>')
 
 com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
 nmap ]] :lnext<CR>
