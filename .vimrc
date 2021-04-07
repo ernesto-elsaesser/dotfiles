@@ -145,7 +145,7 @@ com! P call term_start('python', {'term_finish': 'close'})
 com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
 com! RR call Script(g:dt_scrpt[2], g:dt_scrpt)
 
-com! D let fn = expand('%:.') | let ft = &ft | vert new | TMP | exec 'silent read !git show "HEAD:./' . fn . '"' | let &ft = ft
+com! D let ic = [expand('%:.'), line('.'), &ft] | vert new | TMP | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
 com! -nargs=1 DB let g:dt_db = '--login-path=<args>'
 
