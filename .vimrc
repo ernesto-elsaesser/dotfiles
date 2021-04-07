@@ -21,9 +21,6 @@ set complete=.
 " keep undo history on unload
 set hidden
 
-" quick switching to and from paste mode
-set pastetoggle=<C-J>
-
 " universal brief error format
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
@@ -36,12 +33,19 @@ let loaded_matchparen = 1
 " make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
 
+
 " mappings
+
 nmap <Space> :w<CR>
 imap jj <Esc>
 nmap - :edit %:h/<CR>
-nmap <Tab> :setlocal tabstop+=4<CR>
-nmap <CR> :setlocal wrap!<CR>:setlocal wrap?<CR>
+nmap <Tab> :setl ts=
+nmap <CR> :setl wrap!<CR>
+
+set pastetoggle=<C-H>
+
+nmap <C-J> :lnext<CR>
+nmap <C-K> :lprev<CR>
 
 
 " netrw
@@ -112,7 +116,8 @@ nmap H :call ShiftItem(1)<CR>
 
 " shell integrations
 
-com! -bar TMP setl bt=nofile bh=wipe nobl
+com! -bar NT new | setl bt=nofile bh=wipe nobl
+com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 
 let g:dt_dir = $HOME.'/dotfiles'
 let g:dt_gitrc = g:dt_dir.'/git-env/.bashrc'
@@ -142,14 +147,13 @@ let s:sl = 'echo "###" `date` `pwd` "###"'
 com! -nargs=1 -complete=file R let b:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, b:sc)
 com! RR call Script(b:sc[1], b:sc)
 
-com! D let ic = [expand('%:.'), line('.'), &ft] | vert new | TMP | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
+com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
 com! -nargs=1 DB let g:dt_db = '--login-path=<args>'
 
 fun! SQLQuery(query)
     let $QUERY = substitute(a:query, '"', '\"', 'g')
-    new
-    TMP
+    NT
     exec 'silent read !mysql ' . g:dt_db . ' -vv -e "$QUERY"'
     setl ts=20
     0
@@ -164,5 +168,3 @@ com! -nargs=1 QA call SQLQuery('SELECT * FROM <args>')
 com! -nargs=1 QC call SQLQuery('SELECT COUNT(*) FROM <args>')
 
 com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
-nmap ]] :lnext<CR>
-nmap [[ :lprev<CR>
