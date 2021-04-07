@@ -116,25 +116,19 @@ com! -bar TMP setl bt=nofile bh=wipe nobl
 
 let g:dt_dir = $HOME.'/dotfiles'
 let g:dt_gitrc = g:dt_dir.'/git-env/.bashrc'
-let g:dt_bufnr = 0
-
-let stat = 'echo `date` `pwd`'
-let sep = 'echo ==='
-let g:dt_scrpt = [stat, sep, '', sep, stat]
 
 fun! Script(name, lines)
-    let opts = {'term_name': a:name}
+    let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
+    let cmd = ['bash', '-c', scrpt]
 
-    let winids = win_findbuf(g:dt_bufnr)
-    if len(winids)
-        call win_gotoid(winids[0])
-        let opts['curwin'] = 1
+    if exists(b:scbuf) && len(win_findbuf(b:scbuf))
+        let winid = win_findbuf(b:scbuf)[0]
+        call win_gotoid(winid)
+        term_start(cmd, {'term_name': a:name, 'curwin': 1})
     else
-        let opts['vertical'] = 1
+        let b:scbuf = term_start(cmd, {'term_name': a:name, 'vertical': 1})
     endif
 
-    let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
-    let g:dt_bufnr = term_start(['bash', '-c', scrpt], opts)
 endfun
 
 com! O so ~/.vimrc
@@ -142,8 +136,9 @@ com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
 com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
 com! P call term_start('python', {'term_finish': 'close'})
 
-com! -nargs=1 -complete=file R let g:dt_scrpt[2] = <q-args> | call Script(<q-args>, g:dt_scrpt)
-com! RR call Script(g:dt_scrpt[2], g:dt_scrpt)
+let s:sl = 'echo *** `date` `pwd` ***'
+com! -nargs=1 -complete=file R let g:dt_scrpt = [s:sl, <q-args>, s:sl] | call Script(<q-args>, g:dt_scrpt)
+com! RR call Script(g:dt_scrpt[1], g:dt_scrpt)
 
 com! D let ic = [expand('%:.'), line('.'), &ft] | vert new | TMP | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
