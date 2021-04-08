@@ -1,7 +1,7 @@
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
-" ----- options -----
+" --- options ---
 
 " hacker mode
 set background=dark
@@ -24,17 +24,22 @@ set hidden
 " universal brief error format
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
-" use autocmd to reset formatoptions after ftplugins
-autocmd BufEnter * setlocal formatoptions=
+
+" --- variables ---
 
 " disable parenthese highlighting
 let loaded_matchparen = 1
+
+" netrw
+let g:netrw_banner=0
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_sizestyle='H'
 
 " make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
 
 
-" mappings
+" --- mappings ---
 
 nmap <Space> :w<CR>
 imap jj <Esc>
@@ -48,18 +53,24 @@ nmap <C-J> :lnext<CR>
 nmap <C-K> :lprev<CR>
 
 
-" netrw
+" --- autocmds ---
 
-let g:netrw_banner=0
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+augroup vimrc
+    autocmd!
 
-" fix marked file highlighting
-autocmd FileType netrw hi netrwMarkFile ctermbg=1
+    " discard formatoptions set by ftplugins
+    autocmd BufEnter * setlocal formatoptions=
 
-com! B let g:netrw_sizestyle=( g:netrw_sizestyle == 'H' ? 'b' : 'H' )<CR><C-L>
+    " toggle netrw size style
+    autocmd FileType netrw nmap <buffer> y :let g:netrw_sizestyle='b'<CR><C-L>
+    autocmd FileType netrw nmap <buffer> h :let g:netrw_sizestyle='H'<CR><C-L>
+
+    " fix netrw highlighting
+    autocmd FileType netrw hi netrwMarkFile ctermbg=1
+augroup END
 
 
-" list reordering
+" --- list reordering ---
 
 fun! GetItemBounds(line, csel)
     let cmax = len(a:line) - 1
@@ -114,7 +125,7 @@ nmap L :call ShiftItem(0)<CR>
 nmap H :call ShiftItem(1)<CR>
 
 
-" shell integrations
+" --- shell integrations ---
 
 com! -bar NT new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
@@ -140,7 +151,7 @@ endfun
 
 com! O so ~/.vimrc
 com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
-com! C call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
+com! L call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
 com! P call term_start('python', {'term_finish': 'close'})
 
 let s:sl = 'echo "###" `date` `pwd` "###"'
