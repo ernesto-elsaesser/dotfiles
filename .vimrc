@@ -130,9 +130,6 @@ nmap H :call ShiftItem(1)<CR>
 com! -bar NT new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 
-let g:dt_dir = $HOME.'/dotfiles'
-let g:dt_gitrc = g:dt_dir.'/git-env/.bashrc'
-
 fun! Script(name, lines)
     let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
     let cmd = ['bash', '-c', scrpt]
@@ -149,9 +146,19 @@ fun! Script(name, lines)
     let w:script = 1
 endfun
 
+let g:dt_dir = $HOME.'/dotfiles'
+
+if has('macunix')
+    let g:dt_gitenv = {'ZDOTDIR': g:dt_dir . '/git-env', 'SHELL_SESSIONS_DISABLE': 1}
+    let g:dt_gitcmd = 'zsh'
+else
+    let g:dt_gitenv = {}
+    let g:dt_gitcmd = 'bash --rcfile ' . g:dt_dir . '/git-env/.bashrc'
+endif
+
 com! O so ~/.vimrc
 com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
-com! L call term_start('bash --rcfile '. g:dt_gitrc, {'term_finish': 'close'})
+com! L call term_start(g:dt_gitcmd, {'env': g:dt_gitenv, 'term_finish': 'close'})
 com! P call term_start('python', {'term_finish': 'close'})
 
 let s:sl = 'echo "###" `date` `pwd` "###"'
