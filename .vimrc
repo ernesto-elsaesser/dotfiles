@@ -47,7 +47,7 @@ nmap - :edit %:h/<CR>
 nmap <Tab> :setl ts=
 nmap <CR> :setl wrap!<CR>
 
-set pastetoggle=<C-A>
+set pastetoggle=<C-Y>
 
 nmap <C-J> :lnext<CR>
 nmap <C-K> :lprev<CR>
