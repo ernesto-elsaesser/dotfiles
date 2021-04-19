@@ -3,9 +3,6 @@ source $VIMRUNTIME/defaults.vim
 
 " --- options ---
 
-" hacker mode
-set background=dark
-
 " spaces > tabs
 set tabstop=4 shiftwidth=4 expandtab
 
@@ -21,7 +18,7 @@ set complete=.
 " keep undo history on unload
 set hidden
 
-" universal brief error format
+" universal brief error format (FILE:LINE ERR_MSG)
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
 
@@ -31,9 +28,8 @@ set errorformat=%A%f:%l:\ %m,%-G%.%#
 let loaded_matchparen = 1
 
 " netrw
-let g:netrw_banner=0
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_sizestyle='H'
+"let g:netrw_banner=0 - USE I
+"let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+' - USE gh
 
 " make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
