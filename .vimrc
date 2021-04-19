@@ -179,7 +179,7 @@ endfun
 
 com! -nargs=1 -complete=file Q call SQLQuery(<q-args>)
 com! -range=% QQ call SQLQuery(join(getline(<line1>,<line2>), ' '))
-com! QB call SQLQuery('SHOW DATABASES')
+com! QD call SQLQuery('SHOW DATABASES')
 com! QT call SQLQuery('SHOW TABLES')
 com! -nargs=1 QS call SQLQuery('DESCRIBE <args>')
 com! -nargs=1 QA call SQLQuery('SELECT * FROM <args>')
