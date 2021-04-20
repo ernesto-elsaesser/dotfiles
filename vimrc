@@ -27,9 +27,8 @@ set errorformat=%A%f:%l:\ %m,%-G%.%#
 " disable parenthese highlighting
 let loaded_matchparen = 1
 
-" netrw
-"let g:netrw_banner=0 - USE I
-"let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+' - USE gh
+" hide netrw banner
+let g:netrw_banner=0
 
 " make MySQL the default SQL dialect
 let g:sql_type_default='mysql'
