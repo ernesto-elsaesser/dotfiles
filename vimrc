@@ -157,8 +157,8 @@ com! L call term_start(g:dt_gitcmd, {'env': g:dt_gitenv, 'term_finish': 'close'}
 com! P call term_start('python', {'term_finish': 'close'})
 
 let s:sl = 'echo "###" `date` `pwd` "###"'
-com! -nargs=1 -complete=file R let b:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, b:sc)
-com! RR call Script(b:sc[1], b:sc)
+com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, w:sc)
+com! RR call Script(w:sc[1], w:sc)
 
 com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
