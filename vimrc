@@ -3,13 +3,13 @@ source $VIMRUNTIME/defaults.vim
 
 " --- options ---
 
-" spaces > tabs
+" spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
 
 " disable unwanted features
 set mouse= nowrap noswapfile viminfo=
 
-" always show file name
+" always show file name and line number of total
 set laststatus=2 statusline=\ %f\ ---\ %l/%L\ %h%r%m%=%c\  
 
 " complete only from current buffer
@@ -53,14 +53,14 @@ nmap <C-K> :lprev<CR>
 augroup vimrc
     autocmd!
 
-    " discard formatoptions set by ftplugins
-    autocmd BufEnter * setlocal formatoptions=
+    " disable comment continuation after ftplugins
+    autocmd BufEnter * setlocal formatoptions-=ro
 
     " toggle netrw size style
-    autocmd FileType netrw nmap <buffer> y :let g:netrw_sizestyle='b'<CR><C-L>
     autocmd FileType netrw nmap <buffer> h :let g:netrw_sizestyle='H'<CR><C-L>
+    autocmd FileType netrw nmap <buffer> y :let g:netrw_sizestyle='b'<CR><C-L>
 
-    " fix netrw highlighting
+    " fix netrw highlighting (red background)
     autocmd FileType netrw hi netrwMarkFile ctermbg=1
 augroup END
 
