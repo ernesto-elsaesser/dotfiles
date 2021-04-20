@@ -173,7 +173,7 @@ fun! SQLQuery(query)
 endfun
 
 com! -nargs=1 -complete=file Q call SQLQuery(<q-args>)
-com! -range=% QQ call SQLQuery(join(getline(<line1>,<line2>), ' '))
+com! QQ call SQLQuery(@")
 com! QD call SQLQuery('SHOW DATABASES')
 com! QT call SQLQuery('SHOW TABLES')
 com! -nargs=1 QS call SQLQuery('DESCRIBE <args>')
