@@ -1,13 +1,5 @@
 #!/bin/bash
 
-DIR="${BASH_SOURCE%/*}"
-if [ ! -d "$DIR" ]; then
-    DIR="$PWD";
-fi
-
-# google search
-# query="${query// /%20}"
-# lynx -accept_all_cookies "google.com/search?q=$query"
-
-ln -s "$DIR/vimrc" "$HOME/.vimrc"
-ln -s "$DIR/tmux.conf" "$HOME/.tmux.conf"
+DOT_DIR=`realpath ${BASH_SOURCE%/*}`
+echo "source $DOT_DIR/vimrc" >> "$HOME/.vimrc"
+echo "source-file $DOT_DIR/tmux.conf" >> "$HOME/.tmux.conf"

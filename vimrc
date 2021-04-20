@@ -181,3 +181,5 @@ com! -nargs=1 QA call SQLQuery('SELECT * FROM <args>')
 com! -nargs=1 QC call SQLQuery('SELECT COUNT(*) FROM <args>')
 
 com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
+
+" lynx -accept_all_cookies "google.com/search?q=${query// /%20}"
