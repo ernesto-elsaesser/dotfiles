@@ -54,7 +54,7 @@ augroup vimrc
     autocmd!
 
     " disable comment continuation after ftplugins
-    autocmd BufEnter * setlocal formatoptions-=ro
+    autocmd BufEnter * setlocal formatoptions-=o formatoptions-=r
 
     " toggle netrw size style
     autocmd FileType netrw nmap <buffer> h :let g:netrw_sizestyle='H'<CR><C-L>
@@ -176,8 +176,10 @@ com! -nargs=1 -complete=file Q call SQLQuery(<q-args>)
 com! QQ call SQLQuery(@")
 com! QD call SQLQuery('SHOW DATABASES')
 com! QT call SQLQuery('SHOW TABLES')
-com! QP call SQLQuery('SHOW PROCESSLIST')
-com! -nargs=1 QS call SQLQuery('DESCRIBE <args>')
+com! QV call SQLQuery('SHOW VARIABLES')
+com! QS call SQLQuery('SHOW GLOBAL STATUS')
+com! QP call SQLQuery('SHOW FULL PROCESSLIST')
+com! -nargs=1 QI call SQLQuery('DESCRIBE <args>')
 com! -nargs=1 QA call SQLQuery('SELECT * FROM <args>')
 com! -nargs=1 QC call SQLQuery('SELECT COUNT(*) FROM <args>')
 
