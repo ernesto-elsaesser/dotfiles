@@ -9,8 +9,8 @@ set tabstop=4 shiftwidth=4 expandtab
 " disable unwanted features
 set mouse= nowrap noswapfile viminfo=
 
-" always show file name and line number of total
-set laststatus=2 statusline=\ %f\ ---\ %l/%L\ %h%r%m%=%c\  
+" always show status line
+set laststatus=2
 
 " complete only from current buffer
 set complete=.
