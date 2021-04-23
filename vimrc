@@ -120,10 +120,13 @@ nmap L :call ShiftItem(0)<CR>
 nmap H :call ShiftItem(1)<CR>
 
 
-" --- shell integrations ---
+" --- temporary buffers ---
 
 com! -bar NT new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
+
+
+" --- script execution ---
 
 fun! Script(name, lines)
     let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
@@ -141,48 +144,55 @@ fun! Script(name, lines)
     let w:script = 1
 endfun
 
-let g:dt_dir = $HOME.'/dotfiles'
-
-if has('macunix')
-    let g:dt_gitenv = {'ZDOTDIR': g:dt_dir . '/git-env', 'SHELL_SESSIONS_DISABLE': 1}
-    let g:dt_gitcmd = 'zsh'
-else
-    let g:dt_gitenv = {}
-    let g:dt_gitcmd = 'bash --rcfile ' . g:dt_dir . '/git-env/.bashrc'
-endif
-
-com! O so ~/.vimrc
-com! U exec '!cd ' . g:dt_dir . '; git pull --ff-only' | so ~/.vimrc
-com! L call term_start(g:dt_gitcmd, {'env': g:dt_gitenv, 'term_finish': 'close'})
-com! P call term_start('python', {'term_finish': 'close'})
-
 let s:sl = 'echo "###" `date` `pwd` "###"'
 com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, w:sc)
 com! RR call Script(w:sc[1], w:sc)
 
+
+" --- git shell ---
+
+if has('macunix')
+    let g:dt_gitenv = {'ZDOTDIR': '~/dotfiles/git-env', 'SHELL_SESSIONS_DISABLE': 1}
+    let g:dt_gitcmd = 'zsh'
+else
+    let g:dt_gitenv = {}
+    let g:dt_gitcmd = 'bash --rcfile ~/dotfiles/git-env/.bashrc'
+endif
+
+com! L call term_start(g:dt_gitcmd, {'env': g:dt_gitenv, 'term_finish': 'close'})
 com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
-com! -nargs=1 DB let g:dt_db = '--login-path=<args>'
 
-fun! SQLQuery(query)
-    let $QUERY = substitute(a:query, '"', '\"', 'g')
-    NT
-    exec 'silent read !mysql ' . g:dt_db . ' -vv -e "$QUERY"'
-    setl ts=20
-    0
-endfun
+" --- Python ---
 
-com! -nargs=1 -complete=file Q call SQLQuery(<q-args>)
-com! QQ call SQLQuery(@")
-com! QD call SQLQuery('SHOW DATABASES')
-com! QT call SQLQuery('SHOW TABLES')
-com! QV call SQLQuery('SHOW VARIABLES')
-com! QS call SQLQuery('SHOW GLOBAL STATUS')
-com! QP call SQLQuery('SHOW FULL PROCESSLIST')
-com! -nargs=1 QI call SQLQuery('DESCRIBE <args>')
-com! -nargs=1 QA call SQLQuery('SELECT * FROM <args>')
-com! -nargs=1 QC call SQLQuery('SELECT COUNT(*) FROM <args>')
-
+com! P call term_start('python', {'term_finish': 'close'})
 com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
 
-" lynx -accept_all_cookies "google.com/search?q=${query// /%20}"
+
+" --- MySQL ---
+
+" set login path and optionally database (e.g. :DB main databaseta)
+com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
+
+" paste the results of the specified SQL query into the current buffer
+com! -nargs=1 Q let $QRY = <q-args> | NT | exec 'silent read !' . g:sql_cmd | 0 | setl ts=20
+
+" execute the last yanked SQL query
+com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
+
+" shortcuts for common SQL queries
+com! QD Q 'SHOW DATABASES'
+com! QT Q 'SHOW TABLES'
+com! QV Q 'SHOW VARIABLES'
+com! QS Q 'SHOW GLOBAL STATUS'
+com! QP Q 'SHOW FULL PROCESSLIST'
+com! -nargs=1 QI Q 'SHOW FULL COLUMNS FROM <args>'
+com! -nargs=1 QA Q 'SELECT * FROM <args>'
+com! -nargs=1 QC Q 'SELECT COUNT(*) FROM <args>'
+
+
+" -- misc --
+
+com! O so ~/.vimrc
+com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
+com! -nargs=1 G ter lynx -accept_all_cookies "google.com/search?q=<args>"
