@@ -28,10 +28,10 @@ set errorformat=%A%f:%l:\ %m,%-G%.%#
 let loaded_matchparen = 1
 
 " hide netrw banner
-let g:netrw_banner=0
+let g:netrw_banner = 0
 
 " make MySQL the default SQL dialect
-let g:sql_type_default='mysql'
+let g:sql_type_default = 'mysql'
 
 
 " --- mappings ---
