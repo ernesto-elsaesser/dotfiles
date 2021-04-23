@@ -1,5 +1,6 @@
 #!/bin/bash
 
-DOT_DIR=`realpath ${BASH_SOURCE%/*}`
+cd "${BASH_SOURCE%/*}"
+DOT_DIR=`pwd`
 echo "source $DOT_DIR/vimrc" >> "$HOME/.vimrc"
 echo "source-file $DOT_DIR/tmux.conf" >> "$HOME/.tmux.conf"

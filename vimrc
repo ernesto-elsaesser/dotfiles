@@ -156,7 +156,7 @@ com! RR call Script(w:sc[1], w:sc)
 " --- git ---
 
 if has('macunix')
-    let g:git_env = {'ZDOTDIR': '~/dotfiles/git-env', 'SHELL_SESSIONS_DISABLE': 1}
+    let g:git_env = {'ZDOTDIR': $HOME . '/dotfiles/git-env', 'SHELL_SESSIONS_DISABLE': 1}
     let g:git_cmd = 'zsh'
 else
     let g:git_env = {}
