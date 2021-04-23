@@ -145,27 +145,37 @@ fun! Script(name, lines)
 endfun
 
 let s:sl = 'echo "###" `date` `pwd` "###"'
+
+" run a script with info header/footer
 com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, w:sc)
+
+" rerun last script
 com! RR call Script(w:sc[1], w:sc)
 
 
-" --- git shell ---
+" --- git ---
 
 if has('macunix')
-    let g:dt_gitenv = {'ZDOTDIR': '~/dotfiles/git-env', 'SHELL_SESSIONS_DISABLE': 1}
-    let g:dt_gitcmd = 'zsh'
+    let g:git_env = {'ZDOTDIR': '~/dotfiles/git-env', 'SHELL_SESSIONS_DISABLE': 1}
+    let g:git_cmd = 'zsh'
 else
-    let g:dt_gitenv = {}
-    let g:dt_gitcmd = 'bash --rcfile ~/dotfiles/git-env/.bashrc'
+    let g:git_env = {}
+    let g:git_cmd = 'bash --rcfile ~/dotfiles/git-env/.bashrc'
 endif
 
-com! L call term_start(g:dt_gitcmd, {'env': g:dt_gitenv, 'term_finish': 'close'})
+" open git shell
+com! L call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
+
+" show HEAD version of current file (diff)
 com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
 
 
 " --- Python ---
 
+" open Python REPL
 com! P call term_start('python', {'term_finish': 'close'})
+
+" lint current file
 com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
 
 
@@ -193,6 +203,11 @@ com! -nargs=1 QC Q 'SELECT COUNT(*) FROM <args>'
 
 " -- misc --
 
+" reload config
 com! O so ~/.vimrc
+
+" update config
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
-com! -nargs=1 G ter lynx -accept_all_cookies "google.com/search?q=<args>"
+
+" open web page in text-based browser
+com! -nargs=1 W ter lynx -accept_all_cookies <q-args>
