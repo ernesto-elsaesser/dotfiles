@@ -173,7 +173,7 @@ com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git sh
 " --- Python ---
 
 " open Python REPL
-com! P call term_start('python', {'term_finish': 'close'})
+com! P ter ++close python
 
 " lint current file
 com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
@@ -210,4 +210,4 @@ com! O so ~/.vimrc
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " open web page in text-based browser
-com! -nargs=1 W ter lynx -accept_all_cookies <q-args>
+com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
