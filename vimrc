@@ -65,61 +65,6 @@ augroup vimrc
 augroup END
 
 
-" --- list reordering ---
-
-fun! GetItemBounds(line, csel)
-    let cmax = len(a:line) - 1
-
-    let cleft = a:csel
-    while cleft > 0 && index([',', '(', '[', '{'], a:line[cleft-1]) == -1
-        let cleft -= 1
-    endwhile
-    while a:line[cleft] == ' '
-        let cleft += 1
-    endwhile
-
-    let cright = a:csel
-    while cright < cmax && index([',', ')', ']', '}'], a:line[cright+1]) == -1
-        let cright += 1
-    endwhile
-    while a:line[cright] == ' '
-        let cright -= 1
-    endwhile
-
-    return [cleft, cright]
-endfun
-
-fun! ShiftItem(left)
-    let line = getline('.')
-    let csrc = col('.')
-
-    if a:left
-        let [c3, c4] = GetItemBounds(line, csrc)
-        let [c1, c2] = GetItemBounds(line, c3 - 3)
-    else
-        let [c1, c2] = GetItemBounds(line, csrc)
-        let [c3, c4] = GetItemBounds(line, c2 + 3)
-    endif
-
-    let pre = line[:c1-1]
-    let left = line[c1:c2]
-    let sep = ', '
-    let right = line[c3:c4]
-    let post = line[c4+1:]
-
-    call setline('.', pre . right . sep . left . post)
-    if a:left
-        let cdst = len(pre) + 1
-    else
-        let cdst = len(pre) + len(right) + len(sep) + 1
-    endif
-    call cursor(line('.'), cdst)
-endfun
-
-nmap L :call ShiftItem(0)<CR>
-nmap H :call ShiftItem(1)<CR>
-
-
 " --- temporary buffers ---
 
 com! -bar NT new | setl bt=nofile bh=wipe nobl
@@ -191,14 +136,69 @@ com! -nargs=1 Q let $QRY = <q-args> | NT | exec 'silent read !' . g:sql_cmd | 0 
 com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
 
 " shortcuts for common SQL queries
-com! QD Q 'SHOW DATABASES'
-com! QT Q 'SHOW TABLES'
-com! QV Q 'SHOW VARIABLES'
-com! QS Q 'SHOW GLOBAL STATUS'
-com! QP Q 'SHOW FULL PROCESSLIST'
-com! -nargs=1 QI Q 'SHOW FULL COLUMNS FROM <args>'
-com! -nargs=1 QA Q 'SELECT * FROM <args>'
-com! -nargs=1 QC Q 'SELECT COUNT(*) FROM <args>'
+com! QD Q SHOW DATABASES
+com! QT Q SHOW TABLES
+com! QV Q SHOW VARIABLES
+com! QS Q SHOW GLOBAL STATUS
+com! QP Q SHOW FULL PROCESSLIST
+com! -nargs=1 QI Q SHOW FULL COLUMNS FROM <args>
+com! -nargs=1 QA Q SELECT * FROM <args>
+com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
+
+
+" --- list reordering ---
+
+fun! GetItemBounds(line, csel)
+    let cmax = len(a:line) - 1
+
+    let cleft = a:csel
+    while cleft > 0 && index([',', '(', '[', '{'], a:line[cleft-1]) == -1
+        let cleft -= 1
+    endwhile
+    while a:line[cleft] == ' '
+        let cleft += 1
+    endwhile
+
+    let cright = a:csel
+    while cright < cmax && index([',', ')', ']', '}'], a:line[cright+1]) == -1
+        let cright += 1
+    endwhile
+    while a:line[cright] == ' '
+        let cright -= 1
+    endwhile
+
+    return [cleft, cright]
+endfun
+
+fun! ShiftItem(left)
+    let line = getline('.')
+    let csrc = col('.')
+
+    if a:left
+        let [c3, c4] = GetItemBounds(line, csrc)
+        let [c1, c2] = GetItemBounds(line, c3 - 3)
+    else
+        let [c1, c2] = GetItemBounds(line, csrc)
+        let [c3, c4] = GetItemBounds(line, c2 + 3)
+    endif
+
+    let pre = line[:c1-1]
+    let left = line[c1:c2]
+    let sep = ', '
+    let right = line[c3:c4]
+    let post = line[c4+1:]
+
+    call setline('.', pre . right . sep . left . post)
+    if a:left
+        let cdst = len(pre) + 1
+    else
+        let cdst = len(pre) + len(right) + len(sep) + 1
+    endif
+    call cursor(line('.'), cdst)
+endfun
+
+nmap L :call ShiftItem(0)<CR>
+nmap H :call ShiftItem(1)<CR>
 
 
 " -- misc --

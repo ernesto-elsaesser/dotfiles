@@ -44,10 +44,10 @@ alias l='git log -10 --pretty=format:"%h %s (%an %ar)"'
 alias ca='git commit --amend --no-edit'
 
 # merge upsteam branch into current
-alias m='git merge --no-edit'
+alias m='git fetch; git merge --no-edit'
 
 # merge master branch into current
-alias mm='git merge --no-edit origin/master'
+alias mm='git fetch; git merge --no-edit origin/master'
 
 # show branches - a = remote ones, v = incl. last  commit
 alias b='git branch'
