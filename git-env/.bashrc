@@ -7,7 +7,7 @@ PROMPT_COMMAND='__git_ps1 "\w" " > "'
 source ~/dotfiles/git-env/aliases.sh
 
 # update auto-completion for aliases
-function cmpl {
+function cm {
     BRANCHES=`git branch -a | sed 's/[* ] \(remotes\/origin\/\)\?//'`
     complete -W "$BRANCHES" co
     complete -W "$BRANCHES" bd

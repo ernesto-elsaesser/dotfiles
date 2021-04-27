@@ -7,7 +7,7 @@ precmd () { __git_ps1 "%~" " > " }
 source ~/dotfiles/git-env/aliases.sh
 
 # update auto-completion for aliases
-function cmpl {
+function cm {
     BRANCHES=`git branch -a | sed 's/[* ] \(remotes\/origin\/\)\?//'`
     compctl -k ($BRANCHES) co
     compctl -k ($BRANCHES) bd
