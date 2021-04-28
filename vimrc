@@ -38,7 +38,6 @@ let g:sql_type_default = 'mysql'
 
 nmap <Space> :w<CR>
 imap jj <Esc>
-" nmap - :edit %:h/<CR> - USE :E
 nmap <Tab> :setl ts=
 nmap <CR> :setl wrap!<CR>
 
