@@ -69,8 +69,8 @@ alias rh='git reset --hard'
 alias h='git rev-parse HEAD'
 
 # configure git user
-function conf {
+function cnf {
   git config --global user.email "ernesto.elsaesser@me.com"
   git config --global user.name "Ernesto Elsaesser"
+  git config --global pull.ff only
 }
-alias id='conf'
