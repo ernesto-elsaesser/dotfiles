@@ -37,6 +37,8 @@ let g:sql_type_default = 'mysql'
 " --- mappings ---
 
 nmap <Space> :w<CR>
+cmap w!! w !sudo tee > /dev/null %
+
 imap jj <Esc>
 nmap <Tab> :setl ts=
 nmap <CR> :setl wrap!<CR>
