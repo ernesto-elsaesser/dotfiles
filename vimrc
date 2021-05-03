@@ -47,6 +47,7 @@ set pastetoggle=<C-Y>
 
 nmap <C-J> :lnext<CR>
 nmap <C-K> :lprev<CR>
+nmap <C-H> :ll<CR>
 
 
 " --- autocmds ---
