@@ -144,6 +144,7 @@ com! QV Q SHOW VARIABLES
 com! QS Q SHOW GLOBAL STATUS
 com! QP Q SHOW FULL PROCESSLIST
 com! -nargs=1 QI Q SHOW FULL COLUMNS FROM <args>
+com! -nargs=1 QH Q SELECT * FROM <args> LIMIT 50
 com! -nargs=1 QA Q SELECT * FROM <args>
 com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
 
