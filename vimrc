@@ -13,7 +13,7 @@ set mouse= nowrap noswapfile viminfo=
 set laststatus=2
 
 " complete only from current buffer
-set complete=.
+set complete=. completeopt=
 
 " keep undo history on unload
 set hidden
