@@ -126,7 +126,7 @@ com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
 " --- MySQL ---
 
 " set login path and optionally database (e.g. :DB main databaseta)
-com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s "	"'
+com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s $''\t'''
 
 " set login path and optionally database (verbose output, no tabulation)
 com! -nargs=1 DBV let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
