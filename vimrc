@@ -36,18 +36,16 @@ let g:sql_type_default = 'mysql'
 
 " --- mappings ---
 
-nmap <Space> :w<CR>
-cmap w!! w !sudo tee > /dev/null %
-
 imap jj <Esc>
-nmap <Tab> :setl ts=
-nmap <CR> :setl wrap!<CR>
+nmap <Space> :w<CR>
+vmap <CR> :setl wrap!<CR>
+
+cmap T setl ts=
+cmap W w !sudo tee > /dev/null %
 
 set pastetoggle=<C-Y>
 
-nmap <C-J> :lnext<CR>
-nmap <C-K> :lprev<CR>
-nmap <C-H> :ll<CR>
+nmap <C-E> :lnext<CR>
 
 
 " --- autocmds ---
@@ -158,7 +156,8 @@ com! O so ~/.vimrc
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- swap list items ---
-vmap K :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
+vmap a :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
+" test: (aaaaa, bbbb, ccc, ddddddd)
 
 " open web page in text-based browser
 com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
