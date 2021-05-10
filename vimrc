@@ -33,6 +33,9 @@ let g:netrw_banner = 0
 " make MySQL the default SQL dialect
 let g:sql_type_default = 'mysql'
 
+" disable stupid SQL <C-C> mapping
+let g:omni_sql_no_default_maps = 1
+
 
 " --- mappings ---
 
