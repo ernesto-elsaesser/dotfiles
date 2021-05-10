@@ -40,12 +40,11 @@ imap jj <Esc>
 nmap <Space> :w<CR>
 vmap <CR> :setl wrap!<CR>
 
-cmap T setl ts=
 cmap W w !sudo tee > /dev/null %
 
 set pastetoggle=<C-Y>
 
-nmap <C-E> :lnext<CR>
+nmap <C-E> :lne<CR>
 
 
 " --- autocmds ---
@@ -67,7 +66,7 @@ augroup END
 
 " --- temporary buffers ---
 
-com! -bar NT new | setl bt=nofile bh=wipe nobl
+com! -bar ST new | setl bt=nofile bh=wipe nobl
 com! -bar VT vert new | setl bt=nofile bh=wipe nobl
 
 
@@ -127,10 +126,13 @@ com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
 " --- MySQL ---
 
 " set login path and optionally database (e.g. :DB main databaseta)
-com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
+com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s "	"'
+
+" set login path and optionally database (verbose output, no tabulation)
+com! -nargs=1 DBV let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
 
 " paste the results of the specified SQL query into the current buffer
-com! -nargs=1 Q let $QRY = <q-args> | NT | exec 'silent read !' . g:sql_cmd | 0 | setl ts=20
+com! -nargs=1 Q let $QRY = <q-args> | ST | exec 'silent read !' . g:sql_cmd | 0 | setl ts=20
 
 " execute the last yanked SQL query
 com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
@@ -154,6 +156,9 @@ com! O so ~/.vimrc
 
 " update config
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
+
+" set tab width
+com! -nargs=1 T set tabstop=<args>
 
 " --- swap list items ---
 vmap a :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
