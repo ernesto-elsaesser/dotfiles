@@ -41,7 +41,7 @@ let g:omni_sql_no_default_maps = 1
 
 imap jj <Esc>
 nmap <Space> :w<CR>
-vmap <CR> :setl wrap!<CR>
+nmap <CR> :setl wrap!<CR>
 
 cmap w!! w !sudo tee > /dev/null %
 
