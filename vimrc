@@ -40,7 +40,7 @@ imap jj <Esc>
 nmap <Space> :w<CR>
 vmap <CR> :setl wrap!<CR>
 
-cmap W w !sudo tee > /dev/null %
+cmap w!! w !sudo tee > /dev/null %
 
 set pastetoggle=<C-Y>
 
@@ -129,7 +129,7 @@ com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
 com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s $''\t'''
 
 " set login path and optionally database (verbose output, no tabulation)
-com! -nargs=1 DBV let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
+com! -nargs=1 DV let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
 
 " paste the results of the specified SQL query into the current buffer
 com! -nargs=1 Q let $QRY = <q-args> | ST | exec 'silent 0read !' . g:sql_cmd | 0
