@@ -12,13 +12,13 @@ set mouse= nowrap noswapfile viminfo=
 " always show status line
 set laststatus=2
 
-" complete only from current buffer
+" complete only from current buffer, no popup menu
 set complete=. completeopt=
 
 " keep undo history on unload
 set hidden
 
-" universal brief error format (FILE:LINE ERR_MSG)
+" universal brief error format [FILE:LINE ERR_MSG]
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
 
@@ -158,7 +158,7 @@ com! O so ~/.vimrc
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- swap list items ---
-vmap K :s/\%V\([^,]\+\)\(.*\), \([^,]\+\)\%V/\3\2, \1/<CR>
+vmap K :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
 
 " open web page in text-based browser
 com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
