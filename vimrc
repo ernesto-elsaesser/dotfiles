@@ -128,12 +128,12 @@ com! -nargs=1 D let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t
 com! -nargs=1 DD let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
 
 " paste the results of the specified SQL query into the current buffer
-com! -nargs=1 Q let $QRY = <q-args> | ST | exec 'silent 0read !' . g:sql_cmd | 0
+com! -nargs=1 Q let $QRY = <q-args> | B | exec 'silent 0read !' . g:sql_cmd | 0
 
 " execute the last yanked SQL query
 com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
 
-cnoremap SW SHOW 
+cnoremap SH SHOW 
 cnoremap DA DATABASES
 cnoremap TA TABLES
 cnoremap VA VARIABLES
@@ -161,7 +161,7 @@ com! -nargs=1 T set tabstop=<args>
 " Python REPL
 com! P ter ++close python
 
-" swap list items
+" arrange list items
 vmap a :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
 " test: (aaaaa, bbbb, ccc, ddddddd)
 
