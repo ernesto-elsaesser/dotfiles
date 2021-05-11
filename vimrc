@@ -69,8 +69,8 @@ augroup END
 
 " --- temporary buffers ---
 
-com! -bar ST new | setl bt=nofile bh=wipe nobl
-com! -bar VT vert new | setl bt=nofile bh=wipe nobl
+com! -bar B new | setl bt=nofile bh=wipe nobl
+com! -bar BB vert new | setl bt=nofile bh=wipe nobl
 
 
 " --- script execution ---
@@ -111,10 +111,10 @@ else
 endif
 
 " open git shell
-com! L call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
+com! G call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 
 " show HEAD version of current file (diff)
-com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git show "HEAD:./' . ic[0] . '"' | exec ic[1] | let &ft = ic[2]
+com! V let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
 
 
 " --- Python ---
@@ -123,16 +123,16 @@ com! D let ic = [expand('%:.'), line('.'), &ft] | VT | exec 'silent read !git sh
 com! P ter ++close python
 
 " lint current file
-com! PL lex system('pylint --output-format=parseable -sn ' . expand('%'))
+com! L lex system('pylint --output-format=parseable -sn ' . expand('%'))
 
 
 " --- MySQL ---
 
 " set login path and optionally database (e.g. :DB main databaseta)
-com! -nargs=1 DB let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s $''\t'''
+com! -nargs=1 D let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s $''\t'''
 
 " set login path and optionally database (verbose output, no tabulation)
-com! -nargs=1 DV let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
+com! -nargs=1 DD let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
 
 " paste the results of the specified SQL query into the current buffer
 com! -nargs=1 Q let $QRY = <q-args> | ST | exec 'silent 0read !' . g:sql_cmd | 0
@@ -140,16 +140,18 @@ com! -nargs=1 Q let $QRY = <q-args> | ST | exec 'silent 0read !' . g:sql_cmd | 0
 " execute the last yanked SQL query
 com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
 
-" shortcuts for common SQL queries
-com! QD Q SHOW DATABASES
-com! QT Q SHOW TABLES
-com! QV Q SHOW VARIABLES
-com! QS Q SHOW GLOBAL STATUS
-com! QP Q SHOW FULL PROCESSLIST
-com! -nargs=1 QI Q SHOW FULL COLUMNS FROM <args>
-com! -nargs=1 QH Q SELECT * FROM <args> LIMIT 50
-com! -nargs=1 QA Q SELECT * FROM <args>
-com! -nargs=1 QC Q SELECT COUNT(*) FROM <args>
+cnoremap SW SHOW 
+cnoremap DA DATABASES
+cnoremap TA TABLES
+cnoremap VA VARIABLES
+cnoremap ST GLOBAL STATUS
+cnoremap PR FULL PROCESSLIST
+cnoremap CL FULL COLUMNS FROM 
+
+cnoremap SE SELECT 
+cnoremap SA SELECT * FROM 
+cnoremap SC SELECT COUNT(*) FROM 
+cnoremap LI LIMIT 50
 
 
 " -- misc --
