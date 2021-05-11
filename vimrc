@@ -47,8 +47,9 @@ cmap w!! w !sudo tee > /dev/null %
 
 set pastetoggle=<C-Y>
 
-nmap <C-Q> :cc<CR>
-nmap <C-E> :cn<CR>
+nmap <Left> :cc<CR>
+nmap <Down> :cn<CR>
+nmap <Up> :cp<CR>
 
 
 " --- autocmds ---
