@@ -114,7 +114,7 @@ endif
 com! G call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 
 " show HEAD version of current file (diff)
-com! V let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
+com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
 
 
 " --- Python ---
