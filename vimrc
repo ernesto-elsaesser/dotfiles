@@ -18,6 +18,9 @@ set complete=. completeopt=
 " keep undo history on unload
 set hidden
 
+" universal error format [FILE:LINE: ERR_MSG]
+set errorformat=%A%f:%l:\ %m,%-G%.%#
+
 
 " --- variables ---
 
