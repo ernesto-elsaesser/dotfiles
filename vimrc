@@ -18,9 +18,6 @@ set complete=. completeopt=
 " keep undo history on unload
 set hidden
 
-" universal brief error format [FILE:LINE ERR_MSG]
-set errorformat=%A%f:%l:\ %m,%-G%.%#
-
 
 " --- variables ---
 
@@ -117,15 +114,6 @@ com! G call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
 
 
-" --- Python ---
-
-" open Python REPL
-com! P ter ++close python
-
-" lint current file
-com! L lex system('pylint --output-format=parseable -sn ' . expand('%'))
-
-
 " --- MySQL ---
 
 " set login path and optionally database (e.g. :DB main databaseta)
@@ -165,7 +153,10 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 " set tab width
 com! -nargs=1 T set tabstop=<args>
 
-" --- swap list items ---
+" Python REPL
+com! P ter ++close python
+
+" swap list items
 vmap a :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
 " test: (aaaaa, bbbb, ccc, ddddddd)
 
