@@ -21,6 +21,9 @@ set hidden
 " universal error format [FILE:LINE: ERR_MSG]
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
+" Quickly turn paste on and off in insert mode
+set pastetoggle=<C-Y>
+
 
 " --- variables ---
 
@@ -40,13 +43,17 @@ let g:omni_sql_no_default_maps = 1
 " --- mappings ---
 
 imap jj <Esc>
+
+" quick save
 nmap <Space> :w<CR>
+
+" toggle line wrapping
 nmap <CR> :setl wrap!<CR>
 
+" write as root
 cmap w!! w !sudo tee > /dev/null %
 
-set pastetoggle=<C-Y>
-
+" iterate quickfix list
 nmap <Left> :cc<CR>
 nmap <Down> :cn<CR>
 nmap <Up> :cp<CR>
@@ -161,8 +168,8 @@ com! -nargs=1 T set tabstop=<args>
 " Python REPL
 com! P ter ++close python
 
-" arrange list items
-vmap a :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
+" swap list items
+vmap z :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
 " test: (aaaaa, bbbb, ccc, ddddddd)
 
 " open web page in text-based browser
