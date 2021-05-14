@@ -157,13 +157,16 @@ cnoremap LI LIMIT 50
 " -- misc --
 
 " reload config
-com! O so ~/.vimrc
+com! O source ~/.vimrc
 
 " update config
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " set tab width
 com! -nargs=1 T set tabstop=<args>
+
+" open notes
+com! K edit ~/notes.md
 
 " Python REPL
 com! P ter ++close python
