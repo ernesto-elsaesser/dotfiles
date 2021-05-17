@@ -54,9 +54,9 @@ nmap <CR> :setl wrap!<CR>
 cmap w!! w !sudo tee > /dev/null %
 
 " iterate quickfix list
-nmap <Left> :cc<CR>
-nmap <Down> :cn<CR>
-nmap <Up> :cp<CR>
+nmap <C-E> :cc<CR>
+nmap <Left> :cp<CR>
+nmap <Right> :cn<CR>
 
 
 " --- autocmds ---
