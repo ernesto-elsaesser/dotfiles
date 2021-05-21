@@ -140,18 +140,16 @@ com! -nargs=1 Q let $QRY = <q-args> | B | exec 'silent 0read !' . g:sql_cmd | 0
 " execute the last yanked SQL query
 com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
 
-cnoremap SH SHOW 
-cnoremap DA DATABASES
-cnoremap TA TABLES
-cnoremap VA VARIABLES
-cnoremap ST GLOBAL STATUS
-cnoremap PR FULL PROCESSLIST
-cnoremap CL FULL COLUMNS FROM 
+com! QD Q SHOW DATABASES
+com! QT Q SHOW TABLES
+com! QV Q SHOW VARIABLES
+com! QG Q SHOW GLOBAL STATUS
+com! QP Q SHOW FULL PROCESSLIST
 
-cnoremap SE SELECT 
-cnoremap SA SELECT * FROM 
-cnoremap SC SELECT COUNT(*) FROM 
-cnoremap LI LIMIT 50
+cnoremap QC Q SHOW FULL COLUMNS FROM 
+cnoremap QS Q SELECT 
+cnoremap QA Q SELECT * FROM 
+cnoremap QN Q SELECT COUNT(*) FROM 
 
 
 " -- misc --
