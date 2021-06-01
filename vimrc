@@ -144,10 +144,10 @@ com! QV Q SHOW VARIABLES
 com! QG Q SHOW GLOBAL STATUS
 com! QP Q SHOW FULL PROCESSLIST
 
-cnoremap QC Q SHOW FULL COLUMNS FROM 
-cnoremap QS Q SELECT 
-cnoremap QA Q SELECT * FROM 
-cnoremap QN Q SELECT COUNT(*) FROM 
+cnoremap QC Q SHOW FULL COLUMNS FROM
+cnoremap QS Q SELECT
+cnoremap QA Q SELECT * FROM
+cnoremap QN Q SELECT COUNT(*) FROM
 
 
 " -- misc --
