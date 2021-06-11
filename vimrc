@@ -133,7 +133,7 @@ com! -nargs=1 D let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t
 com! -nargs=1 DD let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
 
 " paste the results of the specified SQL query into the current buffer
-com! -nargs=1 Q let $QRY = <q-args> | B | file $QRY[:32] | exec 'silent 0read !' . g:sql_cmd | 0
+com! -nargs=1 Q let $QRY = <q-args> | B | exec 'file '.$QRY[:64] | exec 'silent 0read !' . g:sql_cmd | 0
 
 " execute the last yanked SQL query
 com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
