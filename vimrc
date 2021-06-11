@@ -144,8 +144,8 @@ fun! Query(query, verbose, format)
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    let timestamp = strftime('%T')
-    exec 'file ' . query[:64] . ' ' . timestamp
+    let bufname = query[:64] . ' [' . strftime('%T') . ']'
+    exec 'file ' . bufname
     exec 'silent 0read !' . cmd
     0
 endfun
