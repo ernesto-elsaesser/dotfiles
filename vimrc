@@ -126,17 +126,30 @@ com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git sho
 
 " --- MySQL ---
 
-" set login path and optionally database (e.g. :DB main databaseta)
-com! -nargs=1 D let g:sql_cmd = 'mysql --login-path=<args> -e "$QRY" | column -t -s $''\t'''
+" set login path and optionally database (e.g. :D main databaseta)
+com! -nargs=1 D let g:sql_login = <q-args>
 
-" set login path and optionally database (verbose output, no tabulation)
-com! -nargs=1 DD let g:sql_cmd = 'mysql --login-path=<args> -vv -e "$QRY"'
+fun! Query(query, verbose, format)
+    let query = substitute(a:query, '\n', " ", 'g')
+    let query = substitute(query, '"', "'", 'g')
 
-" paste the results of the specified SQL query into the current buffer
-com! -nargs=1 Q let $QRY = <q-args> | B | exec 'file '.$QRY[:64] | exec 'silent 0read !' . g:sql_cmd | 0
+    let cmd = 'mysql --login-path=' . g:sql_login
+    if a:verbose
+        let cmd .= ' -vv'
+    endif
+    let cmd .= ' -e "' . query . '"'
+    if a:format
+        let cmd .= ' | column -t -s $''\t'''
+    endif
 
-" execute the last yanked SQL query
-com! QQ exec 'Q ' . substitute(@", '"', "'", 'g')
+    new
+    setlocal buftype=nofile bufhidden=wipe
+    exec 'file ' . query[:64]
+    exec 'silent 0read !' . cmd
+    0
+endfun
+
+com! -nargs=1 Q call Query(<q-args>, 0, 1)
 
 com! QD Q SHOW DATABASES
 com! QT Q SHOW TABLES
@@ -148,6 +161,9 @@ cnoremap QI Q SHOW FULL COLUMNS FROM
 cnoremap QS Q SELECT 
 cnoremap QA Q SELECT * FROM 
 cnoremap QC Q SELECT COUNT(*) FROM 
+
+" execute the last yanked SQL query
+com! QQ call Query(@", 0, 1)
 
 
 " -- misc --
