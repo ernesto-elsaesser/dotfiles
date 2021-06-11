@@ -144,11 +144,13 @@ fun! Query(query, verbose, format)
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    exec 'file ' . query[:64]
+    let timestamp = strftime('%T')
+    exec 'file ' . query[:64] . ' ' . timestamp
     exec 'silent 0read !' . cmd
     0
 endfun
 
+" print results of an SQL query in a new scratch buffer
 com! -nargs=1 Q call Query(<q-args>, 0, 1)
 
 com! QD Q SHOW DATABASES
