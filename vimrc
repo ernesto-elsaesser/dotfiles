@@ -127,34 +127,37 @@ com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git sho
 " --- MySQL ---
 
 " set login path and optionally database
-com! -nargs=1 D let g:mysql_cmd = 'mysql --login-path=<args>'
+com! -nargs=1 D let g:sql_login = <q-args>
 
 " MySQL interactive session
-com! M exec 'ter ' . g:mysql_cmd
+com! M exec 'ter mysql --login-path=' . g:sql_login
 
+" print results of an SQL query in a new scratch buffer
 fun! Query(query, verbose, format)
     let query = substitute(a:query, '\n', " ", 'g')
     let query = substitute(query, '"', "'", 'g')
 
-    let mysql_args = '-e "' . query . '"'
+    let cmd = 'mysql --login-path=' . g:sql_login
     if a:verbose
         let mysql_args .= ' -vv'
     endif
+    let cmd .= ' -e "' . query . '"'
     if a:format
-        let mysql_args .= ' | column -t -s $''\t'''
+        let cmd .= ' | column -t -s $''\t'''
     endif
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    let bufname = query[:64] . ' [' . strftime('%T') . ']'
+    let bufname =  g:sql_login . ': ' . query[:64]
     exec 'file ' . bufname
-    exec 'silent 0read !' . g:mysql_cmd . ' ' . mysql_args
+    exec 'silent 0read !' . cmd
     0
 endfun
 
-" print results of an SQL query in a new scratch buffer
 com! -nargs=1 Q call Query(<q-args>, 0, 1)
+com! -nargs=1 QX call Query(<q-args>, 1, 0)
 
+" query shortcuts
 com! QD Q SHOW DATABASES
 com! QT Q SHOW TABLES
 com! QV Q SHOW VARIABLES
