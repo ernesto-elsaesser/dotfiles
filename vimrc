@@ -143,10 +143,6 @@ fun! Query(query, bufname, explicit)
         let cmd .= ' | column -t -s $''\t'''
     endif
 
-    let bufname = a:query[:60]
-    let bufname = substitute(bufname, '\n', " ", 'g')
-    let bufname = substitute(bufname, "'", '"', 'g')
-
     new
     setlocal buftype=nofile bufhidden=wipe
     exec 'file ' . a:bufname . ' [' . g:sql_login . ']'
