@@ -126,27 +126,29 @@ com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git sho
 
 " --- MySQL ---
 
-" set login path and optionally database (e.g. :D main databaseta)
-com! -nargs=1 D let g:sql_login = <q-args>
+" set login path and optionally database
+com! -nargs=1 D let g:mysql_cmd = 'mysql --login-path=<args>'
+
+" MySQL interactive session
+com! M exec 'ter ' . g:mysql_cmd
 
 fun! Query(query, verbose, format)
     let query = substitute(a:query, '\n', " ", 'g')
     let query = substitute(query, '"', "'", 'g')
 
-    let cmd = 'mysql --login-path=' . g:sql_login
+    let mysql_args = '-e "' . query . '"'
     if a:verbose
-        let cmd .= ' -vv'
+        let mysql_args .= ' -vv'
     endif
-    let cmd .= ' -e "' . query . '"'
     if a:format
-        let cmd .= ' | column -t -s $''\t'''
+        let mysql_args .= ' | column -t -s $''\t'''
     endif
 
     new
     setlocal buftype=nofile bufhidden=wipe
     let bufname = query[:64] . ' [' . strftime('%T') . ']'
     exec 'file ' . bufname
-    exec 'silent 0read !' . cmd
+    exec 'silent 0read !' . g:mysql_cmd . ' ' . mysql_args
     0
 endfun
 
