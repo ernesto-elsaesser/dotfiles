@@ -190,6 +190,9 @@ com! K edit ~/notes.md
 " Python REPL
 com! P ter ++close python
 
+" Python REPL after executing script
+com! PI ter ++close python -i %
+
 " swap list items
 vmap z :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
 " test: (aaaaa, bbbb, ccc, ddddddd)
