@@ -127,6 +127,18 @@ com! L call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
 
 
+" --- Python ---
+
+" Python REPL
+com! P ter ++close python
+
+" run Python script
+com! PR ter python %
+
+" Python REPL after executing script
+com! PI ter ++close python -i %
+
+
 " --- MySQL ---
 
 " set login path and optionally database
@@ -186,12 +198,6 @@ com! -nargs=1 T set tabstop=<args>
 
 " open notes
 com! K edit ~/notes.md
-
-" Python REPL
-com! P ter ++close python
-
-" Python REPL after executing script
-com! PI ter ++close python -i %
 
 " swap list items
 vmap z :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
