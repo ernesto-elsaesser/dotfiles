@@ -132,9 +132,6 @@ com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git sho
 " Python REPL
 com! P ter ++close python
 
-" run Python script
-com! PR ter python %
-
 " Python REPL after executing script
 com! PI ter ++close python -i %
 
