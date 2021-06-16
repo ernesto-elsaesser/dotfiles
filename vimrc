@@ -45,6 +45,9 @@ let g:omni_sql_no_default_maps = 1
 " quick save
 nmap <Space> :w<CR>
 
+" open parent folder
+nmap - :E<CR>
+
 " toggle line wrapping
 nmap <CR> :setl wrap!<CR>
 
