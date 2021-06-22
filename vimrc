@@ -69,7 +69,7 @@ augroup vimrc
     autocmd BufEnter * setlocal formatoptions-=o formatoptions-=r
 
     " toggle netrw size style
-    autocmd FileType netrw nmap <buffer> s :let g:netrw_sizestyle='H'<CR><C-L>
+    autocmd FileType netrw nmap <buffer> z :let g:netrw_sizestyle='H'<CR><C-L>
     autocmd FileType netrw nmap <buffer> x :let g:netrw_sizestyle='b'<CR><C-L>
 
     " fix netrw highlighting (red background)
