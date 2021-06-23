@@ -40,29 +40,6 @@ let g:sql_type_default = 'mysql'
 let g:omni_sql_no_default_maps = 1
 
 
-" --- mappings ---
-
-" normal mode
-imap jj <Esc>
-
-" quick save
-nmap <Space> :w<CR>
-
-" open parent folder
-nmap - :E<CR>
-
-" toggle line wrapping
-nmap <CR> :setl wrap!<CR>
-
-" write as root
-cmap w!! w !sudo tee > /dev/null %
-
-" iterate quickfix list
-nmap <C-E> :cc<CR>
-nmap <Left> :cp<CR>
-nmap <Right> :cn<CR>
-
-
 " --- autocmds ---
 
 augroup vimrc
@@ -193,15 +170,38 @@ com! O source ~/.vimrc
 " update config
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
-" set tab width
-com! -nargs=1 T set tabstop=<args>
+" open web page in text-based browser
+com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
 
-" open notes
-com! K edit ~/notes.md
+
+" --- mappings ---
+
+" normal mode
+imap cc <Esc>
+vmap cc <Esc>
+
+" quick save
+nmap <Space> :w<CR>
+
+" toggle line wrapping
+nmap <CR> :setl wrap!<CR>
+
+" open parent folder
+nmap - :E<CR>
+
+" window shortcuts
+nmap K :sp ~/notes.md<CR>
+nmap L :L<CR>
+nmap M :q<CR>
+
+" write as root
+cmap w!! w !sudo tee > /dev/null %
+
+" iterate quickfix list
+nmap <C-E> :cc<CR>
+nmap <Left> :cp<CR>
+nmap <Right> :cn<CR>
 
 " swap list items
 vmap z :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
 " test: (aaaaa, bbbb, ccc, ddddddd)
-
-" open web page in text-based browser
-com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
