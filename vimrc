@@ -42,6 +42,9 @@ let g:omni_sql_no_default_maps = 1
 
 " --- mappings ---
 
+" normal mode
+imap jj <Esc>
+
 " quick save
 nmap <Space> :w<CR>
 
