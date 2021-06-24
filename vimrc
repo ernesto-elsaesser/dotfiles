@@ -176,9 +176,6 @@ com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
 
 " --- mappings ---
 
-" normal mode
-inoremap bb <Esc>
-
 " quick save
 nnoremap <Space> :w<CR>
 
