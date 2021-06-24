@@ -177,28 +177,31 @@ com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
 " --- mappings ---
 
 " normal mode
-imap bb <Esc>
+inoremap bb <Esc>
 
 " quick save
-nmap <Space> :w<CR>
+nnoremap <Space> :w<CR>
 
 " toggle line wrapping
-nmap <CR> :setl wrap!<CR>
+nnoremap <CR> :setl wrap!<CR>
 
 " open parent folder
-nmap - :E<CR>
+nnoremap - :E<CR>
 
 " window shortcuts
-nmap K :sp ~/notes.md<CR>
-nmap L :L<CR>
-
-" write as root
-cmap w!! w !sudo tee > /dev/null %
+nnoremap K :sp ~/notes.md<CR>
+nnoremap L :L<CR>
 
 " iterate quickfix list
-nmap <C-E> :cc<CR>
-nmap <Left> :cp<CR>
-nmap <Right> :cn<CR>
+nnoremap <C-E> :cc<CR>
+nnoremap <Left> :cp<CR>
+nnoremap <Right> :cn<CR>
+
+" command mode home
+cnoremap <C-A> <Home>
+
+" write as root
+cnoremap w!! w !sudo tee > /dev/null %
 
 " swap list items
 vmap z :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
