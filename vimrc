@@ -177,7 +177,7 @@ com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
 " --- mappings ---
 
 " normal mode
-imap vv <Esc>
+imap cc<Esc>
 
 " quick save
 nmap <Space> :w<CR>
@@ -191,7 +191,6 @@ nmap - :E<CR>
 " window shortcuts
 nmap K :sp ~/notes.md<CR>
 nmap L :L<CR>
-nmap M :q<CR>
 
 " write as root
 cmap w!! w !sudo tee > /dev/null %
