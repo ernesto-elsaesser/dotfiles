@@ -189,7 +189,7 @@ nnoremap <CR> :setl wrap!<CR>
 nnoremap - :E<CR>
 
 " window shortcuts
-nnoremap K :sp ~/notes.md<CR>
+nnoremap K :vs ~/notes.md<CR>
 nnoremap L :L<CR>
 
 " iterate quickfix list
