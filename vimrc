@@ -177,8 +177,7 @@ com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
 " --- mappings ---
 
 " normal mode
-imap cc <Esc>
-vmap cc <Esc>
+imap vv <Esc>
 
 " quick save
 nmap <Space> :w<CR>
