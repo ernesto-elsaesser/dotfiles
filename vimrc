@@ -101,19 +101,19 @@ else
 endif
 
 " open git shell
-com! L call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
+com! Git call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 
 " show HEAD version of current file (diff)
-com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
+com! Dif let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
 
 
 " --- Python ---
 
 " Python REPL
-com! P ter ++close python
+com! Pyr ter ++close python
 
 " Python REPL after executing script
-com! PI ter ++close python -i %
+com! Pyi ter ++close python -i %
 
 
 " --- MySQL ---
@@ -170,18 +170,19 @@ com! O source ~/.vimrc
 " update config
 com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
-" open web page in text-based browser
-com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
-
 
 " --- mappings ---
 
-" exit insert mode
+" umlauts
 inoremap ö <Esc>
-
-" angle brackets
-inoremap ü <
-inoremap ä >
+imap ä <
+imap Ä >
+nnoremap ä <<
+nnoremap Ä >>
+nnoremap ö :Git<CR>
+nnoremap Ö :vs ~/notes.md<CR>
+nnoremap ü :Pyr<CR>
+nnoremap Ü :Pyi<CR>
 
 " quick save
 nnoremap <Space> :w<CR>
@@ -191,10 +192,6 @@ nnoremap <CR> :setl wrap!<CR>
 
 " open parent folder
 nnoremap - :E<CR>
-
-" window shortcuts
-nnoremap ü :vs ~/notes.md<CR>
-nnoremap ä :L<CR>
 
 " iterate quickfix list
 nnoremap <C-E> :cc<CR>
