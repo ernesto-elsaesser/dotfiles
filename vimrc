@@ -176,6 +176,13 @@ com! -nargs=1 W ter ++close lynx -accept_all_cookies <args>
 
 " --- mappings ---
 
+" exit insert mode
+inoremap ö <Esc>
+
+" angle brackets
+inoremap ü <
+inoremap ä >
+
 " quick save
 nnoremap <Space> :w<CR>
 
@@ -186,8 +193,8 @@ nnoremap <CR> :setl wrap!<CR>
 nnoremap - :E<CR>
 
 " window shortcuts
-nnoremap K :vs ~/notes.md<CR>
-nnoremap L :L<CR>
+nnoremap ü :vs ~/notes.md<CR>
+nnoremap ä :L<CR>
 
 " iterate quickfix list
 nnoremap <C-E> :cc<CR>
