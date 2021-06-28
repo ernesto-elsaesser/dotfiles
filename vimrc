@@ -174,11 +174,9 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 " --- mappings ---
 
 " umlauts
+map ä <
+map Ä >
 inoremap ö <Esc>
-imap ä <
-imap Ä >
-nnoremap ä <<
-nnoremap Ä >>
 nnoremap ö :Git<CR>
 nnoremap Ö :vs ~/notes.md<CR>
 nnoremap ü :Pyr<CR>
