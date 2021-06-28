@@ -178,7 +178,7 @@ map ä <
 map Ä >
 inoremap ö <Esc>
 nnoremap ö :Git<CR>
-nnoremap Ö :vs ~/notes.md<CR>
+nnoremap Ö :sp ~/notes.md<CR>
 nnoremap ü :Pyr<CR>
 nnoremap Ü :Pyi<CR>
 
