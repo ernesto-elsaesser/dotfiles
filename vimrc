@@ -183,6 +183,7 @@ nnoremap ö :Git<CR>
 nnoremap Ö :sp ~/notes.md<CR>
 nnoremap ü :Pyr<CR>
 nnoremap Ü :Pyi<CR>
+nnoremap ß <C-]>
 
 " quick save
 nnoremap <Space> :w<CR>
