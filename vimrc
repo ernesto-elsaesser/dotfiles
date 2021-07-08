@@ -170,6 +170,7 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 " reuse DE umlauts
 map Ü <
 map Ä >
+map Ö <Esc>
 inoremap Ü <
 inoremap Ä >
 inoremap Ö <Esc>
