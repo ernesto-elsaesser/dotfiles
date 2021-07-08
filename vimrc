@@ -86,6 +86,9 @@ let s:sl = 'echo "###" `date` `pwd` "###"'
 " run a script with info header/footer
 com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, w:sc)
 
+" run Python script
+com! P R python %
+
 " rerun last script
 com! RR call Script(w:sc[1], w:sc)
 
@@ -105,15 +108,6 @@ com! Git call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 
 " show HEAD version of current file (diff)
 com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
-
-
-" --- Python ---
-
-" Python REPL
-com! Pyr ter ++close python
-
-" Python REPL after executing script
-com! Pyi ter ++close python -i %
 
 
 " --- MySQL ---
@@ -173,28 +167,26 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" umlauts
-map ä <
+" reuse DE umlauts
+map Ü <
 map Ä >
-inoremap ä <
+inoremap Ü <
 inoremap Ä >
-inoremap < ä
-inoremap > Ä
-inoremap ö <Esc>
+inoremap Ö <Esc>
+
 nnoremap ö :Git<CR>
-nnoremap Ö :sp ~/notes.md<CR>
-nnoremap ü :Pyr<CR>
-nnoremap Ü :Pyi<CR>
-nnoremap ß <C-]>
+nnoremap ä :sp ~/notes.md<CR>
+nnoremap ü :ter ++close python<CR>
+nnoremap ß :E<CR>
+
+" fix jumps for DE layout
+nnoremap ] <C-]>
 
 " quick save
 nnoremap <Space> :w<CR>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
-
-" open parent folder
-nnoremap - :E<CR>
 
 " iterate quickfix list
 nnoremap <C-E> :cc<CR>
