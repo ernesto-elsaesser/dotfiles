@@ -171,9 +171,9 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 map Ü <
 map Ä >
 map Ö <Esc>
-inoremap Ü <
-inoremap Ä >
-inoremap Ö <Esc>
+map! Ü <
+map! Ä >
+map! Ö <Esc>
 
 nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes.md<CR>
@@ -182,6 +182,7 @@ nnoremap ß :E<CR>
 
 " fix jumps for DE layout
 nnoremap ] <C-]>
+nnoremap [ <C-[>
 
 " quick save
 nnoremap <Space> :w<CR>
