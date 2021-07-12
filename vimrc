@@ -89,6 +89,9 @@ com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<
 " run Python script
 com! P R python %
 
+" run Python script and keep REPL open
+com! PI R python -i %
+
 " rerun last script
 com! RR call Script(w:sc[1], w:sc)
 
