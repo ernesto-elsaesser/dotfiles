@@ -9,7 +9,8 @@ alias co='git checkout'
 # create new branch
 alias cb='git checkout -b'
 
-alias a='git add --all; s'
+alias a='git add'
+alias A='git add --all; s'
 
 function commit_as {
     # use function to allow unquoted message
