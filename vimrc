@@ -181,7 +181,7 @@ map! Ö <Esc>
 nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes.md<CR>
 nnoremap ü :ter ++close python<CR>
-nnoremap ß :E<CR>
+nnoremap ß :sp ~/.vimrc<CR>
 
 " fix jumps for DE layout
 nnoremap ] <C-]>
@@ -189,6 +189,9 @@ nnoremap [ <C-[>
 
 " quick save
 nnoremap <Space> :w<CR>
+
+" open parent directory
+nnoremap _ :E<CR>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
