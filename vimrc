@@ -77,7 +77,7 @@ fun! Script(name, lines)
         endif
     endfor
 
-    call term_start(cmd, {'term_name': a:name, 'vertical': 1})
+    call term_start(cmd, {'term_name': a:name})
     let w:script = 1
 endfun
 
