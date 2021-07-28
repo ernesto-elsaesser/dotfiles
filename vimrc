@@ -69,8 +69,9 @@ fun! Script(name, lines)
     let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
     let cmd = ['bash', '-c', scrpt]
 
+    let bn = bufnr('')
     for info in getwininfo()
-        if get(info['variables'], 'script')
+        if get(info['variables'], 'script') == bn
             call win_gotoid(info['winid'])
             call term_start(cmd, {'term_name': a:name, 'curwin': 1})
             return
@@ -78,7 +79,7 @@ fun! Script(name, lines)
     endfor
 
     call term_start(cmd, {'term_name': a:name})
-    let w:script = 1
+    let w:script = bn
 endfun
 
 let s:sl = 'echo "###" `date` `pwd` "###"'
