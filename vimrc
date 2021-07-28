@@ -109,8 +109,11 @@ endif
 " open git shell
 com! Git call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 
-" show HEAD version of current file (diff)
+" show HEAD version of current file
 com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
+
+" show revision of current file (e.g. HEAD~2, master~3)
+com! -nargs=1 G let f = expand('%:.') | BB | exec 'silent read !git show "<args>:./' . f . '"'
 
 
 " --- MySQL ---
