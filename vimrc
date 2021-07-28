@@ -155,8 +155,8 @@ cnoremap QA Q SELECT * FROM
 cnoremap QC Q SELECT COUNT(*) FROM
 
 " execute the last yanked SQL query
-com! QQ call Query(@", 'Yanked', 0)
-com! QQX call Query(@", 'Yanked', 1)
+com! QQ call Query(@", strftime('SQL %H:%M:%S'), 0)
+com! QQX call Query(@", strftime('SQL %H:%M:%S'), 1)
 
 
 " -- misc --
