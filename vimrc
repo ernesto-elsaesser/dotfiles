@@ -126,7 +126,7 @@ com! -nargs=1 D let g:sql_login = <q-args>
 com! M exec 'ter mysql --login-path=' . g:sql_login
 
 " print results of an SQL query in a new scratch buffer
-fun! Query(query, bufname, explicit)
+fun! Query(query, explicit)
     let $QRY = a:query
 
     let cmd = 'mysql --login-path=' . g:sql_login . ' -e "$QRY"'
@@ -138,13 +138,14 @@ fun! Query(query, bufname, explicit)
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    exec 'file ' . a:bufname . ' [' . g:sql_login . ']'
+    let head = substitute(a:query[:32], '\n', ' ', 'g')
+    exec 'file ' . g:sql_login . strftime(' %H:%M:%S ') . head
     exec 'silent 0read !' . cmd
     0
 endfun
 
-com! -nargs=1 Q call Query(<q-args>, <q-args>, 0)
-com! -nargs=1 QX call Query(<q-args>, <q-args>, 1)
+com! -nargs=1 Q call Query(<q-args>, 0)
+com! -nargs=1 QX call Query(<q-args>, 1)
 
 " query shortcuts
 com! QD Q SHOW DATABASES
@@ -159,8 +160,8 @@ cnoremap QA Q SELECT * FROM
 cnoremap QC Q SELECT COUNT(*) FROM
 
 " execute the last yanked SQL query
-com! QQ call Query(@", strftime('SQL %H:%M:%S'), 0)
-com! QQX call Query(@", strftime('SQL %H:%M:%S'), 1)
+com! QQ call Query(@", 0)
+com! QQX call Query(@", 1)
 
 
 " -- misc --
