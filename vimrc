@@ -27,10 +27,10 @@ set pastetoggle=<C-Y>
 
 " --- variables ---
 
-" disable parenthese highlighting
-let loaded_matchparen = 1
+" less irritating parenthese highlighting
+hi MatchParen cterm=underline ctermbg=NONE
 
-" hide netrw banner
+" hide netrw banner by default
 let g:netrw_banner = 0
 
 " make MySQL the default SQL dialect
@@ -49,8 +49,8 @@ augroup vimrc
     autocmd BufEnter * setlocal formatoptions-=o formatoptions-=r
 
     " toggle netrw size style
-    autocmd FileType netrw nmap <buffer> z :let g:netrw_sizestyle='H'<CR><C-L>
-    autocmd FileType netrw nmap <buffer> x :let g:netrw_sizestyle='b'<CR><C-L>
+    autocmd FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
+    autocmd FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
 
     " fix netrw highlighting (red background)
     autocmd FileType netrw hi netrwMarkFile ctermbg=1
@@ -176,12 +176,12 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 " --- mappings ---
 
 " reuse DE umlauts
-map Ü <
+map Ü <Bar>
 map Ä >
-map Ö <Esc>
-map! Ü <
+map Ö <
+map! Ü <Bar>
 map! Ä >
-map! Ö <Esc>
+map! Ö <
 
 nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes.md<CR>
@@ -212,6 +212,7 @@ cnoremap <C-A> <Home>
 " write as root
 cnoremap w!! w !sudo tee > /dev/null %
 
-" swap list items
-vmap z :s/\%V\([^,]\+\)\(.*\), \([^,]\+\%V.\)/\3\2, \1/<CR>
-" test: (aaaaa, bbbb, ccc, ddddddd)
+" move list items
+nnoremap <C-F> vf,ldf,lp`[
+nnoremap <C-T> vF,dF,hp
+" test: (ddddddd, bbbb, ccc, aaaaaaa)
