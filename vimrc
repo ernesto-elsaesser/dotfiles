@@ -30,8 +30,10 @@ set pastetoggle=<C-Y>
 " less irritating parenthese highlighting
 hi MatchParen cterm=underline ctermbg=NONE
 
-" hide netrw banner by default
+" fine-tune netrw
 let g:netrw_banner = 0
+let g:netrw_maxfilenamelen = 20
+let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
 
 " make MySQL the default SQL dialect
 let g:sql_type_default = 'mysql'
@@ -138,7 +140,7 @@ fun! Query(query, explicit)
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    let head = substitute(a:query[:32], '\n', ' ', 'g')
+    let head = substitute(a:query[:48], '\n', ' ', 'g')
     exec 'file ' . g:sql_login . strftime(' %H:%M:%S ') . head
     exec 'silent 0read !' . cmd
     0
