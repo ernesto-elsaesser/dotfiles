@@ -186,7 +186,7 @@ map! Ä >
 map! Ö <
 
 nnoremap ö :Git<CR>
-nnoremap ä :sp ~/notes<CR>
+nnoremap ä :sp ~/notes.conf<CR>
 nnoremap ü :ter ++close python<CR>
 nnoremap ß :sp ~/.vimrc<CR>
 
