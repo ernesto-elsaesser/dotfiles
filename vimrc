@@ -184,6 +184,9 @@ map Ö <
 map! Ü <Bar>
 map! Ä >
 map! Ö <
+tmap Ü <Bar>
+tmap Ä >
+tmap Ö <
 
 nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes.conf<CR>
@@ -193,6 +196,9 @@ nnoremap ß :sp ~/.vimrc<CR>
 " fix jumps for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
+
+" quick buffer switch
+nnoremap <Tab> <C-W>w
 
 " quick save
 nnoremap <Space> :w<CR>
