@@ -178,27 +178,20 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 " --- mappings ---
 
 " reuse DE umlauts
-map Ü <Bar>
-map Ä >
-map Ö <
-map! Ü <Bar>
-map! Ä >
-map! Ö <
-tmap Ü <Bar>
-tmap Ä >
-tmap Ö <
+imap Ö <Esc>
 
 nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes.conf<CR>
 nnoremap ü :ter ++close python<CR>
 nnoremap ß :sp ~/.vimrc<CR>
 
+nnoremap Ö :cc<CR>
+nnoremap Ä :cp<CR>
+nnoremap Ü :cn<CR>
+
 " fix jumps for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
-
-" quick buffer switch
-nnoremap <Tab> <C-W>w
 
 " quick save
 nnoremap <Space> :w<CR>
@@ -208,11 +201,6 @@ nnoremap _ :E<CR>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
-
-" iterate quickfix list
-nnoremap <C-E> :cc<CR>
-nnoremap <Left> :cp<CR>
-nnoremap <Right> :cn<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
