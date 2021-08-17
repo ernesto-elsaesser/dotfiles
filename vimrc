@@ -186,8 +186,8 @@ nnoremap ü :ter ++close python<CR>
 nnoremap ß :sp ~/.vimrc<CR>
 
 nnoremap Ö :cc<CR>
-nnoremap Ä :cp<CR>
-nnoremap Ü :cn<CR>
+nnoremap Ü :cp<CR>
+nnoremap Ä :cn<CR>
 
 " fix jumps for DE layout
 nnoremap ] <C-]>
