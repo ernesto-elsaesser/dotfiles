@@ -24,6 +24,9 @@ set errorformat=%A%f:%l:\ %m,%-G%.%#
 " Quickly turn paste on and off in insert mode
 set pastetoggle=<C-Y>
 
+" always match all occurences of a pattern
+set gdefault
+
 
 " --- variables ---
 
