@@ -9,6 +9,9 @@ alias co='git checkout'
 # create new branch
 alias cb='git checkout -b'
 
+# rename current branch
+alias rn='git branch -m'
+
 alias a='git add'
 alias A='git add --all; s'
 
