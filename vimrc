@@ -143,7 +143,9 @@ fun! Query(query, explicit)
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    let head = substitute(a:query[:48], '\n', ' ', 'g')
+    let head = a:query[:48]
+    let head = substitute(head, '%', '§', 'g')
+    let head = substitute(head, '\n', ' ', 'g')
     exec 'file ' . g:sql_login . strftime(' %H:%M:%S ') . head
     exec 'silent 0read !' . cmd
     0
