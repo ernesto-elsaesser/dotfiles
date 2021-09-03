@@ -182,6 +182,9 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
+" brutal muscle memory retrainin
+inoremap <Backspace> <Nop>
+
 " reuse DE umlauts
 imap Ö <Esc>
 
