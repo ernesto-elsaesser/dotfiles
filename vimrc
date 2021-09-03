@@ -98,6 +98,9 @@ com! P R python %
 " run Python script and keep REPL open
 com! PI R python -i %
 
+" run yanked Python script and keep REPL open
+com! PY exec 'R python -i -c "' . @" . '"'
+
 " rerun last script
 com! RR call Script(w:sc[1], w:sc)
 
@@ -182,8 +185,8 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" brutal muscle memory retrainin
-inoremap <Backspace> <Nop>
+" brutal muscle memory retraining
+noremap <Backspace> <Nop>
 
 " reuse DE umlauts
 imap Ö <Esc>
