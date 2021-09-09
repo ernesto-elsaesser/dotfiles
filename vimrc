@@ -21,17 +21,17 @@ set hidden
 " universal error format [FILE:LINE: ERR_MSG]
 set errorformat=%A%f:%l:\ %m,%-G%.%#
 
-" Quickly turn paste on and off in insert mode
+" quickly turn paste on and off in insert mode
 set pastetoggle=<C-Y>
 
 " always match all occurences of a pattern
 set gdefault
 
-
-" --- variables ---
-
 " less irritating parenthese highlighting
 hi MatchParen cterm=underline ctermbg=NONE
+
+
+" --- variables ---
 
 " fine-tune netrw
 let g:netrw_banner = 0
@@ -54,8 +54,8 @@ augroup vimrc
     autocmd BufEnter * setlocal formatoptions-=o formatoptions-=r
 
     " toggle netrw size style
-    autocmd FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
-    autocmd FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
+    autocmd FileType netrw nnoremap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
+    autocmd FileType netrw nnoremap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
 
     " fix netrw highlighting (red background)
     autocmd FileType netrw hi netrwMarkFile ctermbg=1
@@ -165,7 +165,6 @@ com! QG Q SHOW GLOBAL STATUS
 com! QP Q SHOW FULL PROCESSLIST
 
 cnoremap QI Q SHOW FULL COLUMNS FROM
-cnoremap QS Q SELECT
 cnoremap QA Q SELECT * FROM
 cnoremap QC Q SELECT COUNT(*) FROM
 
@@ -220,6 +219,6 @@ cnoremap <C-A> <Home>
 cnoremap w!! w !sudo tee > /dev/null %
 
 " move list items
-nnoremap <C-F> vf,ldf,lp`[
-nnoremap <C-T> vF,dF,hp
-" test: (ddddddd, bbbb, ccc, aaaaaaa)
+nnoremap <C-F> mxv/.[,)}\]]<CR>d
+nnoremap <C-T> v/.[,)}\]]<CR>p`xhp
+" test: (ccc, dddddd, aaaaaaa, bbbb)
