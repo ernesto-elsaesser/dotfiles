@@ -31,7 +31,7 @@ set gdefault
 " --- syntax ---
 
 hi Comment ctermfg=darkgrey
-hi Constant ctermfg=yellow
+hi Constant ctermfg=darkgreen
 hi MatchParen cterm=underline ctermbg=NONE
 hi netrwMarkFile ctermbg=red
 
