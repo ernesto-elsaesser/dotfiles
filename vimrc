@@ -27,8 +27,13 @@ set pastetoggle=<C-Y>
 " always match all occurences of a pattern
 set gdefault
 
-" less irritating parenthese highlighting
+
+" --- syntax ---
+
+hi Comment ctermfg=darkgrey
+hi Constant ctermfg=yellow
 hi MatchParen cterm=underline ctermbg=NONE
+hi netrwMarkFile ctermbg=red
 
 
 " --- variables ---
@@ -56,9 +61,6 @@ augroup vimrc
     " toggle netrw size style
     autocmd FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
     autocmd FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
-
-    " fix netrw highlighting (red background)
-    autocmd FileType netrw hi netrwMarkFile ctermbg=1
 augroup END
 
 
