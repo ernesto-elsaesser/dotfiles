@@ -13,6 +13,9 @@ alias cb='git checkout -b'
 # rename current branch
 alias rn='git branch -m'
 
+# delete branch
+alias bd='git branch -d'
+
 # stage files
 alias a='git add'
 alias A='git add --all; s'
@@ -45,9 +48,6 @@ function push_all {
     git push
 }
 alias P='push_all'
-
-# delete branch
-alias bd='git branch -d'
 
 alias d='git diff'
 alias ds='git diff --staged'
