@@ -4,6 +4,7 @@ alias pl='git pull --ff-only'
 
 alias s='git status -s'
 
+# switch branch
 alias co='git checkout'
 
 # create new branch
@@ -12,8 +13,18 @@ alias cb='git checkout -b'
 # rename current branch
 alias rn='git branch -m'
 
+# stage files
 alias a='git add'
 alias A='git add --all; s'
+
+# unstage files
+alias r='git reset HEAD'
+
+# discard files
+alias u='git checkout --'
+
+# discard all changes in working dir (and index)
+alias rh='git reset --hard HEAD'
 
 function commit_as {
     # use function to allow unquoted message
@@ -58,16 +69,9 @@ alias b='git branch'
 alias ba='git branch -a'
 alias bv='git branch -vv'
 
+# rebase - argument is commit until which to rebase, e.g. HEAD~2
 alias rb='git rebase'
-
-# rebase interactively ('ri HEAD~2')
 alias ri='git rebase -i'
-
-# undo current changes ('u FILE')
-alias u='git reset HEAD'
-
-# discard all uncommit changes
-alias rh='git reset --hard'
 
 # print commit hash of the current commit
 alias h='git rev-parse HEAD'
