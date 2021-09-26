@@ -60,11 +60,11 @@ alias bv='git branch -vv'
 
 alias rb='git rebase'
 
-# rebase the last n commits interactively ('ri2')
-alias ri='git rebase -i HEAD~'
+# rebase interactively ('ri HEAD~2')
+alias ri='git rebase -i'
 
-# undo the last n commits ('u3')
-alias u='git reset HEAD~'
+# undo current changes ('u FILE')
+alias u='git reset HEAD'
 
 # discard all uncommit changes
 alias rh='git reset --hard'
