@@ -161,11 +161,11 @@ com! -nargs=1 QX call Query(<q-args>, 1)
 
 " query shortcuts
 com! QD Q SHOW DATABASES
-com! QT Q SHOW TABLES
 com! QV Q SHOW VARIABLES
 com! QG Q SHOW GLOBAL STATUS
 com! QP Q SHOW FULL PROCESSLIST
 
+cnoremap QT Q SHOW TABLES
 cnoremap QI Q SHOW FULL COLUMNS FROM
 cnoremap QA Q SELECT * FROM
 cnoremap QC Q SELECT COUNT(*) FROM

@@ -4,7 +4,7 @@ alias pl='git pull --ff-only'
 
 alias s='git status -s'
 
-# switch branch
+# switch branch ('co NAME') or unstage files ('co -- FILE')
 alias co='git checkout'
 
 # create new branch
@@ -20,14 +20,14 @@ alias bd='git branch -d'
 alias a='git add'
 alias A='git add --all; s'
 
-# unstage files
+# unstage files (reset index)
 alias r='git reset HEAD'
-
-# discard files
-alias u='git checkout --'
 
 # discard all changes in working dir (and index)
 alias rh='git reset --hard HEAD'
+
+# delete last commit (keep working dir for re-commit)
+alias rs='git reset HEAD~'
 
 function commit_as {
     # use function to allow unquoted message
