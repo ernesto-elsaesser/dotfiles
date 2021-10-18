@@ -61,6 +61,10 @@ augroup vimrc
     " toggle netrw size style
     au FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
     au FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
+
+    " notes syntax
+    au BufEnter notes syn match	Label "^#.*"
+
 augroup END
 
 
@@ -197,7 +201,7 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 imap Ö <Esc>
 
 nnoremap ö :Git<CR>
-nnoremap ä :sp ~/notes.conf<CR>
+nnoremap ä :sp ~/notes<CR>
 nnoremap ü :ter ++close python<CR>
 nnoremap ß :sp ~/.vimrc<CR>
 
