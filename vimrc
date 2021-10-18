@@ -12,11 +12,11 @@ set mouse= nowrap noswapfile viminfo=
 " always show status line
 set laststatus=2
 
+" persist undo history
+set undofile undodir=~/.vim/undo
+
 " complete only from current buffer, no popup menu
 set complete=. completeopt=
-
-" keep undo history on unload
-set hidden
 
 " universal error format [FILE:LINE: ERR_MSG]
 set errorformat=%A%f:%l:\ %m,%-G%.%#
@@ -53,21 +53,20 @@ let g:omni_sql_no_default_maps = 1
 " --- autocmds ---
 
 augroup vimrc
-    autocmd!
+    au!
 
     " disable comment continuation after ftplugins
-    autocmd BufEnter * setlocal formatoptions-=o formatoptions-=r
+    au BufEnter * setlocal formatoptions-=o formatoptions-=r
 
     " toggle netrw size style
-    autocmd FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
-    autocmd FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
+    au FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
+    au FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
 augroup END
 
 
 " --- temporary buffers ---
 
-com! -bar B new | setl bt=nofile bh=wipe
-com! -bar BB vert new | setl bt=nofile bh=wipe
+com! -bar B new | setl bt=nofile
 
 
 " --- script execution ---
@@ -120,11 +119,19 @@ endif
 " open git shell
 com! Git call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
 
-" show HEAD version of current file
-com! H let t = [expand('%:.'), line('.'), &ft] | BB | exec 'silent read !git show "HEAD:./' . t[0] . '"' | exec t[1] | let &ft = t[2]
+fun! LoadRevision(ref)
+    let relpath = expand('%:.')
+    let linenum = line('.')
+    let filetype = &ft
+    vne
+    exec 'silent read !git show "' . a:ref . ':./' . relpath . '"'
+    exec linenum
+    let &ft = filetype
+    setl bt=nofile
+endfun
 
-" show revision of current file (e.g. HEAD~2, master~3)
-com! -nargs=1 G let f = expand('%:.') | BB | exec 'silent read !git show "<args>:./' . f . '"'
+" show HEAD version of current file
+com! H call LoadRevision('HEAD')
 
 
 " --- MySQL ---
