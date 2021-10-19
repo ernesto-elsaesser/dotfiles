@@ -148,6 +148,11 @@ com! M exec 'ter mysql --login-path=' . g:sql_login
 
 " print results of an SQL query in a new scratch buffer
 fun! Query(query, explicit)
+    if !exists('g:sql_login')
+        echo 'no database specified'
+        return
+    endif
+
     let $QRY = a:query
 
     let cmd = 'mysql --login-path=' . g:sql_login . ' -e "$QRY"'
