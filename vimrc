@@ -217,9 +217,13 @@ nnoremap Ä :cn<CR>
 " fix jumps for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
+nnoremap & <C-^>
 
 " quick save
 nnoremap <Space> :w<CR>
+
+" open home folder
+nnoremap <C-H> :e ~/<CR>
 
 " open parent directory
 nnoremap _ :E<CR>
