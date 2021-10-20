@@ -106,6 +106,8 @@ com! PI R python -i %
 " run yanked Python script and keep REPL open
 com! PY exec 'R python -i -c "' . @" . '"'
 
+com! PP ter ++close python
+
 " rerun last script
 com! RR call Script(w:sc[1], w:sc)
 
@@ -203,12 +205,15 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 " --- mappings ---
 
 " reuse DE umlauts
-imap Ö <Esc>
-
 nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes<CR>
-nnoremap ü :ter ++close python<CR>
 nnoremap ß :sp ~/.vimrc<CR>
+
+nnoremap H <
+nnoremap L >
+nnoremap K H
+nnoremap J L
+nnoremap ü J
 
 nnoremap Ö :cc<CR>
 nnoremap Ü :cp<CR>
