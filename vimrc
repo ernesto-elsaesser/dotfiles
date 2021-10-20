@@ -209,10 +209,10 @@ nnoremap ö :Git<CR>
 nnoremap ä :sp ~/notes<CR>
 nnoremap ß :sp ~/.vimrc<CR>
 
-nnoremap H <
-nnoremap L >
-nnoremap K H
-nnoremap J L
+noremap H <
+noremap L >
+noremap K H
+noremap J L
 nnoremap ü J
 
 nnoremap Ö :cc<CR>
