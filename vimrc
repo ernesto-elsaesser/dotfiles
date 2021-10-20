@@ -204,22 +204,24 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" reuse DE umlauts
-nnoremap ö :Git<CR>
-nnoremap ä :sp ~/notes<CR>
-nnoremap ß :sp ~/.vimrc<CR>
+" adapt to DE keyboard layout
+imap Ö '
+imap Ä #
 
 noremap H <
 noremap L >
 noremap K H
 noremap J L
-nnoremap ü J
+
+nnoremap ö J
+nnoremap ä :Git<CR>
+nnoremap ü :sp ~/notes<CR>
+nnoremap ß :sp ~/.vimrc<CR>
 
 nnoremap Ö :cc<CR>
 nnoremap Ü :cp<CR>
 nnoremap Ä :cn<CR>
 
-" fix jumps for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
 nnoremap & <C-^>
