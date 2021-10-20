@@ -208,8 +208,8 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 imap Ö '
 imap Ä #
 
-noremap H <
-noremap L >
+noremap H <<
+noremap L >>
 noremap K H
 noremap J L
 
