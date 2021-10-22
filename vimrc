@@ -42,6 +42,7 @@ hi netrwMarkFile ctermbg=red
 let g:netrw_banner = 0
 let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
+let g:netrw_sizestyle = 'H'
 
 " make MySQL the default SQL dialect
 let g:sql_type_default = 'mysql'
@@ -57,10 +58,6 @@ augroup vimrc
 
     " disable comment continuation after ftplugins
     au BufEnter * setlocal formatoptions-=o formatoptions-=r
-
-    " toggle netrw size style
-    au FileType netrw nmap <buffer> H :let g:netrw_sizestyle='H'<CR><C-L>
-    au FileType netrw nmap <buffer> B :let g:netrw_sizestyle='b'<CR><C-L>
 
     " notes syntax
     au BufEnter notes syn match	Label "^#.*"
@@ -194,6 +191,9 @@ com! P ter ++close python
 
 " open scratch buffer
 com! B new | setl bt=nofile
+
+" switch to byte size style (hit CTRL-L to update)
+com! BS let g:netrw_sizestyle = 'b'
 
 " reload config
 com! O source ~/.vimrc
