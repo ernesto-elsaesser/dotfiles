@@ -68,11 +68,6 @@ augroup vimrc
 augroup END
 
 
-" --- temporary buffers ---
-
-com! -bar B new | setl bt=nofile
-
-
 " --- script execution ---
 
 fun! Script(name, lines)
@@ -98,15 +93,13 @@ let s:sl = 'echo "###" `date` `pwd` "###"'
 com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, w:sc)
 
 " run Python script
-com! P R python %
+com! RP R python %
 
 " run Python script and keep REPL open
-com! PI R python -i %
+com! RI R python -i %
 
 " run yanked Python script and keep REPL open
-com! PY exec 'R python -i -c "' . @" . '"'
-
-com! PP ter ++close python
+com! RY exec 'R python -i -c "' . @" . '"'
 
 " rerun last script
 com! RR call Script(w:sc[1], w:sc)
@@ -195,6 +188,12 @@ com! QQX call Query(@", 1)
 
 
 " -- misc --
+
+" open Python REPL
+com! P ter ++close python
+
+" open scratch buffer
+com! B new | setl bt=nofile
 
 " reload config
 com! O source ~/.vimrc
