@@ -142,11 +142,8 @@ com! H call LoadRevision('HEAD')
 
 " --- MySQL ---
 
-" set MySQL login path (required)
-com! -nargs=1 LP let g:mysql_login = <q-args>
-
-" set MySQL database (optional)
-com! -nargs=1 DB let g:mysql_db = <q-args>
+" set login path and optionally database
+com! -nargs=1 D let g:mysql_login = <q-args>
 
 " MySQL interactive session
 com! M exec 'ter mysql --login-path=' . g:mysql_login
@@ -160,14 +157,7 @@ fun! Query(query, explicit)
 
     let $QRY = a:query
 
-    let cmd = 'mysql --login-path=' . g:mysql_login
-
-    if exists('g:mysql_db')
-        let cmd .= ' ' . g:mysql_db
-    endif
-
-    let cmd .= ' -e "$QRY"'
-
+    let cmd = 'mysql --login-path=' . g:mysql_login . ' -e "$QRY"'
     if a:explicit
         let cmd .= ' -vv'
     else
@@ -179,7 +169,8 @@ fun! Query(query, explicit)
     let head = a:query[:60]
     let head = substitute(head, '%', '§', 'g')
     let head = substitute(head, '\n', ' ', 'g')
-    exec 'file ' . g:mysql_login . strftime(' %H:%M:%S ') . head
+    let path = split(g:mysql_login, ' ')[0]
+    exec 'file ' . path . strftime(' %H:%M:%S ') . head
     exec 'silent 0read !' . cmd
     0
 endfun
