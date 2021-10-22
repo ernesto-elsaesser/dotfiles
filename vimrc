@@ -142,22 +142,32 @@ com! H call LoadRevision('HEAD')
 
 " --- MySQL ---
 
-" set login path and optionally database
-com! -nargs=1 D let g:sql_login = <q-args>
+" set MySQL login path (required)
+com! -nargs=1 LP let g:mysql_login = <q-args>
+
+" set MySQL database (optional)
+com! -nargs=1 DB let g:mysql_db = <q-args>
 
 " MySQL interactive session
-com! M exec 'ter mysql --login-path=' . g:sql_login
+com! M exec 'ter mysql --login-path=' . g:mysql_login
 
 " print results of an SQL query in a new scratch buffer
 fun! Query(query, explicit)
-    if !exists('g:sql_login')
+    if !exists('g:mysql_login')
         echo 'no database specified'
         return
     endif
 
     let $QRY = a:query
 
-    let cmd = 'mysql --login-path=' . g:sql_login . ' -e "$QRY"'
+    let cmd = 'mysql --login-path=' . g:mysql_login
+
+    if exists('g:mysql_db')
+        let cmd .= ' ' . g:mysql_db
+    endif
+
+    let cmd .= ' -e "$QRY"'
+
     if a:explicit
         let cmd .= ' -vv'
     else
@@ -166,10 +176,10 @@ fun! Query(query, explicit)
 
     new
     setlocal buftype=nofile bufhidden=wipe
-    let head = a:query[:48]
+    let head = a:query[:60]
     let head = substitute(head, '%', '§', 'g')
     let head = substitute(head, '\n', ' ', 'g')
-    exec 'file ' . g:sql_login . strftime(' %H:%M:%S ') . head
+    exec 'file ' . g:mysql_login . strftime(' %H:%M:%S ') . head
     exec 'silent 0read !' . cmd
     0
 endfun
