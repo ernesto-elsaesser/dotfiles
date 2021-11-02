@@ -204,41 +204,41 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" adapt to DE keyboard layout
-imap Ö '
-imap Ä #
-
-nnoremap H <<
-nnoremap L >>
-vnoremap H <
-vnoremap L >
-nnoremap K H
-nnoremap J L
-
+" utilize DE umlauts in normal mode
 nnoremap ö J
 nnoremap ä :Git<CR>
 nnoremap ü :sp ~/notes<CR>
 nnoremap ß :sp ~/.vimrc<CR>
-
 nnoremap Ö :cc<CR>
 nnoremap Ü :cp<CR>
 nnoremap Ä :cn<CR>
 
+" fix jumping for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
 nnoremap & <C-^>
 
+" quick shifting
+nnoremap H <<
+nnoremap L >>
+vnoremap H <
+vnoremap L >
+
+" quick scrolling
+nnoremap K H
+nnoremap J L
+
 " quick save
 nnoremap <Space> :w<CR>
-
-" open home folder
-nnoremap <C-H> :e ~/<CR>
 
 " open parent directory
 nnoremap _ :E<CR>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
+
+" open home folder
+nnoremap <C-H> :e ~/<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
