@@ -204,7 +204,11 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" utilize DE umlauts in normal mode
+" make ' more accessible for DE layout
+imap Ö '
+nmap rÖ r'
+
+" mao DE umlauts in normal mode
 nnoremap ö J
 nnoremap ä :Git<CR>
 nnoremap ü :sp ~/notes<CR>
