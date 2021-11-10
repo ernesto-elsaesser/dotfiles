@@ -208,7 +208,7 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 imap Ö '
 nmap rÖ r'
 
-" mao DE umlauts in normal mode
+" map DE umlauts in normal mode
 nnoremap ö J
 nnoremap ä :Git<CR>
 nnoremap ü :sp ~/notes<CR>
@@ -220,7 +220,9 @@ nnoremap Ä :cn<CR>
 " fix jumping for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
-nnoremap & <C-^>
+
+" quick file switching
+nnoremap <Tab> <C-^>
 
 " quick shifting
 nnoremap H <<
@@ -240,9 +242,6 @@ nnoremap _ :E<CR>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
-
-" open home folder
-nnoremap <C-H> :e ~/<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
