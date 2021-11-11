@@ -38,6 +38,9 @@ hi netrwMarkFile ctermbg=red
 
 " --- variables ---
 
+" use comma as leader
+let mapleader = ','
+
 " fine-tune netrw
 let g:netrw_banner = 0
 let g:netrw_maxfilenamelen = 20
