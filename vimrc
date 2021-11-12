@@ -70,39 +70,17 @@ augroup END
 
 " --- script execution ---
 
-fun! Script(name, lines)
-    let scrpt = substitute(join(a:lines, '; '), '"', '\"', 'g')
-    let cmd = ['bash', '-c', scrpt]
+" run command repeatable
+com! -nargs=1 -complete=file R let g:last_cmd = <q-args> | ter <args>
 
-    let bn = bufnr('')
-    for info in getwininfo()
-        if get(info['variables'], 'script') == bn
-            call win_gotoid(info['winid'])
-            call term_start(cmd, {'term_name': a:name, 'curwin': 1})
-            return
-        endif
-    endfor
-
-    call term_start(cmd, {'term_name': a:name})
-    let w:script = bn
-endfun
-
-let s:sl = 'echo "###" `date` `pwd` "###"'
-
-" run a script with info header/footer
-com! -nargs=1 -complete=file R let w:sc = [s:sl, <q-args>, s:sl] | call Script(<q-args>, w:sc)
+" repeat last command
+com! RR call term_start(g:last_cmd, {'curwin': 1})
 
 " run Python script
 com! RP R python %
 
 " run Python script and keep REPL open
 com! RI R python -i %
-
-" run yanked Python script and keep REPL open
-com! RY exec 'R python -i -c "' . @" . '"'
-
-" rerun last script
-com! RR call Script(w:sc[1], w:sc)
 
 
 " --- git ---
