@@ -3,17 +3,20 @@ source $VIMRUNTIME/defaults.vim
 
 " --- options ---
 
+" disable mouse input
+set mouse= nowrap
+
 " spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
 
-" disable unwanted features
-set mouse= nowrap noswapfile viminfo=
+" configure persistence
+set noswapfile viminfo= undofile undodir=~/.vim/undo
+
+" no line wrapping by default
+set nowrap
 
 " always show status line
 set laststatus=2
-
-" persist undo history
-set undofile undodir=~/.vim/undo
 
 " complete only from current buffer, no popup menu
 set complete=. completeopt=
@@ -28,7 +31,7 @@ set pastetoggle=<C-Y>
 set gdefault
 
 
-" --- syntax ---
+" --- custom colors ---
 
 hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
@@ -70,7 +73,7 @@ augroup END
 
 " --- script execution ---
 
-" run command repeatable
+" run command repeatably
 com! -nargs=1 -complete=file R let g:last_cmd = <q-args> | ter <args>
 
 " repeat last command
@@ -81,6 +84,9 @@ com! RP R python %
 
 " run Python script and keep REPL open
 com! RI R python -i %
+
+" open Python REPL
+com! P ter ++close python
 
 
 " --- git ---
@@ -166,9 +172,6 @@ com! QQX call Query(@", 1)
 
 
 " -- misc --
-
-" open Python REPL
-com! P ter ++close python
 
 " open scratch buffer
 com! B new | setl bt=nofile
