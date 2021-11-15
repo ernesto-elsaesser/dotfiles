@@ -13,7 +13,7 @@ set backspace=indent,eol,start
 set mouse=
 
 " spaces over tabs
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=4 shiftwidth=4 expandtab autoindent
 
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
