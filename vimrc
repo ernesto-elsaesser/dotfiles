@@ -1,22 +1,22 @@
-unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
-
 " --- options ---
 
+syntax on
+filetype on
+
+" UI
+set wildmenu nowrap ruler showcmd display=truncate laststatus=2 scrolloff=5
+
+" sane backspacing
+set backspace=indent,eol,start
+
 " disable mouse input
-set mouse= nowrap
+set mouse=
 
 " spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
 
-" configure persistence
+" persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
-
-" no line wrapping by default
-set nowrap
-
-" always show status line
-set laststatus=2
 
 " complete only from current buffer, no popup menu
 set complete=. completeopt=
