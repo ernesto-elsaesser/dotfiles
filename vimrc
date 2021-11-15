@@ -68,6 +68,9 @@ augroup vimrc
     " notes syntax
     au BufEnter notes syn match	Label "^#.*"
 
+    " Python autopep8 formatting
+    au FileType python setl formatprg=autopep8\ -
+
 augroup END
 
 
