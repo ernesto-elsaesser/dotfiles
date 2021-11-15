@@ -13,7 +13,7 @@ set backspace=indent,eol,start
 set mouse=
 
 " spaces over tabs
-set tabstop=4 shiftwidth=4 expandtab autoindent
+set tabstop=4 shiftwidth=4 expandtab
 
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
@@ -62,8 +62,11 @@ let g:omni_sql_no_default_maps = 1
 augroup vimrc
     au!
 
-    " disable comment continuation after ftplugins
-    au BufEnter * setlocal formatoptions-=o formatoptions-=r
+    " jump to last position
+    au BufReadPost * exec "normal! g`\""
+
+    " always auto-indent
+    au BufEnter * setl autoindent
 
     " notes syntax
     au BufEnter notes syn match	Label "^#.*"
