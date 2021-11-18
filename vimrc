@@ -14,6 +14,7 @@ set backspace=indent,eol,start
 
 " disable mouse input
 set mouse=
+
 " spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
 
