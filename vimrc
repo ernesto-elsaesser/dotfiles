@@ -225,7 +225,9 @@ vnoremap L >
 
 " quick scrolling
 nnoremap K H
+vnoremap K H
 nnoremap J L
+vnoremap J L
 
 " quick save
 nnoremap <Space> :w<CR>
