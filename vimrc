@@ -6,12 +6,14 @@ filetype on
 " UI
 set wildmenu nowrap ruler showcmd display=truncate laststatus=2 scrolloff=5
 
+" dark theme
+set background=dark
+
 " sane backspacing
 set backspace=indent,eol,start
 
 " disable mouse input
 set mouse=
-
 " spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
 
@@ -31,7 +33,7 @@ set pastetoggle=<C-Y>
 set gdefault
 
 
-" --- custom colors ---
+" --- colors ---
 
 hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
