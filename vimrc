@@ -197,9 +197,12 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" make ' more accessible for DE layout
-imap Ö '
-nmap rÖ r'
+" remap special characters for DE layout
+imap " '
+imap ' "
+imap § |
+imap ´´ <
+imap `` >
 
 " map DE umlauts in normal mode
 nnoremap ö J
