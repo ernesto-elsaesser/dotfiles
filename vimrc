@@ -197,12 +197,9 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " --- mappings ---
 
-" remap special characters for DE layout
+" switch quotes
 inoremap " '
 inoremap ' "
-inoremap § |
-inoremap `` <
-inoremap ´´ >
 
 " map DE umlauts in normal mode
 nnoremap ö J
@@ -232,6 +229,11 @@ vnoremap K H
 nnoremap J L
 vnoremap J L
 
+" alternative mappings for special chars
+inoremap ² <
+inoremap ³ >
+inoremap § <Bar>
+
 " quick save
 nnoremap <Space> :w<CR>
 
@@ -245,7 +247,7 @@ nnoremap <CR> :setl wrap!<CR>
 cnoremap <C-A> <Home>
 
 " write as root
-cnoremap w!! w !sudo tee > /dev/null %
+cnoremap WW w !sudo tee > /dev/null %
 
 " move list items
 nnoremap <C-F> mxv/.[,)}\]]<CR>d
