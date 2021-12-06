@@ -199,6 +199,7 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 " switch quotes
 inoremap " '
+nnoremap r" r'
 inoremap ' "
 
 " map DE umlauts in normal mode
