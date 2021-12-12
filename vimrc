@@ -20,6 +20,7 @@ set tabstop=4 shiftwidth=4 expandtab
 
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
+call mkdir(&undofile, 'p')
 
 " complete only from current buffer, no popup menu
 set complete=. completeopt=
