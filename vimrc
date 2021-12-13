@@ -226,10 +226,10 @@ vnoremap H <
 vnoremap L >
 
 " quick scrolling
-nnoremap K H
-vnoremap K H
-nnoremap J L
-vnoremap J L
+nnoremap K 10k
+vnoremap K 10k
+nnoremap J 10j
+vnoremap J 10j
 
 " alternative mappings for special chars
 inoremap ² <
