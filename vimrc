@@ -240,7 +240,7 @@ inoremap § <Bar>
 nnoremap <Space> :w<CR>
 
 " open parent directory
-nnoremap _ :E<CR>
+nnoremap - :E<CR>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
