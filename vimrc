@@ -201,24 +201,23 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 
 " --- mappings ---
-
-" switch quotes
-inoremap " '
-nnoremap r" r'
-inoremap ' "
+inoremap ö <Esc>
 
 " map DE umlauts in normal mode
-nnoremap ö J
-nnoremap ä :Git<CR>
-nnoremap ü :sp ~/notes<CR>
-nnoremap ß :sp ~/.vimrc<CR>
-nnoremap Ö :cc<CR>
-nnoremap Ü :cp<CR>
-nnoremap Ä :cn<CR>
+nnoremap ö :cc<CR>
+nnoremap ü :cp<CR>
+nnoremap ä :cn<CR>
+nnoremap Ö :Git<CR>
 
 " fix jumping for DE layout
 nnoremap ] <C-]>
 nnoremap [ <C-[>
+
+" leader navigation
+nmap <Leader><Leader> :sp ~/notes<CR>
+nmap <Leader><Space> :sp ~/<CR>
+nmap <Leader>. :sp ~/.vimrc<CR>
+nmap <Leader># :ter ++close top<CR>
 
 " quick file switching
 nnoremap <Tab> <C-^>
@@ -228,12 +227,6 @@ nnoremap H <<
 nnoremap L >>
 vnoremap H <
 vnoremap L >
-
-" quick scrolling
-nnoremap K 10k
-vnoremap K 10k
-nnoremap J 10j
-vnoremap J 10j
 
 " alternative mappings for special chars
 inoremap ² <
