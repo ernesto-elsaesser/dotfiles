@@ -187,6 +187,9 @@ com! QQX call Query(@", 1)
 
 " -- misc --
 
+" quick search
+com! -nargs=1 S vim /<args>/ **
+
 " open scratch buffer
 com! B new | setl bt=nofile
 
@@ -204,6 +207,7 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 inoremap ö <Esc>
 
 " map DE umlauts in normal mode
+nnoremap ß :S 
 nnoremap ö :cc<CR>
 nnoremap ü :cp<CR>
 nnoremap ä :cn<CR>
