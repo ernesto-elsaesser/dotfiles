@@ -204,23 +204,12 @@ com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
 
 
 " --- mappings ---
-inoremap ö <Esc>
-
-" map DE umlauts in normal mode
-nnoremap ß :S 
-nnoremap ö :cc<CR>
-nnoremap ü :cp<CR>
-nnoremap ä :cn<CR>
-nnoremap Ö :Git<CR>
-
-" fix jumping for DE layout
-nnoremap ] <C-]>
-nnoremap [ <C-[>
 
 " leader navigation
-nmap <Leader><Leader> :sp ~/notes<CR>
-nmap <Leader><Space> :sp ~/<CR>
+nmap <Leader><Leader> :Git<CR>
 nmap <Leader>. :sp ~/.vimrc<CR>
+nmap <Leader>- :sp ~/notes<CR>
+nmap <Leader><Space> :sp ~/<CR>
 nmap <Leader># :ter ++close top<CR>
 
 " quick file switching
@@ -231,11 +220,6 @@ nnoremap H <<
 nnoremap L >>
 vnoremap H <
 vnoremap L >
-
-" alternative mappings for special chars
-inoremap ² <
-inoremap ³ >
-inoremap § <Bar>
 
 " quick save
 nnoremap <Space> :w<CR>
@@ -256,3 +240,13 @@ cnoremap WW w !sudo tee > /dev/null %
 nnoremap <C-F> mxv/.[,)}\]]<CR>d
 nnoremap <C-T> v/.[,)}\]]<CR>p`xhp
 " test: (ccc, dddddd, aaaaaaa, bbbb)
+
+" DE mappings (ÖÄÜ can be used in local configs)
+inoremap ö <Esc>
+nnoremap ö :cc<CR>
+nnoremap ä :cp<CR>
+nnoremap ü :cn<CR>
+nnoremap ° <C-]>
+inoremap ² <
+inoremap ³ >
+inoremap § <Bar>
