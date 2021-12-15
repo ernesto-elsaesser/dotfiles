@@ -212,23 +212,23 @@ nmap <Leader>- :sp ~/notes<CR>
 nmap <Leader><Space> :sp ~/<CR>
 nmap <Leader># :ter ++close top<CR>
 
-" quick file switching
-nnoremap <Tab> <C-^>
-
 " quick shifting
 nnoremap H <<
 nnoremap L >>
 vnoremap H <
 vnoremap L >
 
+" toggle line wrapping
+nnoremap <CR> :setl wrap!<CR>
+
 " quick save
 nnoremap <Space> :w<CR>
 
+" quick file switching
+nnoremap <Tab> <C-^>
+
 " open parent directory
 nnoremap - :E<CR>
-
-" toggle line wrapping
-nnoremap <CR> :setl wrap!<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
