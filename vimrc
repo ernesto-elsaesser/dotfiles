@@ -4,16 +4,11 @@ syntax on
 filetype on
 
 " UI
-set wildmenu nowrap ruler showcmd display=truncate laststatus=2 scrolloff=5
-
-" dark theme
-set background=dark
+set wildmenu incsearch nowrap ruler showcmd
+set background=dark mouse= display=truncate laststatus=2 scrolloff=5
 
 " sane backspacing
 set backspace=indent,eol,start
-
-" disable mouse input
-set mouse=
 
 " spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
