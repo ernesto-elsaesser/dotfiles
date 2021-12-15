@@ -241,11 +241,13 @@ nnoremap <C-F> mxv/.[,)}\]]<CR>d
 nnoremap <C-T> v/.[,)}\]]<CR>p`xhp
 " test: (ccc, dddddd, aaaaaaa, bbbb)
 
-" DE mappings (ÖÄÜ can be used in local configs)
+" DE mappings
 inoremap ö <Esc>
 nnoremap ö :cc<CR>
 nnoremap ä :cp<CR>
 nnoremap ü :cn<CR>
+nnoremap Ö :wincmd w<CR>
+nnoremap Ä :wincmd q<CR>
 nnoremap ° <C-]>
 inoremap ² <
 inoremap ³ >
