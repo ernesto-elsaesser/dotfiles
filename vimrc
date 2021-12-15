@@ -182,9 +182,6 @@ com! QQX call Query(@", 1)
 
 " -- misc --
 
-" quick search
-com! -nargs=1 S vim /<args>/ **
-
 " open scratch buffer
 com! B new | setl bt=nofile
 
@@ -239,8 +236,8 @@ nnoremap <C-T> v/.[,)}\]]<CR>p`xhp
 " DE mappings
 inoremap ö <Esc>
 nnoremap ö :cc<CR>
-nnoremap ä :cp<CR>
-nnoremap ü :cn<CR>
+nnoremap ä :cn<CR>
+nnoremap ü :cp<CR>
 nnoremap Ö :wincmd w<CR>
 nnoremap Ä :wincmd q<CR>
 nnoremap ° <C-]>
