@@ -188,6 +188,9 @@ com! B new | setl bt=nofile
 " switch to byte size style (hit CTRL-L to update)
 com! BS let g:netrw_sizestyle = 'b'
 
+" pretty json
+com! PJ %!python -m json.tool
+
 " reload config
 com! O source ~/.vimrc
 
