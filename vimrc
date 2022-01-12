@@ -100,22 +100,22 @@ com! P ter ++close python
 
 " --- git ---
 
+" open git shell
+let git_env_dir = $HOME . '/dotfiles/git-env'
 if has('macunix')
-    let g:git_env = {'ZDOTDIR': $HOME . '/dotfiles/git-env', 'SHELL_SESSIONS_DISABLE': 1}
-    let g:git_cmd = 'zsh'
+    let zsh_env = {'ZDOTDIR': git_env_dir, 'SHELL_SESSIONS_DISABLE': 1}
+    com! Git call term_start('zsh', {'env': zsh_env, 'term_finish': 'close'})
 else
-    let g:git_env = {}
-    let g:git_cmd = 'bash --rcfile ~/dotfiles/git-env/.bashrc'
+    let bash_cmd = 'bash --rcfile ' . git_env_dir . '/.bashrc'
+    com! Git call term_start(bash_cmd, {'term_finish': 'close'})
 endif
 
-" open git shell
-com! Git call term_start(g:git_cmd, {'env': g:git_env, 'term_finish': 'close'})
-
+" load file revision into scratch buffer
 fun! LoadRevision(ref)
     let relpath = expand('%:.')
     let linenum = line('.')
     let filetype = &ft
-    vne
+    vnew
     exec 'silent read !git show "' . a:ref . ':./' . relpath . '"'
     exec linenum
     let &ft = filetype
