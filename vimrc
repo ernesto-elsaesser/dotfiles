@@ -174,6 +174,7 @@ cnoremap QT Q SHOW TABLES
 cnoremap QI Q SHOW FULL COLUMNS FROM
 cnoremap QA Q SELECT * FROM
 cnoremap QC Q SELECT COUNT(*) FROM
+cnoremap QS Q SELECT TABLE_SCHEMA, DATA_LENGTH / POWER(1024,3) FROM information_schema.tables WHERE TABLE_NAME = 
 
 " execute the last yanked SQL query
 com! QQ call Query(@", 0)
@@ -195,7 +196,7 @@ com! PJ %!python -m json.tool
 com! O source ~/.vimrc
 
 " update config
-com! U exec '!cd "$HOME/dotfiles"; git pull --ff-only' | O
+com! U exec '!cd ~/dotfiles; git pull --ff-only' | O
 
 
 " --- mappings ---
@@ -206,6 +207,7 @@ nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :sp ~/notes<CR>
 nmap <Leader><Space> :sp ~/<CR>
 nmap <Leader># :ter ++close top<CR>
+nmap <Leader>+ :sp ~/dotfiles/vimrc<CR>
 
 " quick shifting
 nnoremap H <<
