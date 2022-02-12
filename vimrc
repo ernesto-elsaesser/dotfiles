@@ -241,6 +241,7 @@ nnoremap <C-T> v/.[,)}\]]<CR>p`xhp
 
 " DE mappings (ÄÖÜ can be mapped locally)
 inoremap ö <Esc>
+vnoremap ö <Esc>
 nnoremap ö :cc<CR>
 nnoremap ä :cn<CR>
 nnoremap ü :cp<CR>
