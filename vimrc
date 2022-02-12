@@ -250,4 +250,6 @@ inoremap ² <
 inoremap ³ >
 inoremap § <Bar>
 
-inoremap <C-C> <C-O>:echoe "use ö"<CR>
+" enforce using ö to exit insert mode (temporarily)
+set visualbell
+inoremap <C-C> <Esc><Esc>
