@@ -249,3 +249,5 @@ nnoremap ° <C-]>
 inoremap ² <
 inoremap ³ >
 inoremap § <Bar>
+
+inoremap <C-C> <C-O>:echoe "use ö"<CR>
