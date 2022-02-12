@@ -52,7 +52,6 @@ let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
 let g:netrw_sizestyle = 'H'
 let g:netrw_list_hide = '^\..*'
-let g:netrw_keepdir = 0
 
 " make MySQL the default SQL dialect
 let g:sql_type_default = 'mysql'
