@@ -147,7 +147,7 @@ fun! Query(query, explicit)
     if a:explicit
         let cmd .= ' -vv'
     else
-        let cmd .= ' | column -t -s $''\t'''
+        let cmd .= ' | column -t -n -s $''\t'''
     endif
 
     new
