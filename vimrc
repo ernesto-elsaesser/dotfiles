@@ -249,7 +249,3 @@ nnoremap ° <C-]>
 inoremap ² <
 inoremap ³ >
 inoremap § <Bar>
-
-" enforce using ö to exit insert mode (temporarily)
-set visualbell
-inoremap <C-C> <Esc><Esc>
