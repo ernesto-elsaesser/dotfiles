@@ -135,7 +135,7 @@ com! -nargs=1 D let g:mysql_login = <q-args>
 com! M exec 'ter mysql --login-path=' . g:mysql_login
 
 " print results of an SQL query in a new scratch buffer
-fun! Query(query, explicit)
+fun! Query(query, format)
     if !exists('g:mysql_login')
         echo 'no database specified'
         return
@@ -144,10 +144,13 @@ fun! Query(query, explicit)
     let $QRY = a:query
 
     let cmd = 'mysql --login-path=' . g:mysql_login . ' -e "$QRY"'
-    if a:explicit
-        let cmd .= ' -vv'
-    else
+
+    if a:format == 'pretty'
         let cmd .= ' | column -t -n -s $''\t'''
+    elseif a:format == 'csv'
+        let cmd .= ' | sed "s/\t/,/g"'
+    else
+        let cmd .= ' -vv'
     endif
 
     new
@@ -161,8 +164,8 @@ fun! Query(query, explicit)
     0
 endfun
 
-com! -nargs=1 Q call Query(<q-args>, 0)
-com! -nargs=1 QX call Query(<q-args>, 1)
+com! -nargs=1 Q call Query(<q-args>, 'pretty')
+com! -nargs=1 QX call Query(<q-args>, 'csv')
 
 " query shortcuts
 com! QD Q SHOW DATABASES
@@ -178,8 +181,8 @@ cnoremap QC Q SELECT COUNT(*) FROM
 cnoremap QS Q SELECT TABLE_SCHEMA, DATA_LENGTH / POWER(1024,3) FROM information_schema.tables WHERE TABLE_NAME = 
 
 " execute the last yanked SQL query
-com! QQ call Query(@", 0)
-com! QQX call Query(@", 1)
+com! QQ call Query(@", 'pretty')
+com! QQX call Query(@", 'table')
 
 
 " -- misc --
