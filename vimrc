@@ -182,7 +182,7 @@ cnoremap QS Q SELECT TABLE_SCHEMA, DATA_LENGTH / POWER(1024,3) FROM information_
 
 " execute the last yanked SQL query
 com! QQ call Query(@", 'pretty')
-com! QQX call Query(@", 'table')
+com! QQX call Query(@", 'csv')
 
 
 " -- misc --
