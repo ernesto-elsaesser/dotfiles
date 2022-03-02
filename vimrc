@@ -249,6 +249,3 @@ nnoremap ö :cc<CR>
 nnoremap ä :cn<CR>
 nnoremap ü :cp<CR>
 nnoremap ° <C-]>
-inoremap ² <
-inoremap ³ >
-inoremap § <Bar>
