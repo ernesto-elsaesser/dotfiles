@@ -238,8 +238,8 @@ cnoremap <C-A> <Home>
 cnoremap WW w !sudo tee > /dev/null %
 
 " move list items
-nnoremap <C-F> mxv/.[,)}\]]<CR>d
-nnoremap <C-T> v/.[,)}\]]<CR>p`xhp
+nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
+nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
 " test: (ccc, dddddd, aaaaaaa, bbbb)
 
 " DE mappings (ÄÖÜ can be mapped locally)
