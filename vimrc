@@ -71,12 +71,6 @@ augroup vimrc
     " always auto-indent
     au BufEnter * setl autoindent
 
-    " notes syntax
-    au BufEnter notes syn match	Label "^#.*"
-
-    " Python autopep8 formatting
-    au FileType python setl formatprg=autopep8\ -
-
 augroup END
 
 
@@ -205,6 +199,11 @@ com! U exec '!cd ~/dotfiles; git pull --ff-only' | O
 
 " --- mappings ---
 
+" toggle modes
+nnoremap <C-J> i
+inoremap <C-K> <Esc>
+vnoremap <C-K> <Esc>
+
 " leader navigation
 nmap <Leader><Leader> :Git<CR>
 nmap <Leader>. :sp ~/.vimrc<CR>
@@ -212,12 +211,6 @@ nmap <Leader>- :sp ~/notes<CR>
 nmap <Leader><Space> :sp ~/<CR>
 nmap <Leader># :ter ++close top<CR>
 nmap <Leader>+ :sp ~/dotfiles/vimrc<CR>
-
-" quick shifting
-nnoremap H <<
-nnoremap L >>
-vnoremap H <
-vnoremap L >
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
@@ -242,10 +235,14 @@ nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
 nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
 " test: (ccc, dddddd, aaaaaaa, bbbb)
 
-" DE mappings (ÄÖÜ can be mapped locally)
-inoremap ö <Esc>
-vnoremap ö <Esc>
-nnoremap ö :cc<CR>
-nnoremap ä :cn<CR>
-nnoremap ü :cp<CR>
-nnoremap ° <C-]>
+" toggle modes
+nnoremap <C-J> i
+inoremap <C-K> <Esc>
+vnoremap <C-K> <Esc>
+
+" DE quickfix list mappings
+nnoremap ü :cc<CR>
+nnoremap ö :cn<CR>
+nnoremap ä :cp<CR>
+nnoremap Ö <C-]>
+nnoremap Ä <C-[>
