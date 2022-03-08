@@ -235,12 +235,9 @@ nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
 nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
 " test: (ccc, dddddd, aaaaaaa, bbbb)
 
-" toggle modes
-nnoremap <C-J> i
-inoremap <C-K> <Esc>
-vnoremap <C-K> <Esc>
-
-" DE quickfix list mappings
+" DE mappings
+inoremap ö <Esc>
+vnoremap ö <Esc>
 nnoremap ü :cc<CR>
 nnoremap ö :cn<CR>
 nnoremap ä :cp<CR>
