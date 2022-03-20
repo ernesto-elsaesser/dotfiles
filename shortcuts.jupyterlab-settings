@@ -1,0 +1,46 @@
+{
+    "shortcuts": [
+        {
+            "command": "notebook:run-cell",
+            "keys": [
+                "W"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:run-cell-and-select-next",
+            "keys": [
+                "E"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:run-cell-and-insert-below",
+            "keys": [
+                "S"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "editmenu:clear-current",
+            "keys": [
+                "F"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "kernelmenu:restart-and-clear",
+            "keys": [
+                "G"
+            ],
+            "selector": "[data-jp-kernel-user]:focus"
+        },
+        {
+            "command": "notebook:enter-edit-mode",
+            "keys": [
+                "Ctrl M"
+            ],
+            "selector": ".jp-Notebook:focus"
+        }
+    ]
+}
