@@ -1,2 +1,4 @@
 .DS_Store
 .zsh_history
+node_modules
+yarn.lock
