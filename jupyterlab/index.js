@@ -7,6 +7,7 @@ const vimmap = {
   activate: function(app, codeMirror) {
     codeMirror.ensureVimKeymap().then(function() {
       codeMirror.CodeMirror.Vim.map('ö', '<Esc>', 'insert');
+      codeMirror.CodeMirror.Vim.map('ö', '<Esc>', 'visual');
       console.log("vim mappings installed!");
     });
   }
