@@ -74,24 +74,6 @@ augroup vimrc
 augroup END
 
 
-" --- script execution ---
-
-" run command repeatably
-com! -nargs=1 -complete=file R let g:last_cmd = <q-args> | ter <args>
-
-" repeat last command
-com! RR call term_start(g:last_cmd, {'curwin': 1})
-
-" run Python script
-com! RP R python %
-
-" run Python script and keep REPL open
-com! RI R python -i %
-
-" open Python REPL
-com! P ter ++close python
-
-
 " --- git ---
 
 " open git shell
@@ -120,65 +102,6 @@ endfun
 com! H call LoadRevision('HEAD')
 
 
-" --- MySQL ---
-
-" set login path and optionally database
-com! -nargs=1 D let g:mysql_login = <q-args>
-
-" MySQL interactive session
-com! M exec 'ter mysql --login-path=' . g:mysql_login
-
-" print results of an SQL query in a new scratch buffer
-fun! Query(query, format)
-    if !exists('g:mysql_login')
-        echo 'no database specified'
-        return
-    endif
-
-    let $QRY = a:query
-
-    let cmd = 'mysql --login-path=' . g:mysql_login . ' -e "$QRY"'
-
-    if a:format == 'pretty'
-        let cmd .= ' | column -t -n -s $''\t'''
-    elseif a:format == 'csv'
-        let cmd .= ' | sed "s/\t/,/g"'
-    else
-        let cmd .= ' -vv'
-    endif
-
-    new
-    setlocal buftype=nofile bufhidden=wipe
-    let head = a:query[:60]
-    let head = substitute(head, '%', '§', 'g')
-    let head = substitute(head, '\n', ' ', 'g')
-    let path = split(g:mysql_login, ' ')[0]
-    exec 'file ' . path . strftime(' %H:%M:%S ') . head
-    exec 'silent 0read !' . cmd
-    0
-endfun
-
-com! -nargs=1 Q call Query(<q-args>, 'pretty')
-com! -nargs=1 QX call Query(<q-args>, 'csv')
-
-" query shortcuts
-com! QD Q SHOW DATABASES
-com! QV Q SHOW VARIABLES
-com! QG Q SHOW GLOBAL STATUS
-com! QP Q SHOW FULL PROCESSLIST
-com! QU Q SELECT Host, User FROM mysql.user
-
-cnoremap QT Q SHOW TABLES
-cnoremap QI Q SHOW FULL COLUMNS FROM
-cnoremap QA Q SELECT * FROM
-cnoremap QC Q SELECT COUNT(*) FROM
-cnoremap QS Q SELECT TABLE_SCHEMA, DATA_LENGTH / POWER(1024,3) FROM information_schema.tables WHERE TABLE_NAME = 
-
-" execute the last yanked SQL query
-com! QQ call Query(@", 'pretty')
-com! QQX call Query(@", 'csv')
-
-
 " -- misc --
 
 " open scratch buffer
@@ -187,33 +110,11 @@ com! B new | setl bt=nofile
 " switch to byte size style (hit CTRL-L to update)
 com! BS let g:netrw_sizestyle = 'b'
 
-" pretty json
-com! PJ %!python -m json.tool
-
 " reload config
-com! O source ~/.vimrc
-
-" update config
-com! U exec '!cd ~/dotfiles; git pull --ff-only' | O
+com! U source ~/.vimrc
 
 
 " --- mappings ---
-
-" toggle modes
-nnoremap <C-J> i
-inoremap <C-K> <Esc>
-vnoremap <C-K> <Esc>
-
-" leader navigation
-nmap <Leader><Leader> :Git<CR>
-nmap <Leader>. :sp ~/.vimrc<CR>
-nmap <Leader>- :sp ~/notes<CR>
-nmap <Leader><Space> :sp ~/<CR>
-nmap <Leader># :ter ++close top<CR>
-nmap <Leader>+ :sp ~/dotfiles/vimrc<CR>
-
-" toggle line wrapping
-nnoremap <CR> :setl wrap!<CR>
 
 " quick save
 nnoremap <Space> :w<CR>
@@ -221,19 +122,20 @@ nnoremap <Space> :w<CR>
 " quick file switching
 nnoremap <Tab> <C-^>
 
+" toggle line wrapping
+nnoremap <CR> :setl wrap!<CR>
+
 " open parent directory
 nnoremap - :E<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
 
-" write as root
-cnoremap WW w !sudo tee > /dev/null %
-
-" move list items
-nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
-nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
-" test: (ccc, dddddd, aaaaaaa, bbbb)
+" leader navigation
+nmap <Leader><Leader> :Git<CR>
+nmap <Leader>. :sp ~/.vimrc<CR>
+nmap <Leader>- :sp ~/<CR>
+nmap <Leader>+ :sp ~/dotfiles/vimrc<CR>
 
 " DE mappings
 inoremap ö <Esc>
@@ -243,3 +145,9 @@ nnoremap ö :cn<CR>
 nnoremap ä :cp<CR>
 nnoremap Ö <C-]>
 nnoremap Ä <C-[>
+
+" move list items
+nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
+nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
+" test: (ccc, dddddd, aaaaaaa, bbbb)
+
