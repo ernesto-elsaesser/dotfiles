@@ -1,5 +1,5 @@
 {
-  "name": "mapext",
+  "name": "vimrc",
   "version": "0.0.1",
   "description": "persistent vim mappings",
   "files": ["index.js"],
