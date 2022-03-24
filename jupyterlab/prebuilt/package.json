@@ -2,7 +2,9 @@
   "name": "vimrc",
   "version": "0.0.1",
   "description": "persistent vim mappings",
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "main": "index.js",
   "dependencies": {
     "@jupyterlab/codemirror": "^3.2.1"
@@ -12,6 +14,10 @@
   },
   "jupyterlab": {
     "extension": true,
-    "outputDir": "prebuilt"
+    "outputDir": "prebuilt",
+    "_build": {
+      "load": "static/remoteEntry.600828d6291f9eacb3f9.js",
+      "extension": "./extension"
+    }
   }
 }
