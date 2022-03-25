@@ -1,6 +1,13 @@
 {
     "shortcuts": [
         {
+            "command": "Collapsible_Headings:Toggle_Collapse",
+            "keys": [
+                "Q"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
             "command": "notebook:run-cell",
             "keys": [
                 "W"
