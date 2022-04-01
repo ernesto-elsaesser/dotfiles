@@ -7,7 +7,11 @@
             const api = i.CodeMirror.Vim;
             api.map("<Space>",":w","normal");
             const wrapped = api.findKey;
-            api.findKey = function(cm, key, origin) { if (key == "ö") key = '<Esc>'; return wrapped(cm, key, origin); };
+            api.findKey = function(cm, key, origin) {
+                if (key == "<C-c>") return undefined;
+                if (key == "ö") key = '<Esc>';
+                return wrapped(cm, key, origin);
+            };
             console.log('vim patched');
         }))
     }
