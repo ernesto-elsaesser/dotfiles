@@ -6,6 +6,7 @@
         i.ensureVimKeymap().then((function() {
             const api = i.CodeMirror.Vim;
             api.map("<Space>",":w","normal");
+            api.map("ä",":nohl","normal");
             const wrapped = api.findKey;
             api.findKey = function(cm, key, origin) {
                 if (key == "<C-c>") return undefined;
