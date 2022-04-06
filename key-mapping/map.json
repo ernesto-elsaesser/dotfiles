@@ -1,37 +1,15 @@
 {
-  "title": "EE",
+  "title": "Maps",
   "rules": [
     {
-      "description": "Enter",
+      "description": "Fn + H = Backspace",
       "manipulators": [
         {
           "type": "basic",
           "from": {
             "modifiers": {
               "mandatory": [
-                "left_gui"
-              ]
-            },
-            "key_code": "j"
-          },
-          "to": [
-            {
-              "repeat": true,
-              "key_code": "return_or_enter"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Backspace",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "modifiers": {
-              "mandatory": [
-                "left_gui"
+                "fn"
               ]
             },
             "key_code": "h"
@@ -46,7 +24,29 @@
       ]
     },
     {
-      "description": "Escape",
+      "description": "Fn + J = Enter",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ]
+            },
+            "key_code": "j"
+          },
+          "to": [
+            {
+              "repeat": true,
+              "key_code": "return_or_enter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Shift + OE = Escape",
       "manipulators": [
         {
           "type": "basic",
@@ -60,7 +60,7 @@
           },
           "to": [
             {
-              "repeat": true,
+              "repeat": false,
               "key_code": "escape"
             }
           ]
