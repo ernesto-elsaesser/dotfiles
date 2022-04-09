@@ -60,14 +60,58 @@
                         ]
                     },
                     {
-                        "description": "Shift + OE = Escape",
+                        "description": "Cmd + K = Home",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "home",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Cmd + L = End",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "end",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Cmd + Ö = Escape",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "semicolon",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_shift"
+                                            "left_command"
                                         ]
                                     }
                                 },
