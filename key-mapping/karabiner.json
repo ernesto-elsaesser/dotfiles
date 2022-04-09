@@ -16,14 +16,14 @@
                 },
                 "rules": [
                     {
-                        "description": "Cmd + H = Backspace",
+                        "description": "Ctrl + H = Backspace",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -38,14 +38,14 @@
                         ]
                     },
                     {
-                        "description": "Cmd + J = Enter",
+                        "description": "Ctrl + J = Enter",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -60,14 +60,14 @@
                         ]
                     },
                     {
-                        "description": "Cmd + K = Home",
+                        "description": "Ctrl + K = Home",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -82,14 +82,14 @@
                         ]
                     },
                     {
-                        "description": "Cmd + L = End",
+                        "description": "Ctrl + L = End",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -104,14 +104,14 @@
                         ]
                     },
                     {
-                        "description": "Cmd + Ö = Escape",
+                        "description": "Ctrl + Ö = Escape",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "semicolon",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -298,7 +298,7 @@
             "simple_modifications": [
                 {
                     "from": {
-                        "key_code": "caps_lock"
+                        "apple_vendor_top_case_key_code": "keyboard_fn"
                     },
                     "to": [
                         {
@@ -308,11 +308,11 @@
                 },
                 {
                     "from": {
-                        "apple_vendor_top_case_key_code": "keyboard_fn"
+                        "key_code": "caps_lock"
                     },
                     "to": [
                         {
-                            "key_code": "left_command"
+                            "key_code": "left_control"
                         }
                     ]
                 },
