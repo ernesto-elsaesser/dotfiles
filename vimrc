@@ -122,6 +122,7 @@ nnoremap <Space> :w<CR>
 " indenting
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
