@@ -123,6 +123,8 @@ nnoremap <Space> :w<CR>
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 inoremap <S-Tab> <C-d>
+vnoremap <Tab> >
+vnoremap <S-Tab> <
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
