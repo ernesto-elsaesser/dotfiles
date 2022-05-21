@@ -119,8 +119,9 @@ com! U source ~/.vimrc
 " quick save
 nnoremap <Space> :w<CR>
 
-" quick file switching
-nnoremap <Tab> <C-^>
+" indenting
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
 
 " toggle line wrapping
 nnoremap <CR> :setl wrap!<CR>
