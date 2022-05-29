@@ -126,29 +126,21 @@ inoremap <S-Tab> <C-d>
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
-" toggle line wrapping
-nnoremap <CR> :setl wrap!<CR>
-
 " open parent directory
 nnoremap - :E<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
 
-" leader navigation
-nmap <Leader><Leader> :Git<CR>
-nmap <Leader>. :sp ~/.vimrc<CR>
-nmap <Leader>- :sp ~/<CR>
-nmap <Leader>+ :sp ~/dotfiles/vimrc<CR>
+" umlaut shortcuts
+nnoremap ö :setl wrap!<CR>
+nnoremap ä :Git<CR>
+nnoremap ü :<C-]>
 
-" DE mappings
-inoremap ö <Esc>
-vnoremap ö <Esc>
-nnoremap ü :cc<CR>
-nnoremap ö :cn<CR>
-nnoremap ä :cp<CR>
-nnoremap Ö <C-]>
-nnoremap Ä <C-[>
+" quickfix navigation
+nmap <Leader>j :cn<CR>
+nmap <Leader>k :cp<CR>
+nmap <Leader><Leader> :cc<CR>
 
 " move list items
 nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
