@@ -138,6 +138,9 @@ nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
 
+" quick terminal
+nmap <Leader>t :ter ++close<CR>
+
 " move list items
 nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
 nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
