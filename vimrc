@@ -56,9 +56,6 @@ let g:netrw_list_hide = '^\..*'
 " make MySQL the default SQL dialect
 let g:sql_type_default = 'mysql'
 
-" disable stupid SQL <C-C> mapping
-let g:omni_sql_no_default_maps = 1
-
 
 " --- autocmds ---
 
@@ -107,12 +104,6 @@ com! H call LoadRevision('HEAD')
 " open scratch buffer
 com! B new | setl bt=nofile
 
-" switch to byte size style (hit CTRL-L to update)
-com! BS let g:netrw_sizestyle = 'b'
-
-" reload config
-com! U source ~/.vimrc
-
 
 " --- mappings ---
 
@@ -138,9 +129,14 @@ nnoremap ä :Git<CR>
 nnoremap ü :<C-]>
 
 " quickfix navigation
+nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
-nmap <Leader><Leader> :cc<CR>
+
+" config management
+nmap <Leader>. :sp ~/.vimrc<CR>
+nmap <Leader>- :source ~/.vimrc<CR>
+nmap <Leader># :sp ~/dotfiles/vimrc<CR>
 
 " move list items
 nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
