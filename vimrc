@@ -110,6 +110,9 @@ com! B new | setl bt=nofile
 " quick save
 nnoremap <Space> :w<CR>
 
+" toggle word wrap
+nnoremap <CR> :setl wrap!<CR>
+
 " indenting
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
@@ -124,14 +127,15 @@ nnoremap - :E<CR>
 cnoremap <C-A> <Home>
 
 " umlaut shortcuts
-nnoremap ö :setl wrap!<CR>
 nnoremap ä :Git<CR>
-nnoremap ü :<C-]>
+nnoremap ö <C-^>
 
-" quickfix navigation
+" quick navigation
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
+nmap <Leader>l <C-]>
+nmap <Leader>h <C-[>
 
 " config management
 nmap <Leader>. :sp ~/.vimrc<CR>
