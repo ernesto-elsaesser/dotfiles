@@ -110,8 +110,11 @@ com! B new | setl bt=nofile
 " quick save
 nnoremap <Space> :w<CR>
 
-" toggle word wrap
-nnoremap <CR> :setl wrap!<CR>
+" quick alt file
+nnoremap ö <C-^>
+
+" open parent directory
+nnoremap - :E<CR>
 
 " indenting
 nnoremap <Tab> >>
@@ -120,16 +123,6 @@ inoremap <S-Tab> <C-d>
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
-" open parent directory
-nnoremap - :E<CR>
-
-" command mode home
-cnoremap <C-A> <Home>
-
-" umlaut shortcuts
-nnoremap ä :Git<CR>
-nnoremap ö <C-^>
-
 " quick navigation
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
@@ -137,13 +130,16 @@ nmap <Leader>k :cp<CR>
 nmap <Leader>l <C-]>
 nmap <Leader>h <C-[>
 
-" config management
+" leader mappings
 nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-
-" quick terminal
+nmap <Leader>g :Git<CR>
 nmap <Leader>t :ter ++close<CR>
+nmap <Leader>w :setl wrap!<CR>
+
+" command mode home
+cnoremap <C-A> <Home>
 
 " move list items
 nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
