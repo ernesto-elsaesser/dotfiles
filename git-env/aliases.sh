@@ -74,7 +74,7 @@ alias rb='git rebase'
 alias ri='git rebase -i'
 
 # print commit hash of the current commit
-alias h='git rev-parse HEAD'
+alias h='git rev-parse HEAD | sed -rn "s/(.{8})(.+)/\1 [\1\2]/p"'
 
 # configure git user
 function cnf {
