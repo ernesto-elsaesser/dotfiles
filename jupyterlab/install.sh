@@ -1,6 +1,8 @@
 #  jupyter lab --ContentsManager.allow_hidden=True --FileCheckpoints.checkpoint_dir=~/.jupyter/check
 
-cp shortcuts.json ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings
+SETTINGS_DIR="$HOME/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension"
+[ -d $SETTINGS_DIR ] || mkdir $SETTINGS_DIR
+cp shortcuts.json "$SETTINGS_DIR/shortcuts.jupyterlab-settings"
 
-#EXTDIR="$CONDA_PREFIX/share/jupyter/labextensions/vimrc/"
-#mkdir -p $EXTDIR && cp -r extension/* $EXTDIR
+#EXT_DIR="$CONDA_PREFIX/share/jupyter/labextensions/vimrc/"
+#mkdir -p $EXT_DIR && cp -r extension/* $EXT_DIR
