@@ -1,6 +1,13 @@
 {
     "shortcuts": [
         {
+            "command": "editmenu:go-to-line",
+            "keys": [
+                "Ctrl G"
+            ],
+            "selector": ".jp-FileEditor .jp-CodeMirrorEditor"
+        },
+        {
             "command": "Collapsible_Headings:Toggle_Collapse",
             "keys": [
                 "Q"
