@@ -3,8 +3,14 @@ SendMode Input
 
 Capslock::Control
 
-^j::Send, {Enter}
-^h::Send, {Backspace}
-^k::Send, {Home}
-^l::Send, {End}
-^ö::Send, {Esc}
+!d::Send, {Right}
+!a::Send, {Left}
+!w::Send, {Up}
+!s::Send, {Down}
+!q::Send, {Home}
+!e::Send, {End}
+
+!c::Send, {Enter}
+!x::Send, {Backspace}
+!y::Send, {Esc}
+

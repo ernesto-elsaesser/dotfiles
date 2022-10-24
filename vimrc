@@ -107,6 +107,10 @@ com! B new | setl bt=nofile
 
 " --- mappings ---
 
+" exit edit mode
+inoremap <C-K> <Esc>
+vnoremap <C-K> <Esc>
+
 " quick save
 nnoremap <Space> :w<CR>
 
