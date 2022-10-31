@@ -8,16 +8,9 @@
             "selector": ".jp-FileEditor .jp-CodeMirrorEditor"
         },
         {
-            "command": "Collapsible_Headings:Toggle_Collapse",
-            "keys": [
-                "Q"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
             "command": "notebook:run-cell",
             "keys": [
-                "W"
+                "R"
             ],
             "selector": ".jp-Notebook:focus"
         },
@@ -31,7 +24,7 @@
         {
             "command": "notebook:run-cell-and-insert-below",
             "keys": [
-                "S"
+                "W"
             ],
             "selector": ".jp-Notebook:focus"
         },
