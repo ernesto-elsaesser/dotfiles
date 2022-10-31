@@ -8,9 +8,16 @@
             "selector": ".jp-FileEditor .jp-CodeMirrorEditor"
         },
         {
-            "command": "notebook:run-cell",
+            "command": "notebook:insert-cell-above",
             "keys": [
-                "R"
+                "W"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:insert-cell-below",
+            "keys": [
+                "S"
             ],
             "selector": ".jp-Notebook:focus"
         },
@@ -18,13 +25,6 @@
             "command": "notebook:run-cell-and-select-next",
             "keys": [
                 "E"
-            ],
-            "selector": ".jp-Notebook:focus"
-        },
-        {
-            "command": "notebook:run-cell-and-insert-below",
-            "keys": [
-                "W"
             ],
             "selector": ".jp-Notebook:focus"
         },
@@ -41,13 +41,6 @@
                 "G"
             ],
             "selector": "[data-jp-kernel-user]:focus"
-        },
-        {
-            "command": "notebook:enter-edit-mode",
-            "keys": [
-                "L"
-            ],
-            "selector": ".jp-Notebook:focus"
         },
         {
             "command": "application:toggle-left-area",
