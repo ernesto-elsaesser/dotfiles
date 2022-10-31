@@ -4,7 +4,7 @@ syntax on
 filetype on
 
 " UI
-set wildmenu incsearch nowrap ruler showcmd
+set wildmenu incsearch nowrap ruler showcmd colorcolumn=80
 set background=dark mouse= display=truncate laststatus=2 scrolloff=5
 
 " sane backspacing
@@ -37,6 +37,7 @@ set gdefault
 
 hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
+hi ColorColumn ctermbg=darkgrey
 hi MatchParen cterm=underline ctermbg=NONE
 hi netrwMarkFile ctermbg=red
 
