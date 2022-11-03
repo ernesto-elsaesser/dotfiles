@@ -102,6 +102,9 @@ com! H call LoadRevision('HEAD')
 
 " -- misc --
 
+" grep files
+com! -nargs=1 F cex system('grep -n "<args>" *')
+
 " open scratch buffer
 com! B new | setl bt=nofile
 

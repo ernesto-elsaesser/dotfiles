@@ -3,7 +3,7 @@
         {
             "command": "editmenu:go-to-line",
             "keys": [
-                "Ctrl G"
+                "Accel G"
             ],
             "selector": ".jp-FileEditor .jp-CodeMirrorEditor"
         },
@@ -46,6 +46,22 @@
             "command": "application:toggle-left-area",
             "keys": [
                 "Accel B"
+            ],
+            "selector": "body",
+            "disabled": true
+        },
+        {
+            "command": "inspector:open",
+            "keys": [
+                "Accel I"
+            ],
+            "selector": "body",
+            "disabled": true
+        },
+        {
+            "command": "apputils:print",
+            "keys": [
+                "Accel P"
             ],
             "selector": "body",
             "disabled": true
