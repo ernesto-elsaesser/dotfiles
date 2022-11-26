@@ -1,0 +1,18 @@
+[Unit]
+Description=Jupyter
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PIDFile=/run/jupyter.pid
+Environment="PATH=/home/ee/anaconda3/envs/jlab/bin:/home/ee/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+WorkingDirectory=/home/ee
+ExecStart=/home/ee/anaconda3/envs/tf/bin/jupyter lab --notebook-dir=/home/ee --no-browser --ContentsManager.allow_hidden=True --ServerApp.ip='*' --FileCheckpoints.checkpoint_dir=/home/ee/.jupyter/check
+User=ee
+Group=ee
+
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
