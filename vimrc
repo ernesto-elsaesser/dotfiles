@@ -1,17 +1,21 @@
 " --- options ---
 
+" language-dependent syntax highlighting
 syntax on
 filetype on
+set background=dark
 
-" UI
-set wildmenu incsearch nowrap ruler showcmd
-set background=dark mouse= display=truncate laststatus=2 scrolloff=5
+" scrolling
+set nowrap scrolloff=5
 
 " sane backspacing
 set backspace=indent,eol,start
 
 " spaces over tabs
 set tabstop=4 shiftwidth=4 expandtab
+
+" footer
+set wildmenu ruler incsearch laststatus=2
 
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
@@ -101,9 +105,6 @@ com! H call LoadRevision('HEAD')
 
 
 " -- misc --
-
-" grep files
-com! -nargs=1 F cex system('grep -n "<args>" *')
 
 " open scratch buffer
 com! B new | setl bt=nofile
