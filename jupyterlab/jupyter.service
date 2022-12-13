@@ -7,7 +7,7 @@ Type=simple
 PIDFile=/run/jupyter.pid
 Environment="PATH=/home/ee/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 WorkingDirectory=/home/ee
-ExecStart=/home/ee/anaconda3/bin/jupyter lab --notebook-dir=/home/ee --no-browser --ContentsManager.allow_hidden=True --ServerApp.ip='*' --FileCheckpoints.checkpoint_dir=/home/ee/.jupyter/check
+ExecStart=/home/ee/anaconda3/bin/jupyter lab
 User=ee
 Group=ee
 

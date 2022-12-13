@@ -1,0 +1,14 @@
+{
+  "ServerApp": {
+    "password": "...",
+    "ip": "*",
+    "notebook-dir": "/home/ubuntu",
+    "open_browser": false
+  },
+  "ContentsManager": {
+    "allow_hidden": true
+  },
+  "FileCheckpoints": {
+    "checkpoint_dir": "/home/ubuntu/.jupyter/check"
+  }
+}
