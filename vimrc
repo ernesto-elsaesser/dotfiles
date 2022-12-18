@@ -122,6 +122,9 @@ nnoremap <Space> :w<CR>
 " quick alt file
 nnoremap ö <C-^>
 
+" alternative window key
+nnoremap ä <C-W>
+
 " open parent directory
 nnoremap - :E<CR>
 
