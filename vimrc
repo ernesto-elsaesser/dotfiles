@@ -124,6 +124,7 @@ nnoremap ö <C-^>
 
 " alternative window key
 nnoremap ä <C-W>
+set termwinkey=ä
 
 " open parent directory
 nnoremap - :E<CR>
