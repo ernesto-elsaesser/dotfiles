@@ -106,6 +106,9 @@ com! H call LoadRevision('HEAD')
 
 " -- misc --
 
+" search files
+com! -nargs=1 F vim <args> *
+
 " open scratch buffer
 com! B new | setl bt=nofile
 
@@ -124,7 +127,11 @@ nnoremap ö <C-^>
 
 " alternative window key
 nnoremap ä <C-W>
-set termwinkey=ä
+if v:version < 900
+    set termkey=ä
+else
+    set termwinkey=ä
+endif
 
 " open parent directory
 nnoremap - :E<CR>
