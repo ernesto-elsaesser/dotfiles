@@ -24,6 +24,9 @@ if !isdirectory(&undodir)
     call mkdir(&undodir)
 endif
 
+" width hint
+set colorcolumn=80
+
 " complete only from current buffer, no popup menu
 set complete=. completeopt=
 
@@ -76,17 +79,7 @@ augroup vimrc
 augroup END
 
 
-" --- git ---
-
-" open git shell
-let git_env_dir = $HOME . '/dotfiles/git-env'
-if has('macunix')
-    let zsh_env = {'ZDOTDIR': git_env_dir, 'SHELL_SESSIONS_DISABLE': 1}
-    com! Git call term_start('zsh', {'env': zsh_env, 'term_finish': 'close'})
-else
-    let bash_cmd = 'bash --rcfile ' . git_env_dir . '/.bashrc'
-    com! Git call term_start(bash_cmd, {'term_finish': 'close'})
-endif
+" -- commands --
 
 " load file revision into scratch buffer
 fun! LoadRevision(ref)
@@ -102,9 +95,6 @@ endfun
 
 " show HEAD version of current file
 com! H call LoadRevision('HEAD')
-
-
-" -- misc --
 
 " search files
 com! -nargs=1 F vim <args> *
@@ -154,7 +144,6 @@ nmap <Leader>h <C-[>
 nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-nmap <Leader>g :Git<CR>
 nmap <Leader>t :ter ++close<CR>
 nmap <Leader>w :setl wrap!<CR>
 
