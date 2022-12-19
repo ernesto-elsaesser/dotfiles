@@ -3,17 +3,18 @@ import ssl
 
 home_dir = os.environ["HOME"]
 
-c.ServerApp.password = "..."
+# set password in json config file: ServerApp.password
 c.ServerApp.password_required = True
 c.ServerApp.ip = "*"
-c.ServerApp.notebook_dir = home_dir
-c.ServerApp.open_browser = False
-
-c.NotebookApp.certfile = "/etc/ssl/certs/server.crt"
-c.NotebookApp.keyfile = "/etc/ssl/private/server.key"
-c.NotebookApp.ssl_options = {
+c.ServerApp.root_dir = home_dir
+#c.ServerApp.notebook_dir = home_dir - deprecated
+c.ServerApp.certfile = "/etc/ssl/certs/server.crt"
+c.ServerApp.keyfile = "/etc/ssl/private/server.key"
+c.ServerApp.ssl_options = {
     "ssl_version": ssl.PROTOCOL_TLSv1_2
 }
+
+c.NotebookApp.open_browser = False
 
 c.ContentsManager.allow_hidden = True
 
