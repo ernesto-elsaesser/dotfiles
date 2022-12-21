@@ -15,7 +15,7 @@ set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 expandtab
 
 " footer
-set wildmenu ruler incsearch laststatus=2
+set wildmenu ruler showcmd incsearch laststatus=2
 
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
