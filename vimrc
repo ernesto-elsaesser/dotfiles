@@ -115,6 +115,9 @@ nnoremap <Space> :w<CR>
 " quick alt file
 nnoremap ö <C-^>
 
+" remap C-V to allow pasting
+nnoremap ü <C-V>
+
 " alternative window key
 nnoremap ä <C-W>
 if v:version < 900
