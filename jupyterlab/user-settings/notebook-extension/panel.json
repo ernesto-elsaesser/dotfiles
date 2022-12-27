@@ -1,0 +1,122 @@
+{
+    "toolbar": [
+        {
+            "name": "save",
+            "args": {},
+            "command": "",
+            "disabled": false,
+            "rank": 0
+        },        
+        {
+            "name": "interrupt",
+            "args": {},
+            "command": "kernelmenu:interrupt",
+            "disabled": false,
+            "rank": 10
+        },
+        {
+            "args": {},
+            "command": "notebook:clear-all-cell-outputs",
+            "disabled": false,
+            "rank": 20,
+            "name": "clear-all-cell-outputs",
+            "icon": "ui-components:clear"
+        },
+        {
+            "name": "restart",
+            "args": {},
+            "command": "kernelmenu:restart",
+            "disabled": false,
+            "rank": 30,
+            "label": "Keep"
+        },
+        {
+            "args": {},
+            "command": "kernelmenu:restart-and-clear",
+            "disabled": false,
+            "rank": 40,
+            "name": "restart-and-clear",
+            "icon": "ui-components:refresh",
+            "label": "Clear"
+        },
+        {
+            "name": "cellType",
+            "args": {},
+            "command": "",
+            "disabled": false,
+            "rank": 50
+        },
+        {
+            "name": "copy",
+            "args": {},
+            "command": "notebook:copy-cell",
+            "disabled": false,
+            "rank": 60
+        },
+        {
+            "name": "cut",
+            "args": {},
+            "command": "notebook:cut-cell",
+            "disabled": false,
+            "rank": 70
+        },
+        {
+            "name": "paste",
+            "args": {},
+            "command": "notebook:paste-cell-below",
+            "disabled": false,
+            "rank": 80
+        },
+        {
+            "name": "spacer",
+            "args": {},
+            "command": "",
+            "disabled": false,
+            "type": "spacer",
+            "rank": 500
+        },
+        {
+            "name": "kernelName",
+            "args": {},
+            "command": "",
+            "disabled": false,
+            "rank": 1000
+        },
+        {
+            "name": "kernelStatus",
+            "args": {},
+            "command": "",
+            "disabled": false,
+            "rank": 1001
+        },
+        {
+            "name": "executionProgress",
+            "args": {},
+            "command": "",
+            "disabled": false,
+            "rank": 1002
+        },
+        {
+            "name": "run",
+            "args": {},
+            "command": "runmenu:run",
+            "disabled": true,
+            "rank": 9999
+        },
+        {
+            "name": "restart-and-run",
+            "args": {},
+            "command": "runmenu:restart-and-run-all",
+            "disabled": true,
+            "rank": 9999
+        },
+        {
+            "name": "insert",
+            "args": {},
+            "command": "notebook:insert-cell-below",
+            "disabled": true,
+            "icon": "ui-components:add",
+            "rank": 9999
+        }
+    ]
+}

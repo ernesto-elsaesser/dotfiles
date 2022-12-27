@@ -1,7 +1,1 @@
-SETTINGS_DIR="$HOME/.jupyter/lab/user-settings/@jupyterlab"
-mkdir -p "$SETTINGS_DIR/shortcuts-extension"
-cp shortcuts.json "$SETTINGS_DIR/shortcuts-extension/shortcuts.jupyterlab-settings"
-mkdir -p "$SETTINGS_DIR/docmanager-extension"
-cp docmanager.json "$SETTINGS_DIR/docmanager-extension/plugin.jupyterlab-settings"
-mkdir -p "$SETTINGS_DIR/cell-toolbar-extension"
-cp cell-toolbar.json "$SETTINGS_DIR/cell-toolbar-extension/plugin.jupyterlab-settings"
+cp -r user-settings "$HOME/.jupyter/lab/user-settings/@jupyterlab"

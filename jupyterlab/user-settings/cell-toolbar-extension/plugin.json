@@ -1,0 +1,71 @@
+{
+    "toolbar": [
+        {
+            "args": {},
+            "command": "notebook:run-cell-and-select-next",
+            "disabled": false,
+            "rank": 10,
+            "name": "run-cell-and-select-next",
+            "icon": "ui-components:run"
+        },
+        {
+            "args": {},
+            "command": "editmenu:clear-current",
+            "disabled": false,
+            "rank": 20,
+            "name": "clear-current",
+            "icon": "ui-components:clear"
+        },
+        {
+            "name": "insert-cell-above",
+            "args": {},
+            "command": "notebook:insert-cell-above",
+            "disabled": false,
+            "rank": 30
+        },
+        {
+            "name": "insert-cell-below",
+            "args": {},
+            "command": "notebook:insert-cell-below",
+            "disabled": false,
+            "rank": 40
+        },
+        {
+            "args": {},
+            "command": "notebook:split-cell-at-cursor",
+            "disabled": false,
+            "rank": 50,
+            "name": "split-cell-at-cursor",
+            "label": "---"
+        },
+        {
+            "name": "delete-cell",
+            "args": {},
+            "command": "notebook:delete-cell",
+            "disabled": false,
+            "icon": "ui-components:delete",
+            "rank": 60
+        },
+        {
+            "name": "duplicate-cell",
+            "args": {},
+            "command": "notebook:duplicate-below",
+            "disabled": true,
+            "rank": 100
+        },
+        {
+            "name": "move-cell-up",
+            "args": {},
+            "command": "notebook:move-cell-up",
+            "disabled": true,
+            "rank": 100
+        },
+        {
+            "name": "move-cell-down",
+            "args": {},
+            "command": "notebook:move-cell-down",
+            "disabled": true,
+            "rank": 100
+        }
+    ]
+}
