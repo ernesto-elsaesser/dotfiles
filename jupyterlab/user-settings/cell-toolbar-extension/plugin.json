@@ -1,19 +1,19 @@
 {
     "toolbar": [
         {
+            "name": "run-cell-and-select-next",
             "args": {},
             "command": "notebook:run-cell-and-select-next",
             "disabled": false,
             "rank": 10,
-            "name": "run-cell-and-select-next",
             "icon": "ui-components:run"
         },
         {
+            "name": "clear-current",
             "args": {},
             "command": "editmenu:clear-current",
             "disabled": false,
             "rank": 20,
-            "name": "clear-current",
             "icon": "ui-components:clear"
         },
         {
@@ -31,41 +31,43 @@
             "rank": 40
         },
         {
-            "args": {},
-            "command": "notebook:split-cell-at-cursor",
-            "disabled": false,
-            "rank": 50,
-            "name": "split-cell-at-cursor",
-            "label": "---"
-        },
-        {
-            "name": "delete-cell",
-            "args": {},
-            "command": "notebook:delete-cell",
-            "disabled": false,
-            "icon": "ui-components:delete",
-            "rank": 60
-        },
-        {
             "name": "duplicate-cell",
             "args": {},
             "command": "notebook:duplicate-below",
-            "disabled": true,
-            "rank": 100
+            "disabled": false,
+            "rank": 50,
+            "icon": "ui-components:delete"
         },
         {
-            "name": "move-cell-up",
+            "name": "split-cell-at-cursor",
+            "args": {},
+            "command": "notebook:split-cell-at-cursor",
+            "disabled": false,
+            "icon": "ui-components:delete",
+            "rank": 60,
+            "label": "---"
+        },
+        {
+            "args": {},
+            "command": "notebook:delete-cell",
+            "disabled": false,
+            "rank": 70,
+            "name": "delete-cell",
+            "icon": "ui-components:delete"
+        },
+        {
             "args": {},
             "command": "notebook:move-cell-up",
             "disabled": true,
-            "rank": 100
+            "rank": 100,
+            "name": "move-cell-up"
         },
         {
-            "name": "move-cell-down",
             "args": {},
             "command": "notebook:move-cell-down",
             "disabled": true,
-            "rank": 100
+            "rank": 100,
+            "name": "move-cell-down"
         }
     ]
 }
