@@ -35,15 +35,13 @@
             "args": {},
             "command": "notebook:duplicate-below",
             "disabled": false,
-            "rank": 50,
-            "icon": "ui-components:delete"
+            "rank": 50
         },
         {
             "name": "split-cell-at-cursor",
             "args": {},
             "command": "notebook:split-cell-at-cursor",
             "disabled": false,
-            "icon": "ui-components:delete",
             "rank": 60,
             "label": "---"
         },
