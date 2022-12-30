@@ -5,22 +5,39 @@
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 0
+            "rank": 0,
+            "icon": "ui-components:add"
+        },
+        {
+            "name": "run",
+            "args": {},
+            "command": "runmenu:run",
+            "disabled": false,
+            "icon": "ui-components:run",
+            "rank": 1
+        },
+        {
+            "name": "insert",
+            "args": {},
+            "command": "notebook:insert-cell-below",
+            "disabled": false,
+            "rank": 2,
+            "icon": "ui-components:add"
         },
         {
             "name": "interrupt",
             "args": {},
             "command": "kernelmenu:interrupt",
             "disabled": false,
-            "icon": "ui-components:stop",
-            "rank": 1
+            "rank": 3,
+            "icon": "ui-components:stop"
         },
         {
             "name": "clear-all-cell-outputs",
             "args": {},
             "command": "notebook:clear-all-cell-outputs",
             "disabled": false,
-            "rank": 2,
+            "rank": 4,
             "icon": "ui-components:clear"
         },
         {
@@ -28,7 +45,7 @@
             "args": {},
             "command": "kernelmenu:restart",
             "disabled": false,
-            "rank": 3,
+            "rank": 5,
             "label": "Keep"
         },
         {
@@ -36,7 +53,7 @@
             "args": {},
             "command": "kernelmenu:restart-and-clear",
             "disabled": false,
-            "rank": 4,
+            "rank": 6,
             "icon": "ui-components:refresh",
             "label": "Clear"
         },
@@ -45,14 +62,14 @@
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 5
+            "rank": 10
         },
         {
             "name": "delete",
             "args": {},
             "command": "notebook:delete-cell",
             "disabled": false,
-            "rank": 6,
+            "rank": 20,
             "icon": "ui-components:delete"
         },
         {
@@ -60,28 +77,31 @@
             "args": {},
             "command": "notebook:copy-cell",
             "disabled": false,
-            "rank": 7
+            "rank": 21,
+            "icon": "ui-components:copy"
         },
         {
             "name": "cut",
             "args": {},
             "command": "notebook:cut-cell",
             "disabled": false,
-            "rank": 8
+            "rank": 22,
+            "icon": "ui-components:cut"
         },
         {
             "name": "paste",
             "args": {},
             "command": "notebook:paste-cell-below",
             "disabled": false,
-            "rank": 9
+            "rank": 23,
+            "icon": "ui-components:paste"
         },
         {
             "name": "merge",
             "args": {},
             "command": "notebook:merge-cells",
             "disabled": false,
-            "rank": 10,
+            "rank": 24,
             "label": "Merge"
         },
         {
@@ -89,23 +109,23 @@
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 20,
+            "rank": 50,
             "type": "spacer"
         },
         {
-            "name": "kernelName",
             "args": {},
             "command": "",
             "disabled": false,
             "rank": 1000,
+            "name": "kernelName",
             "type": "spacer"
         },
         {
-            "name": "kernelStatus",
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 1001
+            "rank": 1001,
+            "name": "kernelStatus"
         },
         {
             "args": {},
@@ -113,21 +133,6 @@
             "disabled": false,
             "rank": 1002,
             "name": "executionProgress"
-        },
-        {
-            "args": {},
-            "command": "notebook:insert-cell-below",
-            "disabled": true,
-            "rank": 9999,
-            "name": "insert",
-            "icon": "ui-components:add"
-        },
-        {
-            "args": {},
-            "command": "runmenu:run",
-            "disabled": true,
-            "rank": 9999,
-            "name": "run"
         },
         {
             "args": {},
