@@ -5,7 +5,7 @@
             "args": {},
             "command": "notebook:run-cell-and-select-next",
             "disabled": false,
-            "rank": 10,
+            "rank": 1,
             "icon": "ui-components:run"
         },
         {
@@ -13,7 +13,7 @@
             "args": {},
             "command": "editmenu:clear-current",
             "disabled": false,
-            "rank": 20,
+            "rank": 2,
             "icon": "ui-components:clear"
         },
         {
@@ -21,37 +21,37 @@
             "args": {},
             "command": "notebook:insert-cell-above",
             "disabled": false,
-            "rank": 30
+            "rank": 3
         },
         {
             "name": "insert-cell-below",
             "args": {},
             "command": "notebook:insert-cell-below",
             "disabled": false,
-            "rank": 40
+            "rank": 4
         },
         {
             "name": "duplicate-cell",
             "args": {},
             "command": "notebook:duplicate-below",
             "disabled": false,
-            "rank": 50
+            "rank": 5
         },
         {
             "name": "split-cell-at-cursor",
             "args": {},
             "command": "notebook:split-cell-at-cursor",
             "disabled": false,
-            "rank": 60,
+            "rank": 6,
             "label": "---"
         },
         {
             "args": {},
             "command": "notebook:delete-cell",
             "disabled": false,
-            "rank": 70,
-            "name": "delete-cell",
-            "icon": "ui-components:delete"
+            "rank": 7,
+            "icon": "ui-components:delete",
+            "name": "delete-cell"
         },
         {
             "args": {},
