@@ -12,7 +12,7 @@
             "args": {},
             "command": "kernelmenu:interrupt",
             "disabled": false,
-            "icon": "ui-components:add",
+            "icon": "ui-components:stop",
             "rank": 1
         },
         {
