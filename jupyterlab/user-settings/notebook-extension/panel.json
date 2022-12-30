@@ -6,20 +6,21 @@
             "command": "",
             "disabled": false,
             "rank": 0
-        },        
+        },
         {
             "name": "interrupt",
             "args": {},
             "command": "kernelmenu:interrupt",
             "disabled": false,
-            "rank": 10
+            "icon": "ui-components:add",
+            "rank": 1
         },
         {
+            "name": "clear-all-cell-outputs",
             "args": {},
             "command": "notebook:clear-all-cell-outputs",
             "disabled": false,
-            "rank": 20,
-            "name": "clear-all-cell-outputs",
+            "rank": 2,
             "icon": "ui-components:clear"
         },
         {
@@ -27,15 +28,15 @@
             "args": {},
             "command": "kernelmenu:restart",
             "disabled": false,
-            "rank": 30,
+            "rank": 3,
             "label": "Keep"
         },
         {
+            "name": "restart-and-clear",
             "args": {},
             "command": "kernelmenu:restart-and-clear",
             "disabled": false,
-            "rank": 40,
-            "name": "restart-and-clear",
+            "rank": 4,
             "icon": "ui-components:refresh",
             "label": "Clear"
         },
@@ -44,43 +45,60 @@
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 50
+            "rank": 5
+        },
+        {
+            "name": "delete",
+            "args": {},
+            "command": "notebook:delete-cell",
+            "disabled": false,
+            "rank": 6,
+            "icon": "ui-components:delete"
         },
         {
             "name": "copy",
             "args": {},
             "command": "notebook:copy-cell",
             "disabled": false,
-            "rank": 60
+            "rank": 7
         },
         {
             "name": "cut",
             "args": {},
             "command": "notebook:cut-cell",
             "disabled": false,
-            "rank": 70
+            "rank": 8
         },
         {
             "name": "paste",
             "args": {},
             "command": "notebook:paste-cell-below",
             "disabled": false,
-            "rank": 80
+            "rank": 9
+        },
+        {
+            "name": "merge",
+            "args": {},
+            "command": "notebook:merge-cells",
+            "disabled": false,
+            "rank": 10,
+            "label": "Merge"
         },
         {
             "name": "spacer",
             "args": {},
             "command": "",
             "disabled": false,
-            "type": "spacer",
-            "rank": 500
+            "rank": 20,
+            "type": "spacer"
         },
         {
             "name": "kernelName",
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 1000
+            "rank": 1000,
+            "type": "spacer"
         },
         {
             "name": "kernelStatus",
@@ -90,33 +108,33 @@
             "rank": 1001
         },
         {
-            "name": "executionProgress",
             "args": {},
             "command": "",
             "disabled": false,
-            "rank": 1002
+            "rank": 1002,
+            "name": "executionProgress"
         },
         {
-            "name": "run",
-            "args": {},
-            "command": "runmenu:run",
-            "disabled": true,
-            "rank": 9999
-        },
-        {
-            "name": "restart-and-run",
-            "args": {},
-            "command": "runmenu:restart-and-run-all",
-            "disabled": true,
-            "rank": 9999
-        },
-        {
-            "name": "insert",
             "args": {},
             "command": "notebook:insert-cell-below",
             "disabled": true,
-            "icon": "ui-components:add",
-            "rank": 9999
+            "rank": 9999,
+            "name": "insert",
+            "icon": "ui-components:add"
+        },
+        {
+            "args": {},
+            "command": "runmenu:run",
+            "disabled": true,
+            "rank": 9999,
+            "name": "run"
+        },
+        {
+            "args": {},
+            "command": "runmenu:restart-and-run-all",
+            "disabled": true,
+            "rank": 9999,
+            "name": "restart-and-run"
         }
     ]
 }
