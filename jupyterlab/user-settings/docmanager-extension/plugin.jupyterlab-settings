@@ -1,4 +1,5 @@
 {
+    "autosaveInterval": 30,
     "defaultViewers": {
         "json": "Editor",
         "html": "Editor"
