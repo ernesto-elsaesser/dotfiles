@@ -1,0 +1,18 @@
+{
+    "shortcuts": [
+        {
+            "command": "notebook:insert-cell-below",
+            "selector": ".jp-Notebook:focus",
+            "keys": [
+                "S"
+            ]
+        },
+        {
+            "command": "notebook:run-cell-and-select-next",
+            "selector": ".jp-Notebook:focus",
+            "keys": [
+                "F"
+            ]
+        }
+    ]
+}

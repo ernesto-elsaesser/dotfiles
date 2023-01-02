@@ -1,1 +1,0 @@
-cp -r user-settings "$HOME/.jupyter/lab/user-settings/@jupyterlab"

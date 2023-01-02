@@ -1,0 +1,96 @@
+{
+    "toolbar": [
+        {
+            "name": "insert",
+            "command": "notebook:insert-cell-below",
+            "rank": 1,
+            "icon": "ui-components:add"
+        },
+        {
+            "name": "run",
+            "command": "runmenu:run",
+            "rank": 2,
+            "icon": "ui-components:run"
+        },
+        {
+            "name": "interrupt",
+            "command": "kernelmenu:interrupt",
+            "rank": 3,
+            "icon": "ui-components:stop"
+        },
+        {
+            "name": "restart-and-clear",
+            "command": "kernelmenu:restart-and-clear",
+            "rank": 4,
+            "icon": "ui-components:refresh"
+        },
+        {
+            "name": "clear-current",
+            "command": "editmenu:clear-current",
+            "rank": 5,
+            "label": "Clear"
+        },
+        {
+            "name": "clear-all-cell-outputs",
+            "command": "notebook:clear-all-cell-outputs",
+            "rank": 6,
+            "label": "Clear All"
+        },
+        {
+            "name": "split",
+            "command": "notebook:split-cell-at-cursor",
+            "rank": 7,
+            "label": "Split"
+        },
+        {
+            "name": "merge",
+            "command": "notebook:merge-cells",
+            "rank": 8,
+            "label": "Merge"
+        },
+        {
+            "name": "cellType",
+            "rank": 100
+        },
+        {
+            "name": "spacer",
+            "rank": 200
+        },
+        {
+            "name": "kernelName",
+            "rank": 1000
+        },
+        {
+            "name": "kernelStatus",
+            "rank": 1001
+        },
+        {
+            "name": "executionProgress",
+            "rank": 1002
+        },
+        {
+            "name": "save",
+            "disabled": true
+        },
+        {
+            "name": "cut",
+            "disabled": true
+        },
+        {
+            "name": "copy",
+            "disabled": true
+        },
+        {
+            "name": "paste",
+            "disabled": true
+        },
+        {
+            "name": "restart",
+            "disabled": true
+        },
+        {
+            "name": "restart-and-run",
+            "disabled": true
+        }
+    ]
+}
