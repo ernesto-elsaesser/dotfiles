@@ -11,6 +11,13 @@
             "command": "notebook:run-cell-and-select-next",
             "selector": ".jp-Notebook:focus",
             "keys": [
+                "E"
+            ]
+        },
+        {
+            "command": "editmenu:clear-current",
+            "selector": ".jp-Notebook:focus",
+            "keys": [
                 "F"
             ]
         }

@@ -19,22 +19,22 @@
             "icon": "ui-components:stop"
         },
         {
-            "name": "restart-and-clear",
-            "command": "kernelmenu:restart-and-clear",
-            "rank": 4,
-            "icon": "ui-components:refresh"
-        },
-        {
             "name": "clear-current",
             "command": "editmenu:clear-current",
-            "rank": 5,
+            "rank": 4,
             "label": "Clear"
         },
         {
             "name": "clear-all-cell-outputs",
             "command": "notebook:clear-all-cell-outputs",
-            "rank": 6,
+            "rank": 5,
             "label": "Clear All"
+        },
+        {
+            "name": "restart-and-clear",
+            "command": "kernelmenu:restart-and-clear",
+            "rank": 6,
+            "label": "Reset"
         },
         {
             "name": "split",
