@@ -13,10 +13,11 @@ c.ServerApp.keyfile = "/etc/ssl/private/server.key"
 c.ServerApp.ssl_options = {
     "ssl_version": ssl.PROTOCOL_TLSv1_2
 }
+c.ServerApp.open_browser = False
 
-c.NotebookApp.open_browser = False
-
-c.ContentsManager.allow_hidden = True
+c.FileContentsManager.allow_hidden = True
+c.FileContentsManager.delete_to_trash = False
+c.FileContentsManager.always_delete_dir = True
 
 checkpoint_dir = os.path.join(home_dir, ".jupyter", "check")
 os.makedirs(checkpoint_dir, exist_ok=True)
