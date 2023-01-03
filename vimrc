@@ -102,6 +102,8 @@ com! -nargs=1 F vim <args> *
 " open scratch buffer
 com! B new | setl bt=nofile
 
+" git commit
+com! -nargs=1 C call system('git commit -m "<args>"')
 
 " --- mappings ---
 
@@ -149,6 +151,9 @@ nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
 nmap <Leader>t :ter ++close<CR>
 nmap <Leader>w :setl wrap!<CR>
+nmap <Leader>s :echo system("git status -s")<CR>
+nmap <Leader>a :echo system("git add -vA")<CR>
+nmap <Leader>p :!git push<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
