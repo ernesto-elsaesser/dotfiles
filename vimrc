@@ -86,6 +86,7 @@ fun! GitCommit(msg, add, push)
     if a:add
         call system('git add -A')
     endif
+    echo system('git status -s')
     echo system('git commit -m "' . a:msg . '"')
     if a:push
         echo system('git push')
@@ -104,13 +105,6 @@ fun! GitRevision(ref)
     setl bt=nofile
 endfun
 
-" show git history in scratch buffer
-fun! GitLog(cnt)
-    new
-    exec 'silent read !git log --reverse -' . a:cnt
-    setl bt=nofile
-endfun
-
 
 " -- commands --
 
@@ -122,9 +116,6 @@ com! -nargs=1 P call GitCommit(<q-args>, 1, 1)
 
 " show HEAD version of current file
 com! H call GitRevision('HEAD')
-
-" show last 25 commits
-com! L call GitLog(25)
 
 " search files
 com! -nargs=1 F vim <args> *
@@ -168,13 +159,13 @@ nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 nmap <Leader>l <C-]>
-nmap <Leader>h <C-[>
 
 " git
 nmap <Leader>s :echo system('git status -s')<CR>
 nmap <Leader>a :echo system('git add -vA')<CR>
-nmap <Leader>x :ter git push<CR>
-nmap <Leader>d :ter git pull<CR>
+nmap <Leader>h :ter git log --reverse -10<CR>
+nmap <Leader>d :ter git diff<CR>
+nmap <Leader>u :ter git pull<CR>
 
 " config
 nmap <Leader>. :sp ~/.vimrc<CR>
