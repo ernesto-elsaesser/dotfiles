@@ -158,13 +158,15 @@ vnoremap <S-Tab> <
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
-nmap <Leader>l <C-]>
+nmap <Leader>g <C-]>
+
+" terminal
+nmap <Leader>t :ter ++close<CR>
 
 " git
-nmap <Leader>s :echo system('git status -s')<CR>
-nmap <Leader>a :echo system('git add -vA')<CR>
-nmap <Leader>h :ter git log --reverse -10<CR>
-nmap <Leader>d :ter git diff<CR>
+nmap <Leader>s :ter git status<CR>
+nmap <Leader>d :vert ter git diff<CR>
+nmap <Leader>l :ter git log --reverse -10<CR>
 nmap <Leader>u :ter git pull<CR>
 
 " config
@@ -172,9 +174,6 @@ nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
 nmap <Leader>w :setl wrap!<CR>
-
-" terminal
-nmap <Leader>t :ter ++close<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
