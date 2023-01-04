@@ -133,16 +133,11 @@ nnoremap <Space> :w<CR>
 " quick alt file
 nnoremap ö <C-^>
 
+" switch windows
+nnoremap ä <C-W>w
+
 " remap C-V to allow pasting
 nnoremap ü <C-V>
-
-" alternative window key
-nnoremap ä <C-W>
-if v:version < 900
-    set termkey=ä
-else
-    set termwinkey=ä
-endif
 
 " open parent directory
 nnoremap - :E<CR>
@@ -155,7 +150,7 @@ vnoremap <Tab> >
 vnoremap <S-Tab> <
 
 " quick navigation
-nmap <Leader><Leader> :cc<CR>
+nmap <Leader>l :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 nmap <Leader>g <C-]>
@@ -166,14 +161,14 @@ nmap <Leader>t :ter ++close<CR>
 " git
 nmap <Leader>s :ter git status<CR>
 nmap <Leader>d :vert ter git diff<CR>
-nmap <Leader>l :ter git log --reverse -10<CR>
+nmap <Leader>h :ter git log --reverse -10<CR>
 nmap <Leader>u :ter git pull<CR>
 
 " config
 nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-nmap <Leader>w :setl wrap!<CR>
+nmap <Leader>n :setl wrap!<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
