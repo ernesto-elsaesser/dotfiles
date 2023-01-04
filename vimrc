@@ -79,10 +79,18 @@ augroup vimrc
 augroup END
 
 
-" -- commands --
+" --- functions ---
 
-" commit
-com! -nargs=1 C echo system('git commit -m "<args>"')
+" commit changes
+fun! GitCommit(msg, add, push)
+    if a:add
+        call system('git add -A')
+    endif
+    echo system('git commit -m "' . a:msg . '"')
+    if a:push
+        echo system('git push')
+    endif
+endfun
 
 " load file revision into scratch buffer
 fun! GitRevision(ref)
@@ -96,14 +104,24 @@ fun! GitRevision(ref)
     setl bt=nofile
 endfun
 
-" show HEAD version of current file
-com! H call GitRevision('HEAD')
-
+" show git history in scratch buffer
 fun! GitLog(cnt)
     new
     exec 'silent read !git log --reverse -' . a:cnt
     setl bt=nofile
 endfun
+
+
+" -- commands --
+
+" commit staged changes
+com! -nargs=1 C call GitCommit(<q-args>, 0, 0)
+
+" commit all
+com! -nargs=1 P call GitCommit(<q-args>, 1, 1)
+
+" show HEAD version of current file
+com! H call GitRevision('HEAD')
 
 " show last 25 commits
 com! L call GitLog(25)
@@ -111,8 +129,6 @@ com! L call GitLog(25)
 " search files
 com! -nargs=1 F vim <args> *
 
-" open scratch buffer
-com! B new | setl bt=nofile
 
 " --- mappings ---
 
@@ -158,7 +174,7 @@ nmap <Leader>h <C-[>
 nmap <Leader>s :echo system('git status -s')<CR>
 nmap <Leader>a :echo system('git add -vA')<CR>
 nmap <Leader>x :ter git push<CR>
-nmap <Leader>d :ter git pull --ff-only<CR>
+nmap <Leader>d :ter git pull<CR>
 
 " config
 nmap <Leader>. :sp ~/.vimrc<CR>
