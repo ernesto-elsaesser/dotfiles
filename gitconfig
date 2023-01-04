@@ -1,0 +1,5 @@
+[user]
+	name = Ernesto Elsäßer
+	email = ernesto.elsaesser@gmail.com
+[format]
+    pretty = %h%d %s [%ar, %ae]

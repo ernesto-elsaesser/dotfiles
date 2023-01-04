@@ -81,8 +81,11 @@ augroup END
 
 " -- commands --
 
+" commit
+com! -nargs=1 C echo system('git commit -m "<args>"')
+
 " load file revision into scratch buffer
-fun! LoadRevision(ref)
+fun! GitRevision(ref)
     let relpath = expand('%:.')
     let linenum = line('.')
     let filetype = &ft
@@ -94,16 +97,22 @@ fun! LoadRevision(ref)
 endfun
 
 " show HEAD version of current file
-com! H call LoadRevision('HEAD')
+com! H call GitRevision('HEAD')
+
+fun! GitLog(cnt)
+    new
+    exec 'silent read !git log --reverse -' . a:cnt
+    setl bt=nofile
+endfun
+
+" show last 25 commits
+com! L call GitLog(25)
 
 " search files
 com! -nargs=1 F vim <args> *
 
 " open scratch buffer
 com! B new | setl bt=nofile
-
-" git commit
-com! -nargs=1 C call system('git commit -m "<args>"')
 
 " --- mappings ---
 
@@ -145,15 +154,20 @@ nmap <Leader>k :cp<CR>
 nmap <Leader>l <C-]>
 nmap <Leader>h <C-[>
 
-" leader mappings
+" git
+nmap <Leader>s :echo system('git status -s')<CR>
+nmap <Leader>a :echo system('git add -vA')<CR>
+nmap <Leader>x :ter git push<CR>
+nmap <Leader>d :ter git pull --ff-only<CR>
+
+" config
 nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-nmap <Leader>t :ter ++close<CR>
 nmap <Leader>w :setl wrap!<CR>
-nmap <Leader>s :echo system("git status -s")<CR>
-nmap <Leader>a :echo system("git add -vA")<CR>
-nmap <Leader>p :!git push<CR>
+
+" terminal
+nmap <Leader>t :ter ++close<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
