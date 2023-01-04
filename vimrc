@@ -159,7 +159,7 @@ nmap <Leader>g <C-]>
 nmap <Leader>t :ter ++close<CR>
 
 " git
-nmap <Leader>s :ter git status<CR>
+nmap <Leader>s :echo system('git status')<CR>
 nmap <Leader>d :vert ter git diff<CR>
 nmap <Leader>h :ter git log --reverse -10<CR>
 nmap <Leader>u :ter git pull<CR>
