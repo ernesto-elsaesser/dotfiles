@@ -2,50 +2,48 @@
     "toolbar": [
         {
             "name": "insert",
-            "command": "notebook:insert-cell-below",
             "rank": 1,
-            "icon": "ui-components:add"
         },
         {
             "name": "run",
-            "command": "runmenu:run",
             "rank": 2,
-            "icon": "ui-components:run"
         },
         {
             "name": "interrupt",
-            "command": "kernelmenu:interrupt",
             "rank": 3,
-            "icon": "ui-components:stop"
+        },
+        {
+            "name": "restart",
+            "rank": 4,
         },
         {
             "name": "clear-current",
             "command": "editmenu:clear-current",
-            "rank": 4,
+            "rank": 10,
             "label": "Clear"
         },
         {
             "name": "clear-all-cell-outputs",
             "command": "notebook:clear-all-cell-outputs",
-            "rank": 5,
+            "rank": 11,
             "label": "Clear All"
         },
         {
             "name": "restart-and-clear",
             "command": "kernelmenu:restart-and-clear",
-            "rank": 6,
+            "rank": 12,
             "label": "Reset"
         },
         {
             "name": "split",
             "command": "notebook:split-cell-at-cursor",
-            "rank": 7,
+            "rank": 13,
             "label": "Split"
         },
         {
             "name": "merge",
             "command": "notebook:merge-cells",
-            "rank": 8,
+            "rank": 14,
             "label": "Merge"
         },
         {
@@ -82,10 +80,6 @@
         },
         {
             "name": "paste",
-            "disabled": true
-        },
-        {
-            "name": "restart",
             "disabled": true
         },
         {
