@@ -168,7 +168,7 @@ nmap <Leader>u :ter git pull<CR>
 nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-nmap <Leader>n :setl wrap!<CR>
+nmap <Leader>w :setl wrap!<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
