@@ -13,7 +13,7 @@
 > git checkout -- <FILE>
 
 - replace FILE with master branch version
-> git checkout master -- <FILE>
+> git checkout origin/master -- <FILE>
 
 - unstage all files (reset index)
 > git reset HEAD
@@ -57,14 +57,17 @@
 - rename current branch
 > git branch -m <NAME>
 
-- delete branch
-> git branch -d <NAME>
+- rebase current branch to master
+> git rebase origin/master
 
 - merge upsteam branch into current
-> git fetch; git merge --no-edit
+> git merge --no-edit
 
 - merge master branch into current
-> git fetch; git merge --no-edit origin/master
+> git merge --no-edit origin/master
+
+- delete branch
+> git branch -d <NAME>
 
 
 ### Misc

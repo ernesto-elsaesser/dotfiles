@@ -160,13 +160,14 @@ nmap <Leader>t :ter ++close<CR>
 nmap <Leader>s :echo system('git status')<CR>
 nmap <Leader>d :vert ter git diff<CR>
 nmap <Leader>h :ter git log --reverse -10<CR>
-nmap <Leader>u :ter git pull<CR>
+nmap <Leader>w :ter git push<CR>
+nmap <Leader>s :ter git pull<CR>
 
 " config
 nmap <Leader>. :sp ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
 nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-nmap <Leader>w :setl wrap!<CR>
+nmap <Leader>r :setl wrap!<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
