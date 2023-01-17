@@ -109,10 +109,10 @@ endfun
 
 " -- commands --
 
-" commit staged changes
-com! -nargs=1 C call GitCommit(<q-args>, 0, 0)
+" commit all changes
+com! -nargs=1 C call GitCommit(<q-args>, 1, 0)
 
-" commit all
+" commit and push all changes
 com! -nargs=1 P call GitCommit(<q-args>, 1, 1)
 
 " show HEAD version of current file
@@ -134,11 +134,8 @@ nnoremap <Space> :w<CR>
 " quick alt file
 nnoremap ö <C-^>
 
-" switch windows
-nnoremap ä <C-W>w
-
 " remap C-V to allow pasting
-nnoremap ü <C-V>
+nnoremap ä <C-V>
 
 " open parent directory
 nnoremap - :E<CR>

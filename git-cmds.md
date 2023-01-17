@@ -12,6 +12,9 @@
 - unstage file FILE
 > git checkout -- <FILE>
 
+- replace FILE with master branch version
+> git checkout master -- <FILE>
+
 - unstage all files (reset index)
 > git reset HEAD
 
