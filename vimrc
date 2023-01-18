@@ -160,8 +160,8 @@ nmap <Leader>t :ter ++close<CR>
 nmap <Leader>s :echo system('git status')<CR>
 nmap <Leader>d :vert ter git diff<CR>
 nmap <Leader>h :ter git log --reverse -10<CR>
-nmap <Leader>w :ter git push<CR>
-nmap <Leader>s :ter git pull<CR>
+nmap <Leader>p :ter git push<CR>
+nmap <Leader>l :ter git pull<CR>
 
 " config
 nmap <Leader>. :sp ~/.vimrc<CR>
