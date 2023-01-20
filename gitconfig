@@ -1,6 +1,8 @@
 [user]
 	name = Ernesto Elsäßer
 	email = ernesto.elsaesser@me.com
+[core]
+    editor = vim
 [format]
     pretty = %h%d %s [%ar, %ae]
 [pull]
