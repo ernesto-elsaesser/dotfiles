@@ -131,11 +131,17 @@ vnoremap <C-K> <Esc>
 " quick save
 nnoremap <Space> :w<CR>
 
-" quick alt file
-nnoremap ö <C-^>
+" tab navigation
+nnoremap ö gT
+nnoremap ä gt
+nmap <Leader><Leader> 1gt
+nmap <Leader>1 2gt
+nmap <Leader>2 3gt
+nmap <Leader>3 4gt
+nmap <Leader>4 5gt
 
 " remap C-V to allow pasting
-nnoremap ä <C-V>
+nnoremap ü <C-V>
 
 " open parent directory
 nnoremap - :E<CR>
@@ -147,10 +153,12 @@ inoremap <S-Tab> <C-d>
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
-" quick navigation
+" error list navigation
 nmap <Leader>l :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
+
+" follow links
 nmap <Leader>g <C-]>
 
 " terminal
