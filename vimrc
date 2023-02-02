@@ -45,7 +45,7 @@ set gdefault
 
 hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
-hi ColorColumn ctermbg=darkgrey
+hi ColorColumn ctermbg=darkblue
 hi MatchParen cterm=underline ctermbg=NONE
 hi netrwMarkFile ctermbg=red
 
@@ -57,7 +57,8 @@ let mapleader = ','
 
 " fine-tune netrw
 let g:netrw_banner = 0
-let g:netrw_maxfilenamelen = 20
+let g:netrw_liststyle = 3
+"let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
 let g:netrw_sizestyle = 'H'
 let g:netrw_list_hide = '^\..*'
@@ -172,10 +173,12 @@ nmap <Leader><Up> :ter git push<CR>
 nmap <Leader><Down> :ter git pull<CR>
 
 " config
-nmap <Leader>. :sp ~/.vimrc<CR>
+nmap <Leader>. :tabe ~/.vimrc<CR>
 nmap <Leader>- :source ~/.vimrc<CR>
-nmap <Leader># :sp ~/dotfiles/vimrc<CR>
-nmap <Leader>r :setl wrap!<CR>
+nmap <Leader># :tabe ~/dotfiles/vimrc<CR>
+
+" toggle word wrap
+nmap <Leader>w :setl wrap!<CR>
 
 " command mode home
 cnoremap <C-A> <Home>
