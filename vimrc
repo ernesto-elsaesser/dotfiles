@@ -18,6 +18,9 @@ set tabstop=4 shiftwidth=4 expandtab
 set wildmenu showcmd incsearch laststatus=2
 set statusline=%f\ <%{getcwd()}>%=%c-%l/%L%m
 
+" working dir changes with file
+set autochdir
+
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
 
@@ -163,7 +166,7 @@ nmap <Leader>k :cp<CR>
 nmap <Leader>g <C-]>
 
 " terminal
-nmap <Leader>t :tab ter ++close<CR>
+nmap <Leader>t :ter ++close<CR>
 
 " git
 nmap <Leader>s :echo system('git status')<CR>
