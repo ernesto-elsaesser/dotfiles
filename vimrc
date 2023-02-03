@@ -16,7 +16,7 @@ set tabstop=4 shiftwidth=4 expandtab
 
 " footer
 set wildmenu showcmd incsearch laststatus=2
-set statusline=%f\ <%{getcwd()}>%=%c-%l/%L%m
+set statusline=%m%F:%l.%c\ (%L\ lines)
 
 " working dir changes with file
 set autochdir
