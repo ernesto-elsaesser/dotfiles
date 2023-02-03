@@ -163,7 +163,7 @@ nmap <Leader>k :cp<CR>
 nmap <Leader>g <C-]>
 
 " terminal
-nmap <Leader>t :ter ++close<CR>
+nmap <Leader>t :tab ter ++close<CR>
 
 " git
 nmap <Leader>s :echo system('git status')<CR>
