@@ -60,8 +60,7 @@ let mapleader = ','
 
 " fine-tune netrw
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-"let g:netrw_maxfilenamelen = 20
+let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
 let g:netrw_sizestyle = 'H'
 let g:netrw_list_hide = '^\..*'
