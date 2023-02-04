@@ -1,6 +1,6 @@
 " --- options ---
 
-" language-dependent syntax highlighting
+" language-aware syntax highlighting
 syntax on
 filetype on
 set background=dark
@@ -18,7 +18,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set wildmenu showcmd incsearch laststatus=2
 set statusline=%m%F:%l.%c\ (%L\ lines)
 
-" working dir changes with file
+" change working dir to current file
 set autochdir
 
 " persistence
@@ -50,7 +50,6 @@ hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
 hi ColorColumn ctermbg=darkblue
 hi MatchParen cterm=underline ctermbg=NONE
-hi netrwMarkFile ctermbg=red
 
 
 " --- variables ---
