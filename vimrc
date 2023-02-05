@@ -18,9 +18,6 @@ set tabstop=4 shiftwidth=4 expandtab
 set wildmenu showcmd incsearch laststatus=2
 set statusline=%m%F:%l.%c\ (%L\ lines)
 
-" change working dir to current file
-set autochdir
-
 " persistence
 set noswapfile viminfo= undofile undodir=~/.vim/undo
 
@@ -59,6 +56,7 @@ let mapleader = ','
 
 " fine-tune netrw
 let g:netrw_banner = 0
+let g:netrw_keepdir = 0
 let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
 let g:netrw_sizestyle = 'H'
