@@ -1,19 +1,19 @@
+# Git Cheatsheet
+
 ### Staging
 
-- stage all files
-> git add -A
+- stage all files: `git add -A`
 
-- show diff to HEAD
-> git diff
+- show diff to HEAD: `git diff`
 
 - show diff to index
 > git diff --staged
 
 - unstage file FILE
-> git checkout -- <FILE>
+> git checkout -- FILE
 
 - replace FILE with master branch version
-> git checkout origin/master -- <FILE>
+> git checkout origin/master -- FILE
 
 - unstage all files (reset index)
 > git reset HEAD
@@ -46,16 +46,16 @@
 > git branch -vv
 
 - switch to branch
-> git checkout <NAME>
+> git checkout NAME
 
 - create new branch
-> git checkout -b <NAME>
+> git checkout -b NAME
 
 - push new branch to upstream repo
 > git push -u origin HEAD
 
 - rename current branch
-> git branch -m <NAME>
+> git branch -m NAME
 
 - rebase current branch to master
 > git rebase origin/master
@@ -67,7 +67,7 @@
 > git merge --no-edit origin/master
 
 - delete branch
-> git branch -d <NAME>
+> git branch -d NAME
 
 
 ### Misc
@@ -75,6 +75,6 @@
 - pull new commits, branches, tags, etc.
 > git fetch --all
 
-- rebase interactively over last NUM commits
-> git rebase -i HEAD~<NUM>
+- rebase interactively over last N commits
+> git rebase -i HEAD~N
 
