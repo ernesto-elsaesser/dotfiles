@@ -1,5 +1,8 @@
 " --- options ---
 
+" future is now old man
+set nocompatible
+
 " language-aware syntax highlighting
 syntax on
 filetype on
@@ -19,11 +22,7 @@ set wildmenu showcmd incsearch laststatus=2
 set statusline=%m%F:%l.%c\ (%L\ lines)
 
 " persistence
-set noswapfile viminfo= undofile undodir=~/.vim/undo
-
-if !isdirectory(&undodir)
-    call mkdir(&undodir)
-endif
+set noswapfile viminfo= undofile undodir=/tmp/vim-undo
 
 " width hint
 set colorcolumn=80
@@ -51,15 +50,19 @@ hi MatchParen cterm=underline ctermbg=NONE
 
 " --- variables ---
 
+" do not load $VIMRUNTIME/default.vim
+let g:skip_defaults_vim = 1
+
 " use comma as leader
 let mapleader = ','
 
 " fine-tune netrw
-let g:netrw_banner = 0
-let g:netrw_keepdir = 0
+let g:netrw_banner = 0 # no banner
+let g:netrw_keepdir = 0 # moving working dir
+let g:netrw_dirhistmax = 0 # no ~/.vim/netrwhist
 let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
-let g:netrw_sizestyle = 'H'
+let g:netrw_sizestyle = 'H' # human-readable file sizes
 let g:netrw_list_hide = '^\..*'
 
 " make MySQL the default SQL dialect
@@ -72,7 +75,7 @@ augroup vimrc
     au!
 
     " jump to last position
-    au BufReadPost * exec "normal! g`\""
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
     " always auto-indent
     au BufEnter * setl autoindent
