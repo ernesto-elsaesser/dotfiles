@@ -1,9 +1,8 @@
-# Git Cheatsheet
+## Git Cheatsheet
 
-### Staging
-
-Command | Effect
+Command | Description
 --- | ---
+*Staging* | 
 `git add -A` | stage all files 
 `git diff` | show diff to HEAD 
 `git diff --staged` | show diff to index 
@@ -11,21 +10,11 @@ Command | Effect
 `git checkout origin/master -- FILE` | replace FILE with master branch version 
 `git reset HEAD` | unstage all files (reset index) 
 `git reset --hard HEAD` | discard all changes in working dir (and index) 
-
-
-### Commits
-
-Command | Effect
---- | ---
+*Commits* | 
 `git rev-parse --short HEAD` | print short commit hash of the latest commit 
 `git commit --amend --no-edit` | add changes to last commit 
 `git reset HEAD~` | delete last commit (keep working dir for re-commit) 
-
-
-### Branches
-
-Command | Effect
---- | ---
+*Branches* | 
 `git branch` | show local branches 
 `git branch -a` | show local and remote branches 
 `git branch -vv` | show branches with more info 
@@ -37,12 +26,7 @@ Command | Effect
 `git merge --no-edit` | merge upsteam branch into current 
 `git merge --no-edit origin/master` | merge master branch into current 
 `git branch -d NAME` | delete branch 
-
-
-### Misc
-
-Command | Effect
---- | ---
+*Other* | 
 `git fetch --all` | pull new commits, branches, tags, etc. 
 `git rebase -i HEAD~N` | rebase interactively over last N commits 
 
