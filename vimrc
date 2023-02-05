@@ -57,12 +57,12 @@ let g:skip_defaults_vim = 1
 let mapleader = ','
 
 " fine-tune netrw
-let g:netrw_banner = 0 # no banner
-let g:netrw_keepdir = 0 # moving working dir
-let g:netrw_dirhistmax = 0 # no ~/.vim/netrwhist
+let g:netrw_banner = 0 " no banner
+let g:netrw_keepdir = 0 " moving working dir
+let g:netrw_dirhistmax = 0 " no ~/.vim/netrwhist
 let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
-let g:netrw_sizestyle = 'H' # human-readable file sizes
+let g:netrw_sizestyle = 'H' " human-readable file sizes
 let g:netrw_list_hide = '^\..*'
 
 " make MySQL the default SQL dialect
