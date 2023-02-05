@@ -2,79 +2,47 @@
 
 ### Staging
 
-- stage all files: `git add -A`
-
-- show diff to HEAD: `git diff`
-
-- show diff to index
-> git diff --staged
-
-- unstage file FILE
-> git checkout -- FILE
-
-- replace FILE with master branch version
-> git checkout origin/master -- FILE
-
-- unstage all files (reset index)
-> git reset HEAD
-
-- discard all changes in working dir (and index)
-> git reset --hard HEAD
+Command | Effect
+--- | ---
+`git add -A` | stage all files 
+`git diff` | show diff to HEAD 
+`git diff --staged` | show diff to index 
+`git checkout -- FILE` | unstage file FILE 
+`git checkout origin/master -- FILE` | replace FILE with master branch version 
+`git reset HEAD` | unstage all files (reset index) 
+`git reset --hard HEAD` | discard all changes in working dir (and index) 
 
 
 ### Commits
 
-- print short commit hash of the latest commit
-> git rev-parse --short HEAD
-
-- add changes to last commit
-> git commit --amend --no-edit
-
-- delete last commit (keep working dir for re-commit)
-> git reset HEAD~
+Command | Effect
+--- | ---
+`git rev-parse --short HEAD` | print short commit hash of the latest commit 
+`git commit --amend --no-edit` | add changes to last commit 
+`git reset HEAD~` | delete last commit (keep working dir for re-commit) 
 
 
 ### Branches
 
-- show local branches
-> git branch
-
-- show local and remote branches
-> git branch -a
-
-- show branches with more info
-> git branch -vv
-
-- switch to branch
-> git checkout NAME
-
-- create new branch
-> git checkout -b NAME
-
-- push new branch to upstream repo
-> git push -u origin HEAD
-
-- rename current branch
-> git branch -m NAME
-
-- rebase current branch to master
-> git rebase origin/master
-
-- merge upsteam branch into current
-> git merge --no-edit
-
-- merge master branch into current
-> git merge --no-edit origin/master
-
-- delete branch
-> git branch -d NAME
+Command | Effect
+--- | ---
+`git branch` | show local branches 
+`git branch -a` | show local and remote branches 
+`git branch -vv` | show branches with more info 
+`git checkout NAME` | switch to branch 
+`git checkout -b NAME` | create new branch 
+`git push -u origin HEAD` | push new branch to upstream repo 
+`git branch -m NAME` | rename current branch 
+`git rebase origin/master` | rebase current branch to master 
+`git merge --no-edit` | merge upsteam branch into current 
+`git merge --no-edit origin/master` | merge master branch into current 
+`git branch -d NAME` | delete branch 
 
 
 ### Misc
 
-- pull new commits, branches, tags, etc.
-> git fetch --all
-
-- rebase interactively over last N commits
-> git rebase -i HEAD~N
+Command | Effect
+--- | ---
+`git fetch --all` | pull new commits, branches, tags, etc. 
+`git rebase -i HEAD~N` | rebase interactively over last N commits 
 
