@@ -1,43 +1,27 @@
 " --- options ---
 
-" future is now old man
 set nocompatible
 
-" language-aware syntax highlighting
 syntax on
-filetype on
-set background=dark
+filetype indent on " detect type, load indenting, but no plugins
 
-" scrolling
-set nowrap scrolloff=5
-
-" sane backspacing
-set backspace=indent,eol,start
-
-" spaces over tabs
-set tabstop=4 shiftwidth=4 expandtab
-
-" footer
-set wildmenu showcmd incsearch laststatus=2
-set statusline=%m%F:%l.%c\ (%L\ lines)
-
-" persistence
 set noswapfile viminfo= undofile undodir=/tmp/vim-undo
-
-" width hint
+set background=dark
+set laststatus=2 " always show status bar
+set statusline=%m%F:%l'%c\ (%L\ lines)
+set showcmd
+set wildmenu " TAB menu in ex commands
+set incsearch
+set scrolloff=5
+set nowrap
+set backspace=indent,eol,start
+set expandtab autoindent
+set tabstop=4 shiftwidth=4 " default indents
+set complete=. completeopt= " complete from buffer, no popup menu
 set colorcolumn=80
-
-" complete only from current buffer, no popup menu
-set complete=. completeopt=
-
-" universal error format [FILE:LINE: ERR_MSG]
-set errorformat=%A%f:%l:\ %m,%-G%.%#
-
-" quickly turn paste on and off in insert mode
+set gdefault " match all occurences of pattern
+set errorformat=%A%f:%l:\ %m,%-G%.%# " FILE:LINE: ERR_MSG
 set pastetoggle=<C-Y>
-
-" always match all occurences of a pattern
-set gdefault
 
 
 " --- colors ---
@@ -71,14 +55,11 @@ let g:sql_type_default = 'mysql'
 
 " --- autocmds ---
 
-augroup vimrc
+augroup lastpos
     au!
 
     " jump to last position
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-    " always auto-indent
-    au BufEnter * setl autoindent
 
 augroup END
 
@@ -176,8 +157,8 @@ nmap <Leader><Down> :ter git pull<CR>
 
 " config
 nmap <Leader>. :tabe ~/.vimrc<CR>
-nmap <Leader>- :source ~/.vimrc<CR>
-nmap <Leader># :tabe ~/dotfiles/vimrc<CR>
+nmap <Leader>- :tabe ~/dotfiles/vimrc<CR>
+nmap <Leader># :source %<CR>
 
 " toggle word wrap
 nmap <Leader>w :setl wrap!<CR>
