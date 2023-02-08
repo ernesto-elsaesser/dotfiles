@@ -13,7 +13,7 @@ Command | Description
 **Commits** | 
 `git rev-parse --short HEAD` | print short commit hash of the latest commit 
 `git commit --amend --no-edit` | add changes to last commit 
-`git reset HEAD~` | delete last commit (keep working dir for re-commit) 
+`git reset HEAD^` | delete last commit (keep working dir for re-commit) 
 **Branches** | 
 `git branch` | show local branches 
 `git branch -a` | show local and remote branches 
