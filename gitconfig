@@ -7,3 +7,32 @@
     pretty = %h%d %s [%ar, %ae]
 [pull]
     ff = only
+[alias]
+    s = status
+    d = diff ; working dir vs HEAD
+    ds = diff --staged ; staged vs HEAD
+    l = log --reverse -10
+    a = add --all
+    c = commit -m ; COMMIT_MESSAGE
+    p = push
+    pu = push -u origin HEAD ; push new branch to upstream repo 
+    g = pull
+    f = fetch --all
+    b = git branch -vv
+    m = merge --no-edit ; [BRANCH_NAME] (default: upstream)
+    h = rev-parse --short HEAD
+    switch = checkout ; BRANCH_NAME
+    gethead = checkout -- ; FILE_PATH
+    getmaster = checkout origin/master -- ; FILE_PATH
+    getmain = checkout origin/main -- ; FILE_PATH
+    unstageall = reset HEAD ; unstage all files (reset index) 
+    discardall = reset --hard HEAD ; discard all changes in working dir (and index) 
+    uncommit = reset HEAD^ ; keeps working dir for re-commit) 
+    addfiles = commit --amend --no-edit ; add changes to last commit
+    reword = commit --amend -m ; MODIFIED_MESSAGE
+    addbranch = branch -a ; BRANCH_NAME
+    newbranch = checkout -b ; BRANCH_NAME
+    deletebranch = branch -d ; BRANCH_NAME
+    renamebranch = branch -m ; NEW_NAME
+    onmaster = rebase origin/master
+    onmain = rebase origin/main

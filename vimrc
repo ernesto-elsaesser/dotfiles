@@ -64,21 +64,9 @@ augroup lastpos
 augroup END
 
 
-" --- functions ---
+" --- commands ---
 
-" commit changes
-fun! GitCommit(msg, add, push)
-    if a:add
-        call system('git add -A')
-    endif
-    echo system('git status -s')
-    echo system('git commit -m "' . a:msg . '"')
-    if a:push
-        echo system('git push')
-    endif
-endfun
-
-" load file revision into scratch buffer
+" load a revision of the current file into scratch buffer
 fun! GitRevision(ref)
     let relpath = expand('%:.')
     let linenum = line('.')
@@ -90,20 +78,8 @@ fun! GitRevision(ref)
     setl bt=nofile
 endfun
 
-
-" -- commands --
-
-" commit all changes
-com! -nargs=1 C call GitCommit(<q-args>, 1, 0)
-
-" commit and push all changes
-com! -nargs=1 P call GitCommit(<q-args>, 1, 1)
-
 " show HEAD version of current file
 com! H call GitRevision('HEAD')
-
-" search files
-com! -nargs=1 F vim <args> *
 
 
 " --- mappings ---
@@ -115,16 +91,11 @@ vnoremap <C-K> <Esc>
 " quick save
 nnoremap <Space> :w<CR>
 
-" tab navigation
+" german umlauts for tab switching
 nnoremap ö gT
 nnoremap ä gt
-nmap <Leader><Leader> 1gt
-nmap <Leader>1 2gt
-nmap <Leader>2 3gt
-nmap <Leader>3 4gt
-nmap <Leader>4 5gt
 
-" remap C-V to allow pasting
+" free C-V for pasting
 nnoremap ü <C-V>
 
 " open parent directory
@@ -137,23 +108,25 @@ inoremap <S-Tab> <C-d>
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
+" command mode home key
+cnoremap <C-A> <Home>
+
+
+" --- leader mappings ---
+
 " error list navigation
 nmap <Leader>l :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
+
+" search in files
+nmap <Leader>f :vim // *<Left><Left><Left>
 
 " follow links
 nmap <Leader>g <C-]>
 
 " terminal
 nmap <Leader>t :ter ++close<CR>
-
-" git
-nmap <Leader>s :echo system('git status')<CR>
-nmap <Leader>d :vert ter git diff<CR>
-nmap <Leader>h :ter git log --reverse -10<CR>
-nmap <Leader><Up> :ter git push<CR>
-nmap <Leader><Down> :ter git pull<CR>
 
 " config
 nmap <Leader>. :tabe ~/.vimrc<CR>
@@ -163,11 +136,9 @@ nmap <Leader># :source %<CR>
 " toggle word wrap
 nmap <Leader>w :setl wrap!<CR>
 
-" command mode home
-cnoremap <C-A> <Home>
-
-" move list items
-nnoremap <C-F> mxv/.[,)}\]\n]<CR>d
-nnoremap <C-T> v/.[,)}\]\n]<CR>p`xhp
-" test: (ccc, dddddd, aaaaaaa, bbbb)
-
+" python
+nmap <Leader>a :!autopep8 --in-place %:p<CR>
+nmap <Leader>m :cex system('mypy %:p')<CR>
+nmap <Leader>p :ter ++rows=5 pylint --output-format=parseable -sn %:p<CR>
+nmap <Leader>x :cgetb <bar> :q <bar> :cc<CR>
+nmap <Leader>r :s/, /,\r\t\t/ <bar> :s/)/,\r\t\t)/<CR>
