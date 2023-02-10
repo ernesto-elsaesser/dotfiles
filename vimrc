@@ -129,6 +129,9 @@ nmap <Leader>g <C-]>
 nmap <Leader>t :ter ++close<CR>
 nmap <Leader>v :vert ter ++close<CR>
 
+" quick git diff
+nmap <Leader>d :vert ter git diff<CR>
+
 " config
 nmap <Leader>. :tabe ~/.vimrc<CR>
 nmap <Leader>- :tabe ~/dotfiles/vimrc<CR>
@@ -138,8 +141,8 @@ nmap <Leader># :source %<CR>
 nmap <Leader>w :setl wrap!<CR>
 
 " python
-nmap <Leader>a :!autopep8 --in-place %:p<CR>
-nmap <Leader>m :cex system('mypy %:p')<CR>
-nmap <Leader>p :ter ++rows=5 pylint --output-format=parseable -sn %:p<CR>
+nmap <Leader>a :!autopep8 --in-place *.py<CR>
+nmap <Leader>m :cex system('mypy .')<CR>
+nmap <Leader>p :ter ++rows=5 pylint --output-format=parseable -sn *.py<CR>
 nmap <Leader>x :cgetb <bar> :q <bar> :cc<CR>
 nmap <Leader>r :s/, /,\r\t\t/ <bar> :s/)/,\r\t\t)/<CR>
