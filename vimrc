@@ -127,6 +127,7 @@ nmap <Leader>g <C-]>
 
 " terminal
 nmap <Leader>t :ter ++close<CR>
+nmap <Leader>v :vert ter ++close<CR>
 
 " config
 nmap <Leader>. :tabe ~/.vimrc<CR>
