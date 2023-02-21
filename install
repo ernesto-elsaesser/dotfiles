@@ -1,0 +1,33 @@
+#!/bin/bash
+
+cd "${BASH_SOURCE%/*}"
+DOT_DIR=`pwd`
+ALIAS_FILE="$DOT_DIR/aliases.sh"
+VIMRC_FILE="$DOT_DIR/vimrc"
+GITCONFIG_FILE="$DOT_DIR/gitconfig"
+
+cat << EOF
+1 - install git config
+2 - source vim config in /etc/vim/vimrc (sudo!)
+3 - source vim config in ~/.vimrc
+4 - source aliases in ~/.bashrc
+5 - source aliases in ~/.profile
+6 - source aliases in ~/.zshrc
+7 - source aliases in ~/.zlogin
+EOF
+
+while read -p "option: " n; do
+
+    case $n in
+        1 ) set -x; cp "$GITCONFIG_FILE" ~/.gitconfig;;
+        2 ) set -x; sudo echo -e "source $VIMRC_FILE\n" > /etc/vim/vimrc;;
+        3 ) set -x; echo -e "\nsource $VIMRC_FILE\n" >> ~/.vimrc;;
+        4 ) set -x; echo -e "\n. $ALIAS_FILE\n" >> ~/.bashrc;;
+        5 ) set -x; echo -e "\n. $ALIAS_FILE\n" >> ~/.profile;;
+        6 ) set -x; echo -e "\n. $ALIAS_FILE\n" >> ~/.zshrc;;
+        7 ) set -x; echo -e "\n. $ALIAS_FILE\n" >> ~/.zlogin;;
+        * ) exit;;
+    esac
+
+    { set +x; } 2>/dev/null
+done
