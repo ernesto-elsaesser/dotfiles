@@ -42,7 +42,6 @@ let mapleader = ','
 
 " fine-tune netrw
 let g:netrw_banner = 0 " no banner
-let g:netrw_keepdir = 0 " moving working dir
 let g:netrw_dirhistmax = 0 " no ~/.vim/netrwhist
 let g:netrw_maxfilenamelen = 20
 let g:netrw_timefmt = "%H:%M:%S %d-%m-%y"
@@ -81,6 +80,12 @@ endfun
 " show HEAD version of current file
 com! H call GitRevision('HEAD')
 
+" Python
+com! A system('autopep8 --in-place *.py')
+com! M cex system('mypy .')
+com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable -sn *.py"
+com! G cgetbuffer | quit | cc
+
 
 " --- mappings ---
 
@@ -114,6 +119,9 @@ cnoremap <C-A> <Home>
 
 " --- leader mappings ---
 
+" set current directory to current file
+nmap <Leader><Leader> :lcd %:h<CR>
+
 " error list navigation
 nmap <Leader>l :cc<CR>
 nmap <Leader>j :cn<CR>
@@ -140,9 +148,8 @@ nmap <Leader># :source %<CR>
 " toggle word wrap
 nmap <Leader>w :setl wrap!<CR>
 
-" python
-nmap <Leader>a :!autopep8 --in-place *.py<CR>
-nmap <Leader>m :cex system('mypy .')<CR>
-nmap <Leader>p :ter ++rows=5 pylint --output-format=parseable -sn *.py<CR>
-nmap <Leader>x :cgetb <bar> :q <bar> :cc<CR>
+" format (indent) until cursor
+nmap <Leader>i gqgg
+
+" expand function signature
 nmap <Leader>r :s/, /,\r\t\t/ <bar> :s/)/,\r\t\t)/<CR>
