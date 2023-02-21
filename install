@@ -23,11 +23,9 @@ cat << EOF
 2 - load vim config in ~/.vimrc
 3 - load vim config in /etc/vim/vimrc (sudo)
 4 - load aliases in ~/.bashrc
-5 - load aliases in /etc/bashrc (sudo)
-6 - load aliases in ~/.profile
-7 - load aliases in /etc/profile (sudo)
-8 - load aliases in ~/.zshrc
-9 - load aliases in ~/.zlogin
+5 - load aliases in ~/.profile
+6 - load aliases in ~/.zshrc
+7 - load aliases in ~/.zlogin
 EOF
 
 while read n; do
@@ -37,11 +35,9 @@ while read n; do
         2 ) echo -e "$VIMRC_SNIPPET" | tee -a ~/.vimrc;;
         3 ) echo -e "$VIMRC_SNIPPET" | sudo tee -a /etc/vim/vimrc;;
         4 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.bashrc;;
-        5 ) echo -e "$ALIAS_SNIPPET" | sudo tee -a /etc/bashrc;;
-        6 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.profile;;
-        7 ) echo -e "$ALIAS_SNIPPET" | sudo tee -a /etc/profile;;
-        8 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.zshrc;;
-        9 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.zlogin;;
+        5 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.profile;;
+        6 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.zshrc;;
+        7 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.zlogin;;
         * ) exit;;
     esac
 
