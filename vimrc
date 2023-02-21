@@ -120,7 +120,7 @@ cnoremap <C-A> <Home>
 " --- leader mappings ---
 
 " set current directory to current file
-nmap <Leader><Leader> :lcd %:h<CR>
+nmap <Leader><Leader> :lcd %:h <bar> pwd<CR>
 
 " error list navigation
 nmap <Leader>l :cc<CR>
