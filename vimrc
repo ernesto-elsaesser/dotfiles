@@ -81,7 +81,7 @@ endfun
 com! H call GitRevision('HEAD')
 
 " Python
-com! A system('autopep8 --in-place *.py')
+com! A !autopep8 --in-place *.py
 com! M cex system('mypy .')
 com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable -sn *.py"
 com! G cgetbuffer | quit | cc
