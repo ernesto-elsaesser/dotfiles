@@ -8,6 +8,13 @@
             ]
         },
         {
+            "command": "notebook:enter-edit-mode",
+            "selector": ".jp-Notebook:focus",
+            "keys": [
+                "Ctrl M"
+            ]
+        },
+        {
             "command": "notebook:run-cell-and-select-next",
             "selector": ".jp-Notebook:focus",
             "keys": [
