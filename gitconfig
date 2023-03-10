@@ -11,7 +11,7 @@
     s = status
     d = diff ; working dir vs HEAD
     ds = diff --staged ; staged vs HEAD
-    l = log --reverse -10
+    l = log -10
     a = add --all
     c = commit -m ; COMMIT_MESSAGE
     p = push
