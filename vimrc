@@ -103,9 +103,6 @@ nnoremap ä gt
 " free C-V for pasting
 nnoremap ü <C-V>
 
-" open parent directory
-nnoremap - :E<CR>
-
 " indenting
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
@@ -119,11 +116,14 @@ cnoremap <C-A> <Home>
 
 " --- leader mappings ---
 
+" quick tab
+nmap <Leader>t :tabe 
+
 " set current directory to current file
-nmap <Leader><Leader> :lcd %:h <bar> pwd<CR>
+nmap <Leader>c :lcd %:h<CR>
 
 " error list navigation
-nmap <Leader>l :cc<CR>
+nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
@@ -133,8 +133,8 @@ nmap <Leader>f :vim // *<Left><Left><Left>
 " follow links
 nmap <Leader>g <C-]>
 
-" terminal
-nmap <Leader>t :ter ++close<CR>
+" shell
+nmap <Leader>s :ter ++close<CR>
 nmap <Leader>v :vert ter ++close<CR>
 
 " quick git diff
