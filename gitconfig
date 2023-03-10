@@ -24,6 +24,7 @@
     h = rev-parse --short HEAD
     unstage = reset HEAD ; unstage all files (reset index) 
     discard = reset --hard HEAD ; discard all changes in working dir (and index) 
+    rollback = reset --hard ; COMMIT_HASH revert to commit
     uncommit = reset HEAD^ ; keeps working dir for re-commit
     gethead = checkout -- ; FILE_PATH
     getmaster = checkout origin/master -- ; FILE_PATH

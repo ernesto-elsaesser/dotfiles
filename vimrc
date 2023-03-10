@@ -110,6 +110,9 @@ inoremap <S-Tab> <C-d>
 vnoremap <Tab> >
 vnoremap <S-Tab> <
 
+" open parent directory
+nnoremap - :E<CR>
+
 " command mode home key
 cnoremap <C-A> <Home>
 
