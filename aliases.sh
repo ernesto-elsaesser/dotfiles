@@ -1,3 +1,5 @@
+alias d='rm -rf'
+alias l='ls -la'
 alias v='vim'
 alias g='git'
 
