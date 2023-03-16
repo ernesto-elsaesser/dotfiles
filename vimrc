@@ -86,6 +86,9 @@ com! M cex system('mypy .')
 com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable -sn *.py"
 com! G cgetbuffer | quit | cc
 
+" git
+com! -nargs=1 C !git commit -a -m <q-args>
+
 
 " --- mappings ---
 
@@ -120,7 +123,7 @@ cnoremap <C-A> <Home>
 " --- leader mappings ---
 
 " quick tab
-nmap <Leader>t :tabe 
+nmap <Leader>e :tabe 
 
 " set current directory to current file
 nmap <Leader>c :lcd %:h<CR>
@@ -133,15 +136,16 @@ nmap <Leader>k :cp<CR>
 " search in files
 nmap <Leader>f :vim // *<Left><Left><Left>
 
+" git
+nmap <Leader>s :echo system('git status --short')<CR>
+nmap <Leader>d :vert ter git diff<CR>
+
 " follow links
 nmap <Leader>g <C-]>
 
 " shell
-nmap <Leader>s :ter ++close<CR>
+nmap <Leader>t :ter ++close<CR>
 nmap <Leader>v :vert ter ++close<CR>
-
-" quick git diff
-nmap <Leader>d :vert ter git diff<CR>
 
 " config
 nmap <Leader>. :tabe ~/.vimrc<CR>
