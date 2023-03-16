@@ -1,7 +1,0 @@
-{
-    "autosaveInterval": 10,
-    "defaultViewers": {
-        "json": "Editor",
-        "html": "Editor"
-    }
-}
