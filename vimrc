@@ -88,6 +88,7 @@ com! G cgetbuffer | quit | cc
 
 " git
 com! -nargs=1 C !git commit -a -m <q-args>
+com! P !git push
 
 
 " --- mappings ---
