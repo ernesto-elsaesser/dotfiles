@@ -1,7 +1,4 @@
-alias d='rm -rf'
-alias l='ls -la'
 alias v='vim .'
-alias g='git'
 
 if [ -d "$HOME/anaconda3" ]; then
     . "$HOME/anaconda3/etc/profile.d/conda.sh"
