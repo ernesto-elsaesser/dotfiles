@@ -1,6 +1,6 @@
 alias d='rm -rf'
 alias l='ls -la'
-alias v='vim'
+alias v='vim .'
 alias g='git'
 
 if [ -d "$HOME/anaconda3" ]; then

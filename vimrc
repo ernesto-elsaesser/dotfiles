@@ -134,11 +134,15 @@ nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
+" delete folders
+nmap <Leader>x :!rm -rf 
+
 " search in files
 nmap <Leader>f :vim // *<Left><Left><Left>
 
 " git
 nmap <Leader>s :echo system('git status --branch --short')<CR>
+nmap <Leader>l :echo system('git log -10')<CR>
 nmap <Leader>d :vert ter git diff<CR>
 
 " follow links
