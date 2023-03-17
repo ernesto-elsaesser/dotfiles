@@ -145,7 +145,8 @@ nmap <Leader>s :echo system('git status --branch --short')<CR>
 nmap <Leader>h :echo system('git rev-parse --short=8 HEAD')<CR>
 nmap <Leader>l :echo system('git log -10')<CR>
 nmap <Leader>d :vert ter git diff<CR>
-nmap <Leader>p :!git pull<CR>
+nmap <Down> :echo system('git pull')<CR>
+nmap <Up> :echo system('git push')<CR>
 
 " follow links
 nmap <Leader>g <C-]>
