@@ -87,7 +87,7 @@ com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable -sn *.py"
 com! G cgetbuffer | quit | cc
 
 " git
-com! -nargs=1 C !git commit -a -m "<args>"
+com! -nargs=1 C echo system('git commit -a -m <q-args>')
 com! P !git push
 
 
