@@ -88,7 +88,7 @@ com! G cgetbuffer | quit | cc
 
 " git
 com! -nargs=1 C echo system('git commit -a -m <q-args>')
-com! P !git push
+com! P echo system('git push')
 
 
 " --- mappings ---
