@@ -87,7 +87,7 @@ com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable -sn *.py"
 com! G cgetbuffer | quit | cc
 
 " git
-com! -nargs=1 C !git commit -a -m <q-args>
+com! -nargs=1 C !git commit -a -m "<args>"
 com! P !git push
 
 
@@ -155,6 +155,7 @@ nmap <Leader>t :ter ++close<CR>
 nmap <Leader>v :vert ter ++close<CR>
 
 " config
+nmap <Leader>+ :tabe ~/.profile<CR>
 nmap <Leader>. :tabe ~/.vimrc<CR>
 nmap <Leader>- :tabe ~/dotfiles/vimrc<CR>
 nmap <Leader># :source %<CR>
