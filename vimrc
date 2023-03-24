@@ -83,11 +83,11 @@ com! H call GitRevision('HEAD')
 " Python
 com! A !autopep8 --in-place *.py
 com! M cex system('mypy .')
-com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable -sn *.py"
+com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable --score=n *.py"
 com! G cgetbuffer | quit | cc
 
 " git
-com! -nargs=1 C echo system('git commit -a -m <q-args>')
+com! -nargs=1 C echo system('git commit -m <q-args>')
 
 
 " --- mappings ---
@@ -144,6 +144,7 @@ nmap <Leader>s :echo system('git status --branch --short')<CR>
 nmap <Leader>h :echo system('git rev-parse --short=8 HEAD')<CR>
 nmap <Leader>l :echo system('git log -10')<CR>
 nmap <Leader>d :vert ter git diff<CR>
+nmap <Leader>a :echo system('git add --all --verbose')<CR>
 nmap <Down> :echo system('git pull')<CR>
 nmap <Up> :echo system('git push')<CR>
 
