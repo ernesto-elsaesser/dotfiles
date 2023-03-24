@@ -23,6 +23,11 @@ set gdefault " match all occurences of pattern
 set errorformat=%A%f:%l:\ %m,%-G%.%# " FILE:LINE: ERR_MSG
 set pastetoggle=<C-Y>
 
+" vim won't create this directory itself, and thus not save undo files
+" if the tmp subfolder was deleted (e.g. on restart), we have to re-create it
+if !isdirectory(&undodir)
+    call mkdir(&undodir)
+endif
 
 " --- colors ---
 
