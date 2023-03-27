@@ -94,6 +94,9 @@ com! G cgetbuffer | quit | cc
 " git
 com! -nargs=1 C echo system('git commit -m <q-args>')
 
+" JSON
+com! J %!python -m json.tool
+
 
 " --- mappings ---
 
