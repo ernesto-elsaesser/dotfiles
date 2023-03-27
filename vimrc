@@ -94,7 +94,7 @@ com! G cgetbuffer | quit | cc
 " git
 com! -nargs=1 C echo system('git commit -m <q-args>')
 com! D vert ter git diff
-com! DS vert ter git diff
+com! DS vert ter git diff --staged
 
 " JSON
 com! J %!python -m json.tool
