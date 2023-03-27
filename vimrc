@@ -93,6 +93,8 @@ com! G cgetbuffer | quit | cc
 
 " git
 com! -nargs=1 C echo system('git commit -m <q-args>')
+com! D vert ter git diff
+com! DS vert ter git diff
 
 " JSON
 com! J %!python -m json.tool
@@ -151,7 +153,6 @@ nmap <Leader>f :vim // *<Left><Left><Left>
 nmap <Leader>s :echo system('git status --branch --short')<CR>
 nmap <Leader>h :echo system('git rev-parse --short=8 HEAD')<CR>
 nmap <Leader>l :echo system('git log -10')<CR>
-nmap <Leader>d :vert ter git diff<CR>
 nmap <Leader>a :echo system('git add --all --verbose')<CR>
 nmap <Down> :echo system('git pull')<CR>
 nmap <Up> :echo system('git push')<CR>
