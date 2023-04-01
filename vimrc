@@ -59,11 +59,14 @@ let g:sql_type_default = 'mysql'
 
 " --- autocmds ---
 
-augroup lastpos
+augroup ee
     au!
 
     " jump to last position
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+    " dart config
+    au FileType dart setl tabstop=2 shiftwidth=2 efm=%\\w%\\+\|%\\w%\\+\|%\\w%\\+\|%f\|%l\|%c\|%\\d%\\+\|%m
 
 augroup END
 
@@ -91,10 +94,13 @@ com! M cex system('mypy .')
 com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable --score=n *.py"
 com! G cgetbuffer | quit | cc
 
+" Flutter
+com! F bel ter ++rows=8 bash -c "dart analyze --format=machine"
+
 " git
 com! -nargs=1 C echo system('git commit -m <q-args>')
 com! D vert ter git diff
-com! DS vert ter git diff --staged
+com! S vert ter git diff --staged
 
 " JSON
 com! J %!python -m json.tool
