@@ -67,6 +67,7 @@ augroup ee
 
     " dart config
     au FileType dart setl tabstop=2 shiftwidth=2
+    au FileType dart set efm=%\\w%\\+\|%\\w%\\+\|%\\w%\\+\|%f\|%l\|%c\|%\\d%\\+\|%m
 
 augroup END
 
@@ -95,8 +96,7 @@ com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable --score=n *.py
 com! G cgetbuffer | quit | cc
 
 " Flutter
-com! F bel ter ++rows=8 bash -c "dart analyze --format=machine"
-com! H setl efm=%\\w%\\+\|%\\w%\\+\|%\\w%\\+\|%f\|%l\|%c\|%\\d%\\+\|%m | G
+com! F cex system("dart analyze --format=machine")
 
 " git
 com! -nargs=1 C echo system('git commit -m <q-args>')
