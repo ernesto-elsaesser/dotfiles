@@ -20,7 +20,6 @@ set tabstop=4 shiftwidth=4 " default indents
 set complete=. completeopt= " complete from buffer, no popup menu
 set colorcolumn=80
 set gdefault " match all occurences of pattern
-set errorformat=%A%f:%l:\ %m,%-G%.%# " FILE:LINE: ERR_MSG
 set pastetoggle=<C-Y>
 
 " vim won't create this directory itself, and thus not save undo files
@@ -67,7 +66,6 @@ augroup ee
 
     " dart config
     au FileType dart setl tabstop=2 shiftwidth=2
-    au FileType dart set efm=%\\w%\\+\|%\\w%\\+\|%\\w%\\+\|%f\|%l\|%c\|%\\d%\\+\|%m
 
 augroup END
 
@@ -96,6 +94,7 @@ com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable --score=n *.py
 com! G cgetbuffer | quit | cc
 
 " Flutter
+set errorformat+=%\\w%\\+\|%\\w%\\+\|%\\w%\\+\|%f\|%l\|%c\|%\\d%\\+\|%m
 com! F cex system("dart analyze --format=machine")
 
 " git
