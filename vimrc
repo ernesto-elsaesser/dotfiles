@@ -8,7 +8,8 @@ filetype indent on " detect type, load indenting, but no plugins
 set noswapfile viminfo= undofile undodir=/tmp/vim-undo
 set background=dark
 set laststatus=2 " always show status bar
-set statusline=%m%F:%l'%c\ (%L\ lines)
+set statusline=%m%F\ %LL
+set number relativenumber
 set showcmd
 set wildmenu " TAB menu in ex commands
 set incsearch
@@ -32,6 +33,7 @@ endif
 
 hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
+hi LineNr ctermfg=darkblue
 hi ColorColumn ctermbg=darkblue
 hi MatchParen cterm=underline ctermbg=NONE
 
