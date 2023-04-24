@@ -9,7 +9,6 @@ set noswapfile viminfo= undofile undodir=/tmp/vim-undo
 set background=dark
 set laststatus=2 " always show status bar
 set statusline=%m%F\ %LL
-set number relativenumber
 set showcmd
 set wildmenu " TAB menu in ex commands
 set incsearch
@@ -62,6 +61,9 @@ let g:sql_type_default = 'mysql'
 
 augroup ee
     au!
+
+    " relative line numbers
+    au FileType * setl number relativenumber
 
     " jump to last position
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
