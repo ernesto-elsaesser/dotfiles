@@ -126,12 +126,8 @@ nnoremap ä gt
 " free C-V for pasting
 nnoremap ü <C-V>
 
-" indenting
-nnoremap <Tab> >>
-nnoremap <S-Tab> <<
+" backwards tab in insert mode
 inoremap <S-Tab> <C-d>
-vnoremap <Tab> >
-vnoremap <S-Tab> <
 
 " open parent directory
 nnoremap - :E<CR>
