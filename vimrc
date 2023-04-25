@@ -12,7 +12,7 @@ set statusline=%m%F\ %LL
 set showcmd
 set wildmenu " TAB menu in ex commands
 set incsearch
-set scrolloff=5
+set scrolloff=3
 set nowrap
 set backspace=indent,eol,start
 set expandtab autoindent
