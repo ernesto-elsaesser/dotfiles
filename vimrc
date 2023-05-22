@@ -112,10 +112,12 @@ com! J %!python -m json.tool
 
 " --- mappings ---
 
-" german umlauts for navigation
+" german umlauts to switch tabs
 nnoremap ö gT
 nnoremap ä gt
-nnoremap ü :E<CR>
+
+" open parent folder
+nnoremap - :E<CR>
 
 " backwards tab in insert mode
 inoremap <S-Tab> <C-d>
