@@ -112,25 +112,13 @@ com! J %!python -m json.tool
 
 " --- mappings ---
 
-" exit edit mode
-inoremap <C-K> <Esc>
-vnoremap <C-K> <Esc>
-
-" quick save
-nnoremap <Space> :w<CR>
-
-" german umlauts for tab switching
+" german umlauts for navigation
 nnoremap ö gT
 nnoremap ä gt
-
-" free C-V for pasting
-nnoremap ü <C-V>
+nnoremap ü :E<CR>
 
 " backwards tab in insert mode
 inoremap <S-Tab> <C-d>
-
-" open parent directory
-nnoremap - :E<CR>
 
 " command mode home key
 cnoremap <C-A> <Home>
