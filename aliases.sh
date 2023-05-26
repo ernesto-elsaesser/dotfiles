@@ -6,4 +6,5 @@ if [ -d "$HOME/anaconda3" ]; then
     alias e='c activate'
     alias d='c deactivate'
     alias b='e base'
+    alias x='c remove --all -n '
 fi
