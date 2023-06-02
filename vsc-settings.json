@@ -1,0 +1,11 @@
+{
+    "jupyter.askForKernelRestart": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "files.enableTrash": false,
+    "security.workspace.trust.enabled": false,
+    "editor.rulers": [
+        80
+    ]
+}
