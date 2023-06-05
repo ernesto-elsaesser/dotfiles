@@ -1,8 +1,11 @@
 {
     "jupyter.askForKernelRestart": false,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8"
+        "editor.defaultFormatter": "ms-python.python"
     },
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.pylintCategorySeverity.refactor": "Warning",
     "files.enableTrash": false,
     "security.workspace.trust.enabled": false,
     "editor.autoClosingBrackets": "never",
