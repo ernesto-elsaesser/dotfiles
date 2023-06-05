@@ -5,11 +5,13 @@
     },
     "files.enableTrash": false,
     "security.workspace.trust.enabled": false,
+    "editor.autoClosingBrackets": "never",
     "editor.rulers": [
         80
     ],
     "git.confirmSync": false,
     "git.autofetch": true,
     "vim.ignorecase": false,
-    "vim.smartcase": false
+    "vim.smartcase": false,
+    "vim.gdefault": true
 }
