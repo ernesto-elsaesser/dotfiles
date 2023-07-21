@@ -6,7 +6,6 @@ syntax on
 filetype indent on " detect type, load indenting, but no plugins
 
 set noswapfile viminfo= undofile undodir=/tmp/vim-undo
-set background=dark
 set laststatus=2 " always show status bar
 set statusline=%m%F\ %LL
 set showcmd
@@ -28,15 +27,6 @@ if !isdirectory(&undodir)
     call mkdir(&undodir)
 endif
 
-" --- colors ---
-
-hi Comment ctermfg=darkgrey
-hi Constant ctermfg=darkgreen
-hi LineNr ctermfg=darkblue
-hi ColorColumn ctermbg=darkblue
-hi MatchParen cterm=underline ctermbg=NONE
-
-
 " --- variables ---
 
 " do not load $VIMRUNTIME/default.vim
@@ -57,23 +47,6 @@ let g:netrw_list_hide = '^\..*'
 let g:sql_type_default = 'mysql'
 
 
-" --- autocmds ---
-
-augroup ee
-    au!
-
-    " relative line numbers
-    au FileType * setl number relativenumber
-
-    " jump to last position
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-    " dart config
-    au FileType dart setl tabstop=2 shiftwidth=2
-
-augroup END
-
-
 " --- commands ---
 
 " load a revision of the current file into scratch buffer
@@ -90,21 +63,6 @@ endfun
 
 " show HEAD version of current file
 com! H call GitRevision('HEAD')
-
-" Python
-com! A !autopep8 --in-place *.py
-com! M cex system('mypy .')
-com! L bel ter ++rows=8 bash -c "pylint --output-format=parseable --score=n *.py"
-com! G cgetbuffer | quit | cc
-
-" Flutter
-set errorformat+=%\\w%\\+\|%\\w%\\+\|%\\w%\\+\|%f\|%l\|%c\|%\\d%\\+\|%m
-com! F cex system("dart analyze --format=machine")
-
-" git
-com! -nargs=1 C echo system('git commit -m <q-args>')
-com! D vert ter git diff
-com! S vert ter git diff --staged
 
 " JSON
 com! J %!python -m json.tool
@@ -150,18 +108,13 @@ nmap <Leader>s :echo system('git status --branch --short')<CR>
 nmap <Leader>h :echo system('git rev-parse --short=8 HEAD')<CR>
 nmap <Leader>l :echo system('git log -10')<CR>
 nmap <Leader>a :echo system('git add --all --verbose')<CR>
-nmap <Down> :echo system('git pull')<CR>
-nmap <Up> :echo system('git push')<CR>
+nmap <Leader>v :echo system('git pull')<CR>
+nmap <Leader>p :echo system('git push')<CR>
 
 " follow links
 nmap <Leader>g <C-]>
 
-" shell
-nmap <Leader>t :ter ++close<CR>
-nmap <Leader>v :vert ter ++close<CR>
-
 " config
-nmap <Leader>+ :tabe ~/.profile<CR>
 nmap <Leader>. :tabe ~/.vimrc<CR>
 nmap <Leader>- :tabe ~/dotfiles/vimrc<CR>
 nmap <Leader># :source %<CR>
@@ -169,8 +122,3 @@ nmap <Leader># :source %<CR>
 " toggle word wrap
 nmap <Leader>w :setl wrap!<CR>
 
-" format (indent) until cursor
-nmap <Leader>i gqgg
-
-" expand function signature
-nmap <Leader>r :s/, /,\r\t\t/ <bar> :s/)/,\r\t\t)/<CR>
