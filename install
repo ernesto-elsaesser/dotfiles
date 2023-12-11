@@ -13,19 +13,10 @@ VIMRC_SNIPPET="
 source $DOT_DIR/vimrc
 "
 
-ALIAS_SNIPPET="
-
-. $DOT_DIR/aliases.sh
-"
-
 cat << EOF
 1 - load git config in ~/.gitconfig
 2 - load vim config in ~/.vimrc
 3 - load vim config in /etc/vim/vimrc (sudo)
-4 - load aliases in ~/.bashrc
-5 - load aliases in ~/.profile
-6 - load aliases in ~/.zshrc
-7 - load aliases in ~/.zlogin
 EOF
 
 while read n; do
@@ -34,10 +25,6 @@ while read n; do
         1 ) echo -e "$GITCONF_SNIPPET" | tee -a ~/.gitconfig;;
         2 ) echo -e "$VIMRC_SNIPPET" | tee -a ~/.vimrc;;
         3 ) echo -e "$VIMRC_SNIPPET" | sudo tee -a /etc/vim/vimrc;;
-        4 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.bashrc;;
-        5 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.profile;;
-        6 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.zshrc;;
-        7 ) echo -e "$ALIAS_SNIPPET" | tee -a ~/.zlogin;;
         * ) exit;;
     esac
 
