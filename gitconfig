@@ -3,6 +3,8 @@
     email = ernesto.elsaesser@gmail.com
 [core]
     editor = vim
+[init]                                                                          
+    defaultBranch = main
 [format]
     pretty = %h%d %s [%ar, %ae]
 [pull]
