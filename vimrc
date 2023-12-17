@@ -27,6 +27,16 @@ if !isdirectory(&undodir)
     call mkdir(&undodir)
 endif
 
+
+" --- colors ---
+
+hi Comment ctermfg=darkgrey
+hi Constant ctermfg=darkgreen
+hi LineNr ctermfg=darkblue
+hi ColorColumn ctermbg=darkblue
+hi MatchParen cterm=underline ctermbg=NONE
+
+
 " --- variables ---
 
 " do not load $VIMRUNTIME/default.vim
