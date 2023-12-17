@@ -11,8 +11,8 @@ fi
 
 echo "alias v='vim -u $DOT_DIR/vimrc'" >> $RC
 echo "alias g='git -c \"include.path=$DOT_DIR/gitconfig\"'" >> $RC
-echo "alias l='ls -lh'" >> $RC
-echo "alias la='ls -lha'" >> $RC
+echo "alias l='ls -lh --color'" >> $RC
+echo "alias la='ls -lha --color'" >> $RC
 
 echo "updated $RC"
 
