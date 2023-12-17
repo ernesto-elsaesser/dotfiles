@@ -17,7 +17,6 @@ set backspace=indent,eol,start
 set expandtab autoindent
 set tabstop=4 shiftwidth=4 " default indents
 set complete=. completeopt= " complete from buffer, no popup menu
-set colorcolumn=80
 set gdefault " match all occurences of pattern
 set pastetoggle=<C-Y>
 
@@ -30,11 +29,15 @@ endif
 
 " --- colors ---
 
+hi MatchParen cterm=underline ctermbg=NONE
 hi Comment ctermfg=darkgrey
 hi Constant ctermfg=darkgreen
-hi LineNr ctermfg=darkblue
-hi ColorColumn ctermbg=darkblue
-hi MatchParen cterm=underline ctermbg=NONE
+
+"for set number
+hi LineNr ctermfg=darkgrey
+
+"for set colorcolumn=80
+hi ColorColumn ctermbg=darkgrey
 
 
 " --- variables ---
