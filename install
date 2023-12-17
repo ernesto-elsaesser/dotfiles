@@ -3,29 +3,16 @@
 cd "${BASH_SOURCE%/*}"
 DOT_DIR=`pwd`
 
-GITCONF_SNIPPET="
+if [[ $OSTYPE == darwin* ]]; then
+  RC="$HOME/.zlogin"
+else
+  RC="$HOME/.profile"
+fi
 
-[include]
-    path = $DOT_DIR/gitconfig
-"
+echo "alias v='vim -u $DOT_DIR/vimrc'" >> $RC
+echo "alias g='git -c \"include.path=$DOT_DIR/gitconfig\"'" >> $RC
+echo "alias l='ls -lh'" >> $RC
+echo "alias la='ls -lha'" >> $RC
 
-VIMRC_SNIPPET="
-source $DOT_DIR/vimrc
-"
+echo "updated $RC"
 
-cat << EOF
-1 - load git config in ~/.gitconfig
-2 - load vim config in ~/.vimrc
-3 - load vim config in /etc/vim/vimrc (sudo)
-EOF
-
-while read n; do
-
-    case $n in
-        1 ) echo -e "$GITCONF_SNIPPET" | tee -a ~/.gitconfig;;
-        2 ) echo -e "$VIMRC_SNIPPET" | tee -a ~/.vimrc;;
-        3 ) echo -e "$VIMRC_SNIPPET" | sudo tee -a /etc/vim/vimrc;;
-        * ) exit;;
-    esac
-
-done
