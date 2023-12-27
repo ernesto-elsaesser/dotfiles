@@ -4,9 +4,9 @@ cd "${BASH_SOURCE%/*}"
 DOT_DIR=`pwd`
 
 if [[ $OSTYPE == darwin* ]]; then
-  RC="$HOME/.zlogin"
+  RC="$HOME/.zshrc"
 else
-  RC="$HOME/.profile"
+  RC="$HOME/.bashrc"
 fi
 
 echo "alias v='vim -u $DOT_DIR/vimrc'" >> $RC
