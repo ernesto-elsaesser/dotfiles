@@ -6,7 +6,7 @@ syntax on
 filetype indent on " detect type, load indenting, but no plugins
 
 set laststatus=2 " always show status bar
-set statusline=%m%F\ %LL%=%l:%c\ %{getcwd()}\ 
+set statusline=%m%f\ %LL\ <%l:%c>%=%{getcwd()}\ 
 set showcmd
 set wildmenu " TAB menu in ex commands
 set incsearch
