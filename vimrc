@@ -99,8 +99,11 @@ nmap <Leader>g <C-]>
 nmap <Leader>n :set number!<CR>
 
 " toggle column
-nmap <Leader>l :set colorcolumn=80<CR>
+nmap <Leader>l :setl colorcolumn=80<CR>
 
 " toggle word wrap
 nmap <Leader>w :setl wrap!<CR>
+
+" open terminal
+nmap <Leader>t :bel term<CR>
 
