@@ -10,6 +10,7 @@ else
 fi
 
 echo "alias v='vim -u $DOT_DIR/vimrc'" >> $RC
+echo "alias c='vim -c \"set bg=dark\" -u $DOT_DIR/vimrc'" >> $RC
 echo "alias g='git -c \"include.path=$DOT_DIR/gitconfig\"'" >> $RC
 echo "alias l='ls -lhp'" >> $RC
 echo "alias la='ls -lhpA'" >> $RC
