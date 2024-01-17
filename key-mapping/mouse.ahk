@@ -3,8 +3,8 @@ XButton1::Space
 2::^c
 1::^x
 4::^v
-3::^z
-6::Up
-5::Down
-8::Enter
-7::Ctrl
+3::Enter
+6::Ctrl
+5::^z
+8::Up
+7::Down
