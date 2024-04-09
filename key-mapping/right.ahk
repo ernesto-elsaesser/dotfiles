@@ -1,2 +1,2 @@
-XButton2::Del
-XButton1::Ctrl
+XButton2::Backspace
+XButton1::Enter
