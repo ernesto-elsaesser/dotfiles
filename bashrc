@@ -6,5 +6,5 @@ alias l='ls -lhp'
 alias la='ls -lhpA'
 
 e() {
-    source "$HOME/venvs/$1/bin/activate"
+    source "$HOME/.virtualenvs/$1/bin/activate"
 }
