@@ -5,6 +5,6 @@ alias g='git -c "include.path=$DOT_DIR/gitconfig"'
 alias l='ls -lhp'
 alias la='ls -lhpA'
 
-e() {
+function e {
     source "$HOME/.virtualenvs/$1/bin/activate"
 }
