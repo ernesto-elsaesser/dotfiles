@@ -1,5 +1,6 @@
 [core]
     editor = vim
+    name = Ernesto Elsäßer
 [init]                                                                          
     defaultBranch = main
 [format]
