@@ -21,7 +21,7 @@
     f = fetch
     fa = fetch --all
     co = checkout ; BRANCH_NAME
-    b = git branch -vv
+    b = branch -vv
     m = merge --no-edit ; [BRANCH_NAME] (default: upstream)
     h = rev-parse HEAD
     hs = rev-parse --short HEAD
