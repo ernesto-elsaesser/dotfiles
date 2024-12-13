@@ -4,6 +4,7 @@ let g:skip_defaults_vim = 1
 set nocompatible
 
 syntax on
+colorscheme desert
 filetype indent on " detect type, load indenting, but no plugins
 
 set laststatus=2 " always show status bar
