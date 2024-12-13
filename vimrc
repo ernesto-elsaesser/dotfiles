@@ -20,6 +20,7 @@ set tabstop=4 shiftwidth=4 " default indents
 set gdefault " match all occurences of pattern
 
 inoremap ö <Esc>
+vnoremap ö <Esc>
 nnoremap <Space> :w<Enter>
 nnoremap - :E<CR>
 

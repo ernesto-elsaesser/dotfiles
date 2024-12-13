@@ -9,7 +9,7 @@ alias tl='tmux list-sessions'
 alias ta='tmux attach-session -t'
 alias d='deactivate'
 alias p='python3'
-alias ,='fc -s -1'
+alias c='clear'
 
 function e {
     source "$HOME/.virtualenvs/$1/bin/activate"
