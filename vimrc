@@ -27,6 +27,7 @@ nnoremap - :E<CR>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
+hi Normal ctermbg=black
 hi MatchParen cterm=underline ctermbg=NONE
 
 let g:netrw_dirhistmax = 0 " no ~/.vim/netrwhist
