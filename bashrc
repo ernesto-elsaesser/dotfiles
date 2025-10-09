@@ -1,4 +1,5 @@
 DOT_DIR="$HOME/dotfiles"
+PYDIST_DIR="$HOME/miniforge3"
 
 alias v='vim -u "$DOT_DIR/vimrc"'
 alias g='git -c "include.path=$DOT_DIR/gitconfig"'
@@ -8,11 +9,11 @@ alias t='tmux new-session -s'
 alias tl='tmux list-sessions'
 alias ta='tmux attach-session -t'
 alias p='python3'
-alias e='conda activate'
 alias d='conda deactivate'
+alias i='conda install'
 alias n='nvtop -p'
 alias c='clear'
 
-function m {
-    eval "$($HOME/miniforge3/bin/conda shell.bash hook)"
+function a {
+    source "$PYDIST_DIR/bin/activate" "$PYDIST_DIR/envs/$1"
 }
