@@ -9,11 +9,11 @@ alias t='tmux new-session -s'
 alias tl='tmux list-sessions'
 alias ta='tmux attach-session -t'
 alias p='python3'
+alias h='eval "$($PYDIST_DIR/bin/conda shell.bash hook)"'
+alias e='conda create -n'
+alias a='conda activate'
 alias d='conda deactivate'
 alias i='conda install'
 alias n='nvtop -p'
 alias c='clear'
 
-function a {
-    source "$PYDIST_DIR/bin/activate" "$PYDIST_DIR/envs/$1"
-}
