@@ -14,6 +14,7 @@ alias e='conda create -n'
 alias a='conda activate'
 alias d='conda deactivate'
 alias i='conda install'
+alias x='conda env remove -n'
 alias n='nvtop -p'
 alias c='clear'
 
