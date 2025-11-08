@@ -2,6 +2,7 @@ DOT_DIR="$HOME/dotfiles"
 PYDIST_DIR="$HOME/miniforge3"
 
 alias v='vim -u "$DOT_DIR/vimrc"'
+alias sv='sudo vim -u "$DOT_DIR/vimrc"'
 alias g='git -c "include.path=$DOT_DIR/gitconfig"'
 alias l='ls -lhp --group-directories-first'
 alias la='ls -lhpA --group-directories-first'
