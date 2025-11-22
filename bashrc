@@ -18,10 +18,3 @@ alias i='conda install'
 alias x='conda remove --all -n'
 alias n='nvtop -p'
 alias c='clear'
-
-function blue {
-    blue="${1:-0.5}"
-    monitor="${2:-DP-2}"
-    xrandr --output $monitor --gamma 1:1:$blue
-}
-
