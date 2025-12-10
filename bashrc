@@ -1,12 +1,13 @@
 DOT_DIR="$HOME/dotfiles"
 PYDIST_DIR="$HOME/miniforge3"
 
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias sl='sudo ls -alF'
 alias v='vim -u "$DOT_DIR/vimrc"'
 alias sv='sudo vim -u "$DOT_DIR/vimrc"'
 alias g='git -c "include.path=$DOT_DIR/gitconfig"'
-alias l='ls -lhp --group-directories-first'
-alias la='ls -lhpA --group-directories-first'
-alias sl='sudo ls -lhpA --group-directories-first'
 alias t='tmux new-session -s'
 alias tl='tmux list-sessions'
 alias ta='tmux attach-session -t'
