@@ -1,4 +1,7 @@
-syntax on
+source $VIMRUNTIME/defaults.vim
+
+set expandtab autoindent
+set tabstop=4 shiftwidth=4
 
 set laststatus=2 " always show status bar
 set statusline=%m%f\ %l:%c%=%L\ lines
