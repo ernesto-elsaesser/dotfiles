@@ -14,4 +14,6 @@ vnoremap ö <Esc>
 
 inoremap <S-Tab> <C-d> " unindent in insert mode
 
+nnoremap - :E<CR>
+
 set gdefault " match all occurences of pattern
