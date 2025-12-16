@@ -4,7 +4,7 @@ set expandtab autoindent
 set tabstop=4 shiftwidth=4
 
 set laststatus=2 " always show status bar
-set statusline=%m%f\ %l:%c%=%L\ lines
+set statusline=%m%f%=L:%l/%L\ C:%c
 
 nnoremap <Space> :w<Enter> " save with space
 
@@ -16,4 +16,4 @@ inoremap <S-Tab> <C-d> " unindent in insert mode
 
 nnoremap - :E<CR>
 
-set gdefault " match all occurences of pattern
+let g:netrw_dirhistmax = 0 " no ~/.vim/netrwhist
