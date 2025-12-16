@@ -24,6 +24,7 @@
     g = pull
     f = fetch
     fa = fetch --all
+    cl = clone
     co = checkout ; BRANCH_NAME
     b = branch -vv ; list branches 
     bc = checkout -b ; BRANCH_NAME create branch
