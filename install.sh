@@ -1,15 +1,23 @@
 #!/bin/bash
 
-# source aliases
-echo "source $PWD/aliases" >> $HOME/.bashrc
+if [[ "$(uname)" == "Darwin" ]]; then
+  echo "Appending aliases to .zshrc ..."
+  echo "source $PWD/aliases" >> "$HOME/.zshrc"
+else
+  echo "Appending aliases to .bashrc ..."
+  echo "source $PWD/aliases" >> "$HOME/.bashrc"
+fi
 
-# copy stable-ish config so email can be changed
+echo "Copying .gitconfig ..."
 cp gitconfig "$HOME/.gitconfig"
 
-# link frequently changing aliases and mappings
-ln -s init.vim "$HOME/.vimrc"
+echo "Linking .vimrc ..."
+rm -f "$HOME/.vimrc"
+ln -s "$PWD/init.vim" "$HOME/.vimrc"
 
-if [ -x "$(command -v nvim)" ]; do
+if [[ -x "$(command -v nvim)" ]]; then
+  echo "Linking .config/nvim/init.vim ..."
   mkdir -p $HOME/.config/nvim
-  ln -s init.vim "$HOME/.config/nvim/init.vim"
-done
+  rm -f "$HOME/.config/nvim/init.vim"
+  ln -s "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
+fi
