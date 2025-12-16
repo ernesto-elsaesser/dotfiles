@@ -1,5 +1,4 @@
-set expandtab
-set clipboard=unnamed
+set expandtab autoindent
 
 nnoremap <Space> :w<CR>
 nnoremap - :Explore<CR>
