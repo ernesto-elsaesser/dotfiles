@@ -8,8 +8,14 @@ else
   echo "source $PWD/aliases" >> "$HOME/.bashrc"
 fi
 
-echo "Copying .gitconfig ..."
-cp gitconfig "$HOME/.gitconfig"
+echo "Generating .gitconfig ..."
+cat <<EOF > "$HOME/.gitconfig"
+[user]
+    name = Ernesto Elsäßer
+    email = ernesto.elsaesser@gmail.com
+[include]
+    path = $PWD/gitconfig
+EOF
 
 echo "Linking .vimrc ..."
 rm -f "$HOME/.vimrc"
