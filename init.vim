@@ -1,4 +1,5 @@
 set expandtab
+set clipboard=unnamed
 
 nnoremap <Space> :w<CR>
 nnoremap - :Explore<CR>
