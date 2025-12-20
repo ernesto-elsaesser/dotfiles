@@ -1,12 +1,21 @@
+" indent with spaces
 set expandtab autoindent
 
+" yank to * register aka. primary clipboard
+set clipboard=unnamed
+
+" save with space
 nnoremap <Space> :w<CR>
+
+" show parent folder with minus
 nnoremap - :Explore<CR>
 
 " exit insert/visual mode with ö
 inoremap ö <Esc>
 vnoremap ö <Esc>
 
-inoremap <S-Tab> <C-d> " unindent in insert mode
+" unindent in insert mode
+inoremap <S-Tab> <C-d>
 
-let g:netrw_dirhistmax = 0 " no ~/.vim/netrwhist
+" no ~/.vim/netrwhist file
+let g:netrw_dirhistmax = 0
