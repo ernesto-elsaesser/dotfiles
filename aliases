@@ -1,9 +1,10 @@
+export EDITOR=/usr/bin/vim
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias sl='sudo ls -alF'
-alias v='nvim'
-alias sv='sudo nvim -u $HOME/.vimrc'
+alias v='vim'
+alias sv='sudo vim -u $HOME/.vimrc'
 alias g='git'
 alias t='tmux new-session -s'
 alias tl='tmux list-sessions'
