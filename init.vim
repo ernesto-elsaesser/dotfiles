@@ -4,6 +4,9 @@ set expandtab autoindent
 " yank to * register aka. primary clipboard
 set clipboard=unnamed
 
+" always show status bar
+set laststatus=2
+
 " save with space
 nnoremap <Space> :w<CR>
 
