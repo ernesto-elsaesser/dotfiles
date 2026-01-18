@@ -10,9 +10,10 @@ nnoremap <Space> :w<CR>
 " show parent folder with minus
 nnoremap - :Explore<CR>
 
-" exit insert/visual mode with ö
+" exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
 vnoremap ö <Esc>
+tnoremap ö <C-\><C-n>
 
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
