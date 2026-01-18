@@ -23,3 +23,6 @@ inoremap <S-Tab> <C-d>
 
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
+
+" configure netrw hiding (a)
+let g:netrw_list_hide = '^\..*'
