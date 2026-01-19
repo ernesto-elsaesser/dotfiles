@@ -1,3 +1,5 @@
+source $VIMRUNTIME/defaults.vim
+
 " indent with spaces
 set expandtab autoindent
 
