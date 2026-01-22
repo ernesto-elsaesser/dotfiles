@@ -9,8 +9,8 @@ set clipboard=unnamed
 " always show status bar
 set laststatus=2
 
-" exit with escape
-nnoremap <Esc> :q<CR>
+" exit with double escape
+nnoremap <Esc><Esc> :q<CR>
 
 " save with space
 nnoremap <Space> :w<CR>
