@@ -1,8 +1,8 @@
 export EDITOR=/usr/bin/vim
 alias l='ls -CF'
 alias la='ls -A'
-alias ll='ls -alF'
-alias sl='sudo ls -alF'
+alias ll='ls -halF'
+alias sl='sudo ls -halF'
 alias v='vim'
 alias sv='sudo vim -u $HOME/.vimrc'
 alias g='git'
