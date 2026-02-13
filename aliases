@@ -1,9 +1,9 @@
 export EDITOR=/usr/bin/vim
 
-# ls
-alias la='ls --almost-all --classify --color=auto'
-alias ll='ls -l --almost-all --classify --human-readable --color=auto'
-alias sl='sudo ls -l --almost-all --classify --human-readable --color=auto'
+# ls (A = almost all, F = classify)
+alias la='ls -AF --color=auto'
+alias ll='ls -lhAF --color=auto'
+alias sl='sudo ls -lhAF --color=auto'
 
 # vim
 alias v='vim'
