@@ -9,14 +9,17 @@ set clipboard=unnamed
 " always show status bar
 set laststatus=2
 
-" exit with double escape
-nnoremap <Esc><Esc> :q<CR>
+" exit with Ctrl+Q
+nnoremap <C-q> :q<CR>
 
 " save with space
 nnoremap <Space> :w<CR>
 
 " show parent folder with minus
 nnoremap - :Explore<CR>
+
+" show explorer side bar with minus
+nnoremap _ :Lexplore<CR>
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
@@ -25,6 +28,9 @@ tnoremap ö <C-\><C-n>
 
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
+
+" open files in previous window
+let g:netrw_browse_split = 4
 
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
