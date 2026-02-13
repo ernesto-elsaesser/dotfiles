@@ -29,16 +29,21 @@ tnoremap ö <C-\><C-n>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
+" netrw
+
 " open files to the right
 let g:netrw_browse_split = 4
 let g:netrw_preview = 1
 let g:netrw_winsize = 80
 
-" no ~/.vim/netrwhist file
-let g:netrw_dirhistmax = 0
+" tree listing (toggle with i)
+let g:netrw_liststyle = 3
 
-" configure netrw hiding (a)
+" hide banner
+let g:netrw_banner = 0
+
+" configure hiding (a)
 let g:netrw_list_hide = '^\..*'
 
-" hide netrw banner
-let g:netrw_banner = 0
+" no ~/.vim/netrwhist file
+let g:netrw_dirhistmax = 0
