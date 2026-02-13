@@ -29,8 +29,9 @@ tnoremap ö <C-\><C-n>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
-" open files in previous window
+" open files to the right
 let g:netrw_browse_split = 4
+let g:netrw_preview = 1
 
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
