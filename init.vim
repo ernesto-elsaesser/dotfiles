@@ -1,5 +1,8 @@
 source $VIMRUNTIME/defaults.vim
 
+" enable mouse
+set mouse=a
+
 " indent with spaces
 set expandtab autoindent
 
@@ -36,8 +39,9 @@ let g:netrw_browse_split = 4
 let g:netrw_preview = 1
 let g:netrw_winsize = 80
 
-" tree listing (toggle with i)
+" tree listing (toggle with i, lines below stabilize root)
 let g:netrw_liststyle = 3
+let g:netrw_fastbrowse = 0
 
 " hide banner
 let g:netrw_banner = 0
