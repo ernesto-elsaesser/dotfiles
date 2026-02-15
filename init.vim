@@ -13,7 +13,7 @@ set clipboard=unnamed
 set laststatus=2
 
 " quick quit
-nnoremap <C-q> :quit<CR>
+nnoremap q :quit<CR>
 
 " quick save
 nnoremap <Space> :w<CR>
@@ -22,7 +22,7 @@ nnoremap <Space> :w<CR>
 nnoremap - :Lexplore<CR>
 
 " open terminal
-nnoremap <C-t> :below terminal ++rows=10<CR>
+nnoremap ö :below terminal ++rows=10<CR>
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
