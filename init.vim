@@ -6,8 +6,13 @@ set mouse=a
 " indent with spaces
 set expandtab autoindent
 
-" yank to * register aka. primary clipboard
-set clipboard=unnamed
+" yank to X11 clipboard
+augroup Clipboard
+  autocmd!
+  if executable('xclip')
+    autocmd TextYankPost * call system('xclip -i -selection clipboard', getreg(v:event.regname))
+  endif
+augroup END
 
 " always show status bar
 set laststatus=2
