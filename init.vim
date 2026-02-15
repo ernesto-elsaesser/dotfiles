@@ -22,7 +22,7 @@ nnoremap <Space> :w<CR>
 nnoremap - :Lexplore<CR>
 
 " open terminal
-nnoremap ö :below terminal ++rows=10<CR>
+nnoremap ö :below terminal<CR>
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
