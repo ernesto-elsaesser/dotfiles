@@ -12,17 +12,17 @@ set clipboard=unnamed
 " always show status bar
 set laststatus=2
 
-" exit with Ctrl+Q
-nnoremap <C-q> :q<CR>
+" quick quit
+nnoremap <C-q> :quit<CR>
 
-" save with space
+" quick save
 nnoremap <Space> :w<CR>
 
-" show parent folder with minus
-nnoremap - :Explore<CR>
+" open explorer side bar
+nnoremap - :Lexplore<CR>
 
-" show explorer side bar with minus
-nnoremap _ :Lexplore<CR>
+" open terminal
+nnoremap <C-t> :below terminal ++rows=10<CR>
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
@@ -32,7 +32,10 @@ tnoremap ö <C-\><C-n>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
-" netrw
+" reload config
+command Reload source $HOME/.vimrc
+
+" --- netrw ---
 
 " open files to the right
 let g:netrw_browse_split = 4
