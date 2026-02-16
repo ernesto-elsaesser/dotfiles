@@ -4,7 +4,7 @@ source $VIMRUNTIME/defaults.vim
 set mouse=a
 
 " indent with spaces
-set expandtab autoindent
+set expandtab autoindent shiftwidth=4
 
 " yank to X11 clipboard
 augroup Clipboard
