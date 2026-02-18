@@ -1,4 +1,4 @@
-12Lexplore
+15Lexplore
 wincmd l
-terminal ++rows=13
+terminal ++rows=10
 wincmd k

@@ -1,5 +1,7 @@
 source $VIMRUNTIME/defaults.vim
 
+syntax on
+
 set mouse=a
 set expandtab autoindent shiftwidth=4
 set laststatus=2
