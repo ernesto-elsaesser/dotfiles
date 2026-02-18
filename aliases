@@ -6,7 +6,7 @@ alias ll='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
 
 # vim
-alias v='vim'
+alias v='vim -S $HOME/dotfiles/session.vim'
 alias sv='sudo vim -u $HOME/.vimrc'
 
 # git (subcommand aliases in gitconfig)
