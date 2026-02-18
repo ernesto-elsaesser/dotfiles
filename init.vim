@@ -17,6 +17,9 @@ augroup END
 " always show status bar
 set laststatus=2
 
+" don't wrap lines
+set nowrap
+
 " quick quit
 nnoremap q :quit<CR>
 
