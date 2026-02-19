@@ -2,11 +2,15 @@ source $VIMRUNTIME/defaults.vim
 
 syntax on
 
+set noswapfile viminfo=
 set mouse=a
 set expandtab autoindent shiftwidth=4
 set laststatus=2
 set nowrap
 set splitbelow
+set virtualedit=onemore
+
+" --- key mapping ---
 
 " quick quit
 nnoremap q :quit<CR>
