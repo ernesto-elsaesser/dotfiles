@@ -6,6 +6,7 @@ set noswapfile viminfo=
 set mouse=a
 set expandtab autoindent shiftwidth=4
 set laststatus=2
+set hidden
 set nowrap
 set splitbelow splitright
 set virtualedit=onemore
