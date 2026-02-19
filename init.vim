@@ -10,6 +10,7 @@ set hidden
 set nowrap
 set splitbelow splitright
 set virtualedit=onemore
+set ttymouse=sgr
 
 " --- key mapping ---
 
