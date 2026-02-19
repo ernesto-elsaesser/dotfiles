@@ -7,7 +7,7 @@ set mouse=a
 set expandtab autoindent shiftwidth=4
 set laststatus=2
 set nowrap
-set splitbelow
+set splitbelow splitright
 set virtualedit=onemore
 
 " --- key mapping ---
