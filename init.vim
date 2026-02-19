@@ -8,7 +8,7 @@ set expandtab autoindent shiftwidth=4
 set laststatus=2
 set hidden
 set nowrap
-set splitbelow splitright
+set splitbelow
 set virtualedit=onemore
 set ttymouse=sgr
 
@@ -24,7 +24,7 @@ nnoremap <Space> :w<CR>
 nnoremap <Backspace> <C-o>
 
 " open explorer side bar
-nnoremap - :Lexplore<CR>
+nnoremap - :15Lexplore<CR>
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
@@ -34,20 +34,9 @@ tnoremap ö <C-\><C-n>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
-" yank to X11 clipboard
-augroup Clipboard
-  autocmd!
-  if executable('xclip')
-    autocmd TextYankPost * call system('xclip -i -selection clipboard', getreg(v:event.regname))
-  endif
-augroup END
-
-" reload config
-command Reload source $HOME/.vimrc
-
 " --- netrw ---
 
-" open files in the previous window or split vertically
+" open files in previous window or split right
 let g:netrw_browse_split = 4
 let g:netrw_preview = 1
 
@@ -62,3 +51,17 @@ let g:netrw_list_hide = '^\..*'
 
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
+
+" --- misc ---
+
+" yank to X11 clipboard
+augroup Clipboard
+  autocmd!
+  if executable('xclip')
+    autocmd TextYankPost * call system('xclip -i -selection clipboard', getreg(v:event.regname))
+  endif
+augroup END
+
+" reload config
+command Reload source $HOME/.vimrc
+
