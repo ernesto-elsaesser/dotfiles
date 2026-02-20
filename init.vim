@@ -15,7 +15,7 @@ set ttymouse=sgr
 " --- key mapping ---
 
 " quick quit
-nnoremap q :quit<CR>
+nnoremap <C-s> :quit<CR>
 
 " quick save
 nnoremap <Space> :w<CR>
@@ -25,6 +25,9 @@ nnoremap <Backspace> <C-o>
 
 " open explorer side bar
 nnoremap - :15Lexplore<CR>
+
+" quick terminal
+nnoremap q :terminal<CR>
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
