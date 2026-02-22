@@ -16,7 +16,7 @@ set ttymouse=sgr
 " --- key mapping ---
 
 " quick quit
-nnoremap <C-s> :quit<CR>
+nnoremap <C-e> :quit<CR>
 
 " quick save
 nnoremap <Space> :w<CR>
