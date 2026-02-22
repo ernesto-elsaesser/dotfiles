@@ -10,7 +10,7 @@ set hidden
 set nowrap
 set splitbelow
 set virtualedit=onemore
-set complete=.
+set complete=. completeopt=
 set ttymouse=sgr
 
 " --- key mapping ---
