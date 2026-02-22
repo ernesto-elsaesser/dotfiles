@@ -4,7 +4,7 @@ syntax on
 
 set noswapfile viminfo=
 set mouse=a
-set expandtab autoindent shiftwidth=4
+set expandtab autoindent shiftwidth=4 tabstop=4 softtabstop=4
 set laststatus=2
 set hidden
 set nowrap
