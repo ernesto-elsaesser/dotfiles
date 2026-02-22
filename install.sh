@@ -3,8 +3,11 @@
 rcfile=".bashrc"
 [[ "$(uname)" == "Darwin" ]] && rcfile=".zshrc"
 
-echo "Appending aliases to $rcfile ..."
-echo "source $PWD/aliases" >> "$HOME/$rcfile"
+echo "Loading aliases in $rcfile ..."
+echo "source $PWD/aliases.sh" >> "$HOME/$rcfile"
+
+echo "Loading prompt in $rcfile ..."
+echo "source $PWD/prompt.sh" >> "$HOME/$rcfile"
 
 echo "Generating .gitconfig ..."
 cat <<EOF > "$HOME/.gitconfig"
