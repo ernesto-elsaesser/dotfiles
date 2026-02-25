@@ -44,8 +44,11 @@ let g:netrw_preview = 1
 " tree listing (toggle with i)
 let g:netrw_liststyle = 3
 
-" hide banner
+" hide banner (toggle with I)
 let g:netrw_banner = 0
+
+" never re-use directory listings
+let g:netrw_fastbrowse = 0
 
 " configure hiding (a)
 let g:netrw_list_hide = '^\..*'
