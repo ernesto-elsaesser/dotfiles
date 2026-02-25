@@ -67,7 +67,7 @@ augroup Clipboard
 augroup END
 
 " send line to terminal
-nnoremap ä :call term_sendkeys(bufnr('$'), getline('.') . "\r")<CR>
+nnoremap ä :call term_sendkeys(bufnr('$'), getline('.') . "\r")<CR><CR>
 
 " reload config
 command Reload source $HOME/.vimrc
