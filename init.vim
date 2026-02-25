@@ -21,9 +21,6 @@ nnoremap <C-e> :quit<CR>
 " quick save
 nnoremap <Space> :w<CR>
 
-" quick back
-nnoremap <Backspace> <C-o>
-
 " open explorer side bar
 nnoremap - :15Lexplore<CR>
 
