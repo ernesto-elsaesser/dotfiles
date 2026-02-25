@@ -1,5 +1,5 @@
 C1='\[\e[32m\]'
-C2='\[\e[96m\]'
+C2='\[\e[94m\]'
 CX='\[\e[0m\]'
 [[ "$(type -t __git_ps1)" = 'function' ]] && PROMPT_COMMAND='__git_ps1 "${C1}\u@\h${CX}:${C2}\w${CX}" "\\\$ "'
 GIT_PS1_SHOWDIRTYSTATE=1
