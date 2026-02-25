@@ -1,6 +1,7 @@
 export EDITOR=/usr/bin/vim
 
 # ls (A = almost all, F = classify)
+alias l='ls -F --color=auto'
 alias la='ls -AF --color=auto'
 alias ll='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
