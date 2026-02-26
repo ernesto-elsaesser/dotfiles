@@ -41,17 +41,14 @@ inoremap <S-Tab> <C-d>
 let g:netrw_browse_split = 4
 let g:netrw_preview = 1
 
-" tree listing (toggle with i)
-let g:netrw_liststyle = 3
-
 " hide banner (toggle with I)
 let g:netrw_banner = 0
 
-" never re-use directory listings
-let g:netrw_fastbrowse = 0
+" configure sorting
+let g:netrw_sort_sequence = '\/$,*'
 
 " configure hiding (a)
-let g:netrw_list_hide = '^\..*'
+let g:netrw_list_hide = '^\.[^.]'
 
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
@@ -67,9 +64,9 @@ augroup Clipboard
 augroup END
 
 " send line to terminal
-nnoremap ü let g:termbuf = bufnr('$')
+nnoremap ü :let g:termbuf = bufnr('$')<CR>
 nnoremap ä :call term_sendkeys(g:termbuf, getline('.') . "\r")<CR><CR>
 
 " reload config
-command Reload source $HOME/.vimrc
+command RR source $HOME/.vimrc
 
