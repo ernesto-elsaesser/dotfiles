@@ -8,7 +8,7 @@ set expandtab autoindent shiftwidth=4 tabstop=4 softtabstop=4
 set laststatus=2
 set hidden
 set nowrap
-set splitbelow
+set splitbelow splitright
 set virtualedit=onemore
 set complete=. completeopt=
 set ttymouse=sgr
@@ -37,9 +37,8 @@ inoremap <S-Tab> <C-d>
 
 " --- netrw ---
 
-" open files in previous window or split right
+" open files in previous window
 let g:netrw_browse_split = 4
-let g:netrw_preview = 1
 
 " hide banner (toggle with I)
 let g:netrw_banner = 0
