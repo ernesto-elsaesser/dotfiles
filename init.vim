@@ -75,5 +75,5 @@ augroup Clipboard
 augroup END
 
 " reload config
-command RR source $HOME/.vimrc
+command! RR source $HOME/.vimrc
 
