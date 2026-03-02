@@ -32,6 +32,9 @@ inoremap ö <Esc>
 vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
 
+" paste to terminal
+tnoremap ä <C-w>""
+
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
@@ -64,10 +67,6 @@ augroup Clipboard
     autocmd TextYankPost * call system('xclip -i -selection clipboard', getreg(v:event.regname))
   endif
 augroup END
-
-" send line to terminal
-nnoremap ü :let g:termbuf = bufnr('$')<CR>
-nnoremap ä :call term_sendkeys(g:termbuf, getline('.') . "\r")<CR><CR>
 
 " reload config
 command RR source $HOME/.vimrc
