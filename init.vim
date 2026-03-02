@@ -27,7 +27,11 @@ nnoremap <Space> :w<CR>
 nnoremap - :15Lexplore<CR>
 
 " quick terminal
-nnoremap q :terminal<CR>
+if has('nvim')
+  nnoremap q :split <Bar> terminal<CR>i
+else
+  nnoremap q :terminal<CR>
+endif
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
