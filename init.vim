@@ -1,17 +1,19 @@
-source $VIMRUNTIME/defaults.vim
+if !has('nvim')
+  source $VIMRUNTIME/defaults.vim
+  syntax on
+  set ttymouse=sgr
+  set viminfo=
+  set laststatus=2
+  set hidden
+endif
 
-syntax on
-
-set noswapfile viminfo=
+set noswapfile
 set mouse=a
 set expandtab autoindent shiftwidth=4 tabstop=4 softtabstop=4
-set laststatus=2
-set hidden
 set nowrap
 set splitbelow splitright
 set virtualedit=onemore
 set complete=. completeopt=
-set ttymouse=sgr
 
 " --- key mapping ---
 
