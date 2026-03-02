@@ -40,6 +40,9 @@ inoremap <S-Tab> <C-d>
 " open files in previous window
 let g:netrw_browse_split = 4
 
+" split window size
+let g:netrw_winsize = 85
+
 " hide banner (toggle with I)
 let g:netrw_banner = 0
 
