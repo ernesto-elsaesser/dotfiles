@@ -25,22 +25,20 @@ nnoremap <Space> :w<CR>
 " open explorer side bar
 nnoremap - :15Lexplore<CR>
 
-" quick terminal
+" terminal interaction
 if has('nvim')
     nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+    nnoremap ä :call chansend(g:termchan, getreg('"') . "\n")<CR>
     tnoremap <C-w> <C-\><C-n><C-w>
 else
-    " TODO set g:termchan in vim
-    nnoremap q :terminal<CR>
+    nnoremap q :terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+    nnoremap ä :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR><CR>
 endif
 
 " exit insert/visual/terminal mode with ö
 inoremap ö <Esc>
 vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
-
-" send to terminal
-nnoremap ä :call chansend(g:termchan, getreg('"') . "\n")<CR>
 
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
