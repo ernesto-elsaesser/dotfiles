@@ -17,3 +17,5 @@ EOF
 echo "Linking .vimrc ..."
 rm -f "$HOME/.vimrc"
 ln -s "$PWD/init.vim" "$HOME/.vimrc"
+mkdir "$HOME/.config/nvim"
+ln -s "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
