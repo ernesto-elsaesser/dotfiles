@@ -28,6 +28,7 @@ nnoremap - :15Lexplore<CR>
 " quick terminal
 if has('nvim')
     nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+    tnoremap <C-w> <C-\><C-n><C-w>
 else
     " TODO set g:termchan in vim
     nnoremap q :terminal<CR>
