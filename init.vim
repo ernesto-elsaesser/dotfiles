@@ -40,7 +40,7 @@ vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
 
 " send to terminal
-nnoremap ä :call chansend(g:termchan, getreg('"'))<CR>
+nnoremap ä :call chansend(g:termchan, getreg('"') . "\n")<CR>
 
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
