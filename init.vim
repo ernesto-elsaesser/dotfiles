@@ -26,7 +26,7 @@ nnoremap <Space> :w<CR>
 nnoremap - :15Lexplore<CR>
 
 " change to open directory
-nnoremap + :cd %<CR>
+nnoremap + :cd %:p<CR>:pwd<CR>
 
 " terminal interaction
 if has('nvim')
