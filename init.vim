@@ -25,6 +25,9 @@ nnoremap <Space> :w<CR>
 " open explorer side bar
 nnoremap - :15Lexplore<CR>
 
+" change to open directory
+nnoremap + :cd %<CR>
+
 " terminal interaction
 if has('nvim')
     nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
@@ -43,6 +46,9 @@ tnoremap ö <C-\><C-n>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
+" jump to tag under cursor
+nnoremap ß <C-]>
+
 " --- netrw ---
 
 " open files in previous window
@@ -59,6 +65,9 @@ let g:netrw_sort_sequence = '\/$,*'
 
 " configure hiding (a)
 let g:netrw_list_hide = '^\.[^.]'
+
+" set current directory to browsing directory
+let g:netrw_keepdir = 0
 
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
