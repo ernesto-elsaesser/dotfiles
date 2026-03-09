@@ -6,8 +6,8 @@ alias la='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
 
 # vim
-alias v='vim -c 15Lexplore'
-alias nv='nvim -c 15Lexplore'
+alias v='vim'
+alias nv='nvim'
 alias sv='sudo vim -u $HOME/.vimrc'
 
 # git (subcommand aliases in gitconfig)
