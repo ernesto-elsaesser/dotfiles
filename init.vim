@@ -23,14 +23,14 @@ nnoremap <C-e> :quit<CR>
 nnoremap <Space> :w<CR>
 
 " open explorer side bar
-nnoremap - :15Lexplore<CR>
+nnoremap - :Explore<CR>
 
 " change to open directory
 nnoremap + :cd %:h<CR>:pwd<CR>
 
 " terminal interaction
 if has('nvim')
-    nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+    nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>
     nnoremap ä :call chansend(g:termchan, getline('.') . "\n")<CR>
     nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
     tnoremap <C-w> <C-\><C-n><C-w>
