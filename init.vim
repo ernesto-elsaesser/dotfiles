@@ -53,12 +53,6 @@ nnoremap ß <C-]>
 
 " --- netrw ---
 
-" open files in previous window
-let g:netrw_browse_split = 4
-
-" split window size
-let g:netrw_winsize = 85
-
 " hide banner (toggle with I)
 let g:netrw_banner = 0
 
@@ -75,14 +69,6 @@ let g:netrw_keepdir = 0
 let g:netrw_dirhistmax = 0
 
 " --- misc ---
-
-" yank to X11 clipboard
-augroup Clipboard
-    autocmd!
-    if executable('xclip')
-        autocmd TextYankPost * call system('xclip -i -selection clipboard', getreg(v:event.regname))
-    endif
-augroup END
 
 " reload config
 command! RR source $HOME/.vimrc
