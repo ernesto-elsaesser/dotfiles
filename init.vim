@@ -73,3 +73,5 @@ let g:netrw_dirhistmax = 0
 " reload config
 command! RR source $HOME/.vimrc
 
+" edit markdown notes
+command! -nargs=1 MD vs scp://oracle/notes/<args>.md
