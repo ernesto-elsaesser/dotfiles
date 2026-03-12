@@ -4,13 +4,14 @@ if !has('nvim')
     set ttymouse=sgr
     set viminfo=
     set laststatus=2
-    set hidden
 endif
 
+set background=dark
 set noswapfile
 set mouse=a
 set expandtab autoindent shiftwidth=4 tabstop=4 softtabstop=4
 set nowrap
+set scrolloff=3
 set splitbelow splitright
 set complete=. completeopt=
 
