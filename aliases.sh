@@ -14,9 +14,8 @@ alias sv='sudo vim -u $HOME/.vimrc'
 alias g='git'
 
 # tmux
-alias t='tmux new-session -s'
-alias tl='tmux list-sessions'
-alias ta='tmux attach-session -t'
+alias t='tmux'
+alias ta='tmux attach'
 
 # python
 alias p='python3'
