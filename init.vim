@@ -14,6 +14,7 @@ set nowrap
 set scrolloff=3
 set splitbelow splitright
 set complete=. completeopt=
+set pastetoggle=+
 
 " --- key mapping ---
 
@@ -23,11 +24,8 @@ nnoremap <C-e> :quit<CR>
 " quick save
 nnoremap <Space> :w<CR>
 
-" open explorer side bar
+" open parent directory
 nnoremap - :Explore<CR>
-
-" change to open directory
-nnoremap + :cd %:h<CR>:pwd<CR>
 
 " terminal interaction
 if has('nvim')
