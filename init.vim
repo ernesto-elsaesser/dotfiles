@@ -14,7 +14,7 @@ set nowrap
 set scrolloff=3
 set splitbelow splitright
 set complete=. completeopt=
-set pastetoggle=ß
+set pastetoggle=<C-p>
 
 " --- key mapping ---
 
