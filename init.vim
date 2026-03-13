@@ -14,7 +14,7 @@ set nowrap
 set scrolloff=3
 set splitbelow splitright
 set complete=. completeopt=
-set pastetoggle=+
+set pastetoggle=ß
 
 " --- key mapping ---
 
@@ -48,7 +48,7 @@ tnoremap ö <C-\><C-n>
 inoremap <S-Tab> <C-d>
 
 " jump to tag under cursor
-nnoremap ß <C-]>
+nnoremap + <C-]>
 
 " --- netrw ---
 
