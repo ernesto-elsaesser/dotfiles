@@ -19,7 +19,8 @@ set pastetoggle=<C-t>
 " --- key mapping ---
 
 " quick quit
-nnoremap <C-e> :quit<CR>
+nnoremap <C-d> :quit<CR>
+nnoremap <C-j> <C-d>
 
 " quick save
 nnoremap <Space> :w<CR>
