@@ -21,6 +21,7 @@ set pastetoggle=<C-t>
 " quick quit
 nnoremap <C-d> :quit<CR>
 nnoremap <C-j> <C-d>
+vnoremap <C-j> <C-d>
 
 " quick save
 nnoremap <Space> :w<CR>
