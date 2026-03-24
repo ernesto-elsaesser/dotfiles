@@ -13,10 +13,6 @@ alias sv='sudo vim -u $HOME/.vimrc'
 # git (subcommand aliases in gitconfig)
 alias g='git'
 
-# tmux
-alias t='tmux'
-alias ta='tmux attach'
-
 # python
 alias p='python3'
 alias h='eval "$($HOME/miniforge3/bin/conda shell.bash hook)"'
