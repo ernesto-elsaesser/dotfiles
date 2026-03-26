@@ -1,5 +1,7 @@
 export EDITOR=/usr/bin/vim
 
+PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[32m\]\u@\h\[\e[0m\]:\w$ "
+
 # ls (A = almost all, F = classify)
 alias ll='ls -lhF --color=auto'
 alias la='ls -lhAF --color=auto'
@@ -7,7 +9,7 @@ alias sl='sudo ls -lhAF --color=auto'
 
 # vim
 alias v='vim'
-alias nv='nvim'
+alias nv='nvim -u $HOME/.vimrc'
 alias sv='sudo vim -u $HOME/.vimrc'
 
 # git (subcommand aliases in gitconfig)
@@ -25,5 +27,4 @@ alias r='conda remove --all -n'
 
 # misc
 alias c='clear'
-alias gr='grep --color=auto'
 alias sd='sudo dnf'

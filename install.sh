@@ -1,10 +1,7 @@
 #!/bin/bash
 
-echo "Loading aliases in .bashrc ..."
-echo "source $PWD/aliases.sh" >> "$HOME/.bashrc"
-
-echo "Loading prompt in .bashrc ..."
-echo "source $PWD/prompt.sh" >> "$HOME/.bashrc"
+echo "Installing custom bashrc ..."
+echo "source $PWD/bashrc" >> "$HOME/.bashrc"
 
 echo "Generating .gitconfig ..."
 cat <<EOF > "$HOME/.gitconfig"
@@ -20,12 +17,5 @@ ln -s "$PWD/tmux.conf" "$HOME/.tmux.conf"
 
 echo "Linking .vimrc ..."
 rm -f "$HOME/.vimrc"
-ln -s "$PWD/init.vim" "$HOME/.vimrc"
-
-read -p "neovim? "
-if [[ $REPLY = "y" ]]; then
-    echo "Linking init.vim ..."
-    mkdir -p "$HOME/.config/nvim"
-    ln -s "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
-fi
+ln -s "$PWD/vimrc" "$HOME/.vimrc"
 
