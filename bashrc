@@ -1,6 +1,6 @@
 export EDITOR=/usr/bin/vim
 
-PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[32m\]\u@\h\[\e[0m\]:\w$ "
+PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 
 # ls (A = almost all, F = classify)
 alias ll='ls -lhF --color=auto'
