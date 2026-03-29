@@ -75,4 +75,4 @@ let g:netrw_dirhistmax = 0
 command! RR source $HOME/.vimrc
 
 " edit markdown notes
-command! -nargs=1 MD vs scp://oracle/notes/<args>.md
+command! -nargs=1 MD vs scp://gcp/notes/<args>.md
