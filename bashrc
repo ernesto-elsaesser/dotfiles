@@ -25,7 +25,7 @@ alias a='conda activate'
 alias e='conda export > environment.yaml'
 alias d='conda deactivate'
 alias i='conda install'
-alias r='conda remove --all -n'
+alias x='conda remove --all -n'
 
 # --- rhel ---
 alias sd='sudo dnf'
