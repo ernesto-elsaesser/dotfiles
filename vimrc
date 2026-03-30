@@ -52,6 +52,10 @@ inoremap <S-Tab> <C-d>
 " jump to tag under cursor
 nnoremap + <C-]>
 
+if has('nvim')
+    imap <C-Space> <Plug>(copilot-suggest)
+endif
+
 " --- netrw ---
 
 " hide banner (toggle with I)
