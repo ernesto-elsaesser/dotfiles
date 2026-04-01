@@ -31,7 +31,7 @@ nnoremap - :Explore<CR>
 
 " terminal interaction
 if has('nvim')
-    nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>
+    nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
     nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
     nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
     tnoremap <C-w> <C-\><C-n><C-w>
@@ -50,14 +50,10 @@ tnoremap ö <C-\><C-n>
 inoremap <S-Tab> <C-d>
 
 " tab auto-completion
-inoremap <expr> <Tab> trim(getline('.')) == '' ? "\<Tab>" :  "\<C-n>"
+inoremap <expr> <Tab> trim(getline('.')) == '' ? "\<Tab>" : "\<C-n>"
 
 " jump to tag under cursor
 nnoremap + <C-]>
-
-if has('nvim')
-    imap <C-Space> <Plug>(copilot-suggest)
-endif
 
 " --- netrw ---
 
