@@ -49,6 +49,9 @@ tnoremap ö <C-\><C-n>
 " unindent in insert mode
 inoremap <S-Tab> <C-d>
 
+" tab auto-completion
+inoremap <expr> <Tab> trim(getline('.')) == '' ? "\<Tab>" :  "\<C-n>"
+
 " jump to tag under cursor
 nnoremap + <C-]>
 
