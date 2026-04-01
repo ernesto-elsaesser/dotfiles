@@ -55,6 +55,9 @@ inoremap <expr> <Tab> trim(getline('.')) == '' ? "\<Tab>" : "\<C-n>"
 " jump to tag under cursor
 nnoremap + <C-]>
 
+" Copilot
+let g:copilot_filetypes = { "markdown": v:false }
+
 " --- netrw ---
 
 " hide banner (toggle with I)
