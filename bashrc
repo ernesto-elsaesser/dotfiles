@@ -13,7 +13,7 @@ alias nv='nvim -u $HOME/.vimrc'
 alias sv='sudo vim -u $HOME/.vimrc'
 
 # --- git ---
-GH="git@github.com:ernesto-elsaesser/"
+GH="git@github.com:ernesto-elsaesser"
 alias g='git'
 # subcommand aliases in gitconfig
 
