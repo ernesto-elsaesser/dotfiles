@@ -1,20 +1,19 @@
 if !has('nvim')
     source $VIMRUNTIME/defaults.vim
     syntax on
+    set background=dark
     set ttymouse=sgr
     set viminfo=
     set laststatus=2
     set pastetoggle=<C-t>
+    set autoindent
 endif
 
-set background=dark
 set noswapfile
 set mouse=a
-set expandtab autoindent shiftwidth=4 tabstop=4 softtabstop=4
-set nowrap
+set tabstop=4 shiftwidth=0 softtabstop=-1 expandtab
 set scrolloff=3
-set splitbelow splitright
-set completeopt=
+"set completeopt=
 
 " --- key mapping ---
 
@@ -31,12 +30,17 @@ nnoremap - :Explore<CR>
 
 " terminal interaction
 if has('nvim')
-    nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+    nnoremap q :below split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
     nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
     nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
+    " directly switch into and out of terminal mode
     tnoremap <C-w> <C-\><C-n><C-w>
+    augroup TermAutoInsert
+      autocmd!
+      autocmd WinEnter term://* startinsert
+    augroup END
 else
-    nnoremap q :terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+    nnoremap q :below terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
     nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
     nnoremap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
 endif
@@ -46,17 +50,17 @@ inoremap ö <Esc>
 vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
 
-" unindent in insert mode
-inoremap <S-Tab> <C-d>
-
-" tab auto-completion
-inoremap <expr> <Tab> trim(getline('.')) == '' ? "\<Tab>" : "\<C-n>"
-
 " jump to tag under cursor
 nnoremap + <C-]>
 
+" tab completion
+inoremap <Tab> <C-n>
+
 " Copilot
 let g:copilot_filetypes = { "markdown": v:false }
+
+" unindent in insert mode
+" inoremap <S-Tab> <C-d>
 
 " --- netrw ---
 
@@ -80,5 +84,3 @@ let g:netrw_dirhistmax = 0
 " reload config
 command! RR source $HOME/.vimrc
 
-" edit markdown notes
-command! -nargs=1 MD vs scp://gcp/notes/<args>.md
