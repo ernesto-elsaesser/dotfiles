@@ -65,6 +65,7 @@ cnoremap <C-A> <Home>
 " git
 let g:mapleader = ","
 nmap <Leader>s :!git status --short<CR>
+nmap <Leader>d ::vert rightb ter git diff<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>p :!git push<CR>
