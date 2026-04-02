@@ -97,6 +97,9 @@ highlight GitGutterChange guifg=#aaaa00 ctermfg=3
 nmap + <Plug>(GitGutterStageHunk)
 nmap # <Plug>(GitGutterUndoHunk)
 
+" git command
+command! -nargs=+ G !git <args>
+
 " reload config
 command! RR source $HOME/.vimrc
 
