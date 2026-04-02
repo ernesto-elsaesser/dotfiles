@@ -59,6 +59,9 @@ tnoremap <C-k> <C-\><C-n>
 " jump to tag under cursor
 nnoremap gt <C-]>
 
+" toggle word wrap
+nnoremap + :setl wrap!<CR>
+
 " command mode home key
 cnoremap <C-A> <Home>
 
@@ -66,6 +69,7 @@ cnoremap <C-A> <Home>
 let g:mapleader = ","
 nmap <Leader>s :!git status --short<CR>
 nmap <Leader>d ::vert rightb ter git diff<CR>
+nmap <Leader>i ::vert rightb ter git diff --staged<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>p :!git push<CR>
