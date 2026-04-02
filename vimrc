@@ -32,8 +32,9 @@ nnoremap - :Explore<CR>
 " terminal interaction
 if has('nvim')
     nnoremap q :below split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
-    nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
+    nnoremap ö :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
     nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
+    nnoremap ä :call chansend(g:termchan, "\x10\n")<CR>
     " directly switch into and out of terminal mode
     tnoremap <C-w> <C-\><C-n><C-w>
     augroup TermAutoInsert
@@ -42,8 +43,9 @@ if has('nvim')
     augroup END
 else
     nnoremap q :below terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
-    nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
+    nnoremap ö :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
     nnoremap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
+    nnoremap ä :call term_sendkeys(g:termbuf, "\x10\n")<CR>
 endif
 
 " exit insert/visual/terminal mode with ö
