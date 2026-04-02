@@ -59,6 +59,9 @@ tnoremap <C-k> <C-\><C-n>
 " jump to tag under cursor
 nnoremap gt <C-]>
 
+" command mode home key
+cnoremap <C-A> <Home>
+
 " git
 let g:mapleader = ","
 nmap <Leader>s :!git status<CR>
