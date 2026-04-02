@@ -16,6 +16,7 @@ set relativenumber
 set scrolloff=3
 set nowrap
 set completeopt=
+set updatetime=1000
 
 " --- key mapping ---
 
@@ -57,6 +58,17 @@ tnoremap ö <C-\><C-n>
 " jump to tag under cursor
 nnoremap gt <C-]>
 
+" git
+let g:mapleader = ","
+nmap <Leader>s :!git status<CR>
+nmap <Leader>a :!git add --all --verbose<CR>
+nmap <Leader>c :!git commit -m ""<Left>
+nmap <Leader>p :!git push<CR>
+nmap <Leader>g :!git pull<CR>
+nmap <Leader>l :!git log -8<CR>
+nmap <Leader>h <Plug>(GitGutterStageHunk)
+nmap <Leader>u <Plug>(GitGutterUndoHunk)
+
 " tab completion
 if !exists('g:loaded_copilot')
     " Copilot maps <Tab> to accept-suggestion, with the previous mapping as
@@ -90,16 +102,10 @@ let g:netrw_sizestyle = 'H'
 
 " --- misc ---
 
-" gitgutter
-set updatetime=1000
+" gitgutter sign colors
 highlight GitGutterAdd guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#aaaa00 ctermfg=3
-nmap + <Plug>(GitGutterStageHunk)
-nmap # <Plug>(GitGutterUndoHunk)
-
-" git command
-command! -nargs=+ G !git <args>
 
 " reload config
-command! RR source $HOME/.vimrc
+command! RC source $HOME/.vimrc
 
