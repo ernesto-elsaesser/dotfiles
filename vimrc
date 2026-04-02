@@ -87,7 +87,14 @@ let g:netrw_keepdir = 0
 " no ~/.vim/netrwhist file
 let g:netrw_dirhistmax = 0
 
+" human-readable file sizes
+let g:netrw_sizestyle = 'H'
+
 " --- misc ---
+
+" gitgutter
+highlight GitGutterAdd guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#aaaa00 ctermfg=3
 
 " reload config
 command! RR source $HOME/.vimrc
