@@ -19,8 +19,6 @@ set completeopt=
 
 " --- key mapping ---
 
-let g:mapleader = ","
-
 " quick quit
 nnoremap <C-d> :quit<CR>
 nnoremap <C-j> <C-d>
@@ -61,7 +59,7 @@ nnoremap gt <C-]>
 
 " tab completion
 if !exists('g:loaded_copilot')
-    " Copilot maps tab to accept-suggestion, with the previous mapping as
+    " Copilot maps <Tab> to accept-suggestion, with the previous mapping as
     " fallback when no suggestion is displayed. Reinstalling the mapping
     " after loading Copilot would erase the Copilot mapping.
     inoremap <Tab> <C-n>
@@ -93,6 +91,7 @@ let g:netrw_sizestyle = 'H'
 " --- misc ---
 
 " gitgutter
+set updatetime=1000
 highlight GitGutterAdd guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#aaaa00 ctermfg=3
 nmap + <Plug>(GitGutterStageHunk)
