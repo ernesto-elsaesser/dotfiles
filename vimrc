@@ -14,7 +14,7 @@ set mouse=a
 set tabstop=4 shiftwidth=0 softtabstop=-1 expandtab
 set scrolloff=3
 set nowrap
-"set completeopt=
+set completeopt=
 
 " --- key mapping ---
 
@@ -55,13 +55,15 @@ tnoremap ö <C-\><C-n>
 nnoremap + <C-]>
 
 " tab completion
-inoremap <Tab> <C-n>
+if !exists('g:loaded_copilot')
+    " Copilot maps tab to accept-suggestion, with the previous mapping as
+    " fallback when no suggestion is displayed. Reinstalling the mapping
+    " after loading Copilot would erase the Copilot mapping.
+    inoremap <Tab> <C-n>
+endif
 
 " Copilot
 let g:copilot_filetypes = { "markdown": v:false }
-
-" unindent in insert mode
-" inoremap <S-Tab> <C-d>
 
 " --- netrw ---
 
