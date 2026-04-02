@@ -7,10 +7,9 @@ alias sl='sudo ls -lhAF --color=auto'
 # A = almost all, F = classify
 
 # --- vim ---
-export EDITOR=/usr/bin/vim
-alias v='vim'
-alias nv='nvim -u $HOME/.vimrc'
-alias sv='sudo vim -u $HOME/.vimrc'
+export EDITOR=$(command -v nvim || command -v vim)
+alias v='$EDITOR -u $HOME/.vimrc'
+alias sv='sudo $EDITOR -u $HOME/.vimrc'
 
 # --- git ---
 GH="git@github.com:ernesto-elsaesser"
