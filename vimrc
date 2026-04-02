@@ -19,6 +19,8 @@ set completeopt=
 
 " --- key mapping ---
 
+let g:mapleader = ","
+
 " quick quit
 nnoremap <C-d> :quit<CR>
 nnoremap <C-j> <C-d>
