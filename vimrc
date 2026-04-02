@@ -56,6 +56,12 @@ inoremap <C-k> <Esc>
 vnoremap <C-k> <Esc>
 tnoremap <C-k> <C-\><C-n>
 
+" search in files
+nmap <Leader>f :vim // *<Left><Left><Left>
+nmap <Leader><Leader> :cc<CR>
+nmap <Leader>j :cn<CR>
+nmap <Leader>k :cp<CR>
+
 " jump to tag under cursor
 nnoremap gt <C-]>
 
