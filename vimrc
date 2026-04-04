@@ -17,7 +17,6 @@ set tabstop=4 shiftwidth=0 softtabstop=-1 expandtab
 set relativenumber
 set scrolloff=3
 set completeopt=
-set updatetime=1000
 
 " --- key mappings ---
 
