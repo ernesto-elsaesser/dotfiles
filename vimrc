@@ -33,9 +33,9 @@ vnoremap <C-k> <C-u>
 " reload config
 nnoremap <C-u> :source $HOME/.vimrc<CR>
 
-" return no normal mode
-inoremap öö <Esc>
-tnoremap öö <C-\><C-n>
+" return to normal mode
+inoremap ö <Esc>
+tnoremap ö <C-\><C-n>
 
 " save
 nnoremap <Space> :w<CR>
@@ -125,12 +125,52 @@ let g:netrw_dirhistmax = 0
 " human-readable file sizes
 let g:netrw_sizestyle = 'H'
 
-" --- plugins ---
+" --- git signs ---
 
-" copilot
+highlight GitAdd guifg=#009900 ctermfg=2
+highlight GitChange guifg=#aaaa00 ctermfg=3
+highlight GitDelete guifg=#990000 ctermfg=3
+
+sign define sadd text=+ texthl=GitAdd
+sign define smod text=~ texthl=GitChange
+sign define sdel text=_ texthl=GitDelete
+
+nmap <Leader>q :call Gutter()<CR>
+
+function! Gutter() abort
+
+  sign unplace *
+
+  let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
+
+  for l:line in l:diff
+    " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
+    let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
+    if empty(l:m)
+      continue
+    endif
+
+    let l:old_count = l:m[2] ==# '' ? 1 : str2nr(l:m[2])
+    let l:new_start = str2nr(l:m[3])
+    let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
+
+    if l:old_count == 0
+      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
+        execute 'sign place ' . l:lnum . ' line='   . l:lnum . ' name=sadd'
+      endfor
+    elseif l:new_count == 0
+      let l:marker = l:new_start > 0 ? l:new_start : 1
+      execute 'sign place ' . l:marker . ' line='   . l:marker . ' name=sdel'
+    else
+      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
+        execute 'sign place ' . l:lnum . ' line='   . l:lnum . ' name=smod'
+      endfor
+    endif
+  endfor
+
+endfunction
+
+" --- copilot ---
+
+" disable filetypes
 let g:copilot_filetypes = { "markdown": v:false }
-
-" gitgutter
-highlight GitGutterAdd guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#aaaa00 ctermfg=3
-
