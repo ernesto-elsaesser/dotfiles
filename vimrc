@@ -96,6 +96,7 @@ nmap <Leader>d :vert rightb ter git diff<CR>
 nmap <Leader>i :vert rightb ter git diff --staged<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>r :!git reset HEAD<CR>
+nmap <Leader>e :!git reset HEAD^<CR>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>p :!git push<CR>
 nmap <Leader>g :!git pull<CR>
