@@ -1,3 +1,5 @@
+" --- settings ---
+
 if !has('nvim')
     source $VIMRUNTIME/defaults.vim
     syntax on
@@ -14,18 +16,28 @@ set mouse=a
 set tabstop=4 shiftwidth=0 softtabstop=-1 expandtab
 set relativenumber
 set scrolloff=3
-set nowrap
 set completeopt=
 set updatetime=1000
 
-" --- key mapping ---
+" --- key mappings ---
 
-" quick quit
+" quit
 nnoremap <C-d> :quit<CR>
-nnoremap <C-j> <C-d>
-vnoremap <C-j> <C-d>
 
-" quick save
+" scroll
+nnoremap <C-j> <C-d>
+nnoremap <C-k> <C-u>
+vnoremap <C-j> <C-d>
+vnoremap <C-k> <C-u>
+
+" reload config
+nnoremap <C-u> :source $HOME/.vimrc<CR>
+
+" return no normal mode
+inoremap öö <Esc>
+tnoremap öö <C-\><C-n>
+
+" save
 nnoremap <Space> :w<CR>
 
 " open parent directory
@@ -50,18 +62,6 @@ else
     nnoremap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
 endif
 
-" exit insert/visual/terminal mode
-inoremap ö <Esc>
-inoremap <C-k> <Esc>
-vnoremap <C-k> <Esc>
-tnoremap <C-k> <C-\><C-n>
-
-" search in files
-nmap <Leader>f :vim // *<Left><Left><Left>
-nmap <Leader><Leader> :cc<CR>
-nmap <Leader>j :cn<CR>
-nmap <Leader>k :cp<CR>
-
 " jump to tag under cursor
 nnoremap gt <C-]>
 
@@ -71,19 +71,6 @@ nnoremap + :setl wrap!<CR>
 " command mode home key
 cnoremap <C-A> <Home>
 
-" git
-let g:mapleader = ","
-nmap <Leader>s :!git status<CR>
-nmap <Leader>d ::vert rightb ter git diff<CR>
-nmap <Leader>i ::vert rightb ter git diff --staged<CR>
-nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>c :!git commit -m ""<Left>
-nmap <Leader>p :!git push<CR>
-nmap <Leader>g :!git pull<CR>
-nmap <Leader>l :!git log -8<CR>
-nmap <Leader>h <Plug>(GitGutterStageHunk)
-nmap <Leader>u <Plug>(GitGutterUndoHunk)
-
 " tab completion
 if !exists('g:loaded_copilot')
     " Copilot maps <Tab> to accept-suggestion, with the previous mapping as
@@ -92,8 +79,31 @@ if !exists('g:loaded_copilot')
     inoremap <Tab> <C-n>
 endif
 
-" Copilot
-let g:copilot_filetypes = { "markdown": v:false }
+" --- leader mappings ---
+
+let g:mapleader = "ö"
+
+" search in files
+nmap <Leader>f :vim // *<Left><Left><Left>
+nmap <Leader><Leader> :cc<CR>
+nmap <Leader>j :cn<CR>
+nmap <Leader>k :cp<CR>
+
+" git
+nmap <Leader>s :!git status<CR>
+nmap <Leader>m :!git status --short<CR>
+nmap <Leader>d :vert rightb ter git diff<CR>
+nmap <Leader>i :vert rightb ter git diff --staged<CR>
+nmap <Leader>a :!git add --all --verbose<CR>
+nmap <Leader>x :!git reset HEAD<CR>
+nmap <Leader>c :!git commit -m ""<Left>
+nmap <Leader>p :!git push<CR>
+nmap <Leader>g :!git pull<CR>
+nmap <Leader>l :!git log -8<CR>
+nmap <Leader>r :!git reset --hard HEAD<CR>
+nmap <Leader>b :!git reset --hard HEAD^<CR>
+nmap <Leader>h <Plug>(GitGutterStageHunk)
+nmap <Leader>u <Plug>(GitGutterUndoHunk)
 
 " --- netrw ---
 
@@ -115,12 +125,12 @@ let g:netrw_dirhistmax = 0
 " human-readable file sizes
 let g:netrw_sizestyle = 'H'
 
-" --- misc ---
+" --- plugins ---
 
-" gitgutter sign colors
+" copilot
+let g:copilot_filetypes = { "markdown": v:false }
+
+" gitgutter
 highlight GitGutterAdd guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#aaaa00 ctermfg=3
-
-" reload config
-command! RC source $HOME/.vimrc
 
