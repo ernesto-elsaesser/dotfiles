@@ -1,38 +1,10 @@
 [user]
     name = Ernesto Elsäßer
+    email = ernesto.elsaesser@gmail.com
 [core]
     editor = vim
-[init]                                                                          
-    defaultBranch = main
 [format]
     pretty = %h%d %s [%ar, %ae]
 [pull]
     ff = only
-[alias]
-    s = status
-    m = status --short
-    d = diff ; working dir vs HEAD
-    i = diff --staged ; staged vs HEAD
-    a = add --all ; stage all
-    r = reset HEAD ; unstage all
-    e = reset HEAD^ ; edit last commit
-    c = commit -m ; COMMIT_MESSAGE
-    t = commit -a -m ; COMMIT_MESSAGE
-    p = push
-    q = fetch --all
-    g = pull
-    l = log -10
-    h = reset --hard HEAD ; discard all changes in working dir (and index) 
-    b = reset --hard HEAD^ ; discard all changes and revert to previous commit
-    pu = push -u origin HEAD ; push new branch to upstream repo 
-    pf = push --force
-    cl = clone
-    co = checkout ; BRANCH_NAME
-    bl = branch -vv ; list branches 
-    bc = checkout -b ; BRANCH_NAME create branch
-    bm = branch -m ; BRANCH_NAME rename branch
-    bd = branch -d ; BRANCH_NAME
-    vl = rev-parse HEAD
-    vs = rev-parse --short HEAD
-    em = commit --amend -m ; COMMIT_MESSAGE ; edit last commit message
-    ea = commit --amend --no-edit ; add changes to last commit
+

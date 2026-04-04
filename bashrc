@@ -8,13 +8,21 @@ alias sl='sudo ls -lhAF --color=auto'
 
 # --- vim ---
 export EDITOR=$(command -v nvim || command -v vim)
-alias v='$EDITOR -u $HOME/.vimrc'
-alias sv='sudo $EDITOR -u $HOME/.vimrc'
+alias v='$EDITOR -u $HOME/dotfiles/vimrc'
+alias sv='sudo $EDITOR -u $HOME/dotfiles/vimrc'
 
 # --- git ---
 GH="git@github.com:ernesto-elsaesser"
-alias g='git'
-# subcommand aliases in gitconfig
+alias gc='git clone'
+alias gb='git checkout'
+alias gg='git pull'
+alias gs='git status'
+alias gl='git log -10'
+alias gr='git reset'
+# HEAD = unstage; --hard HEAD = discard all changes;
+# HEAD^ = edit last commit; --hard HEAD^ = revert to previous commit;
+alias ga='git commit --amend'
+# -m = edit message; --no-edit = add staged changes;
 
 # --- python ---
 alias p='python3'
