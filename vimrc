@@ -105,7 +105,7 @@ nmap <Leader>g :!git pull<CR>
 nmap <Leader>l :!git log -8<CR>
 nmap <Leader>h :!git reset --hard HEAD<CR>
 nmap <Leader>b :!git reset --hard HEAD^<CR>
-nmap <Leader>u :call GitSigns()<CR>
+nmap <Leader>y :call GitSigns()<CR>
 nmap <Leader>x :sign unplace *<CR>
 
 " --- netrw ---
