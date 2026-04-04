@@ -100,6 +100,7 @@ nmap <Leader>e :!git reset HEAD^<CR>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>t :!git commit -a -m ""<Left>
 nmap <Leader>p :!git push<CR>
+nmap <Leader>q :!git fetch --all<CR>
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>l :!git log -8<CR>
 nmap <Leader>h :!git reset --hard HEAD<CR>
