@@ -139,34 +139,34 @@ sign define smod text=~ texthl=GitChange
 
 function! GitSigns() abort
 
-  sign unplace *
+    let l:bufnr = bufnr('%')
+    exe 'sign unplace * buffer=' . l:bufnr
 
-  let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
+    let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
+    for l:line in l:diff
+        " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
+        let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
+        if empty(l:m)
+            continue
+        endif
 
-  for l:line in l:diff
-    " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
-    let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
-    if empty(l:m)
-      continue
-    endif
+        let l:old_count = l:m[2] ==# '' ? 1 : str2nr(l:m[2])
+        let l:new_start = str2nr(l:m[3])
+        let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
 
-    let l:old_count = l:m[2] ==# '' ? 1 : str2nr(l:m[2])
-    let l:new_start = str2nr(l:m[3])
-    let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
-
-    if l:old_count == 0
-      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
-        execute 'sign place ' . l:lnum . ' line='   . l:lnum . ' name=sadd'
-      endfor
-    elseif l:new_count == 0
-      let l:marker = l:new_start > 0 ? l:new_start : 1
-      execute 'sign place ' . l:marker . ' line='   . l:marker . ' name=sdel'
-    else
-      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
-        execute 'sign place ' . l:lnum . ' line='   . l:lnum . ' name=smod'
-      endfor
-    endif
-  endfor
+        if l:old_count == 0
+            for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
+                exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
+            endfor
+        elseif l:new_count == 0
+            let l:lnum = l:new_start > 0 ? l:new_start : 1
+            exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
+        else
+            for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
+                exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
+            endfor
+        endif
+    endfor
 
 endfunction
 
