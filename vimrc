@@ -35,6 +35,7 @@ nnoremap <C-u> :source $HOME/.vimrc<CR>
 
 " return to normal mode
 inoremap ö <Esc>
+vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
 
 " save
@@ -98,6 +99,7 @@ nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>e :!git reset HEAD^<CR>
 nmap <Leader>c :!git commit -m ""<Left>
+nmap <Leader>t :!git commit -a -m ""<Left>
 nmap <Leader>p :!git push<CR>
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>l :!git log -8<CR>

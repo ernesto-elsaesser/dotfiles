@@ -17,13 +17,13 @@
     r = reset HEAD ; unstage all
     e = reset HEAD^ ; edit last commit
     c = commit -m ; COMMIT_MESSAGE
+    t = commit -a -m ; COMMIT_MESSAGE
     p = push
     f = fetch
     g = pull
     l = log -10
     h = reset --hard HEAD ; discard all changes in working dir (and index) 
     b = reset --hard HEAD^ ; discard all changes and revert to previous commit
-    ca = commit -a -m ; COMMIT_MESSAGE
     pu = push -u origin HEAD ; push new branch to upstream repo 
     pf = push --force
     fa = fetch --all
