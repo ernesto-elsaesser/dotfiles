@@ -81,7 +81,7 @@ endif
 
 " --- leader mappings ---
 
-let g:mapleader = "ö"
+let g:mapleader = ","
 
 " search in files
 nmap <Leader>f :vim // *<Left><Left><Left>
@@ -95,15 +95,15 @@ nmap <Leader>m :!git status --short<CR>
 nmap <Leader>d :vert rightb ter git diff<CR>
 nmap <Leader>i :vert rightb ter git diff --staged<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>x :!git reset HEAD<CR>
+nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>p :!git push<CR>
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>l :!git log -8<CR>
-nmap <Leader>r :!git reset --hard HEAD<CR>
+nmap <Leader>h :!git reset --hard HEAD<CR>
 nmap <Leader>b :!git reset --hard HEAD^<CR>
-nmap <Leader>h <Plug>(GitGutterStageHunk)
-nmap <Leader>u <Plug>(GitGutterUndoHunk)
+nmap <Leader>u :call GitSigns()<CR>
+nmap <Leader>x :sign unplace *<CR>
 
 " --- netrw ---
 
@@ -127,17 +127,15 @@ let g:netrw_sizestyle = 'H'
 
 " --- git signs ---
 
+highlight GitDelete guifg=#990000 ctermfg=1
 highlight GitAdd guifg=#009900 ctermfg=2
-highlight GitChange guifg=#aaaa00 ctermfg=3
-highlight GitDelete guifg=#990000 ctermfg=3
+highlight GitChange guifg=#bbbb00 ctermfg=3
 
+sign define sdel text=_ texthl=GitDelete
 sign define sadd text=+ texthl=GitAdd
 sign define smod text=~ texthl=GitChange
-sign define sdel text=_ texthl=GitDelete
 
-nmap <Leader>q :call Gutter()<CR>
-
-function! Gutter() abort
+function! GitSigns() abort
 
   sign unplace *
 
@@ -174,3 +172,4 @@ endfunction
 
 " disable filetypes
 let g:copilot_filetypes = { "markdown": v:false }
+
