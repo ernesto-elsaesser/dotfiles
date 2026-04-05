@@ -1,14 +1,14 @@
 " --- settings ---
 
 if !has('nvim')
-    source $VIMRUNTIME/defaults.vim
-    syntax on
-    set background=dark
-    set ttymouse=sgr
-    set viminfo=
-    set laststatus=2
-    set pastetoggle=<C-t>
-    set autoindent
+  source $VIMRUNTIME/defaults.vim
+  syntax on
+  set background=dark
+  set ttymouse=sgr
+  set viminfo=
+  set laststatus=2
+  set pastetoggle=<C-t>
+  set autoindent
 endif
 
 set noswapfile
@@ -45,21 +45,21 @@ nnoremap - :Explore<CR>
 
 " terminal interaction
 if has('nvim')
-    nnoremap q :below split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
-    nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
-    nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
-    nnoremap # :call chansend(g:termchan, "\x10\n")<CR>
-    " directly switch into and out of terminal mode
-    tnoremap <C-w> <C-\><C-n><C-w>
-    augroup TermAutoInsert
-      autocmd!
-      autocmd WinEnter term://* startinsert
-    augroup END
+  nnoremap q :below split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+  nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
+  nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
+  nnoremap # :call chansend(g:termchan, "\x10\n")<CR>
+  " directly switch into and out of terminal mode
+  tnoremap <C-w> <C-\><C-n><C-w>
+  augroup TermAutoInsert
+    autocmd!
+    autocmd WinEnter term://* startinsert
+  augroup END
 else
-    nnoremap q :below terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
-    nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
-    nnoremap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
-    nnoremap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
+  nnoremap q :below terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+  nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
+  nnoremap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
+  nnoremap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
 endif
 
 " jump to tag under cursor
@@ -70,14 +70,6 @@ nnoremap + :setl wrap!<CR>
 
 " command mode home key
 cnoremap <C-A> <Home>
-
-" tab completion
-if !exists('g:loaded_copilot')
-    " Copilot maps <Tab> to accept-suggestion, with the previous mapping as
-    " fallback when no suggestion is displayed. Reinstalling the mapping
-    " after loading Copilot would erase the Copilot mapping.
-    inoremap <Tab> <C-n>
-endif
 
 " --- leader mappings ---
 
@@ -140,34 +132,34 @@ sign define smod text=~ texthl=GitChange
 
 function! GitSigns() abort
 
-    let l:bufnr = bufnr('%')
-    exe 'sign unplace * buffer=' . l:bufnr
+  let l:bufnr = bufnr('%')
+  exe 'sign unplace * buffer=' . l:bufnr
 
-    let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
-    for l:line in l:diff
-        " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
-        let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
-        if empty(l:m)
-            continue
-        endif
+  let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
+  for l:line in l:diff
+    " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
+    let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
+    if empty(l:m)
+      continue
+    endif
 
-        let l:old_count = l:m[2] ==# '' ? 1 : str2nr(l:m[2])
-        let l:new_start = str2nr(l:m[3])
-        let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
+    let l:old_count = l:m[2] ==# '' ? 1 : str2nr(l:m[2])
+    let l:new_start = str2nr(l:m[3])
+    let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
 
-        if l:old_count == 0
-            for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
-                exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
-            endfor
-        elseif l:new_count == 0
-            let l:lnum = l:new_start > 0 ? l:new_start : 1
-            exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
-        else
-            for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
-                exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
-            endfor
-        endif
-    endfor
+    if l:old_count == 0
+      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
+        exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
+      endfor
+    elseif l:new_count == 0
+      let l:lnum = l:new_start > 0 ? l:new_start : 1
+      exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
+    else
+      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
+        exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
+      endfor
+    endif
+  endfor
 
 endfunction
 
