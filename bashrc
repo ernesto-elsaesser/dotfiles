@@ -12,7 +12,7 @@ alias v='$EDITOR -u $HOME/dotfiles/vimrc'
 alias sv='sudo $EDITOR -u $HOME/dotfiles/vimrc'
 
 # --- git ---
-GH="git@github.com:ernesto-elsaesser"
+G="git@github.com:ernesto-elsaesser"
 alias gc='git clone'
 alias gb='git checkout'
 alias gg='git pull'
