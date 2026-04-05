@@ -13,7 +13,7 @@ endif
 
 set noswapfile
 set mouse=a
-set tabstop=4 shiftwidth=0 softtabstop=-1 expandtab
+set tabstop=2 shiftwidth=0 softtabstop=-1 expandtab
 set relativenumber
 set scrolloff=3
 set completeopt=
