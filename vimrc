@@ -163,6 +163,17 @@ function! GitSigns() abort
 
 endfunction
 
+" --- dart ---
+
+augroup dart
+  autocmd!
+  autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
+  autocmd FileType dart setlocal errorformat=
+    \%f:%l:%c:\ %m,
+    \%+C\ %#%m,
+    \%-G%.%#
+augroup END
+
 " --- copilot ---
 
 " disable filetypes
