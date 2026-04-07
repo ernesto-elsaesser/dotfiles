@@ -7,7 +7,7 @@ if !has('nvim')
   set ttymouse=sgr
   set viminfo=
   set laststatus=2
-  set pastetoggle=<C-t>
+  set pastetoggle=<C-y>
   set autoindent
 endif
 
