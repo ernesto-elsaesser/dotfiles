@@ -68,6 +68,9 @@ nnoremap gt <C-]>
 " toggle word wrap
 nnoremap + :setl wrap!<CR>
 
+" show column 80
+nnoremap # :setl cc=80<CR>
+
 " command mode home key
 cnoremap <C-A> <Home>
 
