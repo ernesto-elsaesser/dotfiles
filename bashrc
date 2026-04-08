@@ -14,6 +14,7 @@ alias sv='sudo $EDITOR -u $HOME/dotfiles/vimrc'
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
 alias gc='git clone'
+alias gf='git fetch --all'
 alias gb='git checkout'
 alias gg='git pull'
 alias gs='git status'

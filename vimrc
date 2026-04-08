@@ -71,37 +71,35 @@ nnoremap + :setl wrap!<CR>
 " show column 80
 nnoremap # :setl cc=80<CR>
 
-" command mode home key
-cnoremap <C-A> <Home>
+" format python code
+nnoremap <C-f> :%!autopep8 -<CR>
+
+" command mode home jump
+cnoremap <C-a> <Home>
 
 " --- leader mappings ---
 
 let g:mapleader = ","
 
 " search in files
-nmap <Leader>f :vim // *<Left><Left><Left>
-nmap <Leader><Leader> :cc<CR>
+nmap <Leader>ö :vim // *<Left><Left><Left>
+nmap <Leader>l :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
 " git
-nmap <Leader>s :!git status<CR>
-nmap <Leader>m :!git status --short<CR>
-nmap <Leader>d :vert rightb ter git diff<CR>
-nmap <Leader>i :vert rightb ter git diff --staged<CR>
+nmap <Leader>e :call GitSigns()<CR>
+nmap <Leader>r :sign unplace *<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>r :!git reset HEAD<CR>
-nmap <Leader>e :!git reset HEAD^<CR>
-nmap <Leader>c :!git commit -m ""<Left>
-nmap <Leader>t :!git commit -a -m ""<Left>
-nmap <Leader>p :!git push<CR>
-nmap <Leader>q :!git fetch --all<CR>
+nmap <Leader>s :!git status<CR>
+nmap <Leader>d :vert rightb ter git -P diff<CR>
+nmap <Leader>f :vert rightb ter git -P diff %<CR>
 nmap <Leader>g :!git pull<CR>
-nmap <Leader>l :!git log -8<CR>
-nmap <Leader>h :!git reset --hard HEAD<CR>
-nmap <Leader>b :!git reset --hard HEAD^<CR>
-nmap <Leader>y :call GitSigns()<CR>
-nmap <Leader>x :sign unplace *<CR>
+nmap <Leader>h :!git log -8<CR>
+nmap <Leader>y :vert rightb ter git -P diff --staged<CR>
+nmap <Leader>x :!git commit -a -m ""<Left>
+nmap <Leader>c :!git commit -m ""<Left>
+nmap <Leader>v :!git push<CR>
 
 " --- netrw ---
 
@@ -139,6 +137,11 @@ function! GitSigns() abort
   exe 'sign unplace * buffer=' . l:bufnr
 
   let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
+  if v:shell_error
+    echo 'Not a git file.'
+    return
+  endif
+
   for l:line in l:diff
     " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
     let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
