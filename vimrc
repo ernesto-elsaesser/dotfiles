@@ -69,9 +69,6 @@ nnoremap gt <C-]>
 " toggle word wrap
 nnoremap + :setl wrap!<CR>
 
-" show column 80
-nnoremap # :setl cc=80<CR>
-
 " format python code
 nnoremap <C-f> :%!autopep8 -<CR>
 
@@ -101,6 +98,10 @@ nmap <Leader>y :!git reset --hard
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>v :!git push<CR>
+
+" max columns
+nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
+nmap <Leader>o :call clearmatches()<CR>
 
 " --- netrw ---
 
