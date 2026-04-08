@@ -14,6 +14,7 @@ endif
 set noswapfile
 set mouse=a
 set tabstop=2 shiftwidth=0 softtabstop=-1 expandtab
+set splitbelow splitright
 set relativenumber
 set scrolloff=3
 set completeopt=
@@ -89,7 +90,7 @@ nmap <Leader>k :cp<CR>
 
 " git
 nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>r :sign unplace *<CR>
+nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
 nmap <Leader>d :vert rightb ter git -P diff<CR>
