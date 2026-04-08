@@ -80,8 +80,8 @@ cnoremap <C-a> <Home>
 let g:mapleader = ","
 
 " search in files
-nmap <Leader>ö :vim // *<Left><Left><Left>
-nmap <Leader>l :cc<CR>
+nmap <Leader>l :vim // *<Left><Left><Left>
+nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
@@ -130,8 +130,8 @@ highlight GitAdd guifg=#009900 ctermfg=2
 highlight GitChange guifg=#bbbb00 ctermfg=3
 
 sign define sdel text=_ texthl=GitDelete
-sign define sadd text=+ texthl=GitAdd
-sign define smod text=~ texthl=GitChange
+sign define sadd text=| texthl=GitAdd
+sign define smod text=| texthl=GitChange
 
 function! GitSigns() abort
 
@@ -143,6 +143,8 @@ function! GitSigns() abort
     echo 'Not a git file.'
     return
   endif
+
+  let l:quick = []
 
   for l:line in l:diff
     " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
@@ -156,18 +158,26 @@ function! GitSigns() abort
     let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
 
     if l:old_count == 0
+      let l:msg = 'added L' . l:new_start . '(+' . l:new_count . ')'
       for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
         exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
     elseif l:new_count == 0
+      let l:msg = 'removed L' . l:new_start . '(-' . l:old_count . ')'
       let l:lnum = l:new_start > 0 ? l:new_start : 1
       exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
     else
+      let l:msg = 'changed L' . l:new_start
       for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
         exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
     endif
+
+    let l:quick += [{'bufnr': l:bufnr, 'lnum': l:new_start, 'text': l:msg}]
+
   endfor
+
+  call setqflist(l:quick, 'r')
 
 endfunction
 
