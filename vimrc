@@ -85,19 +85,18 @@ let g:mapleader = ","
 " search in files
 nmap <Leader>ö :vim // *<Left><Left><Left>
 nmap <Leader>l :cc<CR>
-nmap <Leader>j :cn<CR>
-nmap <Leader>k :cp<CR>
+nmap <Leader>j :cp<CR>
+nmap <Leader>k :cn<CR>
 
 " git
 nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
-nmap <Leader>d :vert rightb ter git -P diff<CR>
-nmap <Leader>f :vert rightb ter git -P diff %<CR>
+nmap <Leader>d :vert ter git diff HEAD<CR>i
+nmap <Leader>f :vert ter git diff HEAD -- %<CR>i
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>h :!git log -8<CR>
-nmap <Leader>y :vert rightb ter git -P diff --staged<CR>
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>v :!git push<CR>
