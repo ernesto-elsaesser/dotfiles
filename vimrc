@@ -85,8 +85,8 @@ let g:mapleader = ","
 " search in files
 nmap <Leader>ö :vim // *<Left><Left><Left>
 nmap <Leader>l :cc<CR>
-nmap <Leader>j :cp<CR>
-nmap <Leader>k :cn<CR>
+nmap <Leader>j :cn<CR>
+nmap <Leader>k :cp<CR>
 
 " git
 nmap <Leader>e :call GitSigns()<CR>
