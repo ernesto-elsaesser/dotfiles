@@ -97,6 +97,7 @@ nmap <Leader>d :vert ter git diff HEAD<CR>i
 nmap <Leader>f :vert ter git diff HEAD -- %<CR>i
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>h :!git log -8<CR>
+nmap <Leader>y :!git reset --hard
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>v :!git push<CR>
