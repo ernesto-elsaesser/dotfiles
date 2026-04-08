@@ -46,7 +46,7 @@ nnoremap - :Explore<CR>
 
 " terminal interaction
 if has('nvim')
-  nnoremap q :below split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+  nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
   nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
   nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
   nnoremap # :call chansend(g:termchan, "\x10\n")<CR>
@@ -57,7 +57,7 @@ if has('nvim')
     autocmd WinEnter term://* startinsert
   augroup END
 else
-  nnoremap q :below terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+  nnoremap q :terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
   nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
   nnoremap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
   nnoremap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
