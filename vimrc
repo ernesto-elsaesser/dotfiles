@@ -69,9 +69,6 @@ nnoremap gt <C-]>
 " toggle word wrap
 nnoremap + :setl wrap!<CR>
 
-" format python code
-nnoremap <C-f> :%!autopep8 -<CR>
-
 " command mode home jump
 cnoremap <C-a> <Home>
 
@@ -181,10 +178,11 @@ function! GitSigns() abort
 
 endfunction
 
-" --- dart ---
+" --- file types ---
 
-augroup dart
+augroup types
   autocmd!
+  autocmd FileType python setlocal formatprg=autopep8\ -
   autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
   autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
 augroup END
