@@ -44,9 +44,6 @@ nnoremap <Space> :w<CR>
 " open parent directory
 nnoremap - :Explore<CR>
 
-" formatting (not mapped in nvim)
-nnoremap Q gq
-
 " terminal interaction
 if has('nvim')
   nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
@@ -71,6 +68,9 @@ nnoremap gt <C-]>
 
 " toggle word wrap
 nnoremap + :setl wrap!<CR>
+
+" format current file
+nnoremap <C-f> :call Format()<CR>
 
 " command mode home jump
 cnoremap <C-a> <Home>
@@ -181,11 +181,20 @@ function! GitSigns() abort
 
 endfunction
 
-" --- file types ---
+" --- formatting ---
 
-augroup types
+function! Format() abort
+  let l = getpos('.')
+  if &filetype ==# 'python'
+    %!autopep8 -
+  endif
+  call setpos('.', l)
+endfunction
+
+" --- flutter ---
+
+augroup flutter
   autocmd!
-  autocmd FileType python setlocal formatprg=autopep8\ -
   autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
   autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
 augroup END
