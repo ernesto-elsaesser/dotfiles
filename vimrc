@@ -198,6 +198,7 @@ augroup extft
   autocmd FileType python compiler pylint
   autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
   autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
+  autocmd FileType help wincmd L
 augroup END
 
 " --- copilot ---
