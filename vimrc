@@ -191,10 +191,11 @@ function! Format() abort
   call setpos('.', l)
 endfunction
 
-" --- flutter ---
+" --- file types ---
 
-augroup flutter
+augroup extft
   autocmd!
+  autocmd FileType python compiler pylint
   autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
   autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
 augroup END
