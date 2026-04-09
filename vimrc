@@ -90,7 +90,7 @@ nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
-nmap <Leader>d :sil !git diff -R HEAD -- % > /tmp/diff<CR>:sil vert diffp /tmp/diff<CR>:setl bh=wipe<CR>
+nmap <Leader>d :sil !git diff -R HEAD -- % > /tmp/diff<CR>:sil vert diffp /tmp/diff<CR>:setl noma bh=wipe<CR>
 nmap <Leader>f :vert ter git diff HEAD<CR>i
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>h :!git log -8<CR>
