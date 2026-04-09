@@ -1,8 +1,9 @@
 " --- settings ---
 
-if !has('nvim')
+if has('nvim')
+  set scrolloff=5
+else
   source $VIMRUNTIME/defaults.vim
-  syntax on
   set background=dark
   set ttymouse=sgr
   set viminfo=
@@ -16,7 +17,6 @@ set mouse=a
 set tabstop=2 shiftwidth=0 softtabstop=-1 expandtab
 set splitbelow splitright
 set relativenumber
-set scrolloff=3
 set completeopt=
 
 " --- key mappings ---
@@ -43,6 +43,9 @@ nnoremap <Space> :w<CR>
 
 " open parent directory
 nnoremap - :Explore<CR>
+
+" formatting (not mapped in nvim)
+nnoremap Q gq
 
 " terminal interaction
 if has('nvim')
