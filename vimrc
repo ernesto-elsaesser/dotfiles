@@ -44,6 +44,9 @@ nnoremap <Space> :w<CR>
 " open parent directory
 nnoremap - :Explore<CR>
 
+" quick help
+nnoremap <C-h> :vert help 
+
 " terminal interaction
 if has('nvim')
   nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
@@ -158,16 +161,16 @@ function! GitSigns() abort
     let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
 
     if l:old_count == 0
-      let l:msg = 'added L' . l:new_start . '(+' . l:new_count . ')'
+      let l:msg = 'added ' . l:new_count . ' lines'
       for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
         exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
     elseif l:new_count == 0
-      let l:msg = 'removed L' . l:new_start . '(-' . l:old_count . ')'
+      let l:msg = 'removed ' . l:old_count . ' lines'
       let l:lnum = l:new_start > 0 ? l:new_start : 1
       exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
     else
-      let l:msg = 'changed L' . l:new_start
+      let l:msg = 'changed'
       for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
         exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
@@ -198,7 +201,6 @@ augroup extft
   autocmd FileType python compiler pylint
   autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
   autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
-  autocmd FileType help wincmd L
 augroup END
 
 " --- copilot ---
