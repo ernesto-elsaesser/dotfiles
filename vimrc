@@ -194,11 +194,17 @@ function! Format() abort
   call setpos('.', l)
 endfunction
 
-" --- file types ---
+" --- python ---
 
-augroup extft
+if has('nvim')
+  lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py', '.git'}})
+  lua vim.lsp.enable('ty')
+endif
+
+" --- dart ---
+
+augroup dart
   autocmd!
-  autocmd FileType python compiler pylint
   autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
   autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
 augroup END
