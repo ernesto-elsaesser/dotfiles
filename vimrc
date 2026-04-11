@@ -69,6 +69,9 @@ endif
 " jump to tag under cursor
 nnoremap gt <C-]>
 
+" alternate file
+nnoremap # <C-^>
+
 " toggle word wrap
 nnoremap + :setl wrap!<CR>
 
