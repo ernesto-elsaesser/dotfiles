@@ -17,7 +17,7 @@ alias gc='git clone'
 alias gb='git checkout'
 alias gg='git pull'
 alias gs='git status'
-alias gl='git log -10'
+alias gh='git log -10'
 alias gr='git reset'
 # HEAD = unstage; --hard HEAD = discard all changes;
 # HEAD^ = edit last commit; --hard HEAD^ = revert to previous commit;
