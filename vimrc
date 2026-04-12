@@ -172,11 +172,11 @@ function! GitSigns() abort
         exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
     elseif l:new_count == 0
-      let l:msg = l:diff[l:i + 1][2:]
+      let l:msg = l:diff[l:i + 1][1:]
       let l:lnum = l:new_start > 0 ? l:new_start : 1
       exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
     else
-      let l:msg = l:diff[l:i + 1][2:]
+      let l:msg = l:diff[l:i + 1][1:]
       for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
         exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
