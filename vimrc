@@ -63,8 +63,8 @@ else
   nnoremap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
 endif
 
-" jump to tag under cursor
-nnoremap gt <C-]>
+" jump to keyword under cursor
+nnoremap gk <C-]>
 
 " alternate file
 nnoremap # <C-^>
