@@ -153,7 +153,9 @@ function! GitSigns() abort
 
   let l:quick = []
 
-  for l:line in l:diff
+  for l:i in range(len(l:diff))
+
+    let l:line = l:diff[l:i]
     " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
     let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
     if empty(l:m)
@@ -170,11 +172,11 @@ function! GitSigns() abort
         exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
     elseif l:new_count == 0
-      let l:msg = 'removed ' . l:old_count . ' lines'
+      let l:msg = l:diff[l:i + 1][2:]
       let l:lnum = l:new_start > 0 ? l:new_start : 1
       exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
     else
-      let l:msg = 'changed'
+      let l:msg = l:diff[l:i + 1][2:]
       for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
         exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
       endfor
