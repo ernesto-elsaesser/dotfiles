@@ -52,10 +52,6 @@ if has('nvim')
   nnoremap # :call chansend(g:termchan, "\x10\n")<CR>
   " directly switch into and out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
-  augroup TermAutoInsert
-    autocmd!
-    autocmd WinEnter term://* startinsert
-  augroup END
 else
   nnoremap q :terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
   nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
