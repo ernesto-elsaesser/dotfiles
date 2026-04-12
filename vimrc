@@ -92,6 +92,7 @@ nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
 " git
+nmap <Leader>w :!git add %<CR>
 nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
