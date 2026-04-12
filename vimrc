@@ -44,9 +44,6 @@ nnoremap <Space> :w<CR>
 " open parent directory
 nnoremap - :Explore<CR>
 
-" quick help
-nnoremap <C-h> :vert help 
-
 " terminal interaction
 if has('nvim')
   nnoremap q :split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
