@@ -38,6 +38,9 @@ inoremap ö <Esc>
 vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
 
+" alternate file
+nnoremap ö <C-^>
+
 " save
 nnoremap <Space> :w<CR>
 
@@ -61,9 +64,6 @@ endif
 
 " jump to keyword under cursor
 nnoremap gk <C-]>
-
-" alternate file
-nnoremap # <C-^>
 
 " toggle word wrap
 nnoremap + :setl wrap!<CR>
