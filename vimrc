@@ -14,7 +14,7 @@ endif
 
 set noswapfile
 set mouse=a
-set tabstop=2 shiftwidth=0 softtabstop=-1 expandtab
+set shiftwidth=2 softtabstop=-1 expandtab
 set splitbelow splitright
 set relativenumber
 set completeopt=
