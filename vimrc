@@ -31,11 +31,10 @@ noremap <C-k> <C-u>
 " reload config
 nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
 
-" return to normal mode
+" exit insert/visual mode
 nnoremap <C-Space> <NOP>
 inoremap <C-Space> <Esc>
 vnoremap <C-Space> <Esc>
-tnoremap <C-Space> <C-\><C-n>
 
 " alternate file
 nmap q <C-^>
@@ -45,6 +44,9 @@ nmap <Space> :w<CR>
 
 " open parent directory
 nmap - :Explore<CR>
+
+" exit terminal mode
+tnoremap ö <C-\><C-n>
 
 " terminal interaction
 if has('nvim')
