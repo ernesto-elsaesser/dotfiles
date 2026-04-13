@@ -33,10 +33,8 @@ nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
 
 " exit insert/visual mode
 inoremap öö <Esc>
-inoremap öj <Esc>j
-inoremap ök <Esc>k
 inoremap Ö <Esc>
-vnoremap ö <Esc>
+vnoremap Ö <Esc>
 
 " alternate file
 nmap q <C-^>
@@ -128,12 +126,6 @@ let g:netrw_dirhistmax = 0
 " human-readable file sizes
 let g:netrw_sizestyle = 'H'
 
-" --- git signs ---
-
-if has('nvim')
-  luafile $HOME/dotfiles/git-diag.lua
-endif
-
 " --- formatting ---
 
 function! Format() abort
@@ -144,23 +136,22 @@ function! Format() abort
   call setpos('.', l)
 endfunction
 
-" --- python ---
+" --- neovim specific ---
 
 if has('nvim')
+
+  " --- git signs ---
+  luafile $HOME/dotfiles/git-diag.lua
+
+  " --- python ---
   lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py', '.git'}})
   command Ty lua vim.lsp.enable('ty')
+
+  " --- dart ---
+  lua vim.lsp.config('dart', {cmd = {'dart', 'language-server'}, filetypes = {'dart'}, root_markers = {'pubspec.yaml', '.git'}})
+  command Dart lua vim.lsp.enable('dart')
+
+  " --- copilot ---
+  let g:copilot_filetypes = { "markdown": v:false }
 endif
-
-" --- dart ---
-
-augroup dart
-  autocmd!
-  autocmd FileType dart setlocal makeprg=flutter\ build\ bundle
-  autocmd FileType dart setlocal errorformat=%f:%l:%c:\ %m,%+C\ %#%m,%-G%.%#
-augroup END
-
-" --- copilot ---
-
-" disable filetypes
-let g:copilot_filetypes = { "markdown": v:false }
 
