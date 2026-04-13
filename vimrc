@@ -79,7 +79,7 @@ cnoremap <C-a> <Home>
 let g:mapleader = ","
 
 " naviagte diagnostics
-nmap <Leader><Leader> [D
+nmap <Leader><Leader> <C-w>d
 nmap <Leader>u [D
 nmap <Leader>j ]d
 nmap <Leader>k [d
