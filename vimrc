@@ -78,11 +78,17 @@ cnoremap <C-a> <Home>
 
 let g:mapleader = ","
 
+" naviagte diagnostics
+nmap <Leader><Leader> [D
+nmap <Leader>u [D
+nmap <Leader>j ]d
+nmap <Leader>k [d
+
 " search in files
-nmap <Leader>l :vim // *<Left><Left><Left>
-nmap <Leader><Leader> :cc<CR>
-nmap <Leader>j :cn<CR>
-nmap <Leader>k :cp<CR>
+nmap <Leader>m :vim // *<Left><Left><Left>
+nmap <Leader>n :cn<CR>
+nmap <Leader>b :cp<CR>
+
 
 " git
 nmap <Leader>w :!git add %<CR>
