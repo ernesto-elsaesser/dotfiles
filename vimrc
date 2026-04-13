@@ -86,7 +86,7 @@ nmap <Leader>k :cp<CR>
 
 " git
 nmap <Leader>w :!git add %<CR>
-nmap <Leader>e :call GitSigns()<CR>
+nmap <Leader>e :GitSigns<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
@@ -125,63 +125,9 @@ let g:netrw_sizestyle = 'H'
 
 " --- git signs ---
 
-highlight GitDelete guifg=#990000 ctermfg=1
-highlight GitAdd guifg=#009900 ctermfg=2
-highlight GitChange guifg=#bbbb00 ctermfg=3
-
-sign define sdel text=_ texthl=GitDelete
-sign define sadd text=| texthl=GitAdd
-sign define smod text=| texthl=GitChange
-
-function! GitSigns() abort
-
-  let l:bufnr = bufnr('%')
-  exe 'sign unplace * buffer=' . l:bufnr
-
-  let l:diff = systemlist('git diff --unified=0 -- ' . expand('%'))
-  if v:shell_error
-    echo 'Not a git file.'
-    return
-  endif
-
-  let l:quick = []
-
-  for l:i in range(len(l:diff))
-
-    let l:line = l:diff[l:i]
-    " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
-    let l:m = matchlist(l:line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
-    if empty(l:m)
-      continue
-    endif
-
-    let l:old_count = l:m[2] ==# '' ? 1 : str2nr(l:m[2])
-    let l:new_start = str2nr(l:m[3])
-    let l:new_count = l:m[4] ==# '' ? 1 : str2nr(l:m[4])
-
-    if l:old_count == 0
-      let l:msg = 'added ' . l:new_count . ' lines'
-      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
-        exe 'sign place ' . l:lnum . ' name=sadd line=' . l:lnum . ' buffer=' . l:bufnr
-      endfor
-    elseif l:new_count == 0
-      let l:msg = l:diff[l:i + 1][1:]
-      let l:lnum = l:new_start > 0 ? l:new_start : 1
-      exe 'sign place ' . l:lnum . ' name=sdel line=' . l:lnum . ' buffer=' . l:bufnr
-    else
-      let l:msg = l:diff[l:i + 1][1:]
-      for l:lnum in range(l:new_start, l:new_start + l:new_count - 1)
-        exe 'sign place ' . l:lnum . ' name=smod line=' . l:lnum . ' buffer=' . l:bufnr
-      endfor
-    endif
-
-    let l:quick += [{'bufnr': l:bufnr, 'lnum': l:new_start, 'text': l:msg}]
-
-  endfor
-
-  call setqflist(l:quick, 'r')
-
-endfunction
+if has('nvim')
+  luafile $HOME/dotfiles/git-diag.lua
+endif
 
 " --- formatting ---
 
