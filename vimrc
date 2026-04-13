@@ -32,12 +32,13 @@ noremap <C-k> <C-u>
 nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
 
 " return to normal mode
-inoremap ö <Esc>
-vnoremap ö <Esc>
-tnoremap ö <C-\><C-n>
+nnoremap <C-Space> <NOP>
+inoremap <C-Space> <Esc>
+vnoremap <C-Space> <Esc>
+tnoremap <C-Space> <C-\><C-n>
 
 " alternate file
-nmap ö <C-^>
+nmap q <C-^>
 
 " save
 nmap <Space> :w<CR>
@@ -47,14 +48,14 @@ nmap - :Explore<CR>
 
 " terminal interaction
 if has('nvim')
-  nmap q :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+  nmap ö :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
   nmap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
   nmap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
   nmap # :call chansend(g:termchan, "\x10\n")<CR>
   " directly switch into and out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
 else
-  nmap q :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+  nmap ö :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
   nmap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
   nmap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
   nmap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
@@ -83,7 +84,6 @@ nmap <Leader>k [d
 nmap <Leader>m :vim // *<Left><Left><Left>
 nmap <Leader>n :cn<CR>
 nmap <Leader>b :cp<CR>
-
 
 " git
 nmap <Leader>w :!git add %<CR>
