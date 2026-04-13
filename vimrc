@@ -15,23 +15,21 @@ endif
 set noswapfile
 set mouse=a
 set shiftwidth=2 softtabstop=-1 expandtab
-set splitbelow splitright
+set splitright
 set relativenumber
 set completeopt=
 
 " --- key mappings ---
 
 " quit
-nnoremap <C-d> :quit<CR>
+nmap <C-d> :quit<CR>
 
 " scroll
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
-vnoremap <C-j> <C-d>
-vnoremap <C-k> <C-u>
+map <C-j> <C-d>
+map <C-k> <C-u>
 
 " reload config
-nnoremap <C-u> :source $HOME/dotfiles/vimrc<CR>
+nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
 
 " return to normal mode
 inoremap ö <Esc>
@@ -39,40 +37,37 @@ vnoremap ö <Esc>
 tnoremap ö <C-\><C-n>
 
 " alternate file
-nnoremap ö <C-^>
+nmap ö <C-^>
 
 " save
-nnoremap <Space> :w<CR>
+nmap <Space> :w<CR>
 
 " open parent directory
-nnoremap - :Explore<CR>
+nmap - :Explore<CR>
 
 " terminal interaction
 if has('nvim')
-  nnoremap q :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
-  nnoremap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
-  nnoremap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
-  nnoremap # :call chansend(g:termchan, "\x10\n")<CR>
+  nmap q :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+  nmap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
+  nmap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
+  nmap # :call chansend(g:termchan, "\x10\n")<CR>
   " directly switch into and out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
 else
-  nnoremap q :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
-  nnoremap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
-  nnoremap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
-  nnoremap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
+  nmap q :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+  nmap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
+  nmap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
+  nmap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
 endif
 
 " jump to keyword under cursor
-nnoremap gk <C-]>
+nmap gk <C-]>
 
 " toggle word wrap
-nnoremap + :setl wrap!<CR>
+nmap + :setl wrap!<CR>
 
 " format current file
-nnoremap <C-f> :call Format()<CR>
-
-" command mode home jump
-cnoremap <C-a> <Home>
+nmap <C-f> :call Format()<CR>
 
 " --- leader mappings ---
 
