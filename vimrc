@@ -25,8 +25,8 @@ set completeopt=
 nmap <C-d> :quit<CR>
 
 " scroll
-map <C-j> <C-d>
-map <C-k> <C-u>
+noremap <C-j> <C-d>
+noremap <C-k> <C-u>
 
 " reload config
 nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
