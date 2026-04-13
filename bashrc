@@ -27,12 +27,12 @@ alias ga='git commit --amend'
 # --- python ---
 alias p='python3'
 alias h='eval "$($HOME/miniforge3/bin/conda shell.bash hook)"'
-alias n='conda create -n'
-alias a='conda activate'
-alias e='conda export'
-alias d='conda deactivate'
-alias i='conda install'
-alias x='conda remove --all -n'
+alias cn='conda create -n'
+alias ca='conda activate'
+alias ce='conda export'
+alias cd='conda deactivate'
+alias ci='conda install'
+alias cr='conda remove --all -n'
 
 # --- rhel ---
 alias sd='sudo dnf'
