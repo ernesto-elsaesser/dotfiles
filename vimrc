@@ -53,16 +53,16 @@ tnoremap ö <C-\><C-n>
 " terminal interaction
 if has('nvim')
   nmap ö :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
-  nmap ä :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
+  nmap ä :call chansend(g:termchan, "\x10\n")<CR>
+  nmap # :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
   nmap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
-  nmap # :call chansend(g:termchan, "\x10\n")<CR>
   " directly switch into and out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
 else
   nmap ö :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
-  nmap ä :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
+  nmap ä :call term_sendkeys(g:termbuf, "\x10\n")<CR>
+  nmap # :call term_sendkeys(g:termbuf, trim(getline('.')) . "\r")<CR><CR>
   nmap ü :call term_sendkeys(g:termbuf, getreg('"') . "\r")<CR>
-  nmap # :call term_sendkeys(g:termbuf, "\x10\n")<CR>
 endif
 
 " jump to keyword under cursor
