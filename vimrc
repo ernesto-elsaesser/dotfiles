@@ -149,7 +149,7 @@ endfunction
 
 if has('nvim')
   lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py', '.git'}})
-  lua vim.lsp.enable('ty')
+  command Ty lua vim.lsp.enable('ty')
 endif
 
 " --- dart ---
