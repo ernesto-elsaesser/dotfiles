@@ -32,8 +32,9 @@ noremap <C-k> <C-u>
 nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
 
 " exit insert/visual mode
-inoremap öö <Esc>
 inoremap Ö <Esc>
+inoremap <C-ö> <Esc>
+inoremap öö <Esc>
 vnoremap Ö <Esc>
 
 " alternate file
@@ -153,5 +154,6 @@ if has('nvim')
 
   " --- copilot ---
   let g:copilot_filetypes = { "markdown": v:false }
+
 endif
 
