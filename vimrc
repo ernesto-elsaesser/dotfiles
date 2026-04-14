@@ -34,8 +34,10 @@ nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
 " exit insert/visual mode
 inoremap Ö <Esc>
 inoremap <C-j> <Esc>
+inoremap <C-k> <Esc>
 vnoremap Ö <Esc>
 vnoremap <C-j> <Esc>
+vnoremap <C-k> <Esc>
 
 " alternate file
 nmap q <C-^>
