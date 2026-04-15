@@ -12,12 +12,12 @@ else
   set autoindent
 endif
 
-set noswapfile
 set mouse=a
-set shiftwidth=2 softtabstop=-1 expandtab
+set noswapfile
 set splitright
-set relativenumber
-set completeopt=
+
+setg shiftwidth=2 softtabstop=-1 expandtab
+setg relativenumber
 
 " --- key mappings ---
 
