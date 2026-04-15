@@ -28,14 +28,12 @@ nmap <C-d> :q<CR>
 noremap <C-j> <C-d>
 noremap <C-k> <C-u>
 
+" exit insert/visual mode
+inoremap <C-k> <Esc>
+vnoremap <C-k> <Esc>
+
 " reload config
 nmap <C-u> :so $DOTDIR/vimrc<CR>
-
-" exit insert/visual mode
-inoremap <C-j> <Esc>
-inoremap <C-k> <Esc>
-vnoremap <C-j> <Esc>
-vnoremap <C-k> <Esc>
 
 " alternate file
 nmap q <C-^>
