@@ -22,14 +22,14 @@ set completeopt=
 " --- key mappings ---
 
 " quit
-nmap <C-d> :quit<CR>
+nmap <C-d> :q<CR>
 
 " scroll
 noremap <C-j> <C-d>
 noremap <C-k> <C-u>
 
 " reload config
-nmap <C-u> :source $HOME/dotfiles/vimrc<CR>
+nmap <C-u> :so $HOME/dotfiles/vimrc<CR>
 
 " exit insert/visual mode
 inoremap Ö <Esc>
@@ -46,7 +46,7 @@ nmap q <C-^>
 nmap <Space> :w<CR>
 
 " open parent directory
-nmap - :Explore<CR>
+nmap - :Ex<CR>
 
 " exit terminal mode
 tnoremap ö <C-\><C-n>
@@ -57,7 +57,7 @@ if has('nvim')
   nmap ä :call chansend(g:termchan, "\x10\n")<CR>
   nmap # :call chansend(g:termchan, trim(getline('.')) . "\n")<CR><CR>
   nmap ü :call chansend(g:termchan, getreg('"') . "\n")<CR>
-  " directly switch into and out of terminal mode
+  " directly switch windows out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
 else
   nmap ö :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
@@ -81,7 +81,8 @@ let g:mapleader = ","
 
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
-nmap <Leader>u [D
+nmap <Leader>h [D
+nmap <Leader>l ]D
 nmap <Leader>j ]d
 nmap <Leader>k [d
 
@@ -91,15 +92,14 @@ nmap <Leader>n :cn<CR>
 nmap <Leader>b :cp<CR>
 
 " git
-nmap <Leader>w :!git add %<CR>
-nmap <Leader>e :GitSigns<CR>
+nmap <Leader>w :!git log -8<CR>
+nmap <Leader>e :vert ter git diff HEAD<CR>i
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
-nmap <Leader>d :sil !git diff -R HEAD -- % > /tmp/diff<CR>:sil vert diffp /tmp/diff<CR>:setl noma bh=wipe<CR>
-nmap <Leader>f :vert ter git diff HEAD<CR>i
+nmap <Leader>d :GitSigns<CR>
+nmap <Leader>f :!git add %<CR>
 nmap <Leader>g :!git pull<CR>
-nmap <Leader>h :!git log -8<CR>
 nmap <Leader>y :!git reset --hard
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
@@ -107,7 +107,7 @@ nmap <Leader>v :!git push<CR>
 
 " max columns
 nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
-nmap <Leader>o :call clearmatches()<CR>
+nmap <Leader>u :call clearmatches()<CR>
 
 " --- netrw ---
 
