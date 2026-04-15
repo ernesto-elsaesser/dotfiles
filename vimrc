@@ -29,7 +29,7 @@ noremap <C-j> <C-d>
 noremap <C-k> <C-u>
 
 " reload config
-nmap <C-u> :so $HOME/dotfiles/vimrc<CR>
+nmap <C-u> :so $DOTDIR/vimrc<CR>
 
 " exit insert/visual mode
 inoremap Ö <Esc>
@@ -144,7 +144,7 @@ endfunction
 if has('nvim')
 
   " --- git signs ---
-  luafile $HOME/dotfiles/git-diag.lua
+  luafile $DOTDIR/git-diag.lua
 
   " --- python ---
   lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py', '.git'}})

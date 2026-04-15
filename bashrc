@@ -1,3 +1,5 @@
+export DOTDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 alias c='clear'
@@ -8,8 +10,8 @@ alias sl='sudo ls -lhAF --color=auto'
 
 # --- vim ---
 export EDITOR=$(command -v nvim || command -v vim)
-alias v='$EDITOR -u $HOME/dotfiles/vimrc'
-alias sv='sudo $EDITOR -u $HOME/dotfiles/vimrc'
+alias v='$EDITOR -u $DOTDIR/vimrc'
+alias sv='sudo $EDITOR -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
