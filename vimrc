@@ -32,10 +32,8 @@ noremap <C-k> <C-u>
 nmap <C-u> :so $DOTDIR/vimrc<CR>
 
 " exit insert/visual mode
-inoremap Ö <Esc>
 inoremap <C-j> <Esc>
 inoremap <C-k> <Esc>
-vnoremap Ö <Esc>
 vnoremap <C-j> <Esc>
 vnoremap <C-k> <Esc>
 
