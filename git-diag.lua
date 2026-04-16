@@ -1,13 +1,14 @@
-local ns = vim.api.nvim_create_namespace('git_diag')
-local s  = vim.diagnostic.severity
+local ns_diags = vim.api.nvim_create_namespace('git_diag')
+local ns_signs = vim.api.nvim_create_namespace('git_diag_signs')
+local s = vim.diagnostic.severity
 
 vim.diagnostic.config({
   virtual_text = false,
   underline    = false,
   signs        = {
-    text = { [s.ERROR] = '_', [s.WARN] = '~', [s.INFO] = '+' },
+    text = { [s.ERROR] = 'D', [s.WARN] = 'C', [s.INFO] = 'A' },
   },
-}, ns)
+}, ns_diags)
 
 -- Collect removed lines (starting with '-') from output starting at index i.
 local function old_lines(output, i)
@@ -25,7 +26,8 @@ end
 
 local function update()
   local bufnr = vim.api.nvim_get_current_buf()
-  vim.diagnostic.reset(ns, bufnr)
+  vim.diagnostic.reset(ns_diags, bufnr)
+  vim.api.nvim_buf_clear_namespace(bufnr, ns_signs, 0, -1)
 
   local path   = vim.api.nvim_buf_get_name(bufnr)
   local output = vim.fn.systemlist('git diff --unified=0 HEAD -- ' .. vim.fn.shellescape(path))
@@ -45,21 +47,30 @@ local function update()
       local new_start = tonumber(new_start_s)
       local new_count = new_cs ~= '' and tonumber(new_cs) or 1
 
+      local lnum = new_start - 1
+      local end_lnum = new_start + new_count - 2
+
       if old_count == 0 then
         -- pure addition: no old code to show
         table.insert(diags, {
-          lnum     = new_start - 1,
-          end_lnum = new_start + new_count - 2,
+          lnum     = lnum,
+          end_lnum = end_lnum,
           col      = 0,
           severity = s.INFO,
           message  = 'added ' .. new_count .. ' line(s)',
           source   = 'git',
         })
+        for j = lnum + 1, end_lnum do
+          vim.api.nvim_buf_set_extmark(bufnr, ns_ext, j, 0, {
+            number_hl_group = 'GitDiagAdd',
+          })
+        end
       elseif new_count == 0 then
         -- pure deletion: anchor to surrounding line
-        local lnum = math.max(new_start, 1)
+        local anchor_lnum = math.max(new_start, 1)
+        local diag_lnum   = anchor_lnum - 1
         table.insert(diags, {
-          lnum     = lnum - 1,
+          lnum     = diag_lnum,
           col      = 0,
           severity = s.ERROR,
           message  = old_lines(output, i),
@@ -68,18 +79,23 @@ local function update()
       else
         -- change: spans all new lines
         table.insert(diags, {
-          lnum     = new_start - 1,
-          end_lnum = new_start + new_count - 2,
+          lnum     = lnum,
+          end_lnum = end_lnum,
           col      = 0,
           severity = s.WARN,
           message  = old_lines(output, i),
           source   = 'git',
         })
+        for j = lnum, end_lnum do
+          vim.api.nvim_buf_set_extmark(bufnr, ns_ext, j, 0, {
+            number_hl_group = 'GitDiagChange',
+          })
+        end
       end
     end
   end
 
-  vim.diagnostic.set(ns, bufnr, diags)
+  vim.diagnostic.set(ns_diag, bufnr, diags)
 end
 
-vim.api.nvim_create_user_command('GitSigns', update, {})
+vim.api.nvim_create_user_command('GitDiag', update, {})

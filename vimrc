@@ -89,7 +89,7 @@ nmap <Leader>b :cp<CR>
 
 " git
 nmap <Leader>w :!git log -8<CR>
-nmap <Leader>e :GitSigns<CR>
+nmap <Leader>e :GitDiag<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
