@@ -28,7 +28,7 @@ local function update()
   vim.diagnostic.reset(ns, bufnr)
 
   local path   = vim.api.nvim_buf_get_name(bufnr)
-  local output = vim.fn.systemlist('git diff --unified=0 -- ' .. vim.fn.shellescape(path))
+  local output = vim.fn.systemlist('git diff --unified=0 HEAD -- ' .. vim.fn.shellescape(path))
   if vim.v.shell_error ~= 0 then
     vim.notify('Not a git file.', vim.log.levels.WARN)
     return

@@ -89,11 +89,11 @@ nmap <Leader>b :cp<CR>
 
 " git
 nmap <Leader>w :!git log -8<CR>
-nmap <Leader>e :vert ter git diff HEAD<CR>i
+nmap <Leader>e :GitSigns<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
-nmap <Leader>d :GitSigns<CR>
+nmap <Leader>d :vert ter git diff HEAD<CR>i
 nmap <Leader>f :!git add %<CR>
 nmap <Leader>g :!git pull<CR>
 nmap <Leader>y :!git reset --hard
