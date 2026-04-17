@@ -5,9 +5,7 @@ local s = vim.diagnostic.severity
 vim.diagnostic.config({
   virtual_text = false,
   underline    = false,
-  signs        = {
-    text = { [s.ERROR] = 'D', [s.WARN] = 'C', [s.INFO] = 'A' },
-  },
+  signs        = false,
 }, ns_diags)
 
 -- Collect removed lines (starting with '-') from output starting at index i.
@@ -60,11 +58,12 @@ local function update()
           message  = 'added ' .. new_count .. ' line(s)',
           source   = 'git',
         })
-        for j = lnum + 1, end_lnum do
-          vim.api.nvim_buf_set_extmark(bufnr, ns_ext, j, 0, {
-            number_hl_group = 'GitDiagAdd',
-          })
-        end
+        vim.api.nvim_buf_set_extmark(bufnr, ns_signs, lnum, 0, {
+          end_row = end_lnum,
+          sign_text = "┃",
+          sign_hl_group = "Visual",
+          -- hl_group = "Visual",
+        })
       elseif new_count == 0 then
         -- pure deletion: anchor to surrounding line
         local anchor_lnum = math.max(new_start, 1)
@@ -87,15 +86,17 @@ local function update()
           source   = 'git',
         })
         for j = lnum, end_lnum do
-          vim.api.nvim_buf_set_extmark(bufnr, ns_ext, j, 0, {
-            number_hl_group = 'GitDiagChange',
+          --number_hl_group = 'GitDiagChange',
+          vim.api.nvim_buf_set_extmark(bufnr, ns_signs, j, 0, {
+            sign_text = "┃",
+            sign_hl_group = "Visual",
           })
         end
       end
     end
   end
 
-  vim.diagnostic.set(ns_diag, bufnr, diags)
+  vim.diagnostic.set(ns_diags, bufnr, diags)
 end
 
 vim.api.nvim_create_user_command('GitDiag', update, {})
