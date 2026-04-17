@@ -104,12 +104,14 @@ nmap <Leader>v :!git push<CR>
 " show unsaved changes
 nmap <Leader>u :w !diff % -<CR>
 
-" scratch buffer
-nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
-
 " max columns
 nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
-nmap <Leader>o :call clearmatches()<CR>
+
+" clear search highlight
+nmap <Leader>o :nohl<CR>
+
+" scratch buffer
+nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
 
 " --- netrw ---
 
