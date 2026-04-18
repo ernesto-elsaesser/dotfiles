@@ -17,7 +17,7 @@ set noswapfile
 set splitright
 
 setg shiftwidth=2 softtabstop=-1 expandtab
-setg relativenumber
+setg number relativenumber
 
 " --- key mappings ---
 
