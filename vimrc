@@ -83,9 +83,9 @@ nmap <Leader>j ]d
 nmap <Leader>k [d
 
 " search in files
-nmap <Leader>m :vim // *<Left><Left><Left>
+nmap <Leader>b :vim // *<Left><Left><Left>
 nmap <Leader>n :cn<CR>
-nmap <Leader>b :cp<CR>
+nmap <Leader>m :cp<CR>
 
 " git
 nmap <Leader>w :!git log -8<CR>
