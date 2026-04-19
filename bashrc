@@ -3,6 +3,7 @@ export DOTDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 alias c='clear'
+alias ta='tmux attach'
 alias ll='ls -lhF --color=auto'
 alias la='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
