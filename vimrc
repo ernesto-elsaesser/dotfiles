@@ -44,6 +44,9 @@ nmap <Space> :w<CR>
 " open parent directory
 nmap - :Ex<CR>
 
+" cycle tabs
+nmap <Tab> gt
+
 " exit terminal mode
 tnoremap ö <C-\><C-n>
 
