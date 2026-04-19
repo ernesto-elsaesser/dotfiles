@@ -53,17 +53,21 @@ tnoremap ö <C-\><C-n>
 " send to terminal (# = open, ö = line, ä = repeat, ü = yanked)
 if has('nvim')
   nmap # :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
-  command -nargs=1 TS call chansend(g:termchan, <q-args>)
   " directly switch windows out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
+  function! Send(cmd) abort
+    call chansend(g:termchan, a:cmd . "\n")
+  endfunction
 else
   nmap # :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
-  command -nargs=1 TS call term_sendkeys(g:termbuf, <q-args>)
+  function! Send(cmd) abort
+    call term_sendkeys(g:termbuf, a:cmd . "\n")
+  endfunction
 endif
-nmap ö :TS(trim(getline('.')) . "\n")<CR><CR>
+nmap ö :call Send(trim(getline('.')))<CR><CR>
 " ctrl + p
-nmap ä :TS("\x10\n")<CR>
-nmap ü :TS(getreg('"') . "\n")<CR>
+nmap ä :call Send("\x10")<CR>
+nmap ü :call Send(getreg('"'))<CR>
 
 " jump to keyword under cursor
 nmap gk <C-]>
@@ -161,8 +165,8 @@ if has('nvim')
   " --- dart ---
   lua vim.lsp.config('dart', {cmd = {'dart', 'language-server'}, filetypes = {'dart'}, root_markers = {'pubspec.yaml', '.git'}})
   command Dart lua vim.lsp.enable('dart')
-  command Rel call TS("r")
-  command Res call TS("R")
+  command Rel call Send("r")
+  command Res call Send("R")
 
   " --- copilot ---
   let g:copilot_filetypes = { "markdown": v:false }
