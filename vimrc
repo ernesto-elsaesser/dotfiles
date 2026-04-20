@@ -84,10 +84,11 @@ let g:mapleader = ","
 
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
-nmap <Leader>h [D
-nmap <Leader>l ]D
 nmap <Leader>j ]d
 nmap <Leader>k [d
+
+" clear search highlight
+nmap <Leader>h :nohl<CR>
 
 " search in files
 nmap <Leader>b :vim // *<Left><Left><Left>
@@ -112,14 +113,11 @@ nmap <Leader>v :!git push<CR>
 " scratch buffer
 nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
 
-" clear search highlight
-nmap <Leader>z :nohl<CR>
-
 " show unsaved changes
 nmap <Leader>u :w !diff % -<CR>
 
 " max columns
-nmap <Leader>o :call matchadd('Error', '\%80v.', 100)<CR>
+nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
 
 " --- netrw ---
 
