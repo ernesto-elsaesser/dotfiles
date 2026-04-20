@@ -97,7 +97,7 @@ nmap <Leader>m :cp<CR>
 
 " git
 nmap <Leader>q :vert ter git show HEAD~:./%<Left><Left><Left><Left>
-nmap <Leader>w :!git log -8<CR>
+nmap <Leader>w :!git log -10<CR>
 nmap <Leader>e :GitDiag<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
