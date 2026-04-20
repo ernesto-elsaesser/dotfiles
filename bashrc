@@ -12,7 +12,7 @@ alias sl='sudo ls -lhAF --color=auto'
 # --- vim ---
 export EDITOR=$(command -v nvim || command -v vim)
 alias v='$EDITOR -u $DOTDIR/vimrc'
-alias sv='sudo $EDITOR -u $DOTDIR/vimrc'
+alias sv='sudo DOTDIR=$DOTDIR $EDITOR -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
