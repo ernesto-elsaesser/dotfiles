@@ -16,16 +16,15 @@ alias sv='sudo DOTDIR=$DOTDIR $EDITOR -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
-alias gc='git clone'
+alias gk='git clone'
 alias gb='git checkout'
 alias gg='git pull'
 alias gs='git status'
 alias gl='git log -10'
+alias ga='git add --all'
+alias gc='git commit'
+alias gp='git push'
 alias gr='git reset'
-# HEAD = unstage; --hard HEAD = discard all changes;
-# HEAD^ = edit last commit; --hard HEAD^ = revert to previous commit;
-alias ga='git commit --amend'
-# -m = edit message; --no-edit = add staged changes;
 
 # --- python ---
 alias p='python3'
