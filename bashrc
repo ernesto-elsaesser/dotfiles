@@ -36,5 +36,6 @@ alias ce='conda export'
 alias ci='conda install'
 alias cr='conda remove --all -n'
 
-# --- rhel ---
+# --- system ---
 alias sd='sudo dnf'
+alias sc='sudo systemctl'
