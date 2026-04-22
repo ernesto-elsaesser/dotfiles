@@ -50,24 +50,25 @@ nmap <Tab> gt
 " exit terminal mode
 tnoremap ö <C-\><C-n>
 
-" send to terminal (# = open, ö = line, ä = repeat, ü = yanked)
+" send to terminal
 if has('nvim')
-  nmap # :vert split <Bar> terminal<CR>:let g:termchan = b:terminal_job_id<CR>i
+  nmap ü :vert split <Bar> ter<CR>:let g:termchan = b:terminal_job_id<CR>i
+  nmap Ü :tab ter<CR>i
   " directly switch windows out of terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
   function! Send(cmd) abort
     call chansend(g:termchan, a:cmd . "\n")
   endfunction
 else
-  nmap # :vert terminal<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+  nmap ü :vert ter<CR><C-w>:let g:termbuf = bufnr('$')<CR>
+  nmap Ü :tab ter<CR>
   function! Send(cmd) abort
     call term_sendkeys(g:termbuf, a:cmd . "\n")
   endfunction
 endif
 nmap ö :call Send(trim(getline('.')))<CR><CR>
-" ctrl + p
+nmap Ö :call Send(getreg('"'))<CR>
 nmap ä :call Send("\x10")<CR>
-nmap ü :call Send(getreg('"'))<CR>
 
 " jump to keyword under cursor
 nmap gk <C-]>
