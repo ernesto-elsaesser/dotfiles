@@ -21,31 +21,21 @@ setg number relativenumber
 
 " --- key mappings ---
 
-" quit
-nmap <C-d> :q<CR>
+" alternate file
+nmap q <C-^>
 
-" scroll
-noremap <C-j> <C-d>
-noremap <C-k> <C-u>
+" quick quit
+nmap Z :q<CR>
+
+" quick save
+nmap <Space> :w<CR>
 
 " exit insert/visual mode
 inoremap <C-k> <Esc>
 vnoremap <C-k> <Esc>
 
-" reload config
-nmap <C-u> :so $DOTDIR/vimrc<CR>
-
-" alternate file
-nmap q <C-^>
-
-" save
-nmap <Space> :w<CR>
-
 " open parent directory
 nmap - :Ex<CR>
-
-" cycle tabs
-nmap <Tab> gt
 
 " exit terminal mode
 tnoremap ö <C-\><C-n>
@@ -83,6 +73,18 @@ nmap <C-f> :call Format()<CR>
 
 let g:mapleader = ","
 
+" scratch buffer
+nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
+
+" show unsaved changes
+nmap <Leader>z :w !diff % -<CR>
+
+" reload config
+nmap <Leader>u :so $DOTDIR/vimrc<CR>
+
+" max columns
+nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
+
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
 nmap <Leader>j ]d
@@ -110,15 +112,6 @@ nmap <Leader>y :!git reset --hard
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
 nmap <Leader>v :!git push<CR>
-
-" scratch buffer
-nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
-
-" show unsaved changes
-nmap <Leader>u :w !diff % -<CR>
-
-" max columns
-nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
 
 " --- netrw ---
 
@@ -149,6 +142,8 @@ function! Format() abort
   endif
   call setpos('.', l)
 endfunction
+
+command Format call Format()
 
 " --- neovim specific ---
 
