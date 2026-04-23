@@ -66,9 +66,6 @@ nmap gk <C-]>
 " toggle word wrap
 nmap + :setl wrap!<CR>
 
-" format current file
-nmap <C-f> :call Format()<CR>
-
 " --- leader mappings ---
 
 let g:mapleader = ","
