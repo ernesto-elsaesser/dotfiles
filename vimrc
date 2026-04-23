@@ -37,6 +37,12 @@ vnoremap <C-k> <Esc>
 " open parent directory
 nmap - :Ex<CR>
 
+" jump to keyword under cursor
+nmap gk <C-]>
+
+" toggle word wrap
+nmap + :setl wrap!<CR>
+
 " exit terminal mode
 tnoremap ö <C-\><C-n>
 
@@ -59,12 +65,6 @@ endif
 nmap ö :call Send(trim(getline('.')))<CR><CR>
 nmap Ö :call Send(getreg('"'))<CR>
 nmap ä :call Send("\x10")<CR>
-
-" jump to keyword under cursor
-nmap gk <C-]>
-
-" toggle word wrap
-nmap + :setl wrap!<CR>
 
 " --- leader mappings ---
 
