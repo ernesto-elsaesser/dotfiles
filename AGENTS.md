@@ -16,13 +16,16 @@ the current file as signs and diagnostics items.
 
 ## Key Mapping
 
-### Caps Lock > Ctrl
+### CapsLock > Control
 
-Scripts to map caps lock to control under Linux and Windows:
+Configuration files to map CapsLock to Control under Linux and Windows:
 
-- [caps-to-ctrl.sh](key-mapping/caps-to-ctrl.sh) may be sourced in TTYs (non-permanent)
+- [caps-to-ctrl.map](key-mapping/caps-to-ctrl.map) should be loaded via `loadkeys`
+  - Parital patch to currently loaded console (TTY) keymap
 - [caps-to-ctrl.conf](key-mapping/caps-to-ctrl.conf) should be copied into `/etc/X11/xorg.conf.d/`
+  - Sets `XkbOptions` for any X11 keyboard device
 - [caps-to-ctrl.reg](key-mapping/caps-to-ctrl.reg) should be executed under Windows
+  - Maps scancodes via Registry entry
 
 ### Mouse Buttons
 

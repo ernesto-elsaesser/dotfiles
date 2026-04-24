@@ -1,1 +1,0 @@
-echo "keycode 58 = Control Control Control Control Control Control Control Control Control Control Control Control Control Control Control Control" | sudo loadkeys
