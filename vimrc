@@ -104,7 +104,7 @@ nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
 nmap <Leader>d :vert ter git diff HEAD<CR>i
 nmap <Leader>f :!git add %<CR>
-nmap <Leader>g :!git pull<CR>
+nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>y :!git reset --hard
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
