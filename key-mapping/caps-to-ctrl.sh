@@ -1,1 +1,1 @@
-echo "keycode 58 = CtrlL" | sudo loadkeys
+echo "keycode 58 = Control_L" | sudo loadkeys
