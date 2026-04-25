@@ -23,7 +23,7 @@ local function old_lines(output, i)
   return table.concat(lines, '\n')
 end
 
-local function update()
+local function update_git_annotations()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_clear_namespace(bufnr, ns_marks, 0, -1)
   vim.diagnostic.reset(ns_diags, bufnr)
@@ -97,4 +97,4 @@ local function update()
   vim.diagnostic.set(ns_diags, bufnr, diags)
 end
 
-vim.api.nvim_create_user_command('GitDiag', update, {})
+vim.api.nvim_create_user_command('GitDiag', update_git_annotations, {})

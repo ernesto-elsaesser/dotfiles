@@ -33,18 +33,6 @@ end, {})
 
 vim.lsp.config('llm-ls', {
   cmd = {'llm-ls'},
-  init_options = {
-    backend = "ollama",
-    url = "http://192.168.178.25:11434",
-    model = "gemma4-ctx8k",
-    request_body = {
-      parameters = {
-        max_new_tokens = 50,
-        temperature = 0,
-      },
-    },
-    context_window = 8192,
-  },
 })
 
 vim.api.nvim_create_user_command('Ollama', function()
