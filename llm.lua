@@ -34,7 +34,7 @@ local function get_llm_completion()
     local lines = vim.split(text, "\n", { plain = true })
     local row = params.position.line
     local col = params.position.character
-    vim.api.nvim_buf_set_text(0, row, col, row, col, lines)
+    vim.api.nvim_buf_set_text(0, row, col + 1, row, col + 1, lines)
   end, 0)
 end
 
