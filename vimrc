@@ -157,5 +157,6 @@ augroup END
 if has('nvim')
   luafile $DOTDIR/git-diag.lua
   luafile $DOTDIR/lsp.lua
+  luafile $DOTDIR/llm.lua
 endif
 
