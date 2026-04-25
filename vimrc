@@ -152,15 +152,10 @@ augroup noro
   autocmd FileType * setlocal formatoptions-=ro
 augroup END
 
-" --- neovim specific ---
+" --- neovim lua ---
 
 if has('nvim')
-
-  " --- git diag ---
   luafile $DOTDIR/git-diag.lua
-
-  " --- lsp ---
-  "luafile $DOTDIR/lsp.lua
-
+  luafile $DOTDIR/lsp.lua
 endif
 

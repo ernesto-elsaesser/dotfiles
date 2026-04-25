@@ -1,9 +1,9 @@
-# general
+-- General
 
 vim.lsp.config('*', {root_markers = {'README.md', '.git'}})
 
-# python
-# https://pypi.org/project/ty/
+-- Python
+-- https://pypi.org/project/ty/
 
 vim.lsp.config('ty', {
   cmd = {'ty', 'server'},
@@ -15,8 +15,8 @@ vim.api.nvim_create_user_command('Ty', function()
   vim.lsp.enable('ty')
 end, {})
 
-# dart
-# https://pub.dev/packages/lsp_server
+-- Dart / Flutter
+-- https://pub.dev/packages/lsp_server
 
 vim.lsp.config('dart', {
   cmd = {'dart', 'language-server'},
@@ -28,8 +28,8 @@ vim.api.nvim_create_user_command('Dart', function()
   vim.lsp.enable('dart')
 end, {})
 
-# llm-ls
-# https://github.com/huggingface/llm-ls/releases
+-- Local LLM Completions
+-- https://github.com/huggingface/llm-ls/releases
 
 vim.lsp.config('llm-ls', {
   cmd = {'llm-ls'},
