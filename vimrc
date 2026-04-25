@@ -34,6 +34,10 @@ nmap <Space> :w<CR>
 inoremap <C-k> <Esc>
 vnoremap <C-k> <Esc>
 
+" scrolling
+nmap <C-j> <C-d>
+nmap <C-k> <C-u>
+
 " open parent directory
 nmap - :Ex<CR>
 
@@ -65,6 +69,10 @@ endif
 nmap ö :call Send(trim(getline('.')))<CR><CR>
 nmap Ö :call Send(getreg('"'))<CR>
 nmap ä :call Send("\x10")<CR>
+
+" flutter hot reload / restart
+nmap gr :call Send("r")<CR>
+nmap gR :call Send("R")<CR>
 
 " --- leader mappings ---
 
@@ -139,25 +147,20 @@ endfunction
 
 command Format call Format()
 
+augroup noro
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=ro
+augroup END
+
 " --- neovim specific ---
 
 if has('nvim')
 
-  " --- git signs ---
+  " --- git diag ---
   luafile $DOTDIR/git-diag.lua
 
-  " --- python ---
-  lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py', '.git'}})
-  command Ty lua vim.lsp.enable('ty')
-
-  " --- dart ---
-  lua vim.lsp.config('dart', {cmd = {'dart', 'language-server'}, filetypes = {'dart'}, root_markers = {'pubspec.yaml', '.git'}})
-  command Dart lua vim.lsp.enable('dart')
-  command Rel call Send("r")
-  command Res call Send("R")
-
-  " --- copilot ---
-  let g:copilot_filetypes = { "markdown": v:false }
+  " --- lsp ---
+  "luafile $DOTDIR/lsp.lua
 
 endif
 
