@@ -33,7 +33,7 @@ vim.lsp.config('llm-ls', {
     request_body = {
       parameters = {
         max_new_tokens = 50,
-        temperature = 0.2,
+        temperature = 0,
       },
     },
     context_window = 8192,
