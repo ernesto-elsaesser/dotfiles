@@ -112,9 +112,6 @@ nmap <Leader>v :!git push<CR>
 
 " --- netrw ---
 
-" hide banner (toggle with I)
-let g:netrw_banner = 0
-
 " configure sorting
 let g:netrw_sort_sequence = '\/$,*'
 
