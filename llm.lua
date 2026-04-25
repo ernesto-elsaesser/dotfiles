@@ -8,19 +8,42 @@ local function get_llm_completion()
   params.model = "gemma4-ctx8k"
   params.requestBody = { temperature = 0, max_new_tokens = 50 }
   params.tokensToClear = { "<|endoftext|>" }
-  params.fim = { enabled = false }
+  params.fim = {
+    enabled = false,
+    prefix = "",
+    middle = "",
+    suffix = "",
+  }
   params.contextWindow = 8192
   params.ide = "neovim"
   params.disableUrlPathCompletion = false
+  params.tlsSkipVerifyInsecure = true
 
   client.request("llm-ls/getCompletions", params, function(err, response)
-    if err or not response or #response == 0 then return end
-    local text = response[1].generated_text
-    if text and text ~= "" then
-      local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-      vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col,
-        vim.split(text, "\n", { plain = true }))
+    if err then
+      print(err)
+      return
     end
+    if not response then
+      print("NO RESPONSE")
+      return
+    end
+    if #response == 0 then
+      print("EMPTY RESPONSE")
+      return
+    end
+    local text = response[1].generated_text
+    if not text then
+      print("NO TEXT")
+      return
+    end
+    if text ~= "" then
+      print("EMPTY TEXT")
+      return
+    end
+    print(text)
+    -- local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    -- vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, vim.split(text, "\n", { plain = true }))
   end, 0)
 end
 
