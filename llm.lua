@@ -19,31 +19,22 @@ local function get_llm_completion()
   params.disableUrlPathCompletion = false
   params.tlsSkipVerifyInsecure = true
 
-  client.request("llm-ls/getCompletions", params, function(err, response)
+  client.request("llm-ls/getCompletions", params, function(err, result, context)
     if err then
       print(err)
       return
     end
-    if not response then
-      print("NO RESPONSE")
+    if not result then
+      print("NO RESULT")
       return
     end
-    if #response == 0 then
-      print("EMPTY RESPONSE")
-      return
-    end
-    local text = response[1].generated_text
-    if not text then
-      print("NO TEXT")
-      return
-    end
-    if text ~= "" then
-      print("EMPTY TEXT")
-      return
-    end
-    print(text)
-    -- local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    -- vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, vim.split(text, "\n", { plain = true }))
+    vim.g.llmres = result
+    local completions = result.completions
+    local text = result.completions[1].generated_text
+    local lines = vim.split(text, "\n", { plain = true })
+    local row = params.position.line
+    local col = params.position.character
+    vim.api.nvim_buf_set_text(0, row, col, row, col, lines)
   end, 0)
 end
 
