@@ -25,7 +25,7 @@ setg number relativenumber
 nmap q <C-^>
 
 " quick quit
-nmap Z :q<CR>
+nmap zz :q<CR>
 
 " quick save
 nmap <Space> :w<CR>
