@@ -79,8 +79,8 @@ nmap <Leader>z :w !diff % -<CR>
 " reload config
 nmap <Leader>u :so $DOTDIR/vimrc<CR>
 
-" max columns
-nmap <Leader>i :call matchadd('Error', '\%80v.', 100)<CR>
+" toggle color column
+nmap <Leader>i :let &cc=(empty(&cc) ? '80' : '')<CR>
 
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
