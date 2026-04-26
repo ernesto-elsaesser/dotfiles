@@ -2,7 +2,10 @@ local function get_llm_completion()
   local client = vim.lsp.get_clients({ name = "llm-ls", bufnr = 0 })[1]
   if client == nil then return end
 
-  local params = vim.lsp.util.make_position_params()
+  local params = vim.lsp.util.make_position_params({
+    window = 0,
+    position_encoding = "utf-8",
+  })
   params.backend = "ollama"
   params.url = "http://192.168.178.25:11434"
   params.model = "gemma4-ctx8k"
