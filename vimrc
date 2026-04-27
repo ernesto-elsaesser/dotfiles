@@ -91,7 +91,7 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 nmap <Leader>i :Complete<CR>
 
 " toggle color column
-nmap <Leader>p :let &cc=(empty(&cc) ? '80' : '')<CR>
+nmap <Leader>p :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
