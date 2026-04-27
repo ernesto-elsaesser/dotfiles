@@ -87,8 +87,11 @@ nmap <Leader>z :w !diff % -<CR>
 " reload config
 nmap <Leader>u :so $DOTDIR/vimrc<CR>
 
+" LLM completion
+nmap <Leader>i :Complete<CR>
+
 " toggle color column
-nmap <Leader>i :let &cc=(empty(&cc) ? '80' : '')<CR>
+nmap <Leader>p :let &cc=(empty(&cc) ? '80' : '')<CR>
 
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
@@ -102,6 +105,7 @@ nmap <Leader>h :nohl<CR>
 nmap <Leader>b :vim // *<Left><Left><Left>
 nmap <Leader>n :cn<CR>
 nmap <Leader>m :cp<CR>
+nmap <Leader>. :cc<CR>
 
 " git
 nmap <Leader>q :vert ter git show HEAD~:./%<Left><Left><Left><Left>
@@ -157,6 +161,6 @@ augroup END
 if has('nvim')
   luafile $DOTDIR/git-diag.lua
   luafile $DOTDIR/lsp.lua
-  luafile $DOTDIR/llm.lua
+  luafile $DOTDIR/ollama.lua
 endif
 

@@ -28,14 +28,3 @@ vim.api.nvim_create_user_command('Dart', function()
   vim.lsp.enable('dart')
 end, {})
 
--- Local LLM Completions
--- https://github.com/huggingface/llm-ls/releases
-
-vim.lsp.config('llm-ls', {
-  cmd = {'llm-ls'},
-})
-
-vim.api.nvim_create_user_command('Ollama', function()
-  vim.lsp.enable('llm-ls')
-end, {})
-
