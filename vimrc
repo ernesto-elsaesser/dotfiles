@@ -87,19 +87,19 @@ nmap <Leader>z :w !diff % -<CR>
 " reload config
 nmap <Leader>u :so $DOTDIR/vimrc<CR>
 
-" LLM completion
-nmap <Leader>i :Complete<CR>
-
 " toggle color column
-nmap <Leader>p :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
+nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
+
+" clear search highlight
+nmap <Leader>o :nohl<CR>
 
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
 nmap <Leader>j ]d
 nmap <Leader>k [d
 
-" clear search highlight
-nmap <Leader>h :nohl<CR>
+" LLM completion
+nmap <Leader>h :Complete<CR>
 
 " search in files
 nmap <Leader>b :vim // *<Left><Left><Left>
