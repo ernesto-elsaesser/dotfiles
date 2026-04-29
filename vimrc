@@ -24,11 +24,11 @@ setg number relativenumber
 " alternate file
 nmap q <C-^>
 
-" quick quit
-nmap zz :q<CR>
-
 " quick save
 nmap <Space> :w<CR>
+
+" quick quit
+nmap <C-s> :q<CR>
 
 " exit insert/visual mode
 inoremap <C-k> <Esc>
