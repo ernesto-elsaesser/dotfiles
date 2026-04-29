@@ -35,7 +35,7 @@ local function llm_fim()
   })
 
   vim.system(
-    { "curl", "-s", "-X", "POST", "http://192.168.178.25:11434/api/generate",
+    { "curl", "-s", "-X", "POST", "http://localhost:11434/api/generate",
       "-H", "Content-Type: application/json",
       "-d", body },
     { text = true },
