@@ -19,6 +19,15 @@ set splitright
 setg shiftwidth=2 softtabstop=-1 expandtab
 setg number relativenumber
 
+" --- neovim lua ---
+
+if has('nvim')
+  luafile $DOTDIR/nvim/term.lua
+  luafile $DOTDIR/nvim/git.lua
+  luafile $DOTDIR/nvim/lsp.lua
+  luafile $DOTDIR/nvim/ollama.lua
+endif
+
 " --- key mappings ---
 
 " alternate file
@@ -149,13 +158,4 @@ augroup noro
   autocmd!
   autocmd FileType * setlocal formatoptions-=ro
 augroup END
-
-" --- neovim lua ---
-
-if has('nvim')
-  luafile $DOTDIR/nvim/term.lua
-  luafile $DOTDIR/nvim/git.lua
-  luafile $DOTDIR/nvim/lsp.lua
-  luafile $DOTDIR/nvim/ollama.lua
-endif
 
