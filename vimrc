@@ -41,11 +41,11 @@ nmap <C-k> <C-u>
 " open parent directory
 nmap - :Ex<CR>
 
-" jump to keyword under cursor
-nmap gk <C-]>
-
 " toggle word wrap
 nmap + :setl wrap!<CR>
+
+" jump to keyword under cursor
+nmap gk <C-]>
 
 " exit terminal mode
 tnoremap ö <C-\><C-n>
