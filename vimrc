@@ -50,29 +50,23 @@ nmap gk <C-]>
 " exit terminal mode
 tnoremap ö <C-\><C-n>
 
-" send to terminal
-if has('nvim')
-  nmap ü :vert split <Bar> ter<CR>:let g:termchan = b:terminal_job_id<CR>i
-  nmap Ü :tab ter<CR>i
-  " directly switch windows out of terminal mode
-  tnoremap <C-w> <C-\><C-n><C-w>
-  function! Send(cmd) abort
-    call chansend(g:termchan, a:cmd . "\n")
-  endfunction
-else
-  nmap ü :vert ter<CR><C-w>:let g:termbuf = bufnr('$')<CR>
-  nmap Ü :tab ter<CR>
-  function! Send(cmd) abort
-    call term_sendkeys(g:termbuf, a:cmd . "\n")
-  endfunction
-endif
-nmap ö :call Send(trim(getline('.')))<CR><CR>
-nmap Ö :call Send(getreg('"'))<CR>
-nmap ä :call Send("\x10")<CR>
+" switch windows out of neovim terminal mode
+tnoremap <C-w> <C-\><C-n><C-w>
+
+" split linked terminal
+nmap ü :TermSplit right<CR>
+nmap Ü :TermSplit below<CR>
+
+" paste to linked terminal
+nmap ö yy:TermPaste<CR><CR>
+nmap Ö :TermPaste<CR>
+
+" repeat previous command in linked terminal
+nmap ä :call chansend(b:tjid, "\x10\r")<CR>
 
 " flutter hot reload / restart
-nmap gr :call Send("r")<CR>
-nmap gR :call Send("R")<CR>
+nmap gr :call chansend(b:tjid, "r")<CR>
+nmap gR :call chansend(b:tjid, "R")<CR>
 
 " --- leader mappings ---
 
@@ -149,7 +143,7 @@ function! Format() abort
   call setpos('.', l)
 endfunction
 
-command Format call Format()
+command! Format call Format()
 
 augroup noro
   autocmd!
@@ -159,6 +153,7 @@ augroup END
 " --- neovim lua ---
 
 if has('nvim')
+  luafile $DOTDIR/term.lua
   luafile $DOTDIR/git-diag.lua
   luafile $DOTDIR/lsp.lua
   luafile $DOTDIR/ollama.lua
