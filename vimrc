@@ -153,9 +153,9 @@ augroup END
 " --- neovim lua ---
 
 if has('nvim')
-  luafile $DOTDIR/term.lua
-  luafile $DOTDIR/git-diag.lua
-  luafile $DOTDIR/lsp.lua
-  luafile $DOTDIR/ollama.lua
+  luafile $DOTDIR/nvim/term.lua
+  luafile $DOTDIR/nvim/git.lua
+  luafile $DOTDIR/nvim/lsp.lua
+  luafile $DOTDIR/nvim/ollama.lua
 endif
 
