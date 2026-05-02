@@ -30,7 +30,7 @@ local function llm_fim()
     options = {
       temperature = 0,
       num_ctx = 8192,
-      num_predict = 24,
+      num_predict = 32,
     },
   })
 
