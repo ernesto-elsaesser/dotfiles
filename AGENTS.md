@@ -1,7 +1,8 @@
 # Files
 
 - [bashrc](bashrc) should be sourced from `~/.bashrc`
-- [vimrc](vimrc) is loaded via the aliases in bashrc
+- [vimrc](vimrc) is loaded via the `vim` aliase in bashrc
+- [tmux.conf](tmux.conf) is loaded via the `tmux` aliase in bashrc
 - [keymap](keymap) contains scripts to remap keyboard and mouse buttons
 - [nvim](nvim) contains neovim Lua scripts
 - [RULES.md](RULES.md) should be used as global context for coding agents
