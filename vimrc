@@ -148,8 +148,6 @@ command! VTerm let n = bufnr() | exec 'vert ter' | call setbufvar(n, "tb", bufnr
 
 " --- formatting ---
 
-command! AP %!autopep8 -
-
 augroup noro
   autocmd!
   autocmd FileType * setlocal formatoptions-=ro
@@ -236,6 +234,15 @@ endfunction
 
 command! GitPre echo b:prev[line('.')]
 
+" --- python ---
+
+command! AP %!autopep8 -
+
+augroup py
+  autocmd!
+  autocmd FileType python compiler pylint
+augroup END
+
 " --- ollama ---
 
 function! Complete() abort
@@ -298,7 +305,11 @@ if has('nvim')
   nmap gr :call chansend(b:tj, "r")<CR>
   nmap gR :call chansend(b:tj, "R")<CR>
 
-  luafile $DOTDIR/lsp.lua
+  lua vim.lsp.config('*', {root_markers = {'README.md', '.git'}})
+  lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py'}})
+  lua vim.lsp.config('dart', {cmd = {'dart', 'language-server'}, filetypes = {'dart'}, root_markers = {'pubspec.yaml'}})
+  command! Ty lua vim.lsp.enable('ty')
+  command! Dart lua vim.lsp.enable('dart')
 
 endif
 
