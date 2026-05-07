@@ -41,6 +41,7 @@ nmap <C-s> :q<CR>
 
 " quick tab switch
 nmap <Tab> gt
+nmap <S-Tab> gT
 
 " exit insert/visual mode
 inoremap <C-k> <Esc>
