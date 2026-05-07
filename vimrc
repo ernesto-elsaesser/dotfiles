@@ -144,15 +144,7 @@ let g:netrw_sizestyle = 'H'
 
 " --- formatting ---
 
-function! Format() abort
-  let l = getpos('.')
-  if &filetype ==# 'python'
-    %!autopep8 -
-  endif
-  call setpos('.', l)
-endfunction
-
-command! Format call Format()
+command! AP %!autopep8 -
 
 augroup noro
   autocmd!
