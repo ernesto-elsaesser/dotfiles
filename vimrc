@@ -155,8 +155,6 @@ augroup END
 
 " --- tabline ---
 
-hi TabLineSel ctermfg=yellow
-
 function! Tabline()
   let line = ''
   for i in range(tabpagenr('$'))
@@ -170,4 +168,8 @@ function! Tabline()
 endfunction
 
 set tabline=%!Tabline()
+
+if has('nvim')
+  hi TabLineSel ctermfg=yellow
+endif
 
