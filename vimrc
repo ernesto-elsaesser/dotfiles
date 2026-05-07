@@ -96,9 +96,6 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
-" clear search highlight
-nmap <Leader>o :nohl<CR>
-
 " naviagte diagnostics
 nmap <Leader><Leader> <C-w>d
 nmap <Leader>j ]d
