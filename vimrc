@@ -4,6 +4,7 @@ if has('nvim')
   set scrolloff=5
 else
   source $VIMRUNTIME/defaults.vim
+  colorscheme pablo
   set background=dark
   set ttymouse=sgr
   set viminfo=
