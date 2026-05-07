@@ -3,7 +3,7 @@ export DOTDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 alias c='clear'
-alias tn='systemd-run --user --service-type=forking --unit=tmux-main tmux -f $DOTDIR/tmux.conf new -d -s main -n dev'
+alias tn='systemd-run --user --service-type=forking --unit=tmux-main tmux -f $DOTDIR/tmux.conf new -d -s main'
 alias ts='systemctl --user status tmux-main'
 alias ta='tmux attach'
 alias ll='ls -lhF --color=auto'
