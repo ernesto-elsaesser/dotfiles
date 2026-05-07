@@ -307,9 +307,7 @@ if has('nvim')
 
   lua vim.lsp.config('*', {root_markers = {'README.md', '.git'}})
   lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py'}})
-  lua vim.lsp.config('dart', {cmd = {'dart', 'language-server'}, filetypes = {'dart'}, root_markers = {'pubspec.yaml'}})
   command! Ty lua vim.lsp.enable('ty')
-  command! Dart lua vim.lsp.enable('dart')
 
 endif
 
