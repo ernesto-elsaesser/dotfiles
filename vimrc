@@ -1,33 +1,31 @@
 " --- settings ---
 
-if has('nvim')
-  set scrolloff=5
-else
-  source $VIMRUNTIME/defaults.vim
-  colorscheme pablo
-  set background=dark
-  set ttymouse=sgr
+if &compatible
+  set nocompatible
   set viminfo=
-  set laststatus=2
+  set ttymouse=sgr
   set pastetoggle=<C-y>
-  set autoindent
 endif
+
+syntax on
+filetype plugin on
 
 set mouse=a
+set background=dark
 set noswapfile
+set incsearch
+set backspace=indent,eol,start
+set laststatus=2
+set ruler
+set wildmenu
+set scrolloff=5
 set splitright
+set shiftwidth=2 softtabstop=-1 expandtab
+set autoindent
+set number relativenumber
 
-setg shiftwidth=2 softtabstop=-1 expandtab
-setg number relativenumber
-
-" --- neovim lua ---
-
-if has('nvim')
-  luafile $DOTDIR/nvim/term.lua
-  luafile $DOTDIR/nvim/git.lua
-  luafile $DOTDIR/nvim/lsp.lua
-  luafile $DOTDIR/nvim/ollama.lua
-endif
+hi LineNr ctermfg=darkgray
+hi Comment ctermfg=darkgray
 
 " --- key mappings ---
 
@@ -61,26 +59,23 @@ nmap + :setl wrap!<CR>
 " jump to keyword under cursor
 nmap gk <C-]>
 
+" split linked terminal
+nmap ü :VTerm<CR>
+nmap Ü :Term<CR>
+
 " exit terminal mode
 tnoremap ö <C-\><C-n>
 
-" switch windows out of neovim terminal mode
-tnoremap <C-w> <C-\><C-n><C-w>
-
-" split linked terminal
-nmap ü :TermSplit right<CR>
-nmap Ü :TermSplit below<CR>
-
 " paste to linked terminal
-nmap ö yy:TermPaste<CR><CR>
-nmap Ö :TermPaste<CR>
+nmap ä :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")
+nmap ö yyä
 
 " repeat previous command in linked terminal
-nmap ä :call chansend(b:tjid, "\x10\r")<CR>
+nmap # :call term_sendkeys(b:tb, "\x10\r")<CR>
 
 " flutter hot reload / restart
-nmap gr :call chansend(b:tjid, "r")<CR>
-nmap gR :call chansend(b:tjid, "R")<CR>
+nmap gr :call term_sendkeys(b:tb, "r")<CR>
+nmap gR :call term_sendkeys(b:tb, "R")<CR>
 
 " --- leader mappings ---
 
@@ -144,6 +139,11 @@ let g:netrw_dirhistmax = 0
 " human-readable file sizes
 let g:netrw_sizestyle = 'H'
 
+" --- terminal ---
+
+command! Term let n = bufnr() | exec 'bel ter' | call setbufvar(n, "tb", bufnr())
+command! VTerm let n = bufnr() | exec 'vert ter' | call setbufvar(n, "tb", bufnr())
+
 " --- formatting ---
 
 command! AP %!autopep8 -
@@ -169,7 +169,27 @@ endfunction
 
 set tabline=%!Tabline()
 
+" --- neovim ---
+
 if has('nvim')
+
+  " switch windows out of neovim terminal mode
+  tnoremap <C-w> <C-\><C-n><C-w>
+
+  " fix tabline highlighting
   hi TabLineSel ctermfg=yellow
+
+  " overwrite terminal commands
+  command! Term let n = bufnr() | sp | ter | call setbufvar(n, "tj", b:terminal_job_id)
+  command! VTerm let n = bufnr() | vert sp | ter | call setbufvar(n, "tj", b:terminal_job_id)
+  nmap ä :call chansend(b:tj, trim(getreg('"')) .. "\n")
+  nmap # :call chansend(b:tj, "\x10\r")<CR>
+  nmap gr :call chansend(b:tj, "r")<CR>
+  nmap gR :call chansend(b:tj, "R")<CR>
+
+  luafile $DOTDIR/nvim/git.lua
+  luafile $DOTDIR/nvim/lsp.lua
+  luafile $DOTDIR/nvim/ollama.lua
+
 endif
 
