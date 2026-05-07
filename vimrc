@@ -161,6 +161,8 @@ augroup END
 
 " --- tabline ---
 
+hi TabLineSel ctermfg=yellow
+
 function! Tabline()
   let line = ''
   for i in range(tabpagenr('$'))
