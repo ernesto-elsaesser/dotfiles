@@ -24,9 +24,6 @@ set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 set number relativenumber
 
-hi LineNr ctermfg=darkgray
-hi Comment ctermfg=darkgray
-
 " --- key mappings ---
 
 " alternate file
@@ -93,30 +90,28 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
-" naviagte diagnostics
-nmap <Leader><Leader> <C-w>d
-nmap <Leader>j ]d
-nmap <Leader>k [d
-
 " LLM completion
 nmap <Leader>h :Complete<CR>
 
 " search in files
-nmap <Leader>b :vim // *<Left><Left><Left>
-nmap <Leader>n :cn<CR>
-nmap <Leader>m :cp<CR>
-nmap <Leader>. :cc<CR>
+nmap <Leader>l :vim // *<Left><Left><Left>
+
+" navigate quickfix list
+nmap <Leader><Leader> :cc<CR>
+nmap <Leader>j :cn<CR>
+nmap <Leader>k :cp<CR>
 
 " git
 nmap <Leader>q :vert ter git show HEAD~:./%<Left><Left><Left><Left>
 nmap <Leader>w :!git log -10 --format=reference<CR>
-nmap <Leader>e :GitDiag<CR>
+nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
 nmap <Leader>d :vert ter git diff HEAD<CR>i
 nmap <Leader>f :!git add %<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
+nmap <Leader>h :GitPre<CR>
 nmap <Leader>y :!git reset --hard
 nmap <Leader>x :!git commit -a -m ""<Left>
 nmap <Leader>c :!git commit -m ""<Left>
@@ -138,6 +133,13 @@ let g:netrw_dirhistmax = 0
 
 " human-readable file sizes
 let g:netrw_sizestyle = 'H'
+
+" --- colors ---
+
+highlight LineNr ctermfg=darkgray
+highlight Comment ctermfg=darkgray
+highlight ColorColumn ctermbg=darkgray
+highlight SignColumn ctermbg=NONE
 
 " --- terminal ---
 
@@ -169,9 +171,79 @@ endfunction
 
 set tabline=%!Tabline()
 
+" --- git ---
+
+highlight GitDelete ctermfg=red
+highlight GitAdd ctermfg=green
+highlight GitChange ctermfg=yellow
+
+sign define sdel text=_ texthl=GitDelete
+sign define sadd text=+ texthl=GitAdd
+sign define smod text=| texthl=GitChange
+
+function! GitSigns() abort
+
+  let bufnr = bufnr()
+  exe 'sign unplace * buffer=' . bufnr
+
+  let diff_lines = systemlist('git diff --unified=0 -- ' . expand('%'))
+  if v:shell_error
+    echo 'Not a git file.'
+    return
+  endif
+
+  let quick = []
+  let b:prev = repeat([""], line('$'))
+
+  for i in range(len(diff_lines))
+
+    let diff_line = diff_lines[i]
+    " Hunk header: @@ -old_start[,old_count] +new_start[,new_count] @@
+    let m = matchlist(diff_line, '^@@ -\(\d\+\),\?\(\d*\) +\(\d\+\),\?\(\d*\) @@')
+    if empty(m)
+      continue
+    endif
+    let old_count = m[2] ==# '' ? 1 : str2nr(m[2])
+    let new_start = str2nr(m[3])
+    let new_count = m[4] ==# '' ? 1 : str2nr(m[4])
+
+    if old_count == 0
+      let msg = 'added ' .. new_count .. ' lines'
+      for l in range(new_start, new_start + new_count - 1)
+        exe 'sign place ' .. l .. ' name=sadd line=' .. l .. ' buffer=' .. bufnr
+      endfor
+    elseif new_count == 0
+      let msg = 'removed ' .. old_count .. ' lines'
+      let l = new_start > 0 ? new_start : 1
+      exe 'sign place ' .. l .. ' name=sdel line=' .. l .. ' buffer=' .. bufnr
+      let b:prev[l] = join(diff_lines[i + 1:i + old_count], "\n")
+    else
+      let msg = 'changed ' .. new_count .. ' lines'
+      for j in range(1, new_count)
+        let l = new_start + j - 1
+        exe 'sign place ' .. l .. ' name=smod line=' .. l .. ' buffer=' .. bufnr
+        let b:prev[l] = diff_lines[i + j][1:]
+      endfor
+    endif
+
+    let quick += [{'bufnr': bufnr, 'lnum': new_start, 'text': msg}]
+
+  endfor
+
+  call setqflist(quick, 'r')
+
+endfunction
+
+command! GitPre echo b:prev[line('.')]
+
 " --- neovim ---
 
 if has('nvim')
+
+  " naviagte diagnostics
+  nmap <Leader>. <C-w>d
+  nmap <Leader>n ]d
+  nmap <Leader>m [d
 
   " switch windows out of neovim terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
@@ -187,7 +259,6 @@ if has('nvim')
   nmap gr :call chansend(b:tj, "r")<CR>
   nmap gR :call chansend(b:tj, "R")<CR>
 
-  luafile $DOTDIR/nvim/git.lua
   luafile $DOTDIR/nvim/lsp.lua
   luafile $DOTDIR/nvim/ollama.lua
 
