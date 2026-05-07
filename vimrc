@@ -239,15 +239,16 @@ command! GitPre echo b:prev[line('.')]
 " --- ollama ---
 
 function! Complete() abort
+  let first = 0
   let row = line('.')
   let last = line('$')
 
   if last > 500
     let last = row + 100
-    " TODO increase start_row?
+    " TODO increase first?
   endif
   
-  let pre_lines = getline(0, row)
+  let pre_lines = getline(first, row)
   let post_lines = getline(row + 1, last)
 
   let prefix = join(pre_lines, "\n")
@@ -297,7 +298,7 @@ if has('nvim')
   nmap gr :call chansend(b:tj, "r")<CR>
   nmap gR :call chansend(b:tj, "R")<CR>
 
-  luafile $DOTDIR/nvim/lsp.lua
+  luafile $DOTDIR/lsp.lua
 
 endif
 
