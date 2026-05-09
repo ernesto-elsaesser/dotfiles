@@ -90,16 +90,16 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
-" LLM completion
-nmap <Leader>h :Complete<CR>
-
-" search in files
-nmap <Leader>l :vim // *<Left><Left><Left>
-
 " navigate quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
+
+" search in files
+nmap <Leader>l :vim // *<Left><Left><Left>
+
+" LLM completion
+nmap <Leader>n :Complete<CR>
 
 " git
 nmap <Leader>q :vert ter git show HEAD~:./%<Left><Left><Left><Left>
@@ -285,11 +285,6 @@ command! Complete call Complete()
 " --- neovim ---
 
 if has('nvim')
-
-  " naviagte diagnostics
-  nmap <Leader>. <C-w>d
-  nmap <Leader>n ]d
-  nmap <Leader>m [d
 
   " switch windows out of neovim terminal mode
   tnoremap <C-w> <C-\><C-n><C-w>
