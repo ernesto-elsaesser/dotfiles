@@ -262,7 +262,7 @@ function! Complete() abort
   let suffix = join(post_lines, "\n")
 
   let request = {'model': 'codestral', 'prompt': prefix, 'suffix': suffix, 'stream': v:false}
-  let request.options = {'temperature': 0, 'num_ctx': 8192, 'num_predict': 32}
+  let request.options = {'temperature': 0, 'num_ctx': 8192, 'num_predict': 64}
 
   let cmd = "curl -s -X POST http://localhost:11434/api/generate"
   let cmd .= " -H Content-Type: application/json"
@@ -274,7 +274,7 @@ function! Complete() abort
   let g:llmres = response
 
   let gen_lines = split(response.response, "\n")
-  call setline(row, pre_lines[-1] .. ' ' .. gen_lines[0])
+  call setline(row, pre_lines[-1] .. gen_lines[0])
   if len(gen_lines) > 1
     call append(row, gen_lines[1:])
   endif
