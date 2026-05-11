@@ -76,9 +76,6 @@ nmap gR :call term_sendkeys(b:tb, "R")<CR>
 
 let g:mapleader = ","
 
-" scratch buffer
-nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
-
 " show unsaved changes
 nmap <Leader>z :w !diff % -<CR>
 
@@ -88,8 +85,11 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
+" scratch buffer
+nmap <Leader>p :split new<CR>:setl bt=nofile bh=wipe<CR>
+
 " search in files
-nmap <Leader>o :vim // *<Left><Left><Left>
+nmap <Leader>f :vim // *<Left><Left><Left>
 
 " navigate quickfix list
 nmap <Leader><Leader> :cc<CR>
@@ -103,12 +103,13 @@ nmap <Leader>l :setl number! relativenumber!<CR>
 nmap <Leader>n :call Complete()<CR>
 
 " git
+nmap <Leader>e :call GitSigns()<CR>
+nmap <Leader>r :silent !tig reflog<CR><C-l>
+nmap <Leader>t :silent !tig<CR><C-l>
 nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>s :silent !tig status<CR><C-l>
-nmap <Leader>d :silent !tig<CR><C-l>
-nmap <Leader>f :call GitSigns()<CR>
+nmap <Leader>d :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>x :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
