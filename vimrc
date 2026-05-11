@@ -103,12 +103,12 @@ nmap <Leader>l :setl number! relativenumber!<CR>
 nmap <Leader>n :Complete<CR>
 
 " git
-nmap <Leader>w :echo b:gitsigns[line('.')]<CR>
-nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>s :silent !tig status<CR><C-l>
 nmap <Leader>d :silent !tig<CR><C-l>
-nmap <Leader>f :!git pull --ff-only<CR>
+nmap <Leader>f :call GitSigns()<CR>
+nmap <Leader>g :!git pull --ff-only<CR>
+nmap <Leader>x :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
