@@ -115,7 +115,7 @@ nmap <Leader>h :GitPre<CR>
 nmap <Leader>y :!git reset --hard
 nmap <Leader>x :Run git commit -a -m ''<Left>
 nmap <Leader>c :Run git commit -m ''<Left>
-nmap <Leader>v :Run push<CR>
+nmap <Leader>v :!git push<CR>
 
 command! -nargs=1 Run echo split(system(<q-args>), "\n")[-1]
 
