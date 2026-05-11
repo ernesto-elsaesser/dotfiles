@@ -109,15 +109,14 @@ nmap <Leader>r :!git reset HEAD<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
 nmap <Leader>s :!git status<CR>
 nmap <Leader>d :vert ter git diff HEAD<CR>i
-nmap <Leader>f :!git add %<CR>
+nmap <Leader>f :echo system('git add ' .. expand('%'))<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>h :GitPre<CR>
 nmap <Leader>y :!git reset --hard
-nmap <Leader>x :Run git commit -a -m ''<Left>
-nmap <Leader>c :Run git commit -m ''<Left>
+nmap <Leader>c :Commit 
 nmap <Leader>v :!git push<CR>
 
-command! -nargs=1 Run echo substitute(system(<q-args>), "\n", " | ", "g")
+command! -nargs=1 C echo system("git commit -m '<args>'")
 
 " --- netrw ---
 
