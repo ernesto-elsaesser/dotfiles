@@ -23,6 +23,8 @@ set splitright
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 
+set statusline=%f%(\ %m%r%)\ %LL\ %l:%c%=%{getcwd()}\ 
+
 " --- key mappings ---
 
 " quick save
