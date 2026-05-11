@@ -234,12 +234,12 @@ endfunction
 
 " --- python ---
 
-command! -nargs=1 Env let $PATH = $HOME .. "/miniforge3/envs/<args>/bin:" .. $PATH
-command! Ruff !ruff format %
+command! -nargs=1 Ruff let $RUFF = $HOME .. "/miniforge3/envs/<args>/bin/ruff"
+command! Format !$RUFF format %
 
 augroup py
   autocmd!
-  autocmd FileType python setl makeprg=ruff\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
+  autocmd FileType python setl makeprg=$RUFF\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
 augroup END
 
 " --- ollama ---
