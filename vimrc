@@ -106,8 +106,9 @@ nmap <Leader>n :Complete<CR>
 " git
 nmap <Leader>w :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>s :!tig status<CR>
-nmap <Leader>d :!tig<CR>
+nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
+nmap <Leader>s :silent !tig status<CR><C-l>
+nmap <Leader>d :silent !tig<CR><C-l>
 nmap <Leader>f :!git pull --ff-only<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
