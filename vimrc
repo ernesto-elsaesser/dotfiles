@@ -170,8 +170,6 @@ set tabline=%!Tabline()
 
 " --- git ---
 
-command! -nargs=1 C echo system("git commit -m '<args>'")
-
 highlight GitDelete ctermfg=red
 highlight GitAdd ctermfg=green
 highlight GitChange ctermfg=yellow
@@ -185,7 +183,7 @@ function! GitSigns() abort
   let bufnr = bufnr()
   exe 'sign unplace * buffer=' . bufnr
 
-  let diff_lines = systemlist('git diff --unified=0 -- ' . expand('%'))
+  let diff_lines = systemlist('git diff --unified=0 HEAD -- ' . expand('%'))
   if v:shell_error
     echo 'Not a git file.'
     return
