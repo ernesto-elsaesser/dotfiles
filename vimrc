@@ -39,9 +39,8 @@ nmap <S-Tab> gT
 inoremap <C-k> <Esc>
 vnoremap <C-k> <Esc>
 
-" scrolling
+" scroll down
 nmap <C-j> <C-d>
-nmap <C-k> <C-u>
 
 " alternate file
 nmap # <C-^>
