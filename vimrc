@@ -38,8 +38,6 @@ nmap <C-s> :q<CR>
 " quick tab switch
 nmap <Tab> gt
 nmap <S-Tab> gT
-tmap <Tab> <C-w>gt
-tmap <S-Tab> <C-w>gt
 
 " exit insert/visual mode
 inoremap <C-k> <Esc>
