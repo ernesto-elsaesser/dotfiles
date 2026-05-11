@@ -27,13 +27,13 @@ set number relativenumber
 " --- key mappings ---
 
 " alternate file
-nmap q <C-^>
+nmap # <C-^>
 
 " quick save
 nmap <Space> :w<CR>
 
 " quick quit
-nmap <C-s> :q<CR>
+nmap q :q<CR>
 
 " quick tab switch
 nmap <Tab> gt
@@ -64,11 +64,11 @@ nmap Ü :Term<CR>
 tnoremap ö <C-\><C-n>
 
 " paste to linked terminal
-nmap ä :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")
-nmap ö yyä
+nmap Ö :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")
+nmap ö yyÖ
 
 " repeat previous command in linked terminal
-nmap # :call term_sendkeys(b:tb, "\x10\r")<CR>
+nmap ä :call term_sendkeys(b:tb, "\x10\r")<CR>
 
 " flutter hot reload / restart
 nmap gr :call term_sendkeys(b:tb, "r")<CR>
@@ -286,19 +286,8 @@ command! Complete call Complete()
 
 if has('nvim')
 
-  " switch windows out of neovim terminal mode
-  tnoremap <C-w> <C-\><C-n><C-w>
-
   " fix tabline highlighting
   hi TabLineSel ctermfg=yellow
-
-  " overwrite terminal commands
-  command! Term let n = bufnr() | sp | ter | call setbufvar(n, "tj", b:terminal_job_id)
-  command! VTerm let n = bufnr() | vert sp | ter | call setbufvar(n, "tj", b:terminal_job_id)
-  nmap ä :call chansend(b:tj, trim(getreg('"')) .. "\n")
-  nmap # :call chansend(b:tj, "\x10\r")<CR>
-  nmap gr :call chansend(b:tj, "r")<CR>
-  nmap gR :call chansend(b:tj, "R")<CR>
 
   lua vim.lsp.config('*', {root_markers = {'README.md', '.git'}})
   lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py'}})
