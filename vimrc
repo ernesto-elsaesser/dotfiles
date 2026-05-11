@@ -22,7 +22,6 @@ set scrolloff=5
 set splitright
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
-set number relativenumber
 
 " --- key mappings ---
 
@@ -90,13 +89,16 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
+" search in files
+nmap <Leader>o :vim // *<Left><Left><Left>
+
 " navigate quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
-" search in files
-nmap <Leader>l :vim // *<Left><Left><Left>
+" show line numbers
+nmap <Leader>l :setl number! relativenumber!<CR>
 
 " LLM completion
 nmap <Leader>n :Complete<CR>
