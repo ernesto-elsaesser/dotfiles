@@ -135,6 +135,7 @@ highlight LineNr ctermfg=darkgray
 highlight Comment ctermfg=darkgray
 highlight ColorColumn ctermbg=darkgray
 highlight SignColumn ctermbg=NONE
+highlight TabLineSel ctermfg=cyan
 
 " --- terminal ---
 
@@ -278,9 +279,6 @@ command! Complete call Complete()
 " --- neovim ---
 
 if has('nvim')
-
-  " fix tabline highlighting
-  hi TabLineSel ctermfg=yellow
 
   lua vim.lsp.config('*', {root_markers = {'README.md', '.git'}})
   lua vim.lsp.config('ty', {cmd = {'ty', 'server'}, filetypes = {'python'}, root_markers = {'pyproject.toml', 'setup.py'}})
