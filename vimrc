@@ -113,9 +113,11 @@ nmap <Leader>f :!git add %<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>h :GitPre<CR>
 nmap <Leader>y :!git reset --hard
-nmap <Leader>x :!git commit -a -m ""<Left>
-nmap <Leader>c :!git commit -m ""<Left>
-nmap <Leader>v :!git push<CR>
+nmap <Leader>x :Run git commit -a -m ''<Left>
+nmap <Leader>c :Run git commit -m ''<Left>
+nmap <Leader>v :Run push<CR>
+
+command! -nargs=1 Run echo split(system(<q-args>), "\n")[-1]
 
 " --- netrw ---
 
