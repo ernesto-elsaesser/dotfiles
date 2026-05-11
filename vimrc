@@ -26,14 +26,11 @@ set number relativenumber
 
 " --- key mappings ---
 
-" alternate file
-nmap # <C-^>
-
 " quick save
 nmap <Space> :w<CR>
 
 " quick quit
-nmap q :q<CR>
+nmap qq :q<CR>
 
 " quick tab switch
 nmap <Tab> gt
@@ -46,6 +43,9 @@ vnoremap <C-k> <Esc>
 " scrolling
 nmap <C-j> <C-d>
 nmap <C-k> <C-u>
+
+" alternate file
+nmap # <C-^>
 
 " open parent directory
 nmap - :Ex<CR>
@@ -64,7 +64,7 @@ nmap Ü :Term<CR>
 tnoremap ö <C-\><C-n>
 
 " paste to linked terminal
-nmap Ö :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")
+nmap Ö :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")<CR>
 nmap ö yyÖ
 
 " repeat previous command in linked terminal
