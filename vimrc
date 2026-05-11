@@ -117,7 +117,7 @@ nmap <Leader>x :Run git commit -a -m ''<Left>
 nmap <Leader>c :Run git commit -m ''<Left>
 nmap <Leader>v :!git push<CR>
 
-command! -nargs=1 Run echo substitute(system(<q-args>), "\n", "|", "g")
+command! -nargs=1 Run echo substitute(system(<q-args>), "\n", " | ", "g")
 
 " --- netrw ---
 
