@@ -103,6 +103,7 @@ nmap <Leader>l :setl number! relativenumber!<CR>
 nmap <Leader>n :call Complete()<CR>
 
 " git
+nmap <Leader>w :vert ter ++close tig<CR>
 nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :silent !tig reflog<CR><C-l>
 nmap <Leader>t :silent !tig<CR><C-l>
