@@ -3,18 +3,20 @@ export DOTDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 alias c='clear'
-alias tn='systemd-run --user --service-type=forking --unit=tmux-main tmux new -d -s main'
-alias ts='systemctl --user status tmux-main'
-alias ta='tmux attach'
+
+# --- ls --- (A = almost all, F = classify)
 alias ll='ls -lhF --color=auto'
 alias la='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
-# A = almost all, F = classify
+
+# --- tmux ---
+alias tn='systemd-run --user --service-type=forking --unit=tmux-main tmux new -d -s main'
+alias ts='systemctl --user status tmux-main'
+alias ta='tmux attach'
 
 # --- vim ---
-export EDITOR=$(command -v nvim || command -v vim)
-alias v='$EDITOR -u $DOTDIR/vimrc'
-alias sv='sudo DOTDIR=$DOTDIR $EDITOR -u $DOTDIR/vimrc'
+alias v='vim -u $DOTDIR/vimrc'
+alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
