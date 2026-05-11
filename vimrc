@@ -77,9 +77,6 @@ nmap gR :call term_sendkeys(b:tb, "R")<CR>
 
 let g:mapleader = ","
 
-" scratch buffer
-nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
-
 " show unsaved changes
 nmap <Leader>z :w !diff % -<CR>
 
@@ -91,6 +88,9 @@ nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
 " search in files
 nmap <Leader>o :vim // *<Left><Left><Left>
+
+" scratch buffer
+nmap <Leader>p :split new<CR>:setl bt=nofile bh=wipe<CR>
 
 " navigate quickfix list
 nmap <Leader><Leader> :cc<CR>
@@ -104,17 +104,11 @@ nmap <Leader>l :setl number! relativenumber!<CR>
 nmap <Leader>n :Complete<CR>
 
 " git
-nmap <Leader>q :vert ter git show HEAD~:./%<Left><Left><Left><Left>
-nmap <Leader>w :vert ter git log -10 --format=reference<CR>
 nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :echo b:gitsigns[line('.')]<CR>
-nmap <Leader>a :echo system('git add --all --verbose')<CR>
-nmap <Leader>s :!clear && git status<CR>
-nmap <Leader>d :vert ter git diff HEAD<CR>i
-nmap <Leader>f :echo system('git add ' .. expand('%')) .. ' added'<CR>
+nmap <Leader>t :!tig<CR>
+nmap <Leader>s :!tig status<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>y :echo system('git reset --hard')
-nmap <Leader>x :echo system('git reset HEAD')
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
