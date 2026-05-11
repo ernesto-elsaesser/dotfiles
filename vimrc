@@ -77,6 +77,9 @@ nmap gR :call term_sendkeys(b:tb, "R")<CR>
 
 let g:mapleader = ","
 
+" scratch buffer
+nmap <Leader>t :split new<CR>:setl bt=nofile bh=wipe<CR>
+
 " show unsaved changes
 nmap <Leader>z :w !diff % -<CR>
 
@@ -88,9 +91,6 @@ nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
 " search in files
 nmap <Leader>o :vim // *<Left><Left><Left>
-
-" scratch buffer
-nmap <Leader>p :split new<CR>:setl bt=nofile bh=wipe<CR>
 
 " navigate quickfix list
 nmap <Leader><Leader> :cc<CR>
@@ -104,11 +104,11 @@ nmap <Leader>l :setl number! relativenumber!<CR>
 nmap <Leader>n :Complete<CR>
 
 " git
+nmap <Leader>w :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>r :echo b:gitsigns[line('.')]<CR>
-nmap <Leader>t :!tig<CR>
 nmap <Leader>s :!tig status<CR>
-nmap <Leader>g :!git pull --ff-only<CR>
+nmap <Leader>d :!tig<CR>
+nmap <Leader>f :!git pull --ff-only<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
