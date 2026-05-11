@@ -234,11 +234,12 @@ endfunction
 
 " --- python ---
 
-command! AP %!autopep8 -
+command! -nargs=1 Env let $PATH = $HOME .. "/miniforge3/envs/<args>/bin:" .. $PATH
+command! Ruff !ruff format %
 
 augroup py
   autocmd!
-  autocmd FileType python compiler pylint
+  autocmd FileType python setl makeprg=ruff\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
 augroup END
 
 " --- ollama ---
