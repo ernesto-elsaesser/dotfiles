@@ -100,7 +100,7 @@ nmap <Leader>k :cp<CR>
 nmap <Leader>l :setl number! relativenumber!<CR>
 
 " LLM completion
-nmap <Leader>n :Complete<CR>
+nmap <Leader>n :call Complete()<CR>
 
 " git
 nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
@@ -273,8 +273,6 @@ function! Complete() abort
     call append(row, gen_lines[1:])
   endif
 endfunction
-
-command! Complete call Complete()
 
 " --- neovim ---
 
