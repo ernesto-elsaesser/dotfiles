@@ -103,20 +103,18 @@ nmap <Leader>n :Complete<CR>
 
 " git
 nmap <Leader>q :vert ter git show HEAD~:./%<Left><Left><Left><Left>
-nmap <Leader>w :!git log -10 --format=reference<CR>
+nmap <Leader>w :vert ter git log -10 --format=reference<CR>
 nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>r :!git reset HEAD<CR>
-nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>s :!git status<CR>
+nmap <Leader>r :echo b:gitsigns[line('.')]<CR>
+nmap <Leader>a :echo system('git add --all --verbose')<CR>
+nmap <Leader>s :!clear && git status<CR>
 nmap <Leader>d :vert ter git diff HEAD<CR>i
-nmap <Leader>f :echo system('git add ' .. expand('%'))<CR>
+nmap <Leader>f :echo system('git add ' .. expand('%')) .. ' added'<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>h :GitPre<CR>
-nmap <Leader>y :!git reset --hard
-nmap <Leader>c :Commit 
+nmap <Leader>y :echo system('git reset --hard')
+nmap <Leader>x :echo system('git reset HEAD')
+nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
-
-command! -nargs=1 C echo system("git commit -m '<args>'")
 
 " --- netrw ---
 
@@ -172,6 +170,8 @@ set tabline=%!Tabline()
 
 " --- git ---
 
+command! -nargs=1 C echo system("git commit -m '<args>'")
+
 highlight GitDelete ctermfg=red
 highlight GitAdd ctermfg=green
 highlight GitChange ctermfg=yellow
@@ -192,7 +192,7 @@ function! GitSigns() abort
   endif
 
   let quick = []
-  let b:prev = repeat([""], line('$'))
+  let b:gitsigns = repeat([""], line('$'))
 
   for i in range(len(diff_lines))
 
@@ -215,13 +215,13 @@ function! GitSigns() abort
       let msg = 'removed ' .. old_count .. ' lines'
       let l = new_start > 0 ? new_start : 1
       exe 'sign place ' .. l .. ' name=sdel line=' .. l .. ' buffer=' .. bufnr
-      let b:prev[l] = join(diff_lines[i + 1:i + old_count], "\n")
+      let b:gitsigns[l] = join(diff_lines[i + 1:i + old_count], "\n")
     else
       let msg = 'changed ' .. new_count .. ' lines'
       for j in range(1, new_count)
         let l = new_start + j - 1
         exe 'sign place ' .. l .. ' name=smod line=' .. l .. ' buffer=' .. bufnr
-        let b:prev[l] = diff_lines[i + j][1:]
+        let b:gitsigns[l] = diff_lines[i + j][1:]
       endfor
     endif
 
@@ -232,8 +232,6 @@ function! GitSigns() abort
   call setqflist(quick, 'r')
 
 endfunction
-
-command! GitPre echo b:prev[line('.')]
 
 " --- python ---
 
