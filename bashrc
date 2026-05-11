@@ -20,16 +20,14 @@ alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
+alias t='tig'
 alias gi='git init --inital-branch=main'
 alias gk='git clone'
-alias gb='git checkout'
-alias gg='git pull --ff-only'
+alias gf='git pull --ff-only'
 alias gs='git status'
-alias gl='git log -10 --format=reference'
 alias ga='git add --all'
 alias gc='git commit'
 alias gp='git push'
-alias gr='git reset'
 
 git_user() {
   git config --global user.name "Ernesto Elsäßer"
