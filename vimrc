@@ -3,7 +3,6 @@
 if &compatible
   set nocompatible
   set viminfo=
-  set ttymouse=sgr
   set pastetoggle=<C-y>
 endif
 
