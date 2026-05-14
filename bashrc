@@ -12,7 +12,7 @@ alias sl='sudo ls -lhAF --color=auto'
 # --- screen ---
 alias xu='systemd-run --user --unit=screen screen -D -m'
 alias xs='systemctl --user status screen'
-alias xr='screen -r'
+alias xr='screen -D -r'
 
 # --- vim ---
 alias v='vim -u $DOTDIR/vimrc'
