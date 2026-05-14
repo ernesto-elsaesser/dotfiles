@@ -15,14 +15,13 @@ set noswapfile
 set incsearch
 set backspace=indent,eol,start
 set laststatus=2
-set ruler
 set wildmenu
 set scrolloff=5
 set splitright
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 
-set statusline=%f%(\ %m%r%)\ %LL\ %l:%c%=%{getcwd()}\ 
+set statusline=%f%(\ %m%r%)\ \ %LL\ \ %l:%c%=%{getcwd()}\ 
 
 " --- key mappings ---
 
