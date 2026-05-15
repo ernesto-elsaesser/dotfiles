@@ -93,6 +93,9 @@ nmap <Leader>p :split new<CR>:setl bt=nofile bh=wipe<CR>
 " search in files
 nmap <Leader>f :vim // *<Left><Left><Left>
 
+" open HOME in new tab
+nmap <Leader>h :tabe ~/<CR>
+
 " navigate quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
