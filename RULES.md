@@ -24,11 +24,10 @@ Treat these rules as policy, not just as guidance.
 
 ## Code Editing Rules
 
-1. Always expect that the user or a diffent agent may have modified a source file after your last access
-   - Never assume the contents of a file from chat history
-   - Always read source file before editing them
-   - Always use the content of the file on disk as the basis edits or patches
-   - Never revert or override unrelated edits made by other contributors
+1. Do not blindly override user changes
+   - When editing an existing file, prefer to do so via patch (edit tool)
+   - If an edit / patch call fails, do not fall back to a full write of the file
+   - Instead, read the current content of the file from disk and compare with chat history to detect user changes
 2. Frequently verify changes by running available build tools or analyzers
    - Pick the tool with the least overhead to obtain feedback on code correctness
    - Prefer static analyzers over full build toolchains where possible
