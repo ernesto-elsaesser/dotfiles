@@ -48,7 +48,7 @@ nmap <C-j> <C-d>
 nmap # <C-^>
 
 " open parent directory
-nmap - :Ex<CR>
+nmap - :Browse .<CR>
 
 " toggle word wrap
 nmap + :setl wrap!<CR>
@@ -119,22 +119,30 @@ nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
-" --- netrw ---
+" --- dir listing ---
 
-" configure sorting
-let g:netrw_sort_sequence = '\/$,*'
+function! Browse(path) abort
 
-" configure hiding (a)
-let g:netrw_list_hide = '^\.[^.]'
+    if !isdirectory(a:path)
+      exec 'edit ' . a:path
+      return
+    endif
 
-" set current directory to browsing directory
-let g:netrw_keepdir = 0
+    enew
+    exec 'lcd ' . fnameescape(a:path)
+    setl buftype=nofile bufhidden=wipe noswapfile nomodified
 
-" no ~/.vim/netrwhist file
-let g:netrw_dirhistmax = 0
+    let l:items = glob('*', 1, 1)
+    
+    " Append a trailing slash to directories so they look and act like folders
+    call map(l:items, {idx, val -> isdirectory(val) ? val . '/' : val})
 
-" human-readable file sizes
-let g:netrw_sizestyle = 'H'
+    call setline(1, l:items)
+
+    nnoremap <buffer> <CR> :call Browse(getline('.'))<CR>
+endfunction
+
+command! -nargs=1 -complete=dir Browse call Browse(<q-args>)
 
 " --- colors ---
 
