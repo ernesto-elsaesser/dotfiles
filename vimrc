@@ -90,16 +90,16 @@ nmap <Leader>f :vim // *<Left><Left><Left>
 " open HOME in new tab
 nmap <Leader>h :tabnew <Bar> Browse ~/<CR>
 
-" navigate quickfix list
+" quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
 " show line numbers
-nmap <Leader>l :setl number! relativenumber!<CR>
+nmap <Leader>n :setl number! relativenumber!<CR>
 
 " LLM completion
-nmap <Leader>n :call Complete()<CR>
+nmap <Leader>m :call Complete()<CR>
 
 " git
 nmap <Leader>w :vert ter ++close tig<CR>
@@ -117,7 +117,6 @@ nmap <Leader>v :!git push<CR>
 
 highlight LineNr ctermfg=darkgray
 highlight Comment ctermfg=darkgray
-highlight ColorColumn ctermbg=darkgray
 highlight SignColumn ctermbg=NONE
 highlight TabLineSel ctermfg=cyan
 
