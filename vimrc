@@ -95,11 +95,11 @@ nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
+" LLM completion
+nmap <Leader>l :call Complete()<CR>
+
 " show line numbers
 nmap <Leader>n :setl number! relativenumber!<CR>
-
-" LLM completion
-nmap <Leader>m :call Complete()<CR>
 
 " git
 nmap <Leader>w :vert ter ++close tig<CR>
