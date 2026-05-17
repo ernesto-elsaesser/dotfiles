@@ -132,14 +132,14 @@ function! Browse(path) abort
     exec 'lcd ' . fnameescape(a:path)
     setl buftype=nofile bufhidden=wipe noswapfile nomodified
 
+    " append a slashes to directories
     let l:items = glob('*', 1, 1)
-    
-    " Append a trailing slash to directories so they look and act like folders
     call map(l:items, {idx, val -> isdirectory(val) ? val . '/' : val})
-
     call setline(1, l:items)
 
     nnoremap <buffer> <CR> :call Browse(getline('.'))<CR>
+    nnoremap <buffer> <C-l> :Browse .<CR>
+    nnoremap <buffer> - :Browse ..<CR>
 endfunction
 
 command! -nargs=1 -complete=dir Browse call Browse(<q-args>)
