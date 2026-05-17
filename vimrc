@@ -55,8 +55,8 @@ nmap + :setl wrap!<CR>
 nmap gk <C-]>
 
 " split linked terminal
-nmap ü :VTerm<CR>
-nmap Ü :Term<CR>
+nmap ü :Term vert<CR>
+nmap Ü :Term bel<CR>
 
 " exit terminal mode
 tnoremap ö <C-\><C-n>
@@ -170,8 +170,7 @@ command! -nargs=1 -complete=dir Browse call Browse(<q-args>)
 
 " --- terminal ---
 
-command! Term let n = bufnr() | exec 'bel ter' | call setbufvar(n, "tb", bufnr())
-command! VTerm let n = bufnr() | exec 'vert ter' | call setbufvar(n, "tb", bufnr())
+command! -nargs=1 Term let n = bufnr() | exec '<args> ter' | call setbufvar(n, "tb", bufnr())
 
 " --- formatting ---
 
