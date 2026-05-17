@@ -159,6 +159,12 @@ function! Browse(path) abort
   endfor
   call setline(1, l:lines)
 
+  let l:num = 2
+  for l:line in l:lines[1:18]
+    exec 'nmap <buffer> ' . l:num . ' :Browse ' . l:line . '<CR>'
+    let l:num += 1
+  endfor
+
   nnoremap <buffer> <Space> :call Browse(getline('.'))<CR>
   nnoremap <buffer> <C-l> :Browse .<CR>
   nnoremap <buffer> - :Browse ..<CR>
