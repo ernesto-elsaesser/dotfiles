@@ -115,9 +115,8 @@ nmap <Leader>v :!git push<CR>
 
 " --- colors ---
 
-highlight LineNr ctermfg=darkgray
 highlight Comment ctermfg=darkgray
-highlight SignColumn ctermbg=NONE
+highlight LineNr ctermfg=darkgray
 highlight TabLineSel ctermfg=cyan
 
 " --- dir listing ---
