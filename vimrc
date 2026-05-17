@@ -140,7 +140,7 @@ function! Browse(path) abort
   exec 'tcd ' . fnameescape(a:path)
   setl buftype=nofile bufhidden=wipe noswapfile nomodified number
 
-  let l:parts = [[], [], ["----------"], []]
+  let l:parts = [[], [], [""], []]
 
   for l:item in readdir('.')
     let l:hidden = l:item[0] == '.'
