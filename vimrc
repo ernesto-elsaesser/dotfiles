@@ -49,6 +49,7 @@ nmap # <C-^>
 
 " open parent directory
 nmap - :Browse .<CR>
+nmap <Rightmouse> -
 
 " toggle word wrap
 nmap + :setl wrap!<CR>
@@ -166,9 +167,11 @@ function! Browse(path) abort
     let l:num += 1
   endfor
 
-  nnoremap <buffer> <Space> :call Browse(getline('.'))<CR>
-  nnoremap <buffer> <C-l> :Browse .<CR>
-  nnoremap <buffer> - :Browse ..<CR>
+  nmap <buffer> <Leftmouse> :call Browse(getline('.'))<CR>
+  nmap <buffer> <Space> :call Browse(getline('.'))<CR>
+  nmap <buffer> <LeftMouse> <LeftMouse><Space>
+  nmap <buffer> <C-l> :Browse .<CR>
+  nmap <buffer> - :Browse ..<CR>
 
 endfunction
 
