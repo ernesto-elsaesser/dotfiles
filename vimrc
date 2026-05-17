@@ -164,7 +164,7 @@ function! Browse(path) abort
   endfor
   call setline(1, l:lines)
 
-  nnoremap <buffer> <CR> :call Browse(getline('.'))<CR>
+  nnoremap <buffer> <Space> :call Browse(getline('.'))<CR>
   nnoremap <buffer> <C-l> :Browse .<CR>
   nnoremap <buffer> - :Browse ..<CR>
 
