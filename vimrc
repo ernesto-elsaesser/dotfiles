@@ -41,9 +41,6 @@ tmap <C-w><S-Tab> <C-w>gT
 inoremap <C-k> <Esc>
 vnoremap <C-k> <Esc>
 
-" scroll down
-nmap <C-j> <C-d>
-
 " alternate file
 nmap # <C-^>
 
