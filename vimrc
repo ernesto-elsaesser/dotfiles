@@ -119,6 +119,14 @@ nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
+" --- colors ---
+
+highlight LineNr ctermfg=darkgray
+highlight Comment ctermfg=darkgray
+highlight ColorColumn ctermbg=darkgray
+highlight SignColumn ctermbg=NONE
+highlight TabLineSel ctermfg=cyan
+
 " --- dir listing ---
 
 function! Browse(path) abort
@@ -163,14 +171,6 @@ function! Browse(path) abort
 endfunction
 
 command! -nargs=1 -complete=dir Browse call Browse(<q-args>)
-
-" --- colors ---
-
-highlight LineNr ctermfg=darkgray
-highlight Comment ctermfg=darkgray
-highlight ColorColumn ctermbg=darkgray
-highlight SignColumn ctermbg=NONE
-highlight TabLineSel ctermfg=cyan
 
 " --- terminal ---
 
