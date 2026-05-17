@@ -68,10 +68,6 @@ nmap ö yyÖ
 " repeat previous command in linked terminal
 nmap ä :call term_sendkeys(b:tb, "\x10\r")<CR>
 
-" flutter hot reload / restart
-nmap gr :call term_sendkeys(b:tb, "r")<CR>
-nmap gR :call term_sendkeys(b:tb, "R")<CR>
-
 " --- leader mappings ---
 
 let g:mapleader = ","
