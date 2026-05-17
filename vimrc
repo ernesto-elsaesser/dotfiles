@@ -123,23 +123,43 @@ nmap <Leader>v :!git push<CR>
 
 function! Browse(path) abort
 
-    if !isdirectory(a:path)
-      exec 'edit ' . a:path
-      return
+  if !isdirectory(a:path)
+    exec 'edit ' . a:path
+    return
+  endif
+
+  enew
+  exec 'lcd ' . fnameescape(a:path)
+  setl buftype=nofile bufhidden=wipe noswapfile nomodified
+
+  let l:parts = [
+    \["[FOLDERS]"],
+    \["[FILES]"],
+    \["[.FOLDERS]"],
+    \["[.FILES]"],
+  \]
+
+  for l:item in readdir('.')
+    let l:i = isdirectory(l:item) ? 0 : 1
+    let l:i += l:item[0] == '.' ? 2 : 0
+    call add(l:parts[l:i], l:item)
+  endfor
+
+  let l:lines = []
+  for l:part in l:parts
+    if len(l:part) > 1
+      if len(l:lines) > 1
+        call extend(l:lines, [""])
+      endif
+      call extend(l:lines, l:part)
     endif
+  endfor
+  call setline(1, l:lines)
 
-    enew
-    exec 'lcd ' . fnameescape(a:path)
-    setl buftype=nofile bufhidden=wipe noswapfile nomodified
+  nnoremap <buffer> <CR> :call Browse(getline('.'))<CR>
+  nnoremap <buffer> <C-l> :Browse .<CR>
+  nnoremap <buffer> - :Browse ..<CR>
 
-    " append a slashes to directories
-    let l:items = glob('*', 1, 1)
-    call map(l:items, {idx, val -> isdirectory(val) ? val . '/' : val})
-    call setline(1, l:items)
-
-    nnoremap <buffer> <CR> :call Browse(getline('.'))<CR>
-    nnoremap <buffer> <C-l> :Browse .<CR>
-    nnoremap <buffer> - :Browse ..<CR>
 endfunction
 
 command! -nargs=1 -complete=dir Browse call Browse(<q-args>)
