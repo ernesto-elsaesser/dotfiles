@@ -58,8 +58,8 @@ nmap gk <C-]>
 nmap ü :Term vert<CR>
 nmap Ü :Term bel<CR>
 
-" exit terminal mode
-tnoremap ö <C-\><C-n>
+" terminal-normal mode
+tnoremap ö <C-w>N
 
 " paste to linked terminal
 nmap Ö :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")<CR>
