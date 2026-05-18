@@ -126,9 +126,11 @@ function! Browse(path) abort
     return
   endif
 
+  let l:abs = fnamemodify(a:path, ':p')
+
   enew
   exec 'lcd ' . fnameescape(a:path)
-  setl buftype=nofile bufhidden=wipe noswapfile nomodified number
+  setl bt=nofile bh=wipe noswf nomod rnu
 
   let l:parts = [[], [], [], []]
 
@@ -143,24 +145,24 @@ function! Browse(path) abort
     call add(l:parts[l:i], l:item)
   endfor
 
-  let l:abs = fnamemodify(a:path, ':p')
-  let l:lines = [l:abs]
+  let l:lines = [l:abs, ""]
   for l:part in l:parts
     call extend(l:lines, l:part)
   endfor
   call setline(1, l:lines)
   call matchadd('CursorLineNr', l:abs)
   call matchadd('Comment', '^\..\+')
-  call setpos('.', [0, 2, 1, 0])
+  call setpos('.', [0, 3, 1, 0])
 
   nmap <buffer> <Space> :call Browse(getline('.'))<CR>
   nmap <buffer> <CR> <Space>
   nmap <buffer> <LeftMouse> <LeftMouse><Space>
   nmap <buffer> <C-l> :Browse .<CR>
   nmap <buffer> - :Browse ..<CR>
-  nmap <buffer> r yy:!mv <C-r>"<BS>
-  nmap <buffer> s :echo system('stat ' . trim(getline('.'), '/'))<CR>
-  nmap <buffer> D yy:!rm <C-r>"<BS>
+  nmap <buffer> c y/\/\<Bar>$<CR>
+  nmap <buffer> r c:!mv <C-r>" 
+  nmap <buffer> s c:!stat <C-r>"<CR>
+  nmap <buffer> D c:!rm <C-r>"
 
 endfunction
 
