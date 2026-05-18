@@ -115,6 +115,7 @@ nmap <Leader>v :!git push<CR>
 highlight Comment ctermfg=darkgray
 highlight LineNr ctermfg=darkgray
 highlight TabLineSel ctermfg=cyan
+highlight SignColumn ctermbg=NONE
 
 " --- dir listing ---
 
@@ -142,23 +143,18 @@ function! Browse(path) abort
     call add(l:parts[l:i], l:item)
   endfor
 
-  let l:lines = []
+  let l:abs = fnamemodify(a:path, ':p')
+  let l:lines = [l:abs]
   for l:part in l:parts
     call extend(l:lines, l:part)
   endfor
   call setline(1, l:lines)
   call matchadd('Comment', '^\..\+')
-
-  let l:num = 2
-  for l:line in l:lines[1:18]
-    exec 'nmap <buffer> ' . l:num . ' :Browse ' . l:line . '<CR>'
-    let l:num += 1
-  endfor
+  call setpos('.', [0, 1, 1, 0])
 
   nmap <buffer> <Space> :call Browse(getline('.'))<CR>
   nmap <buffer> <CR> <Space>
   nmap <buffer> <LeftMouse> <LeftMouse><Space>
-  nmap <buffer> <CR> <Space>
   nmap <buffer> <C-l> :Browse .<CR>
   nmap <buffer> - :Browse ..<CR>
   nmap <buffer> r yy:!mv <C-r>"<BS>
@@ -202,9 +198,9 @@ highlight GitDelete ctermfg=red
 highlight GitAdd ctermfg=green
 highlight GitChange ctermfg=yellow
 
-sign define sdel text=_ texthl=GitDelete
-sign define sadd text=+ texthl=GitAdd
-sign define smod text=| texthl=GitChange
+sign define sdel text=_ texthl=Removed
+sign define sadd text=+ texthl=Added
+sign define smod text=| texthl=Changed
 
 function! GitSigns() abort
 
