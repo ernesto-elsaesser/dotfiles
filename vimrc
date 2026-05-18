@@ -200,13 +200,9 @@ set tabline=%!Tabline()
 
 " --- git ---
 
-highlight GitDelete ctermfg=red
-highlight GitAdd ctermfg=green
-highlight GitChange ctermfg=yellow
-
-sign define sdel text=_ texthl=Removed
-sign define sadd text=+ texthl=Added
-sign define smod text=| texthl=Changed
+sign define sdel text=_ texthl=Special
+sign define sadd text=+ texthl=Type
+sign define smod text=| texthl=PreProc
 
 function! GitSigns() abort
 
