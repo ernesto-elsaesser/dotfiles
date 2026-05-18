@@ -149,8 +149,9 @@ function! Browse(path) abort
     call extend(l:lines, l:part)
   endfor
   call setline(1, l:lines)
+  call matchadd('CursorLineNr', l:abs)
   call matchadd('Comment', '^\..\+')
-  call setpos('.', [0, 1, 1, 0])
+  call setpos('.', [0, 2, 1, 0])
 
   nmap <buffer> <Space> :call Browse(getline('.'))<CR>
   nmap <buffer> <CR> <Space>
