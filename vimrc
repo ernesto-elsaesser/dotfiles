@@ -162,7 +162,7 @@ function! Browse(path) abort
 
 endfunction
 
-command! -nargs=1 -complete=dir Browse call Browse(<q-args>)
+command! -nargs=1 -complete=file Browse call Browse(<q-args>)
 
 " --- terminal ---
 
