@@ -157,8 +157,10 @@ function! Browse(path) abort
   nmap <buffer> <Space> :call Browse(getline('.'))<CR>
   nmap <buffer> <CR> <Space>
   nmap <buffer> <LeftMouse> <LeftMouse><Space>
+  nmap <buffer> <CR> <Space>
   nmap <buffer> <C-l> :Browse .<CR>
   nmap <buffer> - :Browse ..<CR>
+  nmap <buffer> s :echo system('stat ' . trim(getline('.'), '/'))<CR>
 
 endfunction
 
