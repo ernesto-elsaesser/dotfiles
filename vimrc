@@ -157,6 +157,7 @@ function! Browse(path) abort
 
   nmap <buffer> <Leftmouse> :call Browse(getline('.'))<CR>
   nmap <buffer> <Space> :call Browse(getline('.'))<CR>
+  nmap <buffer> <CR> <Space>
   nmap <buffer> <LeftMouse> <LeftMouse><Space>
   nmap <buffer> <C-l> :Browse .<CR>
   nmap <buffer> - :Browse ..<CR>
