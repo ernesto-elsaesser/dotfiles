@@ -86,6 +86,9 @@ nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 " scratch buffer
 nmap <Leader>o :split new<CR>:setl bt=nofile bh=wipe<CR>
 
+" help
+nmap <Leader>h :vert help 
+
 " quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
@@ -97,9 +100,6 @@ nmap <Leader>l :call Complete()<CR>
 " show line numbers
 nmap <Leader>n :setl number! relativenumber!<CR>
 
-" help
-nmap <Leader>m :vert help 
-
 " git
 nmap <Leader>w :vert ter ++close tig<CR>
 nmap <Leader>e :call GitSigns()<CR>
@@ -108,7 +108,7 @@ nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>s :silent !tig status<CR><C-l>
 nmap <Leader>d :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>h :silent !tig<CR><C-l>
+nmap <Leader>x :silent !tig<CR><C-l>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
