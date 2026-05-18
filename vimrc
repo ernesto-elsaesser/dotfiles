@@ -161,6 +161,7 @@ function! Browse(path) abort
   nmap <buffer> <CR> <Space>
   nmap <buffer> <C-l> :Browse .<CR>
   nmap <buffer> - :Browse ..<CR>
+  nmap <buffer> r yy:!mv <C-r>"<BS>
   nmap <buffer> s :echo system('stat ' . trim(getline('.'), '/'))<CR>
   nmap <buffer> D yy:!rm <C-r>"<BS>
 
