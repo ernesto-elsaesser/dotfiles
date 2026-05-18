@@ -1,16 +1,13 @@
 " --- settings ---
 
-if &compatible
-  set nocompatible
-  set viminfo=
-  set pastetoggle=<C-y>
-endif
+set nocompatible
 
 syntax on
 filetype plugin on
 
 set mouse=a
 set background=dark
+set viminfo=
 set noswapfile
 set incsearch
 set backspace=indent,eol,start
@@ -20,8 +17,13 @@ set scrolloff=5
 set splitright
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
+set pastetoggle=<C-y>
 
 set statusline=%f%(\ %m%r%)\ \ %LL\ \ %l:%c%=%{getcwd()}\ 
+
+if len($TMUX)
+  set ttymouse=sgr
+endif
 
 " --- key mappings ---
 

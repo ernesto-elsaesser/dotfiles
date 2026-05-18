@@ -9,10 +9,10 @@ alias ll='ls -lhF --color=auto'
 alias la='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
 
-# --- screen ---
-alias xu='systemd-run --user --unit=screen screen -D -m'
-alias xs='systemctl --user status screen'
-alias xr='screen -D -r'
+# --- tmux ---
+alias tu='systemd-run --user --service-type=forking --unit=tmux tmux new -d -s main'
+alias ts='systemctl --user status tmux'
+alias ta='tmux attach'
 
 # --- vim ---
 alias v='vim -u $DOTDIR/vimrc'
