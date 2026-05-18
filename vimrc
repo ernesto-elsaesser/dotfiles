@@ -69,6 +69,9 @@ nmap ä :call term_sendkeys(b:tb, "\x10\r")<CR>
 
 let g:mapleader = ","
 
+" open HOME in new tab
+nmap <Leader>t :tabnew <Bar> Browse ~/<CR>
+
 " show unsaved changes
 nmap <Leader>z :w !diff % -<CR>
 
@@ -79,13 +82,7 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
 " scratch buffer
-nmap <Leader>p :split new<CR>:setl bt=nofile bh=wipe<CR>
-
-" search in files
-nmap <Leader>f :vim // *<Left><Left><Left>
-
-" open HOME in new tab
-nmap <Leader>h :tabnew <Bar> Browse ~/<CR>
+nmap <Leader>o :split new<CR>:setl bt=nofile bh=wipe<CR>
 
 " quickfix list
 nmap <Leader><Leader> :cc<CR>
@@ -99,14 +96,13 @@ nmap <Leader>l :call Complete()<CR>
 nmap <Leader>n :setl number! relativenumber!<CR>
 
 " git
-nmap <Leader>w :vert ter ++close tig<CR>
 nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :silent !tig reflog<CR><C-l>
-nmap <Leader>t :silent !tig<CR><C-l>
 nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>s :silent !tig status<CR><C-l>
 nmap <Leader>d :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
+nmap <Leader>h :vert ter ++close tig<CR>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
