@@ -95,6 +95,9 @@ nmap <Leader>l :call Complete()<CR>
 " show line numbers
 nmap <Leader>n :setl number! relativenumber!<CR>
 
+" help
+nmap <Leader>m :vert help 
+
 " git
 nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :silent !tig reflog<CR><C-l>
@@ -122,7 +125,7 @@ function! Browse(path) abort
   endif
 
   enew
-  exec 'tcd ' . fnameescape(a:path)
+  exec 'lcd ' . fnameescape(a:path)
   setl buftype=nofile bufhidden=wipe noswapfile nomodified number
 
   let l:parts = [[], [], [], []]
