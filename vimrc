@@ -159,10 +159,10 @@ function! Browse(path) abort
   nmap <buffer> <LeftMouse> <LeftMouse><Space>
   nmap <buffer> <C-l> :Browse .<CR>
   nmap <buffer> - :Browse ..<CR>
-  nmap <buffer> c y/\/\<Bar>$<CR>
-  nmap <buffer> r c:!mv <C-r>" 
-  nmap <buffer> s c:!stat <C-r>"<CR>
-  nmap <buffer> D c:!rm <C-r>"
+  nmap <buffer> c :let @p = trim(getline('.'), '/')<CR>:echo @p<CR>
+  nmap <buffer> r c:!mv <C-r>p 
+  nmap <buffer> s c:!stat <C-r>p<CR>
+  nmap <buffer> D c:!rm <C-r>p
 
 endfunction
 
