@@ -120,7 +120,7 @@ highlight TabLineSel ctermfg=cyan
 function! Browse(path) abort
 
   if !isdirectory(a:path)
-    exec 'drop ' . a:path
+    exec 'drop ' . fnameescape(a:path)
     return
   endif
 
