@@ -126,8 +126,6 @@ function! Browse(path) abort
     return
   endif
 
-  let l:abs = fnamemodify(a:path, ':p')
-
   enew
   exec 'lcd ' . fnameescape(a:path)
   setl bt=nofile bh=wipe noswf nomod rnu
@@ -145,12 +143,13 @@ function! Browse(path) abort
     call add(l:parts[l:i], l:item)
   endfor
 
-  let l:lines = [l:abs, ""]
+  let l:cwd = getcwd()
+  let l:lines = [l:cwd, ""]
   for l:part in l:parts
     call extend(l:lines, l:part)
   endfor
   call setline(1, l:lines)
-  call matchadd('CursorLineNr', l:abs)
+  call matchadd('CursorLineNr', l:cwd)
   call matchadd('Comment', '^\..\+')
   call setpos('.', [0, 3, 1, 0])
 
