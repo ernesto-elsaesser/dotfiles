@@ -27,7 +27,7 @@ alias gf='git fetch'
 alias gg='git pull --ff-only'
 alias gs='git status'
 alias ga='git add --all'
-alias gc='git commit'
+alias gc='git commit -m'
 alias gp='git push'
 
 git_user() {

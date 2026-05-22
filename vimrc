@@ -164,6 +164,7 @@ function! Browse(path) abort
   nmap <buffer> d :!mkdir 
   nmap <buffer> D c:!rm <C-r>p
   au ShellCmdPost <buffer> Browse .
+  au BufEnter <buffer> Browse .
 
 endfunction
 
