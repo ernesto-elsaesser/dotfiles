@@ -101,12 +101,12 @@ nmap <Leader>n :setl number! relativenumber!<CR>
 " git
 nmap <Leader>w :vert ter ++close tig<CR>
 nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>r :silent !tig reflog<CR><C-l>
+nnoremap <Leader>r :silent !tig reflog<CR><C-l>
 nmap <Leader>a :echo system("git commit -a -m ''")<Left><Left><Left>
 nnoremap <Leader>s :silent !tig status<CR><C-l>
 nmap <Leader>d :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>x :silent !tig<CR><C-l>
+nnoremap <Leader>x :silent !tig<CR><C-l>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
 
