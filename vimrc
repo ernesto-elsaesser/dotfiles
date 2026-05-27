@@ -60,7 +60,7 @@ nmap Ü :Term bel<CR>
 
 " paste to linked terminal
 nmap Ö :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")<CR>
-nmap ö yyÖ
+nmap ö yyÖ<CR>
 
 " repeat previous command in linked terminal
 nmap ä :call term_sendkeys(b:tb, "\x10\r")<CR>
