@@ -42,7 +42,7 @@ alias a='conda activate'
 alias d='conda deactivate'
 alias cl='conda env list'
 alias cc='conda create -n'
-alias ce='conda export'
+alias ce='conda export >'
 alias ci='conda install'
 alias cr='conda remove --all -n'
 
