@@ -84,8 +84,8 @@ nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 " scratch buffer
 nmap <Leader>o :split new<CR>:setl bt=nofile bh=wipe<CR>
 
-" help
-nmap <Leader>h :vert help 
+" open home
+nmap <Leader>h :Browse ~/<CR>
 
 " quickfix list
 nmap <Leader><Leader> :cc<CR>
