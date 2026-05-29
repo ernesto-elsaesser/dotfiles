@@ -59,7 +59,7 @@ nmap ü :Term vert<CR>
 nmap Ü :Term bel<CR>
 
 " paste to linked terminal
-nmap Ö :call term_sendkeys(b:tb, trim(getreg('"')) .. "\n")<CR>
+nmap Ö :call term_sendkeys(b:tb, getreg('"'))<CR>
 nmap ö yyÖ<CR>
 
 " repeat previous command in linked terminal
@@ -162,7 +162,7 @@ function! Browse(path) abort
   nmap <buffer> s c:echo system("stat -c '%A %h %U %G %s %.19y %n' -- " . @p)<CR>
   nmap <buffer> r c:!mv <C-r>p 
   nmap <buffer> d :!mkdir 
-  nmap <buffer> D c:!rm <C-r>p
+  nmap <buffer> D c:!rm -rf <C-r>p
   au ShellCmdPost <buffer> Browse .
   au BufEnter <buffer> Browse .
 
