@@ -54,16 +54,19 @@ nmap + :setl wrap!<CR>
 " jump to keyword under cursor
 nmap gk <C-]>
 
-" split linked terminal
-nmap ü :Term vert<CR>
-nmap Ü :Term bel<CR>
+" open terminal
+nmap ü :vert ter<CR>
+nmap Ü :bel ter<CR>
 
-" paste to linked terminal
-nmap Ö :call term_sendkeys(b:tb, getreg('"'))<CR>
+" select target terminal
+tmap Ä <C-w>:let t:ter = bufnr()<CR>
+
+" repeat previous command in target terminal
+nmap ä :call term_sendkeys(t:ter, "\x10\r")<CR>
+
+" paste to target terminal
+nmap Ö :call term_sendkeys(t:ter, getreg('"'))<CR>
 nmap ö yyÖ<CR>
-
-" repeat previous command in linked terminal
-nmap ä :call term_sendkeys(b:tb, "\x10\r")<CR>
 
 " --- leader mappings ---
 
@@ -169,10 +172,6 @@ function! Browse(path) abort
 endfunction
 
 command! -nargs=1 -complete=file Browse call Browse(<q-args>)
-
-" --- terminal ---
-
-command! -nargs=1 Term let n = bufnr() | exec '<args> ter' | call setbufvar(n, "tb", bufnr())
 
 " --- formatting ---
 
