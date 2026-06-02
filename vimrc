@@ -135,15 +135,20 @@ function! Browse(path) abort
 
   let l:parts = [[], [], [], []]
 
-  for l:item in readdir('.')
-    let l:hidden = l:item[0] == '.'
+  for l:item in glob('*', 1, 1)
     if isdirectory(l:item)
-      let l:i = l:hidden ? 2 : 0
-      let l:item .= '/'
+      call add(l:parts[0], l:item . '/')
     else
-      let l:i = l:hidden ? 3 : 1
+      call add(l:parts[1], l:item)
     endif
-    call add(l:parts[l:i], l:item)
+  endfor
+
+  for l:item in glob('.*', 1, 1)[2:]
+    if isdirectory(l:item)
+      call add(l:parts[2], l:item . '/')
+    else
+      call add(l:parts[3], l:item)
+    endif
   endfor
 
   let l:cwd = getcwd()
