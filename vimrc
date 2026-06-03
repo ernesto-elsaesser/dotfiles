@@ -104,12 +104,12 @@ nmap <Leader>n :setl number! relativenumber!<CR>
 " git
 nnoremap <Leader>w :silent !tig<CR><C-l>
 nmap <Leader>e :call GitSigns()<CR>
-nnoremap <Leader>r :silent !tig status<CR><C-l>
+nmap <Leader>r :echo b:gitsigns[line('.')]<CR>
 nmap <Leader>a :echo system("git add --all --verbose")<CR>
 nmap <Leader>s :echo system("git status")<CR>
 nmap <Leader>d :vert ter git diff HEAD<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>y :echo b:gitsigns[line('.')]<CR>
+nnoremap <Leader>y :silent !tig status<CR><C-l>
 nmap <Leader>x :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :!git push<CR>
