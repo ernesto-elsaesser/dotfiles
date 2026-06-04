@@ -5,7 +5,6 @@ set nocompatible
 syntax on
 filetype plugin on
 
-set mouse=a
 set background=dark
 set viminfo=
 set noswapfile
@@ -20,10 +19,6 @@ set autoindent
 set pastetoggle=<C-y>
 
 set statusline=%f%(\ %m%r%)\ \ %LL\ \ %l:%c%=%{getcwd()}\ 
-
-if len($TMUX)
-  set ttymouse=sgr
-endif
 
 " --- key mappings ---
 
@@ -46,7 +41,6 @@ nmap # <C-^>
 
 " open parent directory
 nmap - :Browse .<CR>
-nmap <Rightmouse> -
 
 " toggle word wrap
 nmap + :setl wrap!<CR>
@@ -104,7 +98,7 @@ nmap <Leader>n :setl number! relativenumber!<CR>
 " git
 nnoremap <Leader>w :silent !tig<CR><C-l>
 nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>r :echo b:gitsigns[line('.')]<CR>
+nmap <Leader>r :echo b:diff[line('.')]<CR>
 nmap <Leader>a :echo system("git add --all --verbose")<CR>
 nmap <Leader>s :echo system("git status")<CR>
 nmap <Leader>d :vert ter git diff HEAD<CR>
@@ -220,7 +214,7 @@ function! GitSigns() abort
   endif
 
   let quick = []
-  let b:gitsigns = repeat([""], line('$'))
+  let b:diff = repeat([""], line('$'))
 
   for i in range(len(diff_lines))
 
@@ -243,13 +237,13 @@ function! GitSigns() abort
       let msg = 'removed ' .. old_count .. ' lines'
       let l = new_start > 0 ? new_start : 1
       exe 'sign place ' .. l .. ' name=sdel line=' .. l .. ' buffer=' .. bufnr
-      let b:gitsigns[l] = join(diff_lines[i + 1:i + old_count], "\n")
+      let b:diff[l] = join(diff_lines[i + 1:i + old_count], "\n")
     else
       let msg = 'changed ' .. new_count .. ' lines'
       for j in range(1, new_count)
         let l = new_start + j - 1
         exe 'sign place ' .. l .. ' name=smod line=' .. l .. ' buffer=' .. bufnr
-        let b:gitsigns[l] = diff_lines[i + j][1:]
+        let b:diff[l] = diff_lines[i + j][1:]
       endfor
     endif
 
