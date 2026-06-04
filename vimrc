@@ -15,7 +15,7 @@ set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 set pastetoggle=<C-y>
 
-set statusline=%f%(\ %m%r%)\ \ %LL\ \ %l:%c%=%{getcwd()}\ 
+set statusline=%f%(\ %m%r%)\ \ %l:%c\ \ %LL%=%{getcwd()}\ 
 
 " --- key mappings ---
 
@@ -37,7 +37,7 @@ vnoremap <C-k> <Esc>
 nmap # <C-^>
 
 " open parent directory
-nmap - :Browse .<CR>
+nmap - :e .<CR>
 
 " toggle word wrap
 nmap + :setl wrap!<CR>
@@ -64,7 +64,7 @@ nmap ö yyÖ<CR>
 let g:mapleader = ","
 
 " open HOME in new tab
-nmap <Leader>t :tabnew <Bar> Browse ~/<CR>
+nmap <Leader>t :tabe ~/<CR>
 
 " show unsaved changes
 nmap <Leader>z :w !diff % -<CR>
@@ -79,7 +79,7 @@ nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 nmap <Leader>o :split new<CR>:setl bt=nofile bh=wipe<CR>
 
 " open home
-nmap <Leader>h :Browse ~/<CR>
+nmap <Leader>h :e ~/<CR>
 
 " quickfix list
 nmap <Leader><Leader> :cc<CR>
@@ -114,16 +114,18 @@ highlight SignColumn ctermbg=NONE
 
 " --- dir listing ---
 
-function! Browse(path) abort
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+function! ListDir(path) abort
 
   if !isdirectory(a:path)
-    exec 'drop ' . fnameescape(a:path)
+    call clearmatches()
     return
   endif
 
-  enew
   exec 'lcd ' . fnameescape(a:path)
-  setl bt=nofile bh=wipe noswf nomod rnu
+  setl bt=nofile bh=wipe nomod rnu
 
   let l:parts = [[], [], [], []]
 
@@ -143,32 +145,34 @@ function! Browse(path) abort
     endif
   endfor
 
-  let l:cwd = getcwd()
-  let l:lines = [l:cwd, ""]
+  let l:lines = [getcwd(), ""]
   for l:part in l:parts
     call extend(l:lines, l:part)
   endfor
   call setline(1, l:lines)
-  call matchadd('CursorLineNr', l:cwd)
-  call matchadd('Comment', '^\..\+')
+
+  call matchaddpos('CursorLineNr', [1])
+  match Comment /^\..\+/
   call setpos('.', [0, 3, 1, 0])
 
-  nmap <buffer> <Space> :call Browse(getline('.'))<CR>
+  nmap <buffer> <Space> gf
   nmap <buffer> <CR> <Space>
-  nmap <buffer> <LeftMouse> <LeftMouse><Space>
-  nmap <buffer> <C-l> :Browse .<CR>
-  nmap <buffer> - :Browse ..<CR>
+  nmap <buffer> - :e ..<CR>
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>:echo @p<CR>
   nmap <buffer> s c:echo system("stat -c '%A %h %U %G %s %.19y %n' -- " . @p)<CR>
   nmap <buffer> r c:!mv <C-r>p 
   nmap <buffer> d :!mkdir 
   nmap <buffer> D c:!rm -rf <C-r>p
-  au ShellCmdPost <buffer> Browse .
-  au BufEnter <buffer> Browse .
+  au ShellCmdPost <buffer> Refresh
 
 endfunction
 
-command! -nargs=1 -complete=file Browse call Browse(<q-args>)
+command! Refresh call ListDir(getcwd())
+
+augroup mynetrw
+    autocmd!
+    autocmd BufEnter * call ListDir(expand('%'))
+augroup END
 
 " --- formatting ---
 
