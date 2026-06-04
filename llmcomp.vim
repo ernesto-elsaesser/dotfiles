@@ -29,7 +29,7 @@ function! Complete() abort
   let g:llmres = response
 
   let gen_lines = split(response.response, "\n")
-  call setline(row, pre_lines[-1] .. gen_lines[0])
+  call setline(row, pre_lines[-1] . gen_lines[0])
   if len(gen_lines) > 1
     call append(row, gen_lines[1:])
   endif
