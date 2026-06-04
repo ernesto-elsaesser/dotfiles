@@ -192,7 +192,7 @@ set tabline=%!Tabline()
 
 " --- python ---
 
-command! -nargs=1 RuffEnv let $RUFF = $HOME .. "/miniforge3/envs/<args>/bin/ruff"
+command! -nargs=1 RuffEnv let $RUFF = $HOME . "/miniforge3/envs/<args>/bin/ruff"
 command! Format !$RUFF format %
 
 augroup py
