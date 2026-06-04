@@ -21,7 +21,7 @@ function! Complete() abort
 
   let cmd = "curl -s -X POST http://localhost:11434/api/generate"
   let cmd .= " -H Content-Type: application/json"
-  let cmd .= " -d '" .. json_encode(request) .. "'"
+  let cmd .= " -d '" . json_encode(request) . "'"
 
   let output = system(cmd)
 
