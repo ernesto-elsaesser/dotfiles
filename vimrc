@@ -11,7 +11,6 @@ set backspace=indent,eol,start
 set laststatus=2
 set wildmenu
 set scrolloff=5
-set splitright
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 set pastetoggle=<C-y>
@@ -47,7 +46,7 @@ nmap + :setl wrap!<CR>
 nmap gk <C-]>
 
 " open terminal
-nmap ü :vert ter<CR>
+nmap ü :rightb vert ter<CR>
 nmap Ü :bel ter<CR>
 
 " select target terminal
