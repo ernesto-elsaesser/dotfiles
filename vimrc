@@ -148,7 +148,7 @@ function! ListDir(path) abort
   match Comment /^\..\+/
   call setpos('.', [0, 3, 1, 0])
 
-  nmap <buffer> <Space> gf
+  nmap <buffer> <Space> 2gf
   nmap <buffer> <CR> <Space>
   nmap <buffer> - :e ..<CR>
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>:echo @p<CR>
