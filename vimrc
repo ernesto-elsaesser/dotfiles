@@ -49,14 +49,11 @@ nmap gk <C-]>
 nmap ü :rightb vert ter<CR>
 nmap Ü :bel ter<CR>
 
-" select target terminal
-tmap Ä <C-w>:let t:ter = bufnr()<CR>
+" repeat previous command in terminal
+nmap ä :call TermSend("\x10\r")<CR>
 
-" repeat previous command in target terminal
-nmap ä :call term_sendkeys(t:ter, "\x10\r")<CR>
-
-" paste to target terminal
-nmap Ö :call term_sendkeys(t:ter, getreg('"'))<CR>
+" paste to terminal
+nmap Ö :call TermSend(getreg('"'))<CR>
 nmap ö yyÖ<CR>
 
 " --- leader mappings ---
@@ -104,6 +101,14 @@ nmap <Leader>v :!git push<CR>
 highlight Comment ctermfg=darkgray
 highlight LineNr ctermfg=darkgray
 highlight TabLineSel ctermfg=cyan
+
+" --- send to term ---
+
+function! TermSend(msg) abort
+  let l:bufnums = tabpagebuflist()
+  let l:termnums = filter(l:bufnums, 'bufname(v:val)[0] == "!"')
+  call term_sendkeys(l:termnums[0], a:msg)
+endfunction
 
 " --- dir listing ---
 
@@ -199,6 +204,8 @@ augroup py
   autocmd!
   autocmd FileType python setl makeprg=$RUFF\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
 augroup END
+
+tmap <C-p> import pandas as pd<CR>
 
 " --- imports ---
 
