@@ -14,6 +14,7 @@ set scrolloff=5
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 set pastetoggle=<C-y>
+set path=,,
 
 set statusline=%f%(\ %m%r%)\ \ %l:%c\ \ %LL%=%{getcwd()}\ 
 
@@ -153,7 +154,7 @@ function! ListDir(path) abort
   match Comment /^\..\+/
   call setpos('.', [0, 3, 1, 0])
 
-  nmap <buffer> <Space> 2gf
+  nmap <buffer> <Space> gf
   nmap <buffer> <CR> <Space>
   nmap <buffer> - :e ..<CR>
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>:echo @p<CR>
