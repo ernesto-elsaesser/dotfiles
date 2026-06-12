@@ -205,7 +205,7 @@ augroup py
   autocmd FileType python setl makeprg=$RUFF\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
 augroup END
 
-tmap <C-p> import pandas as pd<CR>
+tmap Ö import pandas as pd<CR>
 
 " --- imports ---
 
