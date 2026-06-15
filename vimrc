@@ -90,7 +90,7 @@ nmap <Leader>e :call GitSigns()<CR>
 nmap <Leader>r :echo b:diff[line('.')]<CR>
 nmap <Leader>a :echo system("git add --all --verbose")<CR>
 nmap <Leader>s :echo system("git status")<CR>
-nmap <Leader>d :vert ter git diff HEAD<CR>
+nmap <Leader>d :rightb vert ter git diff HEAD<CR>
 nmap <Leader>g :!git pull --ff-only<CR>
 nnoremap <Leader>y :silent !tig status<CR><C-l>
 nmap <Leader>x :echo system("git commit -a -m ''")<Left><Left><Left>
