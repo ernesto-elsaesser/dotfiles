@@ -102,6 +102,7 @@ nmap <Leader>v :!git push<CR>
 highlight Comment ctermfg=darkgray
 highlight LineNr ctermfg=darkgray
 highlight TabLineSel ctermfg=cyan
+highlight MatchParen cterm=underline ctermbg=NONE
 
 " --- send to term ---
 
