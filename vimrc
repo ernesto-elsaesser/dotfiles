@@ -50,12 +50,11 @@ nmap gk <C-]>
 nmap ü :rightb vert ter<CR>
 nmap Ü :bel ter<CR>
 
-" repeat previous command in terminal
+" send to terminal
 nmap ä :call TermSend("\x10\r")<CR>
-
-" paste to terminal
-nmap Ö :call TermSend(getreg('"'))<CR>
-nmap ö yyÖ<CR>
+nmap Ä :call TermSend(getreg('"'))<CR>
+nmap ö yy:call TermSend(getreg('"'))<CR>
+nmap Ö yy:call TermSend(trim(getreg('"'), ' '))<CR>
 
 " --- leader mappings ---
 
