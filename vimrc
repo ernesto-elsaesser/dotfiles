@@ -80,6 +80,9 @@ nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
+" quick reload
+nmap <Leader>l :e<CR>
+
 " show line numbers
 nmap <Leader>n :setl number! relativenumber!<CR>
 
