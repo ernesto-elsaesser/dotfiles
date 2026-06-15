@@ -23,6 +23,7 @@ G="git@github.com:ernesto-elsaesser"
 alias t='tig'
 alias gi='git init --inital-branch=main'
 alias gk='git clone'
+alias gl='git log -10 --format=reference'
 alias gf='git fetch'
 alias gg='git pull --ff-only'
 alias gs='git status'
