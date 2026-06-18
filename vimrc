@@ -151,6 +151,8 @@ function! ListDir(path) abort
   for l:part in l:parts
     call extend(l:lines, l:part)
   endfor
+
+  1,$delete _
   call setline(1, l:lines)
 
   call matchaddpos('CursorLineNr', [1])
@@ -165,11 +167,9 @@ function! ListDir(path) abort
   nmap <buffer> r c:!mv <C-r>p 
   nmap <buffer> d :!mkdir 
   nmap <buffer> D c:!rm -rf <C-r>p
-  au ShellCmdPost <buffer> Refresh
+  au ShellCmdPost <buffer> call ListDir(getcwd())
 
 endfunction
-
-command! Refresh call ListDir(getcwd())
 
 augroup mynetrw
     autocmd!
