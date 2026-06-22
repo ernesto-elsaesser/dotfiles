@@ -152,12 +152,13 @@ function! ListDir(path) abort
     call extend(l:lines, l:part)
   endfor
 
+  let l:lnum = max([line('.'), 3])
   1,$delete _
   call setline(1, l:lines)
+  call setpos('.', [0, l:lnum, 1, 0])
 
   call matchaddpos('CursorLineNr', [1])
   match Comment /^\..\+/
-  call setpos('.', [0, 3, 1, 0])
 
   nmap <buffer> <Space> gf
   nmap <buffer> <CR> <Space>
