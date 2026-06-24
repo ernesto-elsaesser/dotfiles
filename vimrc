@@ -13,7 +13,6 @@ set scrolloff=5
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 set pastetoggle=<C-y>
-set path=,,
 
 set statusline=%f%(\ %m%r%)\ \ %l:%c\ \ %LL%=%{getcwd()}\ 
 
@@ -159,11 +158,10 @@ function! ListDir(path) abort
   call matchaddpos('CursorLineNr', [1])
   match Comment /^\..\+/
 
-  nmap <buffer> <Space> gf
-  nmap <buffer> <CR> <Space>
   nmap <buffer> - :e ..<CR>
-  nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>:echo @p<CR>
-  nmap <buffer> s c:echo system("stat -c '%A %h %U %G %s %.19y %n' -- " . @p)<CR>
+  nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>
+  nmap <buffer> <Space> c:dr <C-r>p<CR>
+  nmap <buffer> s c:echo trim(system("ls -lh " . @p))<CR>
   nmap <buffer> r c:!mv <C-r>p 
   nmap <buffer> d :!mkdir 
   nmap <buffer> D c:!rm -rf <C-r>p
