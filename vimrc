@@ -119,8 +119,9 @@ let g:loaded_netrwPlugin = 1
 
 function! ListDir(path) abort
 
+  call clearmatches()
+
   if !isdirectory(a:path)
-    call clearmatches()
     return
   endif
 
@@ -155,11 +156,9 @@ function! ListDir(path) abort
   call setline(1, l:lines)
   call setpos('.', [0, l:lnum, 1, 0])
 
-  call matchaddpos('CursorLineNr', [1])
+  call matchaddpos('Underlined', [1])
   call matchadd('Comment', '^\..\+')
-  call matchadd('Identifier', '.\+\.md$')
-  call matchadd('Type', '.\+\.sh$')
-  call matchadd('Constant', '.\+\.py$')
+  call matchadd('Statement', '.\+\.\(sh\|py\)$')
 
   nmap <buffer> - :e ..<CR>
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>
