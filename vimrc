@@ -156,7 +156,10 @@ function! ListDir(path) abort
   call setpos('.', [0, l:lnum, 1, 0])
 
   call matchaddpos('CursorLineNr', [1])
-  match Comment /^\..\+/
+  call matchadd('Comment', '^\..\+')
+  call matchadd('Identifier', '.\+\.md$')
+  call matchadd('Type', '.\+\.sh$')
+  call matchadd('Constant', '.\+\.py$')
 
   nmap <buffer> - :e ..<CR>
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>
