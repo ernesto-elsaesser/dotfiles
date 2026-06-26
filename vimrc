@@ -12,6 +12,7 @@ set laststatus=2
 set scrolloff=5
 set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
+set complete=.,w
 set pastetoggle=<C-y>
 
 set statusline=%f%(\ %m%r%)\ \ %l:%c\ \ %LL%=%{getcwd()}\ 
