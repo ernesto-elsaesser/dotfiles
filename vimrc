@@ -127,7 +127,7 @@ function! ListDir(path) abort
   endif
 
   exec 'lcd ' . fnameescape(a:path)
-  setl bt=nofile bh=wipe nomod rnu
+  setl bt=nofile nomod rnu
 
   let l:parts = [[], [], [], []]
 
@@ -159,7 +159,7 @@ function! ListDir(path) abort
 
   call matchaddpos('Underlined', [1])
   call matchadd('Comment', '^\..\+')
-  call matchadd('Statement', '.\+\.\(sh\|py\)$')
+  call matchadd('Statement', '.\+\.\(sh\|py\)$', 9)
 
   nmap <buffer> - :e ..<CR>
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>
