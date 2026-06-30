@@ -39,7 +39,7 @@ git_user() {
 
 # --- python ---
 alias p='python3'
-alias h='eval "$($HOME/miniforge3/bin/conda shell.bash hook)"'
+alias h='source $HOME/miniforge3/etc/profile.d/conda.sh'
 alias a='conda activate'
 alias d='conda deactivate'
 alias cl='conda env list'
