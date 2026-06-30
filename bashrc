@@ -3,6 +3,7 @@ export DOTDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 alias c='clear'
+alias t='column -t'
 
 # --- ls --- (A = almost all, F = classify)
 alias ll='ls -lhF --color=auto'
@@ -20,7 +21,6 @@ alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
-alias t='tig'
 alias gi='git init --inital-branch=main'
 alias gk='git clone'
 alias gl='git log -10 --format=reference'
