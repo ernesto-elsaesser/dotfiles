@@ -28,7 +28,7 @@ Treat these rules as policy, not just as guidance.
    - When editing an existing file, prefer to do so via patch (edit tool)
    - If an edit / patch call fails, do not fall back to a full write of the file
    - Instead, read the current content of the file from disk and compare with chat history to detect user changes
-2. Frequently verify changes by running available build tools or analyzers
+2. Regularily verify changes by running available build tools or analyzers
    - Pick the tool with the least overhead to obtain feedback on code correctness
    - Prefer static analyzers over full build toolchains where possible
    - Establish an efficient feedback loop of error checking and fixing
