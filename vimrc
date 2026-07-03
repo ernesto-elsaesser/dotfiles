@@ -168,7 +168,7 @@ function! ListDir(path) abort
   nmap <buffer> r c:!mv <C-r>p 
   nmap <buffer> d :!mkdir 
   nmap <buffer> D c:!rm -rf <C-r>p
-  au ShellCmdPost <buffer> call ListDir(getcwd())
+  au! ShellCmdPost <buffer> call ListDir(getcwd())
 
 endfunction
 
