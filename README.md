@@ -3,10 +3,41 @@
 - [bashrc](bashrc) should be sourced from `~/.bashrc`
 - [vimrc](vimrc) is loaded via the `vim` alias in bashrc
   - [gitsigns.vim](gitsigns.vim) contains code to show git diffs via vim signs
-- [keymap](keymap) contains scripts to remap keyboard and mouse buttons
 - [RULES.md](RULES.md) should be used as global context for coding agents
+- [keymap](keymap) contains scripts to remap keyboard and mouse buttons
 
 The `vimrc` contains mappings for German umlaut keys, intended for German keyboard layouts.
+
+## Coding Agent
+
+Install `nvm`:
+
+1. Clone `nvm` repo into $HOME
+2. Source `nvm.sh` in repo folder to activate
+3. Run `nvm install --lts` to install and activate node
+
+Install Gemini CLI:
+
+```bash
+npm install -g @google/gemini-cli
+```
+
+Update `~/.gemini/settings.json` to look for `AGENTS.md` files (instead of `GEMINI.md`):
+
+```json
+{
+   ...
+   "context": {
+     "fileName": "AGENTS.md"
+   }
+}
+```
+
+Link `RULES.md`:
+
+```bash
+ln -s $HOME/dotfiles/RULES.md $HOME/.gemini/AGENTS.md
+```
 
 ## Key Mapping
 
