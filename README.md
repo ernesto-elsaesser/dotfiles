@@ -10,33 +10,18 @@ The `vimrc` contains mappings for German umlaut keys, intended for German keyboa
 
 ## Coding Agent
 
-Install `nvm`:
-
-1. Clone `nvm` repo into $HOME
-2. Source `nvm.sh` in repo folder to activate
-3. Run `nvm install --lts` to install and activate node
-
-Install Gemini CLI:
+Install Antigravity CLI:
 
 ```bash
-npm install -g @google/gemini-cli
+curl -fsSL https://antigravity.google/cli/install.sh | bash
 ```
 
-Update `~/.gemini/settings.json` to look for `AGENTS.md` files (instead of `GEMINI.md`):
-
-```json
-{
-   ...
-   "context": {
-     "fileName": "AGENTS.md"
-   }
-}
-```
+Then run `agy` once and login.
 
 Link `RULES.md`:
 
 ```bash
-ln -s $HOME/dotfiles/RULES.md $HOME/.gemini/AGENTS.md
+ln -s $HOME/dotfiles/RULES.md $HOME/.antigravity/rules.md
 ```
 
 ## Key Mapping
