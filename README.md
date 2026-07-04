@@ -1,22 +1,12 @@
 # Files
 
 - [bashrc](bashrc) should be sourced from `~/.bashrc`
-- [vimrc](vimrc) is loaded via the `vim` aliase in bashrc
-- [tmux.conf](tmux.conf) is loaded via the `tmux` aliase in bashrc
+- [vimrc](vimrc) is loaded via the `vim` alias in bashrc
+  - [gitsigns.vim](gitsigns.vim) contains code to show git diffs via vim signs
 - [keymap](keymap) contains scripts to remap keyboard and mouse buttons
-- [nvim](nvim) contains neovim Lua scripts
 - [RULES.md](RULES.md) should be used as global context for coding agents
 
-## Vim / Neovim
-
 The `vimrc` contains mappings for German umlaut keys, intended for German keyboard layouts.
-
-Lua scripts automatically loaded from `vimrc` by Neovim:
-
-- [term.lua](nvim/term.lua) - send commands to a link terminal buffer
-- [git.lua](nvim/git.lua) - show git diff via signs and diagnostics items
-- [lsp.lua](nvim/lsp.lua) - LSP client configuration
-- [ollama.lua](nvim/ollama.lua) - code completions via local LLM
 
 ## Key Mapping
 
@@ -40,3 +30,4 @@ Configuration files to map CapsLock to Control under Linux and Windows:
 
 It should be copied into `/etc/udev/hwdb.d/` (e.g. as `90-mouse-btns.conf`).
 
+[mouse-buttons.ahk](keymap/mouse-buttons.ahk) is an AutoHotkey script that performs that same mapping (usable on Windows).
