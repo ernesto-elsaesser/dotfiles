@@ -165,7 +165,8 @@ function! ListDir(path) abort
   nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>
   nmap <buffer> <Space> c:dr <C-r>p<CR>
   nmap <buffer> s c:echo trim(system("ls -lh " . @p))<CR>
-  nmap <buffer> r c:!mv <C-r>p 
+  nmap <buffer> r c:!mv <C-r>p <C-r>p
+  nmap <buffer> m c:!mv <C-r>p 
   nmap <buffer> d :!mkdir 
   nmap <buffer> D c:!rm -rf <C-r>p
   au! ShellCmdPost <buffer> call ListDir(getcwd())
