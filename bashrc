@@ -39,6 +39,7 @@ git_user() {
 
 # --- python ---
 alias p='python3'
+alias i='python3 -m pydoc'
 alias h='source $HOME/miniforge3/etc/profile.d/conda.sh'
 alias a='conda activate'
 alias d='conda deactivate'
