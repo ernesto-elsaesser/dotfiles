@@ -162,13 +162,14 @@ function! ListDir(path) abort
   call matchadd('Statement', '.\+\.\(sh\|py\)$', 9)
 
   nmap <buffer> - :e ..<CR>
-  nmap <buffer> c :let @p = fnameescape(trim(getline('.'), '/'))<CR>
-  nmap <buffer> <Space> c:dr <C-r>p<CR>
-  nmap <buffer> s c:echo trim(system("ls -lh " . @p))<CR>
-  nmap <buffer> r c:!mv <C-r>p <C-r>p
-  nmap <buffer> m c:!mv <C-r>p 
+  nmap <buffer> i :let @p = fnameescape(trim(getline('.'), '/'))<CR>
+  nmap <buffer> <Space> i:dr <C-r>p<CR>
+  nmap <buffer> s i:echo trim(system("ls -lh " . @p))<CR>
+  nmap <buffer> r i:!mv <C-r>p <C-r>p
+  nmap <buffer> m i:!mv <C-r>p 
+  nmap <buffer> c i:!cp <C-r>p 
   nmap <buffer> d :!mkdir 
-  nmap <buffer> D c:!rm -rf <C-r>p
+  nmap <buffer> D i:!rm -rf <C-r>p
   au! ShellCmdPost <buffer> call ListDir(getcwd())
 
 endfunction
