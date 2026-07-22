@@ -13,12 +13,12 @@
 2. If no specialized tool is available, the shell execution tool may be used to
    - Gather system information and metadata (without side effects)
    - Run analyze or build commands to verify correctness of changed code
-3. If no specialized tool is available and the agent was *explicitly* instructed to do so, the shell execution tool may be used to
-   - Change runtime configuration
-   - Execute management commands (restart services, etc)
+3. The shell execution tool may not be used for the following task, unless *explicitly* instructed to do so
+   - System configuration (e.g. modify runtime state)
+   - Management commands (e.g. restart services)
+   - Network communication (e.g. sending packets to other hosts)
+   - Operations with elevated permissions (e.g. `sudo`)
 4. Never use the shell execution tool to create, read, or edit files
-5. Never attempt to execute `sudo` commands
-   - Ask the user to manually run such commands instead
 
 Treat these rules as policy, not just as guidance.
 
