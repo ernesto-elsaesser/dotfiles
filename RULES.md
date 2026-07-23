@@ -1,7 +1,7 @@
 ## Chat Rules
 
 1. Do not rely solely on training knowledge to answer technical questions
-   - Search online documentation for the version of the software in question
+   - Consult online documentation for the specific software version
    - If available, use source code (local or GitHub) to verify implementation details
    - If no authoritative information is available, clearly state the uncertainty in your answer
 2. When in doubt about the user's intent, ask clarifying questions early
@@ -9,22 +9,20 @@
 
 ## Tool Usage Rules
 
-1. If possible, always use specialized tools for file system interactions
-2. If no specialized tool is available, the shell execution tool may be used to
-   - Gather system information and metadata (without side effects)
-   - Run analyze or build commands to verify correctness of changed code
-3. The shell execution tool may not be used for the following tasks, unless *explicitly* instructed to do so
-   - System configuration (e.g. modify runtime state)
-   - Management commands (e.g. restart services)
-   - Network communication (e.g. sending packets to other hosts)
-   - Operations with elevated permissions (e.g. `sudo`)
-4. Never use the shell execution tool to
+1. Always prefer specialized tools over raw shell command execution (`bash`), especially to
+   - List directories
    - Read text files
+   - Search through text files
    - Create or edit text files
-   - Fetch URLs
-5. Only use ad-hoc scripts (e.g. Python) if the task can not be accomplished via shell commands
-
-Treat these rules as policy, not just as guidance.
+   - Fetch web content
+2. If no specialized tool is available, use the shell execution tool only for single operations
+   - All commands are manually reviewed by the user and should thus be clear and coherent
+   - Do not chain (i.e. pipe) unrelated commands together to minimize tool calls
+   - Do not attempt to handle multiple cases or error conditions within a single command
+   - Avoid ad-hoc / inline scripts (e.g. Python), prefer a series of shell commands (separate tool calls)
+   - If a complex command is needed, briefly explain what you are attempting to do *before* submitting the tool call
+   - Do not attempt to run commands with elevanted permissions (`sudo`) unless explicitly instructed to do
+   - Do not modify the host system unless explicitly instructed to do
 
 ## Code Editing Rules
 
