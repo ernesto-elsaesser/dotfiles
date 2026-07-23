@@ -3,8 +3,8 @@
 - [bashrc](bashrc) should be sourced from `~/.bashrc`
 - [vimrc](vimrc) is loaded via the `vim` alias in bashrc
   - [gitsigns.vim](gitsigns.vim) contains code to show git diffs via vim signs
-- [RULES.md](RULES.md) should be used as global context for coding agents
-- [keymap](keymap) contains scripts to remap keyboard and mouse buttons
+- [RULES.md](RULES.md) contains general instructions for coding agents
+- [keymap/](keymap/) contains scripts to remap keyboard and mouse buttons
 
 The `vimrc` contains mappings for German umlaut keys, intended for German keyboard layouts.
 
@@ -23,6 +23,8 @@ Link `RULES.md`:
 ```bash
 ln -s $HOME/dotfiles/RULES.md $HOME/.antigravity/rules.md
 ```
+
+The scrollback buffer works as expected (Ctrl+W N).
 
 ## Key Mapping
 
