@@ -6,7 +6,7 @@
 - [RULES.md](RULES.md) contains general instructions for coding agents
 - [keymap/](keymap/) contains scripts to remap keyboard and mouse buttons
 
-The `vimrc` contains mappings for German umlaut keys, intended for German keyboard layouts.
+The `vimrc` contains mappings for German umlaut keys, and thus works best with German keyboards.
 
 ## Coding Agent
 
@@ -21,7 +21,7 @@ Then run `agy` once and login.
 Link `RULES.md`:
 
 ```bash
-ln -s $HOME/dotfiles/RULES.md $HOME/.antigravity/rules.md
+ln -s $HOME/dotfiles/RULES.md $HOME/.gemini/GEMINI.md
 ```
 
 The scrollback buffer works as expected (Ctrl+W N).
