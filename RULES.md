@@ -1,3 +1,7 @@
+---
+description: General rules for chat, tools and code editing
+---
+
 ## Chat Rules
 
 1. Do not rely solely on training knowledge to answer technical questions
