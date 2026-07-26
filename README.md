@@ -34,7 +34,14 @@ Configuration files to map CapsLock to Control
 
 #### Linux
 
-Copy [caps-to-ctrl.conf](keymap/caps-to-ctrl.conf) into `/etc/X11/xorg.conf.d/`:
+In KDE Plasma 6:
+
+1. Go to Settings > Keyboard > Key Bindings
+2. Enable "Configure keyboard options"
+3. Under "Ctrl position" enable "Caps Lock as Ctrl"
+4. Click "Apply"
+
+Otherwise copy [caps-to-ctrl.conf](keymap/caps-to-ctrl.conf) into `/etc/X11/xorg.conf.d/`:
 
 ```
 sudo cp keymap/caps-to-ctrl.conf /etc/X11/xorg.conf.d/99-caps-to-ctrl.conf
