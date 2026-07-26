@@ -30,14 +30,26 @@ The scrollback buffer works as expected (Ctrl+W N).
 
 ### CapsLock > Control
 
-Configuration files to map CapsLock to Control under Linux and Windows:
+Configuration files to map CapsLock to Control
 
-- [caps-to-ctrl.map](keymap/caps-to-ctrl.map) should be loaded via `loadkeys`
-  - Parital patch to currently loaded console (TTY) keymap
-- [caps-to-ctrl.conf](keymap/caps-to-ctrl.conf) should be copied into `/etc/X11/xorg.conf.d/`
-  - Sets `XkbOptions` for any X11 keyboard device
-- [caps-to-ctrl.reg](keymap/caps-to-ctrl.reg) should be executed under Windows
-  - Maps scancodes via Registry entry
+#### Linux
+
+Copy [caps-to-ctrl.conf](keymap/caps-to-ctrl.conf) into `/etc/X11/xorg.conf.d/`:
+
+```
+sudo cp keymap/caps-to-ctrl.conf /etc/X11/xorg.conf.d/99-caps-to-ctrl.conf
+```
+
+When working in the console (TTY), load [caps-to-ctrl.map](keymap/caps-to-ctrl.map)
+via `loadkeys` to patch the current keymap:
+
+```
+loadkeys keymap/caps-to-ctrl.map
+```
+
+#### Windows
+
+Install [caps-to-ctrl.reg](keymap/caps-to-ctrl.reg) to remap scancodes via Registry.
 
 ### Mouse Buttons
 
