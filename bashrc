@@ -22,6 +22,12 @@ alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
 
 # --- git ---
 G="git@github.com:ernesto-elsaesser"
+
+git_user() {
+  git config --global user.name "Ernesto Elsäßer"
+  git config --global user.email "ernesto.elsaesser@$1"
+}
+
 alias gi='git init --inital-branch=main'
 alias gk='git clone'
 alias gl='git log -10 --format=reference'
@@ -31,11 +37,6 @@ alias gs='git status'
 alias ga='git add --all'
 alias gc='git commit -m'
 alias gp='git push'
-
-git_user() {
-  git config --global user.name "Ernesto Elsäßer"
-  git config --global user.email "ernesto.elsaesser@$1"
-}
 
 # --- python ---
 alias p='python3'
