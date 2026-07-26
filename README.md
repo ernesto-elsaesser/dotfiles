@@ -8,6 +8,14 @@
 
 The `vimrc` contains mappings for German umlaut keys, and thus works best with German keyboards.
 
+## Aliases
+
+Always source aliases:
+
+```bash
+echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
+```
+
 ## Coding Agent
 
 Install Antigravity CLI:
@@ -28,7 +36,7 @@ The scrollback buffer works as expected (Ctrl+W N).
 
 ## Key Mapping
 
-### CapsLock > Control
+### Caps Lock As Ctrl
 
 Configuration files to map CapsLock to Control
 
@@ -43,14 +51,14 @@ In KDE Plasma 6:
 
 Otherwise copy [caps-to-ctrl.conf](keymap/caps-to-ctrl.conf) into `/etc/X11/xorg.conf.d/`:
 
-```
+```bash
 sudo cp keymap/caps-to-ctrl.conf /etc/X11/xorg.conf.d/99-caps-to-ctrl.conf
 ```
 
 When working in the console (TTY), load [caps-to-ctrl.map](keymap/caps-to-ctrl.map)
 via `loadkeys` to patch the current keymap:
 
-```
+```bash
 loadkeys keymap/caps-to-ctrl.map
 ```
 
