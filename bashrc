@@ -46,14 +46,6 @@ alias d='deactivate'
 alias uc='uv venv'
 alias ui='uv pip install'
 
-alias ca='conda activate'
-alias cd='conda deactivate'
-alias cl='conda env list'
-alias cc='conda create -n'
-alias ce='conda export >'
-alias ci='conda install'
-alias cr='conda remove --all -n'
-
 # --- system ---
 alias sd='sudo dnf'
 alias sc='sudo systemctl'
