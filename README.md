@@ -8,11 +8,10 @@
 
 The `vimrc` contains mappings for German umlaut keys, and thus works best with German keyboards.
 
-## Aliases
-
-Always source aliases:
+## System Setup
 
 ```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
 ```
 
