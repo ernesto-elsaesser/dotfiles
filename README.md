@@ -8,11 +8,24 @@
 
 The `vimrc` contains mappings for German umlaut keys, and thus works best with German keyboards.
 
-## System Setup
+## Bash Hook
+
+```bash
+echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
+```
+
+## Python
+
+Install `uv`:
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
+```
+
+To install a GPU wheel of `PyTorch`:
+
+```bash
+uv pip install torch --torch-backend=auto
 ```
 
 ## Coding Agent

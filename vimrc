@@ -168,6 +168,7 @@ function! ListDir(path) abort
   nmap <buffer> r i:!mv <C-r>p <C-r>p
   nmap <buffer> m i:!mv <C-r>p 
   nmap <buffer> c i:!cp <C-r>p 
+  nmap <buffer> a i:!git add <C-r>p<CR>
   nmap <buffer> d :!mkdir 
   nmap <buffer> D i:!rm -rf <C-r>p
   au! ShellCmdPost <buffer> call ListDir(getcwd())

@@ -39,12 +39,13 @@ alias gc='git commit -m'
 alias gp='git push'
 
 # --- python ---
+VENV_BIN=".venv/bin"
+[[ $OS =~ Win ]] && VENV_BIN=".venv/Scripts"
 alias p='python'
 alias i='python -m pydoc'
 alias uc='uv venv'
 alias ui='uv pip install'
-alias a='source .venv/bin/activate'
-alias aw='source .venv/Scripts/activate'
+alias a='source $VENV_BIN/activate'
 alias d='deactivate'
 
 # --- system ---
