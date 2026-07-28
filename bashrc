@@ -39,12 +39,13 @@ alias gc='git commit -m'
 alias gp='git push'
 
 # --- python ---
-alias p='python3'
-alias i='python3 -m pydoc'
-alias a='source .venv/bin/activate'
-alias d='deactivate'
+alias p='python'
+alias i='python -m pydoc'
 alias uc='uv venv'
 alias ui='uv pip install'
+alias a='source .venv/bin/activate'
+alias aw='source .venv/Scripts/activate'
+alias d='deactivate'
 
 # --- system ---
 alias sd='sudo dnf'
