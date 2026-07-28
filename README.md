@@ -28,6 +28,8 @@ To install a GPU wheel of `PyTorch`:
 uv pip install torch --torch-backend=auto
 ```
 
+See [Using uv with PyTorch](https://docs.astral.sh/uv/guides/integration/pytorch/)
+
 ## Coding Agent
 
 Install Antigravity CLI:
