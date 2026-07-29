@@ -110,7 +110,9 @@ highlight MatchParen cterm=underline ctermbg=NONE
 function! TermSend(msg) abort
   let l:bufnums = tabpagebuflist()
   let l:termnums = filter(l:bufnums, 'bufname(v:val)[0] == "!"')
-  call term_sendkeys(l:termnums[0], a:msg)
+  if len(l:termnums) > 0:
+    call term_sendkeys(l:termnums[0], a:msg)
+  endif
 endfunction
 
 " --- dir listing ---
