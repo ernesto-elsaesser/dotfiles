@@ -74,6 +74,9 @@ nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 " scratch buffer
 nmap <Leader>o :split new<CR>:setl bt=nofile bh=wipe<CR>
 
+" search in files
+nmap <Leader>f :vim // *<Left><Left><Left>
+
 " quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
