@@ -222,6 +222,14 @@ augroup END
 
 tmap Ö import pandas as pd<CR>
 
+" --- dart ---
+
+augroup dart
+  autocmd!
+  autocmd FileType dart setl makeprg=flutter\ build\ bundle
+  autocmd FileType dart setl errorformat=lib/%f:%l:%c:\ Error:\ %m,%f:%l:%c:\ Warning:\ %m,%f:%l:%c:\ %m,%-G%.%#
+augroup END
+
 " --- imports ---
 
 source $DOTDIR/gitsigns.vim
