@@ -1,3 +1,16 @@
+# Personal Rules
+
+The following rules are *purposefully crafted* to prevent recurring frustrations
+encountered when working with coding agents.
+
+Start EACH of your turns with the following message, to confirm your response
+(messages and tool calls) reflect and obey these rules:
+
+```md
+RULE-CHECKED RESPONSE:
+---
+```
+
 ## Chat Rules
 
 1. Do not rely solely on training knowledge to answer technical questions
