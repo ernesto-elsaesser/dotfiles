@@ -1,6 +1,6 @@
 # Personal Rules
 
-The following rules are *purposefully crafted* to prevent recurring frustrations
+The following rules are *purposefully crafted* to prevent common frustrations
 encountered when working with AI coding agents.
 
 Start EACH of your turns with the following message to confirm that your response
