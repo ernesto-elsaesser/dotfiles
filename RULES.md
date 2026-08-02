@@ -42,8 +42,9 @@ Start EACH of your turns with the following message to confirm that your respons
 ## C: Code Editing Rules
 
 1. Explain changes before applying them
-   - Instead of directly responding with an edit, briefly explain the changes you are about to make
    - Edits are manually reviewed by the user and should be preceded with sufficient context to understand their purpose
+   - Instead of directly replying to a prompt with an edit, preface your tool calls with a brief explanation
+   - Each tool calls implcitly triggers an approval request, no need to ask for approval explicitly up front
 2. Do not blindly override user changes
    - When editing an existing file, prefer to do so via patch (edit tool)
    - Before editing a file (after a user prompt), always read the current version from disk and use that as the basis for your edits
