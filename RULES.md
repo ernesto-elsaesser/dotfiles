@@ -3,7 +3,7 @@
 The following rules are *purposefully crafted* to prevent common frustrations
 encountered when working with AI coding agents.
 
-Start EACH of your turns with the following message to confirm that your response
+Start EACH OF YOUR TURNS with the following message to confirm that your response
 (messages and tool calls) reflects and obeys these rules:
 
 ```md

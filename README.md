@@ -46,6 +46,8 @@ Link `RULES.md`:
 ln -s $HOME/dotfiles/RULES.md $HOME/.gemini/GEMINI.md
 ```
 
+Type `\` + `Enter` for line breaks.
+
 The scrollback buffer works as expected (Ctrl+W N).
 
 ## Key Mapping
