@@ -88,6 +88,9 @@ nmap <Leader>l :e<CR>
 " show line numbers
 nmap <Leader>n :setl number! relativenumber!<CR>
 
+" coding agent
+nmap <Leader>m :rightb vert ter ++close agy<CR>
+
 " git
 nnoremap <Leader>w :silent !tig<CR><C-l>
 nmap <Leader>e :call GitSigns()<CR>
