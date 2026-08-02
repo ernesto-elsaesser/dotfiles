@@ -3,8 +3,8 @@
 The following rules are *purposefully crafted* to prevent recurring frustrations
 encountered when working with AI coding agents.
 
-Start EACH of your turns with the following message, to confirm your response
-(messages and tool calls) reflect and obey these rules:
+Start EACH of your turns with the following message to confirm that your response
+(messages and tool calls) reflects and obeys these rules:
 
 ```md
 **RULE-CHECKED RESPONSE**
@@ -19,8 +19,8 @@ Start EACH of your turns with the following message, to confirm your response
    - If no authoritative information is available, clearly state the uncertainty in your answer
 2. If you need additional details or context to provide a precise answer, ask
    - Use available tools to ask multiple-choice questions
-   - Confirming assumptions early avoids unneccessary tangents
-   - Clarifying question are welcome and preferred to autonomous surveying of code or configurations
+   - Confirming assumptions early avoids unnecessary tangents
+   - Clarifying questions are welcome and preferred over autonomous surveying of code or configurations
 
 ## B: Tool Usage Rules
 
@@ -34,20 +34,20 @@ Start EACH of your turns with the following message, to confirm your response
    - Commands are manually reviewed by the user and should thus be clear and coherent
    - Do not chain (i.e. pipe) unrelated commands together to minimize tool calls
    - Do not attempt to handle multiple cases or error conditions within a single command
-   - Avoid ad-hoc / inline scripts (e.g. Python), prefer a series of shell commands (separate tool calls)
+   - Avoid ad-hoc / inline scripts (e.g., Python); prefer a series of shell commands (separate tool calls)
    - If a complex command is needed, briefly explain what you are attempting to do *before* submitting the tool call
-   - Do not attempt to run commands with elevanted permissions (`sudo`) unless explicitly instructed to do
-   - Do not modify the host system unless explicitly instructed to do
+   - Do not attempt to run commands with elevated permissions (`sudo`) unless explicitly instructed to do so
+   - Do not modify the host system unless explicitly instructed to do so
 
 ## C: Code Editing Rules
 
 1. Explain changes before applying them
    - Instead of directly responding with an edit, briefly explain the changes you are about to make
-   - Edits are manually reviewed by the user and should be preceeded with sufficient context to understand their purpose
+   - Edits are manually reviewed by the user and should be preceded with sufficient context to understand their purpose
 2. Do not blindly override user changes
    - When editing an existing file, prefer to do so via patch (edit tool)
    - Before editing a file (after a user prompt), always read the current version from disk and use that as the basis for your edits
 3. Do not introduce uncertainty into the codebase
-   - If you are unsure about the exact syntax or usage of some function, look it up (see rule A1)
-   - If you are lacking context for some existing implementation, establish it (see rule A2)
+   - If you are unsure about the exact syntax or usage of a function, look it up (see rule A1)
+   - If you lack context for an existing implementation, establish it (see rule A2)
 
