@@ -26,7 +26,10 @@
 
 ## Code Editing Rules
 
-1. Do not blindly override user changes
+1. Explain changes before applying them
+   - Instead of directly responding with an edit, briefly explain the changes you are about to commit
+   - All edits are manually reviewed, and thus require some context for the user to understand them
+2. Do not blindly override user changes
    - When editing an existing file, prefer to do so via patch (edit tool)
    - Before editing a file (after a user prompt), always read the current version from disk and use that as the basis for your edits
 2. Do not introduce uncertainty into the codebase
