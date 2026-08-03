@@ -46,7 +46,9 @@ function! GitSigns() abort
       for j in range(1, new_count)
         let l = new_start + j - 1
         exe 'sign place ' . l . ' name=smod line=' . l . ' buffer=' . bufnr
-        let b:diff[l] = diff_lines[i + j][1:]
+        if l < len(b:diff)
+          let b:diff[l] = diff_lines[i + j][1:]
+        endif
       endfor
     endif
 

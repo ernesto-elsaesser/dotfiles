@@ -91,4 +91,5 @@ Install [caps-to-ctrl.reg](keymap/caps-to-ctrl.reg) to remap scancodes via Regis
 
 It should be copied into `/etc/udev/hwdb.d/` (e.g. as `90-mouse-btns.conf`).
 
-[mouse-buttons.ahk](keymap/mouse-buttons.ahk) is an AutoHotkey script that performs that same mapping (usable on Windows).
+[mouse-buttons.ahk](keymap/mouse-buttons.ahk) is an AutoHotkey script that contains that same mapping (usable on Windows).
+
