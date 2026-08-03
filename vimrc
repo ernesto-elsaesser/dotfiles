@@ -139,28 +139,8 @@ function! ListDir(path) abort
   exec 'lcd ' . fnameescape(a:path)
   setl bt=nofile nomod rnu
 
-  let l:parts = [[], [], [], []]
-
-  for l:item in glob('*', 1, 1)
-    if isdirectory(l:item)
-      call add(l:parts[0], l:item . '/')
-    else
-      call add(l:parts[1], l:item)
-    endif
-  endfor
-
-  for l:item in glob('.*', 1, 1)[2:]
-    if isdirectory(l:item)
-      call add(l:parts[2], l:item . '/')
-    else
-      call add(l:parts[3], l:item)
-    endif
-  endfor
-
-  let l:lines = [getcwd(), ""]
-  for l:part in l:parts
-    call extend(l:lines, l:part)
-  endfor
+  let l:ls = systemlist('ls -AF --group-directories-first')
+  let l:lines = [getcwd(), ""] + l:ls
 
   let l:lnum = max([line("'\""), 3])
   1,$delete _
@@ -168,11 +148,12 @@ function! ListDir(path) abort
   call setpos('.', [0, l:lnum, 1, 0])
 
   call matchaddpos('Underlined', [1])
-  call matchadd('Comment', '^\..\+')
-  call matchadd('Statement', '.\+\.\(sh\|py\)$', 9)
+  call matchadd('Comment', '^\..\+')  " hidden
+  call matchadd('Constant', '.\+@$')  " symlinks
+  call matchadd('Statement', '.\+\.\(sh\|py\)\*\=$', 9)  " scripts
 
   nmap <buffer> - :e ..<CR>
-  nmap <buffer> i :let @p = fnameescape(trim(getline('.'), '/'))<CR>
+  nmap <buffer> i :let @p = fnameescape(trim(getline('.'), '/*@'))<CR>
   nmap <buffer> <Space> i:dr <C-r>p<CR>
   nmap <buffer> s i:echo trim(system("ls -lh " . @p))<CR>
   nmap <buffer> r i:!mv <C-r>p <C-r>p
