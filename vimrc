@@ -137,7 +137,7 @@ function! ListDir(path) abort
   endif
 
   exec 'lcd ' . fnameescape(a:path)
-  setl bt=nofile nomod rnu
+  setl bt=nofile nomod
 
   let l:ls = systemlist('ls -AF --group-directories-first')
   let l:lines = [getcwd(), ""] + l:ls
@@ -149,13 +149,13 @@ function! ListDir(path) abort
 
   call matchaddpos('Underlined', [1])
   call matchadd('Comment', '^\..\+')  " hidden
-  call matchadd('Constant', '.\+@$')  " symlinks
+  call matchadd('Identifier', '.\+@$')  " symlinks
   call matchadd('Statement', '.\+\.\(sh\|py\)\*\=$', 9)  " scripts
 
   nmap <buffer> - :e ..<CR>
   nmap <buffer> i :let @p = fnameescape(trim(getline('.'), '/*@'))<CR>
   nmap <buffer> <Space> i:dr <C-r>p<CR>
-  nmap <buffer> s i:echo trim(system("ls -lh " . @p))<CR>
+  nmap <buffer> s i:echo trim(system('ls -lh ' . @p))<CR>
   nmap <buffer> r i:!mv <C-r>p <C-r>p
   nmap <buffer> m i:!mv <C-r>p 
   nmap <buffer> c i:!cp <C-r>p 
