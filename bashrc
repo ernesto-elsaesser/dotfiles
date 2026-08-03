@@ -42,11 +42,16 @@ alias gp='git push'
 VENV_BIN=".venv/bin"
 [[ $OS =~ Win ]] && VENV_BIN=".venv/Scripts"
 alias p='python'
-alias i='python -m pydoc'
-alias uc='uv venv'
-alias ui='uv pip install'
-alias a='source $VENV_BIN/activate'
-alias d='deactivate'
+alias h='python -m pydoc'
+alias a='conda activate'
+alias d='conda deactivate'
+alias cl='conda env list'
+alias cc='conda create -n'
+alias ce='conda export >'
+alias ci='conda install'
+alias cr='conda remove --all -n'
+alias va='source $VENV_BIN/activate'
+alias vd='deactivate'
 
 # --- system ---
 alias sd='sudo dnf'

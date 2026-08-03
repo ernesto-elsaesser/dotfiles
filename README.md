@@ -16,7 +16,7 @@ echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
 
 ## Python
 
-Install `uv`:
+Install `uv` (appends to `.bashrc`):
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
