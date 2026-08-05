@@ -30,8 +30,9 @@ nmap <Tab> gt
 nmap <S-Tab> gT
 
 " exit insert/visual mode
-inoremap <C-k> <Esc>
-vnoremap <C-k> <Esc>
+inoremap ö <Esc>
+inoremap § ö
+vnoremap ö <Esc>
 
 " alternate file
 nmap # <C-^>
