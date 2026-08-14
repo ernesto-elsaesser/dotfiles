@@ -54,7 +54,15 @@ The scrollback buffer works as expected (Ctrl+W N).
 
 ### Caps Lock As Ctrl
 
-Configuration files to map CapsLock to Control
+Map CapsLock to Control
+
+#### Mac
+
+Configure via "Settings > Keyboard > Keyboard Shortcuts ... > Modifier Keys".
+
+#### Windows
+
+Install [caps-to-ctrl.reg](keymap/caps-to-ctrl.reg) to remap scancodes via Registry.
 
 #### Linux
 
@@ -78,18 +86,33 @@ via `loadkeys` to patch the current keymap:
 loadkeys keymap/caps-to-ctrl.map
 ```
 
+### Dead Keys
+
+Convert "dead" accent keys (waiting for second keystroke) to directly output the accent itself.
+
+#### Mac
+
+Copy [German - Standard Alive.bundle](keymap/German - Standard Alive.bundle) to `~/Library/Keyboard Layouts`
+and select via "Settings > Keyboard > Text Input > Input Sources > Edit ...".
+
 #### Windows
 
-Install [caps-to-ctrl.reg](keymap/caps-to-ctrl.reg) to remap scancodes via Registry.
+[mappings.ahk](keymap/mappings.ahk) is an AutoHotkey script that contains the mappings.
 
 ### Mouse Buttons
 
-[mouse-buttons.hwdb](keymap/mouse-buttons.hwdb) is a HWDB entry that maps:
+Map side buttons:
 
 - Side Button 1 (Mouse 4): Enter
 - Side Button 2 (Mouse 5): Backspace
 
-It should be copied into `/etc/udev/hwdb.d/` (e.g. as `90-mouse-btns.conf`).
+#### Windows
 
-[mouse-buttons.ahk](keymap/mouse-buttons.ahk) is an AutoHotkey script that contains that same mapping (usable on Windows).
+[mappings.ahk](keymap/mappings.ahk) contains the mouse button mappings.
+
+#### Linux
+
+[mouse-buttons.hwdb](keymap/mouse-buttons.hwdb) is a HWDB entry with the same mappings.
+
+It should be copied into `/etc/udev/hwdb.d/` (e.g. as `90-mouse-btns.conf`).
 
