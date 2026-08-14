@@ -8,14 +8,14 @@
 	<string>German - Standard Alive</string>
 	<key>CFBundleVersion</key>
 	<string></string>
-	<key>KLInfo_German – Standard copy</key>
+	<key>KLInfo_German - Standard Alive</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
 		<key>TISIconIsTemplate</key>
 		<false/>
 		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout.unsavedukeleledocument.german–standardcopy</string>
+		<string>org.sil.ukelele.keyboardlayout.unsavedukeleledocument.german–standardalive</string>
 		<key>TISIntendedLanguage</key>
 		<string>de</string>
 	</dict>
