@@ -14,22 +14,6 @@ The `vimrc` contains mappings for German umlaut keys, and thus works best with G
 echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
 ```
 
-## Python
-
-Install `uv` (appends to `.bashrc`):
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-To install a GPU wheel of `PyTorch`:
-
-```bash
-uv pip install torch --torch-backend=auto
-```
-
-See [Using uv with PyTorch](https://docs.astral.sh/uv/guides/integration/pytorch/)
-
 ## Coding Agent
 
 Install Antigravity CLI:
