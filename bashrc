@@ -21,11 +21,14 @@ alias v='vim -u $DOTDIR/vimrc'
 alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
 
 # --- git ---
-G="git@github.com:ernesto-elsaesser"
 
-git_user() {
+gu() {
   git config --global user.name "Ernesto Elsäßer"
   git config --global user.email "ernesto.elsaesser@$1"
+}
+
+go() {
+  git clone git@github.com:ernesto-elsaesser/$1
 }
 
 alias gi='git init --inital-branch=main'
@@ -35,8 +38,9 @@ alias gf='git fetch'
 alias gg='git pull --ff-only'
 alias gs='git status'
 alias ga='git add --all'
+alias gx='git commit -a -m'
 alias gc='git commit -m'
-alias gp='git push'
+alias gv='git push'
 
 # --- python ---
 VENV_BIN=".venv/bin"
