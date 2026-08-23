@@ -1,7 +1,7 @@
 {
   "shortcuts": [
     {
-      "command": "notebook:run-cell",
+      "command": "notebook:run-cell-and-select-next",
       "selector": ".jp-Notebook.jp-mod-commandMode:not(.jp-mod-readWrite) :focus",
       "keys": [
         "E"
