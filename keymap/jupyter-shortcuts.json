@@ -1,0 +1,11 @@
+{
+  "shortcuts": [
+    {
+      "command": "notebook:run-cell",
+      "selector": ".jp-Notebook.jp-mod-commandMode:not(.jp-mod-readWrite) :focus",
+      "keys": [
+        "E"
+      ]
+    }
+  ]
+}
