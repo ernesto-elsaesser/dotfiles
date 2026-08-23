@@ -15,7 +15,7 @@ set autoindent
 set complete=.,w
 set pastetoggle=<C-y>
 
-set statusline=%f%(\ %m%r%)\ \ %l:%c\ \ %LL%=%{getcwd()}\ 
+set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
 
 " --- key mappings ---
 
