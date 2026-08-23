@@ -43,10 +43,10 @@ alias gc='git commit -m'
 alias gv='git push'
 
 # --- python ---
-VENV_BIN=".venv/bin"
-[[ $OS =~ Win ]] && VENV_BIN=".venv/Scripts"
 alias p='python'
 alias h='python -m pydoc'
+alias up='uv run python'
+alias uh='uv run python -m pydoc'
 alias a='conda activate'
 alias d='conda deactivate'
 alias cl='conda env list'
@@ -54,7 +54,6 @@ alias cc='conda create -n'
 alias ce='conda export >'
 alias ci='conda install'
 alias cr='conda remove --all -n'
-alias va='source $VENV_BIN/activate'
 alias vd='deactivate'
 
 # --- system ---
