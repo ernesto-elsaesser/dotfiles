@@ -94,16 +94,14 @@ nmap <Leader>m :rightb vert ter ++close agy<CR>
 
 " git
 nnoremap <Leader>w :silent !tig<CR><C-l>
-nmap <Leader>e :call GitSigns()<CR>
-nmap <Leader>r :echo b:diff[line('.')]<CR>
-nmap <Leader>a :echo system("git add --all --verbose")<CR>
-nmap <Leader>s :echo system("git status")<CR>
-nmap <Leader>d :rightb vert ter git diff HEAD<CR>
-nmap <Leader>g :!git pull --ff-only<CR>
+nmap <Leader>a :!git add --all --verbose<CR>
+nmap <Leader>s :!git add %<CR>
+nmap <Leader>d :!git rm --cached %<CR>
+nmap <Leader>p :!git pull --ff-only<CR>
 nnoremap <Leader>y :silent !tig status<CR><C-l>
 nmap <Leader>x :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
-nmap <Leader>v :!git push<CR>
+nmap <Leader>v :echo system("git push")<CR>
 
 " --- colors ---
 
@@ -160,7 +158,6 @@ function! ListDir(path) abort
   nmap <buffer> r i:!mv <C-r>p <C-r>p
   nmap <buffer> m i:!mv <C-r>p 
   nmap <buffer> c i:!cp <C-r>p 
-  nmap <buffer> a i:!git add <C-r>p<CR>
   nmap <buffer> d :!mkdir 
   nmap <buffer> D i:!rm -rf <C-r>p
   au! ShellCmdPost <buffer> call ListDir(getcwd())
@@ -197,12 +194,11 @@ set tabline=%!Tabline()
 
 " --- python ---
 
-command! -nargs=1 RuffEnv let $RUFF = $HOME . "/miniforge3/envs/<args>/bin/ruff"
-command! Format !$RUFF format %
+command! Format !uv run ruff format %
 
 augroup py
   autocmd!
-  autocmd FileType python setl makeprg=$RUFF\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
+  autocmd FileType python setl makeprg=uv\ run\ ruff\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
 augroup END
 
 tmap Ö import pandas as pd<CR>
@@ -214,8 +210,4 @@ augroup dart
   autocmd FileType dart setl makeprg=flutter\ build\ bundle
   autocmd FileType dart setl errorformat=lib/%f:%l:%c:\ Error:\ %m,%f:%l:%c:\ Warning:\ %m,%f:%l:%c:\ %m,%-G%.%#
 augroup END
-
-" --- imports ---
-
-source $DOTDIR/gitsigns.vim
 
