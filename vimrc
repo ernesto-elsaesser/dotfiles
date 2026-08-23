@@ -63,9 +63,6 @@ let g:mapleader = ","
 " open HOME in new tab
 nmap <Leader>t :tabe ~/<CR>
 
-" show unsaved changes
-nmap <Leader>z :w !diff % -<CR>
-
 " reload config
 nmap <Leader>u :so $DOTDIR/vimrc<CR>
 
@@ -73,7 +70,7 @@ nmap <Leader>u :so $DOTDIR/vimrc<CR>
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
 " scratch buffer
-nmap <Leader>o :split new<CR>:setl bt=nofile bh=wipe<CR>
+nmap <Leader>z :split new<CR>:setl bt=nofile bh=wipe<CR>
 
 " search in files
 nmap <Leader>f :vim // *<Left><Left><Left>
@@ -82,15 +79,6 @@ nmap <Leader>f :vim // *<Left><Left><Left>
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
-
-" quick reload
-nmap <Leader>l :e<CR>
-
-" show line numbers
-nmap <Leader>n :setl number! relativenumber!<CR>
-
-" coding agent
-nmap <Leader>m :rightb vert ter ++close agy<CR>
 
 " git
 nnoremap <Leader>w :silent !tig<CR><C-l>
