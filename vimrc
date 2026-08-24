@@ -90,6 +90,7 @@ nnoremap <Leader>y :silent !tig status<CR><C-l>
 nmap <Leader>x :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
 nmap <Leader>v :echo system("git push")<CR>
+nnoremap <Leader>b :silent !tig blame %<CR><C-l>
 
 " --- colors ---
 
