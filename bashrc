@@ -31,7 +31,7 @@ go() {
   git clone git@github.com:ernesto-elsaesser/$1
 }
 
-alias gi='git init --inital-branch=main'
+alias gi='git init --initial-branch=main'
 alias gk='git clone'
 alias gl='git log -10 --format=reference'
 alias gf='git fetch'
