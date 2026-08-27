@@ -41,6 +41,7 @@ alias ga='git add --all'
 alias gx='git commit -a -m'
 alias gc='git commit -m'
 alias gv='git push'
+alias gr='git reset --hard'
 
 # --- python ---
 alias p='python'
