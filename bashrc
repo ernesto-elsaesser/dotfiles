@@ -18,6 +18,7 @@ alias ta='tmux attach'
 
 # --- vim ---
 alias v='vim -u $DOTDIR/vimrc'
+alias vv='vim -u $DOTDIR/vimrc .'
 alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
 
 # --- git ---
