@@ -58,6 +58,5 @@ alias cr='conda remove --all -n'
 alias vd='deactivate'
 
 # --- system ---
-alias sd='sudo dnf'
 alias sc='sudo systemctl'
-alias sg='sudo grub2-mkconfig -o /boot/grub2/grub.cfg'
+
