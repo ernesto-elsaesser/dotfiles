@@ -81,15 +81,16 @@ nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
 " git
-nnoremap <Leader>w :silent !tig<CR><C-l>
+nmap <Leader>e :!git add %<CR>
+nmap <Leader>r :!git rm --cached %<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>s :!git add %<CR>
-nmap <Leader>d :!git rm --cached %<CR>
-nmap <Leader>p :!git pull --ff-only<CR>
-nnoremap <Leader>y :silent !tig status<CR><C-l>
+nnoremap <Leader>s :silent !tig status<CR><C-l>
+nnoremap <Leader>d :silent !tig<CR><C-l>
+nnoremap <Leader>h :silent !tig log<CR><C-l>
+nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>x :echo system("git commit -a -m ''")<Left><Left><Left>
 nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
-nmap <Leader>v :echo system("git push")<CR>
+nmap <Leader>p :echo system("git push")<CR>
 nnoremap <Leader>b :silent !tig blame %<CR><C-l>
 
 " --- colors ---
