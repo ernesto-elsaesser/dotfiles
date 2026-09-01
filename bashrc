@@ -1,5 +1,4 @@
-SCRIPT_PATH=$(readlink -f "${BASH_SOURCE[0]}")
-export VIMRC=${SCRIPT_PATH/bashrc/vimrc}
+export VIMRC=$(readlink -f "${BASH_SOURCE[0]/bashrc/vimrc}")
 
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
