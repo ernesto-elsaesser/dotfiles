@@ -7,14 +7,13 @@ filetype plugin on
 
 set background=dark
 set noswapfile
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 set laststatus=2
 set scrolloff=5
 set shiftwidth=4 softtabstop=-1 expandtab
 set autoindent
-set complete=.,w
+set complete=.
 set pastetoggle=<C-y>
-
 set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
 
 " --- key mappings ---
@@ -93,6 +92,10 @@ nmap <Leader>r :!git rm --cached %<CR>
 nnoremap <Leader>s :silent !tig status<CR><C-l>
 nnoremap <Leader>l :silent !tig<CR><C-l>
 nnoremap <Leader>b :silent !tig blame %<CR><C-l>
+
+" top
+nmap <Leader>h :silent !htop<CR><C-l>
+nmap <Leader>n :silent !nvtop<CR><C-l>
 
 " --- colors ---
 
