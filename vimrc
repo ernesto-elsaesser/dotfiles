@@ -64,7 +64,7 @@ let g:mapleader = ","
 nmap <Leader>t :tabe ~/<CR>
 
 " reload config
-nmap <Leader>u :so $DOTDIR/vimrc<CR>
+nmap <Leader>u :so $VIMRC<CR>
 
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>

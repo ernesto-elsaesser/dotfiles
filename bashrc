@@ -1,4 +1,5 @@
-export DOTDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+SCRIPT_PATH=$(readlink -f "${BASH_SOURCE[0]}")
+export VIMRC=${SCRIPT_PATH/bashrc/vimrc}
 
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
@@ -10,9 +11,9 @@ alias la='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
 
 # --- vim ---
-alias v='vim -u $DOTDIR/vimrc'
-alias vv='vim -u $DOTDIR/vimrc .'
-alias sv='sudo DOTDIR=$DOTDIR vim -u $DOTDIR/vimrc'
+alias v="vim -u $VIMRC"
+alias vv="vim -u $VIMRC ."
+alias sv="sudo vim -u $VIMRC"
 
 # --- git ---
 
