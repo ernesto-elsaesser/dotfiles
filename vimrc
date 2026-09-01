@@ -83,8 +83,8 @@ nmap <Leader>k :cp<CR>
 " git
 nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>x :echo system("git commit -a -m ''")<Left><Left><Left>
-nmap <Leader>c :echo system("git commit -m ''")<Left><Left><Left>
+nmap <Leader>x :!git commit -a -m ''<Left>
+nmap <Leader>c :!git commit -m ''<Left>
 nmap <Leader>p :!git push<CR>
 nmap <Leader>e :!git add %<CR>
 nmap <Leader>r :!git rm --cached %<CR>
