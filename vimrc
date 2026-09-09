@@ -7,7 +7,6 @@ filetype plugin on
 
 set background=dark
 set noswapfile
-"set backspace=indent,eol,start
 set laststatus=2
 set scrolloff=5
 set shiftwidth=4 softtabstop=-1 expandtab
