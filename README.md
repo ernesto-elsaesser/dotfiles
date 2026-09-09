@@ -2,7 +2,6 @@
 
 - [bashrc](bashrc) should be sourced from `~/.bashrc`
 - [vimrc](vimrc) is loaded via the `vim` alias in bashrc
-  - [gitsigns.vim](gitsigns.vim) contains code to show git diffs via vim signs
 - [RULES.md](RULES.md) contains general instructions for coding agents
 - [keymap/](keymap/) contains scripts to remap keyboard and mouse buttons
 

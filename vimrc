@@ -79,6 +79,9 @@ nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
+" browse split
+nmap <Leader>v :sp .<CR>
+
 " git
 nmap <Leader>g :!git pull --ff-only<CR>
 nmap <Leader>a :!git add --all --verbose<CR>
