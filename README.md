@@ -70,27 +70,15 @@ Convert "dead" accent keys (waiting for second keystroke) to directly output the
 
 #### Mac
 
-Copy [German - Standard Alive.bundle](keymap/German - Standard Alive.bundle) to `~/Library/Keyboard Layouts`
+Copy [German - Standard Alive.bundle](<keymap/German - Standard Alive.bundle>) to `~/Library/Keyboard Layouts`
 and select via "Settings > Keyboard > Text Input > Input Sources > Edit ...".
 
 #### Windows
 
 [mappings.ahk](keymap/mappings.ahk) is an AutoHotkey script that contains the mappings.
 
-### Mouse Buttons
-
-Map side buttons:
+It also re-maps the mouse side buttons:
 
 - Side Button 1 (Mouse 4): Enter
 - Side Button 2 (Mouse 5): Backspace
-
-#### Windows
-
-[mappings.ahk](keymap/mappings.ahk) contains the mouse button mappings.
-
-#### Linux
-
-[mouse-buttons.hwdb](keymap/mouse-buttons.hwdb) is a HWDB entry with the same mappings.
-
-It should be copied into `/etc/udev/hwdb.d/` (e.g. as `90-mouse-btns.conf`).
 
