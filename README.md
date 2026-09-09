@@ -15,7 +15,7 @@ echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
 
 ## Coding Agent
 
-Install Antigravity CLI:
+Install e.g. Antigravity CLI:
 
 ```bash
 curl -fsSL https://antigravity.google/cli/install.sh | bash
@@ -49,12 +49,7 @@ Install [caps-to-ctrl.reg](keymap/caps-to-ctrl.reg) to remap scancodes via Regis
 
 #### Linux
 
-In KDE Plasma 6:
-
-1. Go to Settings > Keyboard > Key Bindings
-2. Enable "Configure keyboard options"
-3. Under "Ctrl position" enable "Caps Lock as Ctrl"
-4. Click "Apply"
+In KDE Plasma, enable "Caps Lock as Ctrl" under Settings > Keyboard > Key Bindings > Configure keyboard options.
 
 Otherwise copy [caps-to-ctrl.conf](keymap/caps-to-ctrl.conf) into `/etc/X11/xorg.conf.d/`:
 
