@@ -1,7 +1,7 @@
 # Files
 
 - [bashrc](bashrc) should be sourced from `~/.bashrc`
-- [vimrc](vimrc) is loaded via the `vim` alias in bashrc
+- [vimrc](vimrc) is loaded via the `vim` aliases in bashrc
 - [RULES.md](RULES.md) contains general instructions for coding agents
 - [keymap/](keymap/) contains scripts to remap keyboard and mouse buttons
 
