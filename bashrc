@@ -48,7 +48,6 @@ alias cc='conda create -n'
 alias ce='conda export >'
 alias ci='conda install'
 alias cr='conda remove --all -n'
-alias vd='deactivate'
 
 # --- system ---
 alias sc='sudo systemctl'
