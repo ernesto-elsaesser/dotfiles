@@ -40,7 +40,7 @@ In Anitgravity, the scrollback buffer works as expected (Ctrl+W N).
 
 ### Caps Lock As Ctrl
 
-Map CapsLock to Control
+Map the CapsLock key to Control in different operating systems.
 
 #### Mac
 
