@@ -73,13 +73,14 @@ nmap <Leader>z :split new<CR>:setl bt=nofile bh=wipe<CR>
 " search in files
 nmap <Leader>f :vim // *<Left><Left><Left>
 
+" browse split
+nmap <Leader>b :sp .<CR>
+nmap <Leader>v :vs .<CR>
+
 " quickfix list
 nmap <Leader><Leader> :cc<CR>
 nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
-
-" browse split
-nmap <Leader>v :sp .<CR>
 
 " git
 nmap <Leader>g :!git pull --ff-only<CR>
@@ -91,9 +92,9 @@ nmap <Leader>e :!git add %<CR>
 nmap <Leader>r :!git rm --cached %<CR>
 
 " tig
+nnoremap <Leader>w :silent !tig blame %<CR><C-l>
 nnoremap <Leader>s :silent !tig status<CR><C-l>
 nnoremap <Leader>l :silent !tig<CR><C-l>
-nnoremap <Leader>b :silent !tig blame %<CR><C-l>
 
 " top
 nmap <Leader>h :silent !htop<CR><C-l>
