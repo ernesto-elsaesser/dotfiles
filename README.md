@@ -23,17 +23,18 @@ Install e.g. Antigravity CLI:
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 ```
 
-Then run `agy` once and login.
-
 Link `RULES.md`:
 
 ```bash
 ln -s $HOME/dotfiles/RULES.md $HOME/.gemini/GEMINI.md
+ln -s $HOME/dotfiles/RULES.md $HOME/.copilot/copilot-instructions.md
+ln -s $HOME/dotfiles/RULES.md $HOME/.claude/CLAUDE.md
+ln -s $HOME/dotfiles/RULES.md $HOME/.pi/agent/AGENTS.md
 ```
 
 Type `\` + `Enter` for line breaks.
 
-The scrollback buffer works as expected (Ctrl+W N).
+In Anitgravity, the scrollback buffer works as expected (Ctrl+W N).
 
 ## Key Mapping
 
