@@ -9,6 +9,8 @@ The `vimrc` contains mappings for German umlaut keys, and thus works best with G
 
 ## Bash Hook
 
+Clone the repository into the `HOME` folder and run:
+
 ```bash
 echo "source $HOME/dotfiles/bashrc" >> $HOME/.bashrc
 ```
