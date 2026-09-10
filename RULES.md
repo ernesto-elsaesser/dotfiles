@@ -44,7 +44,7 @@ Start EACH OF YOUR TURNS with the following message to confirm that your respons
 1. Explain changes before applying them
    - Edits are manually reviewed by the user and should be preceded with sufficient context to understand their purpose
    - Instead of directly replying to a prompt with an edit, preface your tool calls with a brief explanation
-   - Each tool calls implcitly triggers an approval request, no need to ask for approval explicitly up front
+   - Each tool call implicitly triggers an approval request - no need to ask for approval in chat
 2. Do not blindly override user changes
    - When editing an existing file, prefer to do so via patch (edit tool)
    - Before editing a file (after a user prompt), always read the current version from disk and use that as the basis for your edits
