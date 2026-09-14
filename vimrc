@@ -9,7 +9,7 @@ set background=dark
 set noswapfile
 set laststatus=2
 set scrolloff=5
-set shiftwidth=4 softtabstop=-1 expandtab
+set shiftwidth=2 softtabstop=-1 expandtab
 set autoindent
 set complete=.
 set pastetoggle=<C-y>
