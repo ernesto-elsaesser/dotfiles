@@ -39,6 +39,7 @@ alias gp='git push'
 # --- python ---
 alias p='python'
 alias h='python -m pydoc'
+alias ui='uv init --no-package'
 alias ur='uv run'
 alias up='uv run python'
 alias uh='uv run python -m pydoc'
