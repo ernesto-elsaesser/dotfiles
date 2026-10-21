@@ -14,6 +14,7 @@ set autoindent
 set complete=.
 set pastetoggle=<C-y>
 set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
+set listchars=space:·
 
 " --- key mappings ---
 
