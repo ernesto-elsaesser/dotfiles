@@ -43,13 +43,6 @@ alias ui='uv init --no-package'
 alias ur='uv run'
 alias up='uv run python'
 alias uh='uv run python -m pydoc'
-alias ca='conda activate'
-alias cu='conda deactivate'
-alias cl='conda env list'
-alias cc='conda create -n'
-alias ce='conda export >'
-alias ci='conda install'
-alias cr='conda remove --all -n'
 
 # --- system ---
 alias sc='sudo systemctl'
