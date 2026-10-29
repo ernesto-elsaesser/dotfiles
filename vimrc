@@ -16,6 +16,11 @@ set pastetoggle=<C-y>
 set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
 set listchars=space:·
 
+" --- colors ---
+
+highlight Comment ctermfg=darkgray
+highlight MatchParen cterm=underline ctermbg=NONE
+
 " --- key mappings ---
 
 " quick save
@@ -38,6 +43,12 @@ nmap # <C-^>
 
 " open parent directory
 nmap - :e .<CR>
+
+" browse split
+nmap gk :sp .<CR>
+nmap gj :bel sp .<CR>
+nmap gl :vs .<CR>
+nmap gh :bel vs .<CR>
 
 " toggle word wrap
 nmap + :setl wrap!<CR>
@@ -92,3 +103,9 @@ augroup mynetrw
     autocmd BufEnter * call ListDir(expand('%'))
 augroup END
 
+" --- extensions ---
+
+let s:script_dir = expand('<sfile>:p:h') . '/vim'
+for s:script_file in glob(s:ext_dir . '/*.vim', 1, 1)
+  execute 'source' s:script_file
+endfor
