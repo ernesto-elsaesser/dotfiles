@@ -106,6 +106,6 @@ augroup END
 " --- extensions ---
 
 let s:script_dir = expand('<sfile>:p:h') . '/vim'
-for s:script_file in glob(s:ext_dir . '/*.vim', 1, 1)
+for s:script_file in glob(s:script_dir . '/*.vim', 1, 1)
   execute 'source' s:script_file
 endfor

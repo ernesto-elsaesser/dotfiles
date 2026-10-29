@@ -1,5 +1,3 @@
-export VIMRC=$(readlink -f "${BASH_SOURCE[0]/bashrc/vimrc}")
-
 # --- shell ---
 PS1="${CONDA_PREFIX:+($CONDA_DEFAULT_ENV) }\[\e[01;32m\]\u@\h\[\e[0m\]:\[\e[01;34m\]\w\[\e[0m\]\$ "
 alias c='clear'
@@ -10,6 +8,7 @@ alias la='ls -lhAF --color=auto'
 alias sl='sudo ls -lhAF --color=auto'
 
 # --- vim ---
+VIMRC=$(readlink -f "${BASH_SOURCE[0]/bashrc/vimrc}")
 alias v="vim -u $VIMRC"
 alias vv="vim -u $VIMRC ."
 alias sv="sudo vim -u $VIMRC"
