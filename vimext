@@ -1,0 +1,114 @@
+" --- colors ---
+
+highlight Comment ctermfg=darkgray
+highlight LineNr ctermfg=darkgray
+highlight TabLineSel ctermfg=cyan
+highlight MatchParen cterm=underline ctermbg=NONE
+
+" --- leader mappings ---
+
+let g:mapleader = ","
+
+" open HOME in new tab
+nmap <Leader>t :tabe ~/<CR>
+
+" toggle color column
+nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
+
+" scratch buffer
+nmap <Leader>z :split new<CR>:setl bt=nofile bh=wipe<CR>
+
+" search in files
+nmap <Leader>f :vim // *<Left><Left><Left>
+
+" browse split
+nmap <Leader>b :sp .<CR>
+nmap <Leader>v :vs .<CR>
+
+" quickfix list
+nmap <Leader><Leader> :cc<CR>
+nmap <Leader>j :cn<CR>
+nmap <Leader>k :cp<CR>
+
+" git
+nmap <Leader>g :!git pull --ff-only<CR>
+nmap <Leader>a :!git add --all --verbose<CR>
+nmap <Leader>x :!git commit -a -m ''<Left>
+nmap <Leader>c :!git commit -m ''<Left>
+nmap <Leader>p :!git push<CR>
+nmap <Leader>e :!git add %<CR>
+nmap <Leader>r :!git rm --cached %<CR>
+
+" tig
+nnoremap <Leader>w :silent !tig blame %<CR><C-l>
+nnoremap <Leader>s :silent !tig status<CR><C-l>
+nnoremap <Leader>l :silent !tig<CR><C-l>
+
+" top
+nmap <Leader>h :silent !htop<CR><C-l>
+nmap <Leader>n :silent !nvtop<CR><C-l>
+
+" --- terminal ---
+
+" open terminal
+nmap ü :rightb vert ter<CR>
+nmap Ü :bel ter<CR>
+
+" send to terminal
+nmap ä :call TermSend("\x10\r")<CR>
+nmap Ä :call TermSend(getreg('"'))<CR>
+nmap ö yy:call TermSend(getreg('"'))<CR><CR>
+nmap Ö yy:call TermSend(trim(getreg('"'), ' '))<CR><CR>
+
+function! TermSend(msg) abort
+  let l:bufnums = tabpagebuflist()
+  let l:termnums = filter(l:bufnums, 'bufname(v:val)[0] == "!"')
+  if len(l:termnums) > 0
+    call term_sendkeys(l:termnums[0], a:msg)
+  else
+    echo 'no terminal'
+  endif
+endfunction
+
+" --- comments ---
+
+augroup noro
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=ro
+augroup END
+
+" --- tabline ---
+
+function! Tabline()
+  let line = ''
+  for i in range(tabpagenr('$'))
+    let n = i + 1
+    let hl = n == tabpagenr() ? 'TabLineSel' : 'TabLine'
+    let cwd = fnamemodify(getcwd(1, n), ':~')
+    let line .= '%#' . hl . '#%' . n . 'T ' . n . ':' . cwd . ' |'
+  endfor
+  let line .= '%#TabLineFill#'
+  return line
+endfunction
+
+set tabline=%!Tabline()
+
+" --- python ---
+
+command! Format !uv run ruff format %
+
+augroup py
+  autocmd!
+  autocmd FileType python setl makeprg=uv\ run\ ruff\ check\ --output-format\ concise\ % errorformat=%f:%l:%c:\ %m
+augroup END
+
+tmap Ö import pandas as pd<CR>
+
+" --- dart ---
+
+augroup dart
+  autocmd!
+  autocmd FileType dart setl makeprg=flutter\ build\ bundle
+  autocmd FileType dart setl errorformat=lib/%f:%l:%c:\ Error:\ %m,%f:%l:%c:\ Warning:\ %m,%f:%l:%c:\ %m,%-G%.%#
+augroup END
+
