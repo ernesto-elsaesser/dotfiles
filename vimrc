@@ -20,6 +20,7 @@ set listchars=space:·
 
 highlight Comment ctermfg=darkgray
 highlight MatchParen cterm=underline ctermbg=NONE
+highlight TabLineSel ctermfg=cyan
 
 " --- key mappings ---
 
@@ -30,8 +31,8 @@ nmap <Space> :w<CR>
 nmap qq :q<CR>
 
 " quick tab switch
-nmap <Tab> gt
-nmap <S-Tab> gT
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 
 " exit insert/visual mode
 inoremap ö <Esc>
@@ -47,14 +48,14 @@ nmap - :e .<CR>
 " browse split
 nmap gk :sp .<CR>
 nmap gj :bel sp .<CR>
-nmap gl :vs .<CR>
-nmap gh :bel vs .<CR>
+nmap gh :vs .<CR>
+nmap gl :bel vs .<CR>
 
 " toggle word wrap
 nmap + :setl wrap!<CR>
 
-" jump to keyword under cursor
-nmap gk <C-]>
+" jump to tag under cursor
+nmap gt <C-]>
 
 " --- dir listing ---
 
@@ -102,6 +103,22 @@ augroup mynetrw
     autocmd!
     autocmd BufEnter * call ListDir(expand('%'))
 augroup END
+
+" --- tabs ---
+
+function! Tabline()
+  let line = ''
+  for i in range(tabpagenr('$'))
+    let n = i + 1
+    let hl = n == tabpagenr() ? 'TabLineSel' : 'TabLine'
+    let cwd = fnamemodify(getcwd(1, n), ':~')
+    let line .= '%#' . hl . '#%' . n . 'T ' . n . ':' . cwd . ' |'
+  endfor
+  let line .= '%#TabLineFill#'
+  return line
+endfunction
+
+set tabline=%!Tabline()
 
 " --- extensions ---
 
