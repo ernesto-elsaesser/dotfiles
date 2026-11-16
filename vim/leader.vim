@@ -3,6 +3,9 @@ let g:mapleader = ","
 " open HOME in new tab
 nmap <Leader>t :tabe ~/<CR>
 
+" show spaces
+nmap <Leader>w :setl lcs=space:·<CR>:l<CR>
+
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
 
@@ -27,9 +30,9 @@ nmap <Leader>e :!git add %<CR>
 nmap <Leader>r :!git rm --cached %<CR>
 
 " tig
-nnoremap <Leader>w :silent !tig blame %<CR><C-l>
-nnoremap <Leader>s :silent !tig status<CR><C-l>
 nnoremap <Leader>l :silent !tig<CR><C-l>
+nnoremap <Leader>s :silent !tig status<CR><C-l>
+nnoremap <Leader>f :silent !tig blame %<CR><C-l>
 
 " top
 nmap <Leader>h :silent !htop<CR><C-l>
