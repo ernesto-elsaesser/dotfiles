@@ -26,7 +26,7 @@ highlight TabLineSel ctermfg=cyan
 " exit insert/visual mode
 inoremap ö <Esc>
 inoremap § ö
-#vnoremap ö <Esc>
+vnoremap ö <Esc>
 
 " open parent directory
 nmap - :e .<CR>
@@ -34,27 +34,27 @@ nmap - :e .<CR>
 " toggle word wrap
 nmap + :setl wrap!<CR>
 
-" quick save
-#nmap <Space> :w<CR>
-
-" quick quit
-#nmap qq :q<CR>
-
 " quick tab switch
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
+" quick save
+"nmap <Space> :w<CR>
+
+" quick quit
+"nmap qq :q<CR>
+
 " alternate file
 nmap # <C-^>
 
-" browse split
-#nmap gk :sp .<CR>
-#nmap gj :bel sp .<CR>
-#nmap gh :vs .<CR>
-#nmap gl :bel vs .<CR>
-
 " jump to tag under cursor
-nmap gt <C-]>
+nmap _ <C-]>
+
+" browse split
+"nmap gk :sp .<CR>
+"nmap gj :bel sp .<CR>
+"nmap gh :vs .<CR>
+"nmap gl :bel vs .<CR>
 
 " --- dir listing ---
 
