@@ -21,8 +21,7 @@ nmap qq :q<CR>
 nmap <Space> <CR>
 
 nmap - :e .<CR>
-nmap _ <C-]>
-nmap + :setl wrap!<CR>
+nmap + <C-]>
 nmap # <C-^>
 
 let g:netrw_keepdir = 0

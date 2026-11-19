@@ -3,8 +3,8 @@ let g:mapleader = ","
 " open HOME in new tab
 nmap <Leader>t :tabe ~/<CR>
 
-" show spaces
-nmap <Leader>w :setl lcs=space:·<CR>:l<CR>
+" toggle word wrap
+nmap <Leader>w :setl wrap!<CR>
 
 " toggle color column
 nmap <Leader>i :let &l:cc=(empty(&l:cc) ? '80' : '')<CR>
@@ -21,18 +21,17 @@ nmap <Leader>j :cn<CR>
 nmap <Leader>k :cp<CR>
 
 " git
-nmap <Leader>g :!git pull --ff-only<CR>
-nmap <Leader>a :!git add --all --verbose<CR>
-nmap <Leader>x :!git commit -a -m ''<Left>
-nmap <Leader>c :!git commit -m ''<Left>
-nmap <Leader>p :!git push<CR>
-nmap <Leader>e :!git add %<CR>
-nmap <Leader>r :!git rm --cached %<CR>
+nmap <Leader>e :!clear && git add %<CR>
+nmap <Leader>r :!clear && git rm --cached %<CR>
+nmap <Leader>g :!clear && git pull --ff-only<CR>
+nmap <Leader>a :!clear && git add --all --verbose<CR>
+nmap <Leader>s :!clear && git status<CR>
+nmap <Leader>x :!clear && git commit -a -m ''<Left>
+nmap <Leader>c :!clear && git commit -m ''<Left>
+nmap <Leader>p :!clear && git push<CR>
 
-" tig
-nnoremap <Leader>l :silent !tig<CR><C-l>
-nnoremap <Leader>s :silent !tig status<CR><C-l>
-nnoremap <Leader>f :silent !tig blame %<CR><C-l>
+" show spaces
+nmap <Leader>v :setl lcs=space:·<CR>:l<CR>
 
 " top
 nmap <Leader>h :silent !htop<CR><C-l>
