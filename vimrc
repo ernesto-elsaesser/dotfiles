@@ -26,7 +26,6 @@ nmap # <C-^>
 let g:netrw_keepdir = 0
 let g:netrw_dirhistmax = 0
 let g:netrw_sort_sequence = '\/$,*'
-let g:netrw_list_hide = '^\.[^.]'
 
 for s:script_file in glob('~/dotfiles/vim/*.vim', 1, 1)
   execute 'source' s:script_file
