@@ -1,21 +1,13 @@
 source $VIMRUNTIME/defaults.vim
 
-"set nocompatible
-
-"syntax on
-"filetype plugin on
-
-"set scrolloff=5
 set background=dark
+set noswapfile
 set shiftwidth=2
 set expandtab
-"set softtabstop=-1
 set autoindent
 set pastetoggle=<C-y>
 set laststatus=2
 set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
-"set complete=.
-"set noswapfile
 
 highlight Comment ctermfg=darkgray
 highlight MatchParen cterm=underline ctermbg=NONE
