@@ -17,6 +17,7 @@ inoremap ö <Esc>
 inoremap § ö
 vnoremap ö <Esc>
 
+nmap qq :q<CR>
 nmap <Space> <CR>
 
 nmap - :e .<CR>
