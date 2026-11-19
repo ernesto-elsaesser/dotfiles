@@ -8,6 +8,7 @@ set autoindent
 set pastetoggle=<C-y>
 set laststatus=2
 set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
+set mouse=
 
 highlight Comment ctermfg=darkgray
 highlight MatchParen cterm=underline ctermbg=NONE
