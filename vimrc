@@ -23,6 +23,11 @@ nmap _ <C-]>
 nmap + :setl wrap!<CR>
 nmap # <C-^>
 
+let g:netrw_keepdir = 0
+let g:netrw_dirhistmax = 0
+let g:netrw_sort_sequence = '\/$,*'
+let g:netrw_list_hide = '^\.[^.]'
+
 let s:script_dir = expand('<sfile>:p:h') . '/vim'
 for s:script_file in glob(s:script_dir . '/*.vim', 1, 1)
   execute 'source' s:script_file
