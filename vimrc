@@ -1,125 +1,35 @@
-" --- settings ---
+source $VIMRUNTIME/defaults.vim
 
-set nocompatible
+"set nocompatible
 
-syntax on
-filetype plugin on
+"syntax on
+"filetype plugin on
 
+"set scrolloff=5
 set background=dark
-set noswapfile
-set laststatus=2
-set scrolloff=5
-set shiftwidth=2 softtabstop=-1 expandtab
+set shiftwidth=2
+set expandtab
+"set softtabstop=-1
 set autoindent
-set complete=.
 set pastetoggle=<C-y>
+set laststatus=2
 set statusline=%f%(\ %m%r%)\ -\ line\ %l\ of\ %L%=%c%V
-
-" --- colors ---
+"set complete=.
+"set noswapfile
 
 highlight Comment ctermfg=darkgray
 highlight MatchParen cterm=underline ctermbg=NONE
-highlight TabLineSel ctermfg=cyan
 
-" --- key mappings ---
-
-" exit insert/visual mode
 inoremap ö <Esc>
 inoremap § ö
 vnoremap ö <Esc>
 
-" open parent directory
+nmap <Space> <CR>
+
 nmap - :e .<CR>
-
-" toggle word wrap
-nmap + :setl wrap!<CR>
-
-" quick tab switch
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-
-" quick save
-"nmap <Space> :w<CR>
-
-" quick quit
-"nmap qq :q<CR>
-
-" alternate file
-nmap # <C-^>
-
-" jump to tag under cursor
 nmap _ <C-]>
-
-" browse split
-"nmap gk :sp .<CR>
-"nmap gj :bel sp .<CR>
-"nmap gh :vs .<CR>
-"nmap gl :bel vs .<CR>
-
-" --- dir listing ---
-
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-
-function! ListDir(path) abort
-
-  call clearmatches()
-
-  if !isdirectory(a:path)
-    return
-  endif
-
-  exec 'lcd ' . fnameescape(a:path)
-  setl bt=nofile nomod
-
-  let l:ls = systemlist('ls -AF --group-directories-first')
-  let l:lines = [getcwd(), ""] + l:ls
-
-  let l:lnum = max([line("'\""), 3])
-  1,$delete _
-  call setline(1, l:lines)
-  call setpos('.', [0, l:lnum, 1, 0])
-
-  call matchaddpos('Underlined', [1])
-  call matchadd('Comment', '^\..\+')  " hidden
-  call matchadd('Identifier', '.\+@$')  " symlinks
-  call matchadd('Statement', '.\+\.\(sh\|py\)\*\=$', 9)  " scripts
-
-  nmap <buffer> - :e ..<CR>
-  nmap <buffer> i :let @p = fnameescape(trim(getline('.'), '/*@'))<CR>
-  nmap <buffer> <Space> i:dr <C-r>p<CR>
-  nmap <buffer> s i:echo trim(system('ls -lh ' . @p))<CR>
-  nmap <buffer> r i:!mv <C-r>p <C-r>p
-  nmap <buffer> m i:!mv <C-r>p 
-  nmap <buffer> c i:!cp <C-r>p 
-  nmap <buffer> d :!mkdir 
-  nmap <buffer> D i:!rm -rf <C-r>p
-  au! ShellCmdPost <buffer> call ListDir(getcwd())
-
-endfunction
-
-augroup mynetrw
-    autocmd!
-    autocmd BufEnter * call ListDir(expand('%'))
-augroup END
-
-" --- tabs ---
-
-function! Tabline()
-  let line = ''
-  for i in range(tabpagenr('$'))
-    let n = i + 1
-    let hl = n == tabpagenr() ? 'TabLineSel' : 'TabLine'
-    let cwd = fnamemodify(getcwd(1, n), ':~')
-    let line .= '%#' . hl . '#%' . n . 'T ' . n . ':' . cwd . ' |'
-  endfor
-  let line .= '%#TabLineFill#'
-  return line
-endfunction
-
-set tabline=%!Tabline()
-
-" --- extensions ---
+nmap + :setl wrap!<CR>
+nmap # <C-^>
 
 let s:script_dir = expand('<sfile>:p:h') . '/vim'
 for s:script_file in glob(s:script_dir . '/*.vim', 1, 1)
